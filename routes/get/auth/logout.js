@@ -4,7 +4,7 @@ module.exports = app => {
   
   app.get(GetAuthLogout, (req, res) => {
     
-    req.logout();
+    req.logout(err => {});
     res.status(200).end();
     
   });

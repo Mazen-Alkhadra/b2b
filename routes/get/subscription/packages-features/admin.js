@@ -1,5 +1,5 @@
-const { 
-  GetAdminSubscribePackageFeatures 
+const {
+  GetAdminSubscribePackageFeatures
 } = require('../../../../services').api.endpoints;
 const SubscribeSvc = require('../../../../services').Subscription;
 
