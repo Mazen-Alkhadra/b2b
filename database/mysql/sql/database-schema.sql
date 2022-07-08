@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `birth_date` 					  BIGINT UNSIGNED NULL DEFAULT NULL,
   `gender` 							  ENUM('Male', 'Female') NULL DEFAULT NULL,
   `img_id`                BIGINT UNSIGNED NULL DEFAULT NULL,
-  `role_id`               VARCHAR(50) NULL DEFAULT NULL,
+  `role_id`               VARCHAR(50) NOT NULL DEFAULT 'NORMAL_USER',
   `is_blocked`            BOOLEAN NOT NULL DEFAULT FALSE,
   `is_active`             BOOLEAN NOT NULL DEFAULT FALSE,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

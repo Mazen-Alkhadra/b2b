@@ -27,12 +27,13 @@ class User {
     birthDate, gender, imgId, roleId, isBlocked, isActive
   }) {
 
-    const hashedPassword = await HashSvc.create().hash(password);
+    if(password)
+      password = await HashSvc.create().hash(password);
 
     await this.userModel.update({
       idUser, firstName, lastName, email, mobile, companyId,
       birthDate, gender, imgId, roleId, isBlocked, isActive,
-      password: hashedPassword
+      password
     });
   }
 

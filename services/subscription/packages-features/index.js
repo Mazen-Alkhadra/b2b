@@ -3,9 +3,13 @@ const SubscribeModel = require('../../../models').Subscription;
 class PackageFeature {
   packageFeatureModel = SubscribeModel.PackagesFeatures.create();
 
-  async getAllFullInfo({ limit, skip, filters, sorts }) {
+  async getAllFullInfo({ 
+    limit, skip, filters, sorts,
+    subscriptionPackageId 
+  }) {
     return await this.packageFeatureModel.getAllFullInfo({
-      limit, skip, filters, sorts
+      limit, skip, filters, sorts,
+      subscriptionPackageId
     });
   }
 

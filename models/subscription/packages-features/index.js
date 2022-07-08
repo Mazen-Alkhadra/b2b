@@ -4,14 +4,20 @@ const Model = require('../../model');
 class SubscriptionPackagesFeatures extends Model {
  
   async getAllFullInfo({
-    limit, skip, filters, sorts
+    limit, skip, filters, sorts,
+    subscriptionPackageId
   }) {
+
+    let packageCond = !subscriptionPackageId ? 'TRUE' :
+      `subscription_package_id = ${this.escapeSql(subscription_package_id)}`;
 
     let countQuery =
       `SELECT
         Count(*) allCount
       FROM
-        subscription_packages_features;`
+        subscription_packages_features
+      WHERE 
+        ${packageCond};`
       
 
     let dataQuery =
@@ -20,7 +26,9 @@ class SubscriptionPackagesFeatures extends Model {
 				subscription_feature_id	subscriptionFeatureId,
 				feature_value	featureValue
       FROM
-        subscription_packages_features`;
+        subscription_packages_features
+      WHERE 
+        ${packageCond}`;
 
     let queryStr = countQuery + dataQuery;
 

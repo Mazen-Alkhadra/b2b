@@ -1,3 +1,4 @@
 module.exports = app => {
-  require('./packeges')(app);
+  require('./packages')(app);
+  require('./packages-features')(app);
 }

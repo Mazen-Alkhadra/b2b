@@ -41,7 +41,7 @@ BEGIN
 		p_birth_date,
 		p_gender,
 		fun_insert_img(p_img_url),
-		p_role_id,
+		IFNULL(p_role_id, 'NORMAL_USER'),
 		IFNULL(p_is_blocked, DEFAULT(is_blocked)),
 		IFNULL(p_is_active, DEFAULT(is_active))
 	)
