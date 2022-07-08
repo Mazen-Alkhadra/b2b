@@ -1,0 +1,20 @@
+module.exports = {
+  Auth: require('./auth'),
+  Emailer: require('./emailer'),
+  Hash: require('./hash'),
+  logger: require('./logger'),
+  os: require('./os'),
+  randomCodesGenerator: require('./random-codes-generator'),
+  User: require('./user'),
+  Brand: require('./brand'),
+  Category: require('./category'),
+  Company: require('./company'),
+  Faq: require('./faq'),
+  IssueReport: require('./issue-report'),
+  Offer: require('./offer'),
+  Payment: require('./payment'),
+  Product: require('./product'),
+  Subscription: require('./subscription'),
+  Tender: require('./tender'),
+  api: require('./api')
+}

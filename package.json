@@ -1,0 +1,35 @@
+{
+  "name": "b2b",
+  "version": "1.0.0",
+  "description": "NodeJS web server for B2B web application",
+  "main": "index.js",
+  "engines": {
+    "node": "12.19.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "B2B",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "crypto-random-string": "^3.3.0",
+    "express": "^4.17.1",
+    "express-mysql-session": "^2.1.4",
+    "express-session": "^1.17.1",
+    "ftp": "^0.3.10",
+    "mime": "^2.5.2",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.14",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "validator": "^13.1.17"
+  }
+}
