@@ -9,7 +9,7 @@ class SubscriptionPackagesFeatures extends Model {
   }) {
 
     let packageCond = !subscriptionPackageId ? 'TRUE' :
-      `subscription_package_id = ${this.escapeSql(subscription_package_id)}`;
+      `subscription_package_id = ${this.escapeSql(subscriptionPackageId)}`;
 
     let countQuery =
       `SELECT
