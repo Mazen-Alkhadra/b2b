@@ -56,7 +56,7 @@ class SubscriptionPackagesFeatures extends Model {
     features.forEach(({
       subscriptionFeatureId, featureValue
     }) => {
-      queryStr += 'CALL prc_add_subscription_packages_features(?);';
+      queryStr += 'CALL prc_add_subscription_packages_feature(?);';
       queryParams.push([
         subscriptionPackageId, subscriptionFeatureId, featureValue
       ]);
