@@ -10,22 +10,22 @@ class Package {
   }
 
   async addNew({
-    nameEn, descriptionEn, priceUsdPerMonth, priceUsdPerYear,
-    imgUrl, expirAt, validitySeconds, isActive
+    nameEn, descriptionEn, priceUsd, imgUrl, 
+    expirAt, validitySeconds, isActive
   }) {
     await this.packageModel.addNew({
-      nameEn, descriptionEn, priceUsdPerMonth, priceUsdPerYear,
-      imgUrl, expirAt, validitySeconds, isActive
+      nameEn, descriptionEn, priceUsd, imgUrl, 
+      expirAt, validitySeconds, isActive
     });
   }
 
   async update({
-    idSubscriptionPackage, nameEn, descriptionEn, priceUsdPerMonth,
-    priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive
+    idSubscriptionPackage, nameEn, descriptionEn, priceUsd, 
+    imgUrl, expirAt, validitySeconds, isActive
   }) {
     await this.packageModel.update({
-      idSubscriptionPackage, nameEn, descriptionEn, priceUsdPerMonth,
-      priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive
+      idSubscriptionPackage, nameEn, descriptionEn, priceUsd, 
+      imgUrl, expirAt, validitySeconds, isActive
     });
   }
 

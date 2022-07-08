@@ -9,12 +9,12 @@ module.exports = app => {
 	app.post(PostAdminSubscribePackage,
 		async (req, res) => {
 			try {
-				const { nameEn, descriptionEn, priceUsdPerMonth, priceUsdPerYear,
-					imgUrl, expirAt, validitySeconds, isActive } = req.body;
+				const { nameEn, descriptionEn, priceUsd, imgUrl, 
+					expirAt, validitySeconds, isActive } = req.body;
 
 				await SubscribeSvc.Packages.create().addNew({
-					nameEn, descriptionEn, priceUsdPerMonth, priceUsdPerYear,
-    			imgUrl, expirAt, validitySeconds, isActive
+					nameEn, descriptionEn, priceUsd, imgUrl, 
+					expirAt, validitySeconds, isActive
 				});
 
 				res.status(200).end();
@@ -28,12 +28,12 @@ module.exports = app => {
 	app.post(PostAdminSubscribePackageUpdate,
 		async (req, res) => {
 			try {
-				const { idSubscriptionPackage, nameEn, descriptionEn, priceUsdPerMonth,
-					priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive } = req.body;
+				const { idSubscriptionPackage, nameEn, descriptionEn, priceUsd,
+					imgUrl, expirAt, validitySeconds, isActive } = req.body;
 
 				await SubscribeSvc.Packages.create().update({
-					idSubscriptionPackage, nameEn, descriptionEn, priceUsdPerMonth,
-    			priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive
+					idSubscriptionPackage, nameEn, descriptionEn, priceUsd, 
+					imgUrl, expirAt, validitySeconds, isActive
 				});
 
 				res.status(200).end();
