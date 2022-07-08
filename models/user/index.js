@@ -70,7 +70,6 @@ class User extends Model {
 				last_name	lastName,
 				email	email,
 				mobile	mobile,
-				password	password,
 				company_id	companyId,
 				birth_date	birthDate,
 				gender	gender,

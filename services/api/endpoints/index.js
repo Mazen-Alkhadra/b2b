@@ -12,8 +12,10 @@ module.exports = {
   PostAdminCompany: '/api/admin/company',
   PostAdminUpdateCompany: '/api/admin/company/update',
   PostAdminSubscribePackage: '/api/admin/subscription/package',
+  PostAdminSubscribePackageUpdate: '/api/admin/subscription/package/update',
 
   DeleteAdminUser: '/api/admin/user',
   DeleteAdminCompany: '/api/admin/company',
-  DeleteAdminSubscribePackage: '/api/admin/subscription/package'
+  DeleteAdminSubscribePackage: '/api/admin/subscription/package',
+  
 }

@@ -49,7 +49,7 @@ class SubscriptionPackage extends Model {
 
   async addNew({
     nameEn, descriptionEn, priceUsdPerMonth, priceUsdPerYear,
-    imgId, expirAt, validitySeconds, isActive
+    imgUrl, expirAt, validitySeconds, isActive
   }) {
     let strModel = StringModel.create();
     let nameStrId = await strModel.addNewString({enStr: nameEn});
@@ -58,7 +58,7 @@ class SubscriptionPackage extends Model {
     let dbRet = await this.directQuery (
       'CALL prc_add_subscription_package(?, @new_record_id);',
       [nameStrId, descStrId, priceUsdPerMonth, priceUsdPerYear, 
-        imgId, expirAt, validitySeconds, isActive]
+        imgUrl, expirAt, validitySeconds, isActive]
     );
 
     return { newId: dbRet[0][0].newRecordId };
@@ -66,7 +66,7 @@ class SubscriptionPackage extends Model {
 
   async update({
     idSubscriptionPackage, name, description, priceUsdPerMonth,
-    priceUsdPerYear, imgId, expirAt, validitySeconds, isActive
+    priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive
   }) {
     let strModel = StringModel.create();
     await strModel.updateString({
@@ -87,7 +87,8 @@ class SubscriptionPackage extends Model {
 
     await this.directQuery (
       'CALL prc_update_subscription_package(?);',
-      [idSubscriptionPackage, name, description, priceUsdPerMonth, priceUsdPerYear, imgId, expirAt, validitySeconds, isActive]
+      [idSubscriptionPackage, name, description, priceUsdPerMonth, 
+        priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive]
     );
   }
 
