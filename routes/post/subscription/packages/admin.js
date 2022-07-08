@@ -28,11 +28,11 @@ module.exports = app => {
 	app.post(PostAdminSubscribePackageUpdate,
 		async (req, res) => {
 			try {
-				const { idSubscriptionPackage, name, description, priceUsdPerMonth,
+				const { idSubscriptionPackage, nameEn, descriptionEn, priceUsdPerMonth,
 					priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive } = req.body;
 
 				await SubscribeSvc.Packages.create().update({
-					idSubscriptionPackage, name, description, priceUsdPerMonth,
+					idSubscriptionPackage, nameEn, descriptionEn, priceUsdPerMonth,
     			priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive
 				});
 

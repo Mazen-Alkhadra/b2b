@@ -20,11 +20,11 @@ class Package {
   }
 
   async update({
-    idSubscriptionPackage, name, description, priceUsdPerMonth,
+    idSubscriptionPackage, nameEn, descriptionEn, priceUsdPerMonth,
     priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive
   }) {
     await this.packageModel.update({
-      idSubscriptionPackage, name, description, priceUsdPerMonth,
+      idSubscriptionPackage, nameEn, descriptionEn, priceUsdPerMonth,
       priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive
     });
   }

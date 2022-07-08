@@ -65,7 +65,7 @@ class SubscriptionPackage extends Model {
   }
 
   async update({
-    idSubscriptionPackage, name, description, priceUsdPerMonth,
+    idSubscriptionPackage, nameEn, descriptionEn, priceUsdPerMonth,
     priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive
   }) {
     let strModel = StringModel.create();
@@ -87,8 +87,8 @@ class SubscriptionPackage extends Model {
 
     await this.directQuery (
       'CALL prc_update_subscription_package(?);',
-      [idSubscriptionPackage, name, description, priceUsdPerMonth, 
-        priceUsdPerYear, imgUrl, expirAt, validitySeconds, isActive]
+      [idSubscriptionPackage, priceUsdPerMonth, priceUsdPerYear, 
+        imgUrl, expirAt, validitySeconds, isActive]
     );
   }
 
