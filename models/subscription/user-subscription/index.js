@@ -6,8 +6,16 @@ class UserSubscription extends Model {
   static PRIMARY_KEY = 'id_subscription';
 
   async getAllFullInfo({
-    limit, skip, filters, sorts
+    limit, skip, filters, sorts,
+    groupby
   }) {
+
+    if (groupby)
+      groupby = {
+        col: 'user_id',
+        colAlias: 'userId',
+        groupCountAlias: 'userGroupCount'
+      };
 
     let countQuery =
       `SELECT
@@ -25,13 +33,14 @@ class UserSubscription extends Model {
 				promotion_id	promotionId,
 				expir_at	expirAt,
 				actual_cost_usd	actualCostUsd,
-				is_active	isActive
+				is_active	isActive,
+        fun_is_user_subscription_valid(idSubscription) isValid
       FROM
         subscriptions`;
 
     let queryStr = countQuery + dataQuery;
 
-    queryStr = this.applyFilters(dataQuery, filters) || queryStr;
+    queryStr = this.applyFilters(dataQuery, filters, groupby) || queryStr;
     queryStr += this.getOrderClause(sorts);
     queryStr += this.getLimitClause({ limit, skip });
 
@@ -40,7 +49,8 @@ class UserSubscription extends Model {
 
     return {
       allCount: dbRet[0][0].allCount,
-      data: dbRet[1]
+      groupCount: groupby ? dbRet[0][0][groupby.groupCountAlias] : 0,
+      data: groupby ? this.group(dbRet[1], groupby.colAlias) : dbRet[1]
     };
 
   }

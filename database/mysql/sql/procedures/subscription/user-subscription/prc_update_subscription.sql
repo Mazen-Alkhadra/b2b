@@ -37,6 +37,7 @@ BEGIN
 			p_subscription_package_id,
 			v_old_promotion_id
 		);
+		SET p_expir_at = fun_get_user_subscription_expir(p_subscription_package_id);
 	END IF;
 
 	IF p_promotion_id IS NOT NULL OR p_promotion_code IS NOT NULL THEN 

@@ -38,7 +38,10 @@ BEGIN
 		p_subscription_package_id,
 		p_payment_id,
 		p_promotion_id,
-		p_expir_at,
+		IFNULL (
+			p_expir_at, 
+			fun_get_user_subscription_expir(p_subscription_package_id)
+		),
 		p_actual_cost_usd,
 		IFNULL(p_is_active, DEFAULT(is_active))
 	)

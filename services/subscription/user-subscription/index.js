@@ -3,9 +3,9 @@ const SubscribeModel = require('../../../models').Subscription;
 class Package {
   userSubscribeModel = SubscribeModel.UserSubscription.create();
 
-  async getAllFullInfo({ limit, skip, filters, sorts }) {
+  async getAllFullInfo({ limit, skip, filters, sorts, groupby }) {
     return await this.userSubscribeModel.getAllFullInfo({
-      limit, skip, filters, sorts
+      limit, skip, filters, sorts, groupby
     });
   }
 
