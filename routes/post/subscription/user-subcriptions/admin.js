@@ -9,12 +9,12 @@ module.exports = app => {
 	app.post(PostAdminUserSubscribe,
 		async (req, res) => {
 			try {
-				const { userId, subscriptionPackageId, paymentId, promotionId,
-					promotionCode, expirAt, actualCostUsd, isActive } = req.body;
+				const { userId, subscriptionPackageId, promotionId,
+					promotionCode, expirAt, isActive } = req.body;
 
 				await SubscribeSvc.UserSubscription.create().addNew({
-					userId, subscriptionPackageId, paymentId, promotionId,
-    			promotionCode, expirAt, actualCostUsd, isActive
+					userId, subscriptionPackageId, promotionId, 
+					promotionCode, expirAt, isActive
 				});
 
 				res.status(200).end();
@@ -29,12 +29,11 @@ module.exports = app => {
 		async (req, res) => {
 			try {
 				const { idSubscription, userId, subscriptionPackageId,
-					paymentId, promotionId, promotionCode, expirAt, 
-					actualCostUsd, isActive } = req.body;
+					promotionId, promotionCode, expirAt, isActive } = req.body;
 
 				await SubscribeSvc.UserSubscription.create().update({
 					idSubscription, userId, subscriptionPackageId, paymentId,
-    			promotionId, promotionCode, expirAt, actualCostUsd, isActive
+    			promotionId, promotionCode, expirAt, isActive
 				});
 
 				res.status(200).end();
