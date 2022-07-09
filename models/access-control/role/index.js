@@ -128,7 +128,7 @@ class Role extends Model {
     );
   }
 
-  static refactorPermissionsArrToObj(arr) {
+  refactorPermissionsArrToObj(arr) {
     
     if(!Array.isArray(arr))
       return {};
