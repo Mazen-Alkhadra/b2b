@@ -7,6 +7,7 @@ module.exports = {
   GetAdminSubscribePackageFeatures: '/api/admin/subscription/package/:idPackage/features',
   GetAdminSubscribeFeaturesFull: '/api/admin/subscription/features/Full',
   GetAdminSubscribePromotionsFull: '/api/admin/subscription/promotions/Full',
+  GetAdminUsersSubscribeFull: '/api/admin/subscription/users-subscriptions/Full',
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',
@@ -20,10 +21,13 @@ module.exports = {
   PostAdminSubscribeFeatureUpdate: '/api/admin/subscription/feature/update',
   PostAdminSubscribePromotion: '/api/admin/subscription/promotion',
   PostAdminSubscribePromotionUpdate: '/api/admin/subscription/promotion/update',
+  PostAdminUserSubscribe: '/api/admin/subscription/user-subscription',
+  PostAdminUserSubscribeUpdate: '/api/admin/subscription/user-subscription/update',
 
   DeleteAdminUser: '/api/admin/user',
   DeleteAdminCompany: '/api/admin/company',
   DeleteAdminSubscribePackage: '/api/admin/subscription/package',
   DeleteAdminSubscribePromotion: '/api/admin/subscription/promotion',
+  DeleteAdminUserSubscribe: '/api/admin/subscription/user-subscription',
 
 }
