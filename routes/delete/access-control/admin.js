@@ -1,9 +1,9 @@
-const {DELETEAdminACRole} = require('../../../services').api.endpoints;
+const {DeleteAdminACRole} = require('../../../services').api.endpoints;
 const ACSvc = require('../../../services').AccessControl;
 
 module.exports = app => {
 
-	app.delete ( DELETEAdminACRole,
+	app.delete ( DeleteAdminACRole,
 		async (req, res) => {
 			try {
 				const { idRole } = req.body;

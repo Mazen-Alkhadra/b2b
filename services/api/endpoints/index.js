@@ -12,6 +12,9 @@ module.exports = {
   GetAdminACRolePermissions: '/api/admin/ac/role/:idRole/permissions/full',
   GetAdminACResourcesFull: '/api/admin/ac/resources/full',
   GetAdminACPermissionsFull: '/api/admin/ac/permissions/full',
+  GetAdminIssuesReportsFull: '/api/admin/issues-reports/full',
+  GetAdminFaqsFull: '/api/admin/faqs/full',
+  GetAdminAboutusFull: '/api/admin/aboutus/full',
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',
@@ -30,11 +33,18 @@ module.exports = {
   POSTAdminACRole: '/api/admin/ac/role',
   POSTAdminACRoleUpdate: '/api/admin/ac/role/update',
   PostResetACResetRolePermissions: '/api/admin/ac/role/permissions/reset',
+  PostAdminIssueReportUpdate: '/api/admin/issue-report/update',
+  PostAdminFaqUpdate: '/api/admin/faq/update',
+  PostAdminAboutus: '/api/admin/aboutus',
+  PostAdminAboutusUpdate: '/api/admin/aboutus/update',
 
   DeleteAdminUser: '/api/admin/user',
   DeleteAdminCompany: '/api/admin/company',
   DeleteAdminSubscribePackage: '/api/admin/subscription/package',
   DeleteAdminSubscribePromotion: '/api/admin/subscription/promotion',
   DeleteAdminUserSubscribe: '/api/admin/subscription/user-subscription',
-  DELETEAdminACRole: '/api/admin/ac/role'
+  DeleteAdminACRole: '/api/admin/ac/role',
+  DeleteAdminIssueReport: '/api/admin/issue-report',
+  DeleteAdminFaq: '/api/admin/faq',
+  DeleteAdminAboutus: '/api/admin/aboutus'
 }

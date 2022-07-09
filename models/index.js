@@ -11,5 +11,6 @@ module.exports = {
   Product: require('./product'),
   Subscription: require('./subscription'),
   Tender: require('./tender'),
-  AccessControl: require('./access-control')
+  AccessControl: require('./access-control'),
+  Aboutus: require('./about-us')
 }

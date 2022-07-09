@@ -1,6 +1,7 @@
 module.exports = {
   Auth: require('./auth'),
   AccessControl: require('./access-control'),
+  Aboutus: require('./about-us'),
   Emailer: require('./emailer'),
   Hash: require('./hash'),
   logger: require('./logger'),
