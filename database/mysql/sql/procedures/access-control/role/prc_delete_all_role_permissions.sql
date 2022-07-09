@@ -1,6 +1,6 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_delete_all_role_permissions` (
-	p_name	              	VARCHAR(500)
+	p_id_role	              	VARCHAR(50)
 )  
 BEGIN
 

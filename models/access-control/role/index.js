@@ -41,19 +41,12 @@ class Role extends Model {
 
   async getACPermissions({
     limit, skip, filters, sorts, 
-    groupby, roleId, resourceId
+    roleId, resourceId
   }) {
 
     let roleCond = !roleId ? 'TRUE' : `role_id = ${this.escapeSql(roleId)}`;
     let resourceCond = 
       !resourceId ? 'TRUE' : `resource_id = ${this.escapeSql(resourceId)}`;
-
-    if (groupby)
-      groupby = {
-        col: 'role_id',
-        colAlias: 'roleId',
-        groupCountAlias: 'roleGroupCount'
-      };
 
     let countQuery =
       `SELECT
@@ -78,7 +71,7 @@ class Role extends Model {
 
     let queryStr = countQuery + dataQuery;
 
-    queryStr = this.applyFilters(dataQuery, filters, groupby) || queryStr;
+    queryStr = this.applyFilters(dataQuery, filters) || queryStr;
     queryStr += this.getOrderClause(sorts);
     queryStr += this.getLimitClause({ limit, skip });
 
@@ -87,8 +80,7 @@ class Role extends Model {
 
     return {
       allCount: dbRet[0][0].allCount,
-      groupCount: groupby ? dbRet[0][0][groupby.groupCountAlias] : 0,
-      data: groupby ? this.group(dbRet[1], groupby.colAlias) : dbRet[1]
+      data: this.refactorPermissionsArrToObj(dbRet[1])
     };
 
   }
@@ -135,6 +127,19 @@ class Role extends Model {
       ...queryParams
     );
   }
+
+  static refactorPermissionsArrToObj(arr) {
+    
+    if(!Array.isArray(arr))
+      return {};
+
+    return arr.reduce((result, {resourceId, permissionId}) => {
+      result[resourceId] = result[resourceId] || {};
+      result[resourceId][permissionId] = true;
+      return result;
+    }, {});
+
+  } 
 }
 
 module.exports = {

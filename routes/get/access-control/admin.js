@@ -79,7 +79,6 @@ module.exports = app => {
           skip: req.paginate.skip,
           filters: req.filters,
           sorts: req.sorts,
-          groupby: req.query.groupby,
           roleId: req.params.idRole
         });
 

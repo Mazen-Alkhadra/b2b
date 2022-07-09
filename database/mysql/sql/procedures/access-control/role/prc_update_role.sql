@@ -8,7 +8,7 @@ BEGIN
   UPDATE 
     roles
   SET 
-    name = INULL(p_name, name)
+    name = IFNULL(p_name, name)
   WHERE 
     id_role = p_id_role
   ;
