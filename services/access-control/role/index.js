@@ -39,7 +39,7 @@ class Role {
    }) {
     return await this.roleModel.getACPermissions({ 
       limit, skip, filters, sorts, 
-      groupby, roleId, resourceId 
+      roleId, resourceId 
     });
   }
 
