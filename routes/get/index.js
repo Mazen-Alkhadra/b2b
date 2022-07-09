@@ -6,6 +6,7 @@ module.exports = app => {
   require('./users')(app);
   require('./company')(app);
   require('./subscription')(app);
+  require('./access-control')(app);
 
   app.get('/*', (req, res) => {
     res.status(200).sendFile(

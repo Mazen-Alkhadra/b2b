@@ -1,4 +1,7 @@
 const ACModel = require('../../models').AccessControl;
+const Role = require('./role');
+const Resource = require('./resource');
+const Permission = require('./permission');
 
 class AC {
   acModel = ACModel.create();
@@ -10,5 +13,8 @@ class AC {
 
 
 module.exports = {
-  create: () => new AC
+  create: () => new AC,
+  Role,
+  Resource,
+  Permission
 };

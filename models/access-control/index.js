@@ -1,15 +1,8 @@
 
 const Model = require('../model');
-
-const PERMISSIONS = {
-  READ: 'READ',
-  EDIT: 'EDIT',
-  DELETE: 'DELETE' 
-};
-
-const RESOURCES = {
-  ADMIN_CONTROL_PANEL: 'ADMIN_CONTROL_PANEL'
-};
+const Role = require('./role');
+const Resource = require('./resource');
+const Permission = require('./permission');
 
 class AC extends Model {
 
@@ -25,5 +18,8 @@ class AC extends Model {
 }
 
 module.exports = {
-  create: () => new AC
+  create: () => new AC,
+  Role,
+  Resource,
+  Permission
 };

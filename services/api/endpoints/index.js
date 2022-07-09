@@ -8,6 +8,10 @@ module.exports = {
   GetAdminSubscribeFeaturesFull: '/api/admin/subscription/features/full',
   GetAdminSubscribePromotionsFull: '/api/admin/subscription/promotions/full',
   GetAdminUsersSubscribeFull: '/api/admin/subscription/users-subscriptions/full',
+  GetAdminACRolesFull: '/api/admin/ac/roles/full',
+  GetAdminACRolePermissions: '/api/admin/ac/role/:idRole/permissions/full',
+  GetAdminACResourcesFull: '/api/admin/ac/resources/full',
+  GetAdminACPermissionsFull: '/api/admin/ac/permissions/full',
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',
@@ -23,11 +27,12 @@ module.exports = {
   PostAdminSubscribePromotionUpdate: '/api/admin/subscription/promotion/update',
   PostAdminUserSubscribe: '/api/admin/subscription/user-subscription',
   PostAdminUserSubscribeUpdate: '/api/admin/subscription/user-subscription/update',
+  PostResetACResetRolePermissions: '/api/admin/ac/role/permissions/reset',
 
   DeleteAdminUser: '/api/admin/user',
   DeleteAdminCompany: '/api/admin/company',
   DeleteAdminSubscribePackage: '/api/admin/subscription/package',
   DeleteAdminSubscribePromotion: '/api/admin/subscription/promotion',
   DeleteAdminUserSubscribe: '/api/admin/subscription/user-subscription',
-
+  DELETEAdminACRole: '/api/admin/ac/role'
 }

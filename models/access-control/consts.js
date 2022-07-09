@@ -1,0 +1,15 @@
+const PERMISSIONS = {
+  READ: 'READ',
+  EDIT: 'EDIT',
+  DELETE: 'DELETE' 
+};
+
+const RESOURCES = {
+  ADMIN_CONTROL_PANEL: 'ADMIN_CONTROL_PANEL'
+};
+
+
+module.exports ={
+  PERMISSIONS,
+  RESOURCES
+}
