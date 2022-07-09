@@ -5,9 +5,9 @@ module.exports = {
   GetAdminFullCompany: '/api/admin/company/full',
   GetAdminFullSubscribePackages: '/api/admin/subscription/packages/full',
   GetAdminSubscribePackageFeatures: '/api/admin/subscription/package/:idPackage/features',
-  GetAdminSubscribeFeaturesFull: '/api/admin/subscription/features/Full',
-  GetAdminSubscribePromotionsFull: '/api/admin/subscription/promotions/Full',
-  GetAdminUsersSubscribeFull: '/api/admin/subscription/users-subscriptions/Full',
+  GetAdminSubscribeFeaturesFull: '/api/admin/subscription/features/full',
+  GetAdminSubscribePromotionsFull: '/api/admin/subscription/promotions/full',
+  GetAdminUsersSubscribeFull: '/api/admin/subscription/users-subscriptions/full',
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',

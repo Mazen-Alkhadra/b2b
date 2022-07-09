@@ -3,4 +3,5 @@ module.exports = app => {
   require('./packages-features')(app);
   require('./features')(app);
   require('./user-subscriptions')(app);
+  require('./promotions')(app);
 }
