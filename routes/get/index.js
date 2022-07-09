@@ -10,7 +10,9 @@ module.exports = app => {
   require('./about-us')(app);
   require('./faq')(app);
   require('./issue-report')(app);
-
+  require('./category')(app);
+  require('./brand')(app);
+  require('./product')(app);
 
   app.get('/*', (req, res) => {
     res.status(200).sendFile(

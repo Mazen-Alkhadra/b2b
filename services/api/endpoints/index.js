@@ -15,6 +15,9 @@ module.exports = {
   GetAdminIssuesReportsFull: '/api/admin/issues-reports/full',
   GetAdminFaqsFull: '/api/admin/faqs/full',
   GetAdminAboutusFull: '/api/admin/aboutus/full',
+  GetAdminCategoriesFull: '/api/admin/categories/full',
+  GetAdminBrandsFull: '/api/admin/brands/full',
+  GetAdminProductsFull: '/api/admin/products/full',
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',
@@ -37,6 +40,12 @@ module.exports = {
   PostAdminFaqUpdate: '/api/admin/faq/update',
   PostAdminAboutus: '/api/admin/aboutus',
   PostAdminAboutusUpdate: '/api/admin/aboutus/update',
+  PostAdminCategory: '/api/admin/category',
+  PostAdminCategoryUpdate: '/api/admin/category/update',
+  PostAdminBrand: '/api/admin/brand',
+  PostAdminBrandUpdate: '/api/admin/brand/update',
+  PostAdminProduct: '/api/admin/product',
+  PostAdminProductUpdate: '/api/admin/product/update',
 
   DeleteAdminUser: '/api/admin/user',
   DeleteAdminCompany: '/api/admin/company',
@@ -46,5 +55,8 @@ module.exports = {
   DeleteAdminACRole: '/api/admin/ac/role',
   DeleteAdminIssueReport: '/api/admin/issue-report',
   DeleteAdminFaq: '/api/admin/faq',
-  DeleteAdminAboutus: '/api/admin/aboutus'
+  DeleteAdminAboutus: '/api/admin/aboutus',
+  DeleteAdminCategory: '/api/admin/category',
+  DeleteAdminBrand: '/api/admin/brand',
+  DeleteAdminProduct: '/api/admin/product'
 }
