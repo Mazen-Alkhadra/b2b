@@ -19,10 +19,10 @@ BEGIN
 		)
 	VALUES (
 		p_user_id,
-		p_type,
+		IFNULL(p_type, DEFAULT(type)),
 		p_amount_usd,
 		p_comment,
-		p_status
+		IFNULL(p_status, DEFAULT(status))
 	)
 	;
   

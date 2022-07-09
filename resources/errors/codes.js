@@ -13,5 +13,8 @@ module.exports = {
     ERR_INVALID_NAME: "InvalidName",
     ERR_UNKNOWN: 'UnknownError',
     ERR_INACTIVE_ACCOUNT: 'InactiveAccount',
-    ERR_CAN_NOT_DELETE_USED_ENTITY: 'CanNotDeleteUsedEntity'
+    ERR_CAN_NOT_DELETE_USED_ENTITY: 'CanNotDeleteUsedEntity',
+
+    ERR_INVLID_PROMOTION: 'InvalidPromotion',
+    ERR_INVALID_SUBSCRIBE_PACKGE: 'InvalidSubscribePackage'
 };

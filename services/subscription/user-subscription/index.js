@@ -11,21 +11,21 @@ class Package {
 
   async addNew({
     userId, subscriptionPackageId, paymentId, promotionId,
-    expirAt, actualCostUsd, isActive
+    promotionCode, expirAt, actualCostUsd, isActive
   }) {
     await this.userSubscribeModel.addNew({
       userId, subscriptionPackageId, paymentId, promotionId,
-      expirAt, actualCostUsd, isActive
+      promotionCode, expirAt, actualCostUsd, isActive
     });
   }
 
   async update({
     idSubscription, userId, subscriptionPackageId, paymentId,
-    promotionId, expirAt, actualCostUsd, isActive
+    promotionId, promotionCode, expirAt, actualCostUsd, isActive
   }) {
     await this.userSubscribeModel.update({
       idSubscription, userId, subscriptionPackageId, paymentId,
-      promotionId, expirAt, actualCostUsd, isActive
+      promotionId, promotionCode, expirAt, actualCostUsd, isActive
     });
   }
 

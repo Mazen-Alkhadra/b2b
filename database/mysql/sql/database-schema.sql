@@ -430,7 +430,7 @@ CREATE TABLE IF NOT EXISTS `promotions` (
   `id_promotion`          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `code`                  VARCHAR(190) NOT NULL UNIQUE,
   `description_str_id`    BIGINT UNSIGNED NOT NULL,
-  `type`                  ENUM('One_Time', 'Period_Based') NOT NULL DEFAULT 'One_Time',
+  `type`                  ENUM('ONE_TIME', 'PERIOD_BASED') NOT NULL DEFAULT 'ONE_TIME',
   `start_at`              DATETIME NULL,
   `end_at`                DATETIME NULL,
   `discount_usd`          DOUBLE NULL DEFAULT NULL,

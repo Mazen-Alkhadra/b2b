@@ -47,12 +47,12 @@ class UserSubscription extends Model {
 
   async addNew ({
     userId, subscriptionPackageId, paymentId, promotionId,
-    expirAt, actualCostUsd, isActive
+    promotionCode, expirAt, actualCostUsd, isActive
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_subscription(?, @new_record_id);',
       [userId, subscriptionPackageId, paymentId, promotionId,
-        expirAt, actualCostUsd, isActive]
+        promotionCode, expirAt, actualCostUsd, isActive]
     );
 
     return { newId: dbRet[0][0].newRecordId };
@@ -60,11 +60,12 @@ class UserSubscription extends Model {
 
   async update({
     idSubscription, userId, subscriptionPackageId, paymentId,
-     promotionId, expirAt, actualCostUsd, isActive
+     promotionId, promotionCode, expirAt, actualCostUsd, isActive
   }) {
     await this.directQuery (
       'CALL prc_update_subscription(?);',
-      [idSubscription, userId, subscriptionPackageId, paymentId, promotionId, expirAt, actualCostUsd, isActive]
+      [idSubscription, userId, subscriptionPackageId, paymentId, promotionId,
+        promotionCode, expirAt, actualCostUsd, isActive]
     );
   }
 
