@@ -32,7 +32,7 @@ module.exports = app => {
 					promotionId, promotionCode, expirAt, isActive } = req.body;
 
 				await SubscribeSvc.UserSubscription.create().update({
-					idSubscription, userId, subscriptionPackageId, paymentId,
+					idSubscription, userId, subscriptionPackageId,
     			promotionId, promotionCode, expirAt, isActive
 				});
 
