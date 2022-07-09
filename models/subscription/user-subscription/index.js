@@ -34,7 +34,7 @@ class UserSubscription extends Model {
 				expir_at	expirAt,
 				actual_cost_usd	actualCostUsd,
 				is_active	isActive,
-        fun_is_user_subscription_valid(idSubscription) isValid
+        fun_is_user_subscription_valid(id_subscription) isValid
       FROM
         subscriptions`;
 
