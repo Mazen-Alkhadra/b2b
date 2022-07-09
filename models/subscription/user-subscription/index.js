@@ -31,6 +31,7 @@ class UserSubscription extends Model {
 				subscription_package_id	subscriptionPackageId,
 				payment_id	paymentId,
 				promotion_id	promotionId,
+        subscrib_at subscribAt,
 				expir_at	expirAt,
 				actual_cost_usd	actualCostUsd,
 				is_active	isActive,
