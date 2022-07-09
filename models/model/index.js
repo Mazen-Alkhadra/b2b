@@ -143,7 +143,7 @@ class Model {
 
     if (groupOpt)
       groupCountsClause =
-        `,COUNT(DISTINCT ${groupOpt.groupby}) ${groupOpt.groupCountAlias}`;
+        `,COUNT(DISTINCT ${groupOpt.colAlias}) ${groupOpt.groupCountAlias}`;
         
     return `
         SELECT COUNT(*) allCount ${groupCountsClause}
