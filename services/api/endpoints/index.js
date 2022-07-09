@@ -27,6 +27,8 @@ module.exports = {
   PostAdminSubscribePromotionUpdate: '/api/admin/subscription/promotion/update',
   PostAdminUserSubscribe: '/api/admin/subscription/user-subscription',
   PostAdminUserSubscribeUpdate: '/api/admin/subscription/user-subscription/update',
+  POSTAdminACRole: '/api/admin/ac/role',
+  POSTAdminACRoleUpdate: '/api/admin/ac/role/update',
   PostResetACResetRolePermissions: '/api/admin/ac/role/permissions/reset',
 
   DeleteAdminUser: '/api/admin/user',

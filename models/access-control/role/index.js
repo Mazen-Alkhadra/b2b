@@ -67,8 +67,9 @@ class Role extends Model {
 
     let dataQuery =
       `SELECT
-        role_id	idRole,
-				name
+        role_id	roleId,
+				resource_id resourceId,
+        permission_id permissionId
       FROM
         roles_resources_permissions
       WHERE 
