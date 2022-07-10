@@ -636,7 +636,7 @@ CREATE TABLE IF NOT EXISTS `privacy_policy` (
        
   PRIMARY KEY (`id_privacy_policy`),
 
-  CONSTRAINT `FK_faq_question_str`
+  CONSTRAINT `FK_privacy_content__str`
     FOREIGN KEY (`content_str_id`)
     REFERENCES `strings` (`id_str` )
     ON DELETE RESTRICT
@@ -654,9 +654,9 @@ CREATE TABLE IF NOT EXISTS `terms` (
   `is_active`              BOOLEAN NOT NULL DEFAULT FALSE,
   `create_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
        
-  PRIMARY KEY (`id_privacy_policy`),
+  PRIMARY KEY (`id_term`),
 
-  CONSTRAINT `FK_faq_question_str`
+  CONSTRAINT `FK_term_content_str`
     FOREIGN KEY (`content_str_id`)
     REFERENCES `strings` (`id_str` )
     ON DELETE RESTRICT

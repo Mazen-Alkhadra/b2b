@@ -2,9 +2,9 @@ DELIMITER $$
 CREATE PROCEDURE `prc_update_contact_info` (
 	p_id_contact_info		 BIGINT UNSIGNED,
 	p_address						 LONGTEXT,
-	p_mobile						 VARCHAR,
-	p_phone							 VARCHAR,
-	p_email							 VARCHAR,
+	p_mobile						 VARCHAR(100),
+	p_phone							 VARCHAR(100),
+	p_email							 VARCHAR(100),
 	p_more_info					 LONGTEXT,
 	p_is_active					 BOOLEAN
 )  
