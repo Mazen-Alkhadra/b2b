@@ -23,7 +23,7 @@ module.exports = {
   },
 
   urls: {
-    serverBaseUrl: '',
+    serverBaseUrl: 'https://b2b-node-server.herokuapp.com',
     activationAcountApiPath: '/api/auth/account/activate',
     resetPasswordApiPath: '/api/auth/account/resetpassword',
     resetPasswordPagePath: '/resetpassword',
