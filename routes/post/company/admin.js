@@ -10,10 +10,11 @@ module.exports = app => {
 		async (req, res) => {
 			try {
 				const { nameEn, type, address, licenseNumber,
-					establishAt } = req.body;
+					establishAt, licenseImgUrl } = req.body;
 
 				await CompanySvc.create().addNew({
-					nameEn, type, address, licenseNumber, establishAt
+					nameEn, type, address, licenseNumber, 
+					establishAt, licenseImgUrl
 				});
 
 				res.status(200).end();
@@ -28,11 +29,11 @@ module.exports = app => {
 		async (req, res) => {
 			try {
 				const { idCompany, nameEn, type, address, 
-					licenseNumber, establishAt } = req.body;
+					licenseNumber, establishAt, licenseImgUrl } = req.body;
 
 				await CompanySvc.create().update({
 					idCompany, nameEn, type, address,
-					licenseNumber, establishAt
+					licenseNumber, establishAt, licenseImgUrl
 				});
 
 				res.status(200).end();

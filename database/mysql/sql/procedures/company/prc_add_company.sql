@@ -5,6 +5,7 @@ CREATE PROCEDURE `prc_add_company` (
 	p_address								LONGTEXT,
 	p_license_number        LONGTEXT,
   p_establish_at          DATETIME,
+	p_license_img_url       VARCHAR(500),
 	OUT p_out_new_rec_id		BIGINT UNSIGNED
 )  
 BEGIN
@@ -15,14 +16,16 @@ BEGIN
 			type,
 			address,
 			license_number,
-			establish_at
+			establish_at,
+			license_img_id
 		)
 	VALUES (
 		p_name_str_id,
 		p_type,
 		p_address,
 		p_license_number,
-		p_establish_at
+		p_establish_at,
+		fun_insert_img(p_license_img_url)
 	)
 	;
   

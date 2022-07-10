@@ -133,6 +133,7 @@ CREATE TABLE IF NOT EXISTS `companies` (
   `address`               LONGTEXT NULL,
   `license_number`        LONGTEXT NULL,
   `establish_at`          DATETIME NULL,
+  `license_img_id`        BIGINT UNSIGNED NULL,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
   PRIMARY KEY (`id_company`),
@@ -140,6 +141,11 @@ CREATE TABLE IF NOT EXISTS `companies` (
   CONSTRAINT `fk_company_name`
     FOREIGN KEY (`name_str_id` )
     REFERENCES `strings` (`id_str` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_company_license_img`
+    FOREIGN KEY (`license_img_id`)
+    REFERENCES `imgs` (`id_img`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT
   )

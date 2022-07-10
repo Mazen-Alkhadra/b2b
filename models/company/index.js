@@ -24,7 +24,8 @@ class Company extends Model {
 				type,
 				address,
         license_number licenseNumber,
-        DATE(establish_at) establishAt
+        DATE(establish_at) establishAt,
+        fun_get_img(license_img_id) licenseImgUrl
       FROM
         companies`;
 
@@ -45,20 +46,23 @@ class Company extends Model {
   }
 
   async addNew({
-    nameEn, type, address, licenseNumber, establishAt
+    nameEn, type, address, licenseNumber, establishAt,
+    licenseImgUrl
   }) {
     let nameStrId = await StringModel.create().addNewString({enStr: nameEn});
 
     let dbRet = await this.directQuery (
       'CALL prc_add_company(?, @new_record_id);',
-      [nameStrId, type, address, licenseNumber, establishAt]
+      [nameStrId, type, address, licenseNumber, 
+        establishAt, licenseImgUrl]
     );
 
     return { newId: dbRet[0][0].newRecordId };
   }
 
   async update({
-    idCompany, nameEn, type, address, licenseNumber, establishAt
+    idCompany, nameEn, type, address, licenseNumber, establishAt,
+    licenseImgUrl
   }) {
 
     await StringModel.create().updateString({
@@ -71,7 +75,8 @@ class Company extends Model {
 
     await this.directQuery (
       'CALL prc_update_company(?);',
-      [idCompany, type, address, licenseNumber, establishAt]
+      [idCompany, type, address, licenseNumber, 
+        establishAt, licenseImgUrl]
     );
   }
 
