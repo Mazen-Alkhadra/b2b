@@ -25,6 +25,19 @@ CREATE TABLE IF NOT EXISTS `imgs` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
+-- -----------------------------------------------------
+-- Table docs
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `docs` (
+  `id_doc`		        BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `url`	              VARCHAR(500) NOT NULL,
+ 
+  PRIMARY KEY (`id_doc`)
+
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
 -- ===================================================================================
 
 -- -----------------------------------------------------

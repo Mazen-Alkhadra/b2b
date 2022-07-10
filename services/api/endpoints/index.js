@@ -53,6 +53,8 @@ module.exports = {
   PostAdminContctInfoUpdate: '/api/admin/contact-info/update',
   PostAdminPrivacyPolicyUpdate: '/api/admin/privacy-policy/update',
   PostAdminTermsUpdate: '/api/admin/term/update',
+  PostAdminUploadDoc: '/api/admin/doc/upload',
+  PostAdminUploadImg: '/api/admin/img/upload',
 
   DeleteAdminUser: '/api/admin/user',
   DeleteAdminCompany: '/api/admin/company',

@@ -1,9 +1,9 @@
 const Model = require('../model');
 
-class Img extends Model {
+class Document extends Model {
    
   async addNew({url}) {
-    let queryStr = 'SELECT fun_insert_img(?);';
+    let queryStr = 'SELECT fun_insert_doc(?);';
 
     await Model.directQuery(
       queryStr, url
@@ -14,5 +14,5 @@ class Img extends Model {
 }
 
 module.exports = {
-  create: () => new Img
+  create: () => new Document
 };

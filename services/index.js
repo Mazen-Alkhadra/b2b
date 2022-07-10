@@ -21,5 +21,7 @@ module.exports = {
   api: require('./api'),
   ContactInfo: require('./contact-info'),
   PrivacyPolicy: require('./privacy-policy'),
-  Terms: require('./terms')
+  Terms: require('./terms'),
+  UploadFiles: require('./upload-files'),
+  Files: require('./files')
 }
