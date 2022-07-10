@@ -4,10 +4,12 @@ const localFS = require('../../../services').Files.Local.create();
 const { uploadImgSetTimeout } = require('../../../middlewares/uploads');
 const logger = require('../../../services').logger;
 const {
-  serverBaseUrl,
-  getImgFromLocalFSApiPath
+  serverBaseUrl
 } = require('../../../config/server').urls;
-const { PostAdminUploadImg } = require('../../../services').api.endpoints;
+const { 
+  PostAdminUploadImg,
+  GetImgFromLocalFS 
+} = require('../../../services').api.endpoints;
 
 module.exports = app => {
   app.post(PostAdminUploadImg,
@@ -32,7 +34,7 @@ module.exports = app => {
             `${Date.now()}_${file.originalname}`;
 
           const imgUrl = serverBaseUrl +
-            getImgFromLocalFSApiPath +
+            GetImgFromLocalFS +
             '/' +
             file.originalname;
 

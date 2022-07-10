@@ -26,15 +26,7 @@ module.exports = {
     serverBaseUrl: 'https://b2b-node-server.herokuapp.com',
     activationAcountApiPath: '/api/auth/account/activate',
     resetPasswordApiPath: '/api/auth/account/resetpassword',
-    resetPasswordPagePath: '/resetpassword',
-    getImgFromFtpApiPath: '/api/ftp/img',
-    getImgFromLocalFSApiPath: '/api/fs/img',
-    getDocFromFtpApiPath: '/api/ftp/doc',
-    getDocFromLocalFSApiPath: '/api/fs/doc',
-    getVoiceFromFtpApiPath: '/api/ftp/voice',
-    getVoiceFromLocalFSApiPath: '/api/fs/voice',
-    getVideoFromFtpApiPath: '/api/ftp/video',
-    getVideoFromLocalFSApiPath: '/api/fs/video'
+    resetPasswordPagePath: '/resetpassword'
   },
 
   ftp: {

@@ -3,10 +3,12 @@ const localFS = require('../../../services').Files.Local.create();
 const { uploadDocSetTimeout } = require('../../../middlewares/uploads');
 const logger = require('../../../services').logger;
 const {
-  serverBaseUrl,
-  getDocFromLocalFSApiPath
+  serverBaseUrl
 } = require('../../../config/server').urls;
-const { PostAdminUploadDoc } = require('../../../services').api.endpoints;
+const { 
+  PostAdminUploadDoc,
+  GetDocFromLocalFS
+} = require('../../../services').api.endpoints;
 
 module.exports = app => {
   app.post(PostAdminUploadDoc,
@@ -29,7 +31,7 @@ module.exports = app => {
             `${Date.now()}_${file.originalname}`;
 
           const docUrl = serverBaseUrl +
-            getDocFromLocalFSApiPath +
+            GetDocFromLocalFS +
             '/' +
             file.originalname;
 

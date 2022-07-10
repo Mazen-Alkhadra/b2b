@@ -1,10 +1,10 @@
-const { getImgFromLocalFSApiPath } = require('../../../../config/server').urls;
+const { GetImgFromLocalFS } = require('../../../../services').api.endpoints;
 const { uploads } = require('../../../../config/server');
 const localFS = require('../../../../services').Files.Local.create();
 
 module.exports = app => {
 
-  app.get(`${getImgFromLocalFSApiPath}/:imgPath`, async (req, res) => {
+  app.get(`${GetImgFromLocalFS}/:imgPath`, async (req, res) => {
     try {
       const { imgPath } = req.params;
 

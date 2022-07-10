@@ -1,10 +1,10 @@
-const { getDocFromLocalFSApiPath } = require('../../../../config/server').urls;
+const { GetDocFromLocalFS } = require('../../../../services').api.endpoints;
 const { uploads } = require('../../../../config/server');
 const localFS = require('../../../../services').Files.Local.create();
 
 module.exports = app => {
 
-  app.get(`${getDocFromLocalFSApiPath}/:docPath`, async (req, res) => {
+  app.get(`${GetDocFromLocalFS}/:docPath`, async (req, res) => {
     try {
       const { docPath } = req.params;
 

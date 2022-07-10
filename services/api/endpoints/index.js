@@ -1,6 +1,8 @@
 module.exports = {
   GetAuthIsLoggedIn: '/api/auth/is_loggedin',
   GetAuthLogout: '/api/auth/logout',
+  GetDocFromLocalFS: '/api/fs/doc',
+  GetImgFromLocalFS: '/api/fs/img',
   GetAdminFullUsers: '/api/admin/users/full',
   GetAdminFullCompany: '/api/admin/company/full',
   GetAdminFullSubscribePackages: '/api/admin/subscription/packages/full',
