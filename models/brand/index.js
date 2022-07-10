@@ -27,7 +27,7 @@ class Brand extends Model {
 				b.added_by_user_id	addedByUserId
       FROM
         brands b
-        LEFT JOIN categories c ON ctegory_id = id_category`;
+        LEFT JOIN categories c ON category_id = id_category`;
 
     let queryStr = countQuery + dataQuery;
 
