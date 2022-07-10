@@ -8,7 +8,7 @@ module.exports = app => {
 	app.post(PostAdminPrivacyPolicyUpdate,
 		async (req, res) => {
 			try {
-				const { idPrivacyPolicy, contentEn, isActive } = req.body;
+				const { idPrivacyPolicy, contentEn } = req.body;
 
 				if (!idPrivacyPolicy)
 					await PrivacyPolicySvc.create().addNew({
@@ -16,7 +16,7 @@ module.exports = app => {
 					});
 				else
 					await PrivacyPolicySvc.create().update({
-						idPrivacyPolicy, contentEn, isActive
+						idPrivacyPolicy, contentEn
 					});
 
 				res.status(200).end();

@@ -8,7 +8,7 @@ module.exports = app => {
 	app.post(PostAdminTermsUpdate,
 		async (req, res) => {
 			try {
-				const { idTerm, contentEn, isActive } = req.body;
+				const { idTerm, contentEn } = req.body;
 
 				if (!idTerm)
 					await TermSvc.create().addNew({
@@ -16,7 +16,7 @@ module.exports = app => {
 					});
 				else
 					await TermSvc.create().update({
-						idTerm, contentEn, isActive
+						idTerm, contentEn
 					});
 
 				res.status(200).end();

@@ -9,7 +9,7 @@ module.exports = app => {
 		async (req, res) => {
 			try {
 				const { idContactInfo, address, mobile, phone,
-					email, moreInfo, isActive } = req.body;
+					email, moreInfo } = req.body;
 
 				if (!idContactInfo)
 					await ContactInfoSvc.create().addNew({
@@ -19,7 +19,7 @@ module.exports = app => {
 				else
 					await ContactInfoSvc.create().update({
 						idContactInfo, address, mobile, phone,
-						email, moreInfo, isActive
+						email, moreInfo
 					});
 
 				res.status(200).end();
