@@ -39,7 +39,6 @@ module.exports = {
   PostAdminIssueReportUpdate: '/api/admin/issue-report/update',
   PostAdminFaq: '/api/admin/faq',
   PostAdminFaqUpdate: '/api/admin/faq/update',
-  PostAdminAboutus: '/api/admin/aboutus',
   PostAdminAboutusUpdate: '/api/admin/aboutus/update',
   PostAdminCategory: '/api/admin/category',
   PostAdminCategoryUpdate: '/api/admin/category/update',
