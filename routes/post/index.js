@@ -10,4 +10,7 @@ module.exports = app => {
   require('./category')(app);
   require('./brand')(app);
   require('./product')(app);
+  require('./contact-info')(app);
+  require('./privacy-policy')(app);
+  require('./terms')(app);
 };

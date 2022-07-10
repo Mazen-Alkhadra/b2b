@@ -18,6 +18,9 @@ module.exports = {
   GetAdminCategoriesFull: '/api/admin/categories/full',
   GetAdminBrandsFull: '/api/admin/brands/full',
   GetAdminProductsFull: '/api/admin/products/full',
+  GetAdminContactInfoFull: '/api/admin/contact-info/full',
+  GetAdminPrivacyPolicyFull: '/api/admin/privacy-policy/full',
+  GetAdminTermsFull: '/api/admin/terms/full',
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',
@@ -46,6 +49,9 @@ module.exports = {
   PostAdminBrandUpdate: '/api/admin/brand/update',
   PostAdminProduct: '/api/admin/product',
   PostAdminProductUpdate: '/api/admin/product/update',
+  PostAdminContctInfoUpdate: '/api/admin/contact-info/update',
+  PostAdminPrivacyPolicyUpdate: '/api/admin/privacy-policy/update',
+  PostAdminTermsUpdate: '/api/admin/term/update',
 
   DeleteAdminUser: '/api/admin/user',
   DeleteAdminCompany: '/api/admin/company',

@@ -18,5 +18,8 @@ module.exports = {
   Product: require('./product'),
   Subscription: require('./subscription'),
   Tender: require('./tender'),
-  api: require('./api')
+  api: require('./api'),
+  ContactInfo: require('./contact-info'),
+  PrivacyPolicy: require('./privacy-policy'),
+  Terms: require('./terms')
 }

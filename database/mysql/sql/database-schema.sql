@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `id_category`			  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_str_id` 				  BIGINT UNSIGNED NOT NULL,
   `description_str_id`	  BIGINT UNSIGNED NULL,
-  `type`                  ENUM('PRODUCTS'),    
+  `type`                  ENUM('PRODUCTS') NOT NULL DEFAULT 'PRODUCTS',    
   `added_by_user_id`      BIGINT UNSIGNED NULL,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -621,6 +621,64 @@ CREATE TABLE IF NOT EXISTS `about_us` (
     REFERENCES `strings` (`id_str` )
     ON DELETE RESTRICT
     ON UPDATE RESTRICT
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+-- -----------------------------------------------------
+-- Table `privacy_policy`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `privacy_policy` (
+  `id_privacy_policy`      BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `content_str_id`         BIGINT UNSIGNED NOT NULL,
+  `is_active`              BOOLEAN NOT NULL DEFAULT FALSE,
+  `create_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+       
+  PRIMARY KEY (`id_privacy_policy`),
+
+  CONSTRAINT `FK_faq_question_str`
+    FOREIGN KEY (`content_str_id`)
+    REFERENCES `strings` (`id_str` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+-- -----------------------------------------------------
+-- Table `terms`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `terms` (
+  `id_term`                BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `content_str_id`         BIGINT UNSIGNED NOT NULL,
+  `is_active`              BOOLEAN NOT NULL DEFAULT FALSE,
+  `create_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+       
+  PRIMARY KEY (`id_privacy_policy`),
+
+  CONSTRAINT `FK_faq_question_str`
+    FOREIGN KEY (`content_str_id`)
+    REFERENCES `strings` (`id_str` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+-- -----------------------------------------------------
+-- Table `contact_info`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `contact_info` (
+  `id_contact_info`        BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `address`                LONGTEXT NULL,
+  `mobile`                 VARCHAR(100) NULL,
+  `phone`                  VARCHAR(100) NULL,
+  `email`                  VARCHAR(100) NULL,
+  `more_info`              LONGTEXT NULL, 
+  `is_active`              BOOLEAN NOT NULL DEFAULT FALSE,
+  `create_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+       
+  PRIMARY KEY (`id_contact_info`)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;

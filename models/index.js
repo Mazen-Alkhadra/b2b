@@ -12,5 +12,8 @@ module.exports = {
   Subscription: require('./subscription'),
   Tender: require('./tender'),
   AccessControl: require('./access-control'),
-  Aboutus: require('./about-us')
+  Aboutus: require('./about-us'),
+  ContactInfo: require('./contact-info'),
+  PrivacyPolicy: require('./privacy-policy'),
+  Terms: require('./terms')
 }

@@ -9,10 +9,10 @@ module.exports = app => {
 	app.post(PostAdminCategory,
 		async (req, res) => {
 			try {
-				const { nameEn, descriptionEn, type } = req.body;
+				const { nameEn, descriptionEn } = req.body;
 
 				await CategorySvc.create().addNew({
-					nameEn, descriptionEn, type,
+					nameEn, descriptionEn,
 					addedByUserId: req.user.idUser
 				});
 
@@ -27,10 +27,10 @@ module.exports = app => {
 	app.post(PostAdminCategoryUpdate,
 		async (req, res) => {
 			try {
-				const { idCategory, nameEn, descriptionEn, type } = req.body;
+				const { idCategory, nameEn, descriptionEn } = req.body;
 
 				await CategorySvc.create().update({
-					idCategory, nameEn, descriptionEn, type
+					idCategory, nameEn, descriptionEn
 				});
 
 				res.status(200).end();
