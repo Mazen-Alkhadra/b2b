@@ -117,7 +117,9 @@ CREATE TABLE IF NOT EXISTS `companies` (
   `id_company`			  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_str_id` 				  BIGINT UNSIGNED NOT NULL,
   `type`                  VARCHAR(100) NULL,    
-  `address`               LONGTEXT,
+  `address`               LONGTEXT NULL,
+  `license_number`        LONGTEXT NULL,
+  `establish_at`          DATETIME NULL,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
   PRIMARY KEY (`id_company`),

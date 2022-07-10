@@ -13,7 +13,8 @@ module.exports = app => {
           limit: req.paginate.limit,
           skip: req.paginate.skip,
           filters: req.filters,
-          sorts: req.sorts
+          sorts: req.sorts,
+          idUser: req.query.idUser
         });
 
         res.status(200).json(data);

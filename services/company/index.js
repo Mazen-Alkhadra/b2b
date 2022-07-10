@@ -10,18 +10,18 @@ class Company {
   }
 
   async addNew({
-    nameEn, type, address
+    nameEn, type, address, licenseNumber, establishAt
   }) {
     await this.companyModel.addNew({
-      nameEn, type, address
+      nameEn, type, address, licenseNumber, establishAt
     });
   }
 
   async update({
-    idCompany, nameEn, type, address
+    idCompany, nameEn, type, address, licenseNumber, establishAt
   }) {
     await this.companyModel.update({
-      idCompany, nameEn, type, address
+      idCompany, nameEn, type, address, licenseNumber, establishAt
     });
   }
 

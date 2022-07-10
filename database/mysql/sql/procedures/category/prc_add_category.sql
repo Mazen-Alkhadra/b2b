@@ -18,7 +18,7 @@ BEGIN
 	VALUES (
 		p_name_str_id,
 		p_description_str_id,
-		p_type,
+		IFNULL(p_type, DEFAULT(type)),
 		p_added_by_user_id
 	)
 	;

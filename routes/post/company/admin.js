@@ -9,10 +9,11 @@ module.exports = app => {
 	app.post(PostAdminCompany,
 		async (req, res) => {
 			try {
-				const { nameEn, type, address } = req.body;
+				const { nameEn, type, address, licenseNumber,
+					establishAt } = req.body;
 
 				await CompanySvc.create().addNew({
-					nameEn, type, address
+					nameEn, type, address, licenseNumber, establishAt
 				});
 
 				res.status(200).end();
@@ -26,10 +27,12 @@ module.exports = app => {
 	app.post(PostAdminUpdateCompany,
 		async (req, res) => {
 			try {
-				const { idCompany, nameEn, type, address } = req.body;
+				const { idCompany, nameEn, type, address, 
+					licenseNumber, establishAt } = req.body;
 
 				await CompanySvc.create().update({
-					idCompany, nameEn, type, address
+					idCompany, nameEn, type, address,
+					licenseNumber, establishAt
 				});
 
 				res.status(200).end();

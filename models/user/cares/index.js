@@ -5,14 +5,19 @@ class UserCare extends Model {
   static TABLE_NAME = 'users_cares';
 
   async getAllFullInfo({
-    limit, skip, filters, sorts
+    limit, skip, filters, sorts,
+    idUser
   }) {
+
+    let userCond = !idUser ? 'TRUE' : `user_id = ${this.escapeSql(idUser)}`;
 
     let countQuery =
       `SELECT
         Count(*) allCount
       FROM
-        users_cares;`
+        users_cares
+      WHERE 
+        ${userCond};`
       
 
     let dataQuery =
@@ -22,7 +27,9 @@ class UserCare extends Model {
 				brand_id	brandId,
 				product_id	productId
       FROM
-        users_cares`;
+        users_cares
+      WHERE 
+        ${userCond}`;
 
     let queryStr = countQuery + dataQuery;
 

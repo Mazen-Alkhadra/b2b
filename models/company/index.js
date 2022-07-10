@@ -22,7 +22,9 @@ class Company extends Model {
         id_company	idCompany,
 				fun_get_string(NULL, name_str_id)	nameEn,
 				type,
-				address
+				address,
+        license_number licenseNumber,
+        DATE(establish_at) establishAt
       FROM
         companies`;
 
@@ -43,20 +45,20 @@ class Company extends Model {
   }
 
   async addNew({
-    nameEn, type, address
+    nameEn, type, address, licenseNumber, establishAt
   }) {
     let nameStrId = await StringModel.create().addNewString({enStr: nameEn});
 
     let dbRet = await this.directQuery (
       'CALL prc_add_company(?, @new_record_id);',
-      [nameStrId, type, address]
+      [nameStrId, type, address, licenseNumber, establishAt]
     );
 
     return { newId: dbRet[0][0].newRecordId };
   }
 
   async update({
-    idCompany, nameEn, type, address
+    idCompany, nameEn, type, address, licenseNumber, establishAt
   }) {
 
     await StringModel.create().updateString({
@@ -69,7 +71,7 @@ class Company extends Model {
 
     await this.directQuery (
       'CALL prc_update_company(?);',
-      [idCompany, type, address]
+      [idCompany, type, address, licenseNumber, establishAt]
     );
   }
 

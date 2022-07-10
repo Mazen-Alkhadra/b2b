@@ -3,9 +3,12 @@ const UserModel = require('../../../models').User;
 class UserCare {
   careModel = UserModel.Cares.create();
 
-  async getAllFullInfo({ limit, skip, filters, sorts }) {
+  async getAllFullInfo({ 
+    limit, skip, filters, sorts,
+    idUser
+  }) {
     return await this.careModel.getAllFullInfo({
-      limit, skip, filters, sorts
+      limit, skip, filters, sorts, idUser
     });
   }
 
