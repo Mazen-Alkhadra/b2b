@@ -37,6 +37,7 @@ module.exports = {
   POSTAdminACRoleUpdate: '/api/admin/ac/role/update',
   PostResetACResetRolePermissions: '/api/admin/ac/role/permissions/reset',
   PostAdminIssueReportUpdate: '/api/admin/issue-report/update',
+  PostAdminFaq: '/api/admin/faq',
   PostAdminFaqUpdate: '/api/admin/faq/update',
   PostAdminAboutus: '/api/admin/aboutus',
   PostAdminAboutusUpdate: '/api/admin/aboutus/update',
