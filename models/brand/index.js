@@ -20,12 +20,14 @@ class Brand extends Model {
     let dataQuery =
       `SELECT
         id_brand	idBrand,
-				fun_get_string(NULL, name_str_id)	nameEn,
-				fun_get_string(NULL, description_str_id) descriptionEn,
+				fun_get_string(NULL, b.name_str_id)	nameEn,
+				fun_get_string(NULL, b.description_str_id) descriptionEn,
 				category_id	categoryId,
-				added_by_user_id	addedByUserId
+				fun_get_string(NULL, c.name_str_id)	categoryNameEn,
+				b.added_by_user_id	addedByUserId
       FROM
-        brands`;
+        brands b
+        LEFT JOIN categories c ON ctegory_id = id_category`;
 
     let queryStr = countQuery + dataQuery;
 
