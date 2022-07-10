@@ -20,13 +20,18 @@ class Product extends Model {
     let dataQuery =
       `SELECT
         id_product	idProduct,
-				fun_get_string(NULL, name_str_id)	nameEn,
-				fun_get_string(NULL, description_str_id)	descriptionEn,
+				fun_get_string(NULL, p.name_str_id)	nameEn,
+				fun_get_string(NULL, p.description_str_id)	descriptionEn,
 				brand_id	brandId,
-				added_by_user_id	addedByUserId,
-        creat_at creatAt
+        b.category_id categoryId,
+        fun_get_string(NULL, b.name_str_id)	brandNameEn,
+        fun_get_string(NULL, c.name_str_id)	categoryNameEn,
+				p.added_by_user_id	addedByUserId,
+        p.creat_at creatAt
       FROM
-        products`;
+        products p
+        LEFT JOIN brands b ON brand_id = id_brand
+        LEFT JOIN categories c ON category_id = id_category`;
 
     let queryStr = countQuery + dataQuery;
 
