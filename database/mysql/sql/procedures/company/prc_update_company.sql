@@ -19,7 +19,7 @@ BEGIN
 		license_img_id = IF (
 			p_license_img_url IS NULL, 
 			license_img_id, 
-			fun_insert_img(license_img_url)
+			fun_insert_img(p_license_img_url)
 		)
 	WHERE
 		id_company = p_id_company

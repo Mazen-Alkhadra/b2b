@@ -22,6 +22,8 @@ module.exports = {
   GetAdminPrivacyPolicyFull: '/api/admin/privacy-policy/full',
   GetAdminTermsFull: '/api/admin/terms/full',
   GetAdminUsersCaresFull: '/api/admin/users/cares/full',
+  GetAdminTendersFull: '/api/admin/tenders/full',
+  GetAdminOffersFull: '/api/admin/offers/full',
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',

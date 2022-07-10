@@ -29,7 +29,7 @@ BEGIN
 		p_b_include_delivery,
 		p_delivery_cost,
 		p_delivery_address,
-		p_status,
+		IFNULL(p_status, DEFAULT(status)),
 		p_accepted_at,
 		p_excuted_at
 	)

@@ -385,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `offers` (
   `b_include_delivery`    BOOLEAN,
   `delivery_cost`         DOUBLE,
   `delivery_address`      LONGTEXT NULL,
-  `status`                ENUM('PENDING', 'REJECTED', 'EXECUTING_PENDING', 'EXECUTED'),
+  `status`                ENUM('PENDING', 'REJECTED', 'EXECUTING_PENDING', 'EXECUTED') NOT NULL DEFAULT 'PENDING',
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `accepted_at`           DATETIME NULL,
   `excuted_at`            DATETIME NULL,

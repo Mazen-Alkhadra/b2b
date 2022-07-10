@@ -22,8 +22,8 @@ class Tender extends Model {
         name,
 				product_id	productId,
 				quantity	quantity,
-				from	from,
-				to	to,
+				\`from\`,
+				\`to\`,
 				delivery_address	deliveryAddress,
 				closed_at	closedAt
       FROM

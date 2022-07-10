@@ -17,6 +17,9 @@ module.exports = app => {
   require('./privacy-policy')(app);
   require('./terms')(app);
   require('./files')(app);
+  require('./tender')(app);
+  require('./offer')(app);
+
 
   app.get('/*', (req, res) => {
     res.status(200).sendFile(

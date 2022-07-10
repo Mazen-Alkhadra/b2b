@@ -34,8 +34,7 @@ module.exports = {
     getVoiceFromFtpApiPath: '/api/ftp/voice',
     getVoiceFromLocalFSApiPath: '/api/fs/voice',
     getVideoFromFtpApiPath: '/api/ftp/video',
-    getVideoFromLocalFSApiPath: '/api/fs/video',
-    loginWithGoogleApi: '/api/auth/google/login'
+    getVideoFromLocalFSApiPath: '/api/fs/video'
   },
 
   ftp: {
