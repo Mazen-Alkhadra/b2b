@@ -1,5 +1,4 @@
 const fs = require('fs');
-const logger = require('../../logger');
 const Mime = require('mime');
 
 class LocalFS {

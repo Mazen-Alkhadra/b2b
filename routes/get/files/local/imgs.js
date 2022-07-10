@@ -1,6 +1,6 @@
 const { getImgFromLocalFSApiPath } = require('../../../../config/server').urls;
 const { uploads } = require('../../../../config/server');
-const localFS = require('../../../../services').Files.Local;
+const localFS = require('../../../../services').Files.Local.create();
 
 module.exports = app => {
 
