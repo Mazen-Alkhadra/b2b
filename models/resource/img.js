@@ -5,7 +5,7 @@ class Img extends Model {
   async addNew({url}) {
     let queryStr = 'SELECT fun_insert_img(?);';
 
-    await Model.directQuery(
+    await this.directQuery(
       queryStr, url
     );
          
