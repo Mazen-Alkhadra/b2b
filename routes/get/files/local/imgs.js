@@ -21,6 +21,8 @@ module.exports = app => {
         res.end();
       });
 
+      imgFileStream.on('error', () => res.status(404).end());
+
       res.status(200);
       imgFileStream.pipe(res);
 

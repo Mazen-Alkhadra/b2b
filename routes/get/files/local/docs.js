@@ -21,6 +21,8 @@ module.exports = app => {
         res.end();
       });
 
+      docFileStream.on('error', () => res.status(404).end());
+
       res.status(200);
       docFileStream.pipe(res);
 
