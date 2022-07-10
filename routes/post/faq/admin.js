@@ -12,7 +12,8 @@ module.exports = app => {
 				const { questionEn, answerEn, isActive } = req.body;
 
 				await FaqSvc.create().addNew({
-					questionEn, answerEn, isActive
+					questionEn, answerEn, 
+					isActive: true
 				});
 
 				res.status(200).end();

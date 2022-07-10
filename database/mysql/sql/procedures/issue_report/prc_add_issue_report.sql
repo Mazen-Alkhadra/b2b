@@ -16,7 +16,7 @@ BEGIN
 	VALUES (
 		p_reporter_user_id,
 		p_content,
-		p_status
+		IFNULL(p_status, DEFAULT(status))
 	)
 	;
   
