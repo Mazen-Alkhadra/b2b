@@ -38,9 +38,7 @@ class Payment extends Model {
     queryStr = this.applyFilters(dataQuery, filters) || queryStr;
     queryStr += this.getOrderClause(sorts);
     queryStr += this.getLimitClause({ limit, skip });
-    queryStr += ';\n' + this.getSummarySqlQuery({ 
-      dataQuery, summaries 
-    });
+    queryStr += ';\n' + this.getSummarySqlQuery({ dataQuery, summaries });
 
     let dbRet = await this.directQuery(queryStr);
 
