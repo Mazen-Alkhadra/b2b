@@ -6,7 +6,8 @@ class Payment extends Model {
   static PRIMARY_KEY = 'id_payment';
 
   async getAllFullInfo({
-    limit, skip, filters, sorts
+    limit, skip, filters, sorts,
+    summaries
   }) {
 
     let countQuery =
@@ -33,17 +34,21 @@ class Payment extends Model {
         INNER JOIN users ON user_id = id_user`;
 
     let queryStr = countQuery + dataQuery;
+    let filteredQuery = this.applyFilters(dataQuery, filters) || queryStr;
 
-    queryStr = this.applyFilters(dataQuery, filters) || queryStr;
+    queryStr = filteredQuery;
     queryStr += this.getOrderClause(sorts);
     queryStr += this.getLimitClause({ limit, skip });
-
+    queryStr += ';\n' + this.getSummarySqlQuery({ 
+      sqlMainQuery: filteredQuery, summaries 
+    });
 
     let dbRet = await this.directQuery(queryStr);
 
     return {
       allCount: dbRet[0][0].allCount,
-      data: dbRet[1]
+      data: dbRet[1],
+      symmary: dbRet[2] && dbRet[2][0] ? Object.values(dbRet[2][0]) : null
     };
 
   }

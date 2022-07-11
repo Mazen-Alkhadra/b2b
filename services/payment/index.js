@@ -3,9 +3,9 @@ const PaymentModel = require('../../models').Payment;
 class Payment {
   paymentModel = PaymentModel.create();
 
-  async getAllFullInfo({ limit, skip, filters, sorts }) {
+  async getAllFullInfo({ limit, skip, filters, sorts, summaries }) {
     return await this.paymentModel.getAllFullInfo({
-      limit, skip, filters, sorts
+      limit, skip, filters, sorts, summaries
     });
   }
 

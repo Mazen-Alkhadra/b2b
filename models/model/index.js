@@ -107,6 +107,23 @@ class Model {
     }
   }
 
+  mapSummaryToSqlClause({column, type}) {
+    switch (type) {
+      case 'sum':
+        return `SUM(IFNULL(${column}, 0))`;
+      case 'min':
+        return `MIN(${column})`;
+      case 'max':
+        return `MAX(${column})`;
+      case 'avg':
+        return `AVG(IFNULL(${column}, 0))`;
+      case 'count':
+        return `COUNT(DISTINCT ${column})`;
+      default:
+        return '';
+    }
+  }
+
   getFiltersSqlCluase(filters) {
     let sqlClause = '';
 
@@ -132,6 +149,32 @@ class Model {
     }
 
     return sqlClause ? `(${sqlClause})` : "TRUE";
+  }
+
+  getSummarySqlQuery({sqlMainQuery, summaries}) {
+    if (!Array.isArray(summaries) || !summaries.length)
+      return '';
+
+    let index = 0;
+    let sqlQuery = 'SELECT ';
+
+    for (index = 0; index < summaries.length; ++index) {
+      if(index > 0) 
+      sqlQuery += ',';
+
+      let {selector, summaryType} = summaries[index];
+      
+      sqlQuery += this.mapSummaryToSqlClause({
+        column: selector,
+        type: summaryType
+      });
+    }
+    
+    const dataIndx = sqlMainQuery.lastIndexOf('SELECT');
+    let dataQuery = sqlMainQuery.slice(dataIndx);
+    sqlQuery += `FROM (${dataQuery}) AS summary;`
+
+    return sqlQuery;
   }
 
   applyFilters(sqlQuery, filters, groupOpt) {
