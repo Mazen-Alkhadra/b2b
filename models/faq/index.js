@@ -28,7 +28,8 @@ class Faq extends Model {
 
     let queryStr = countQuery + dataQuery;
 
-    queryStr = this.applyFilters(dataQuery, filters) || queryStr;
+    let filteredQuery = this.applyFilters(dataQuery, filters);
+    queryStr = filteredQuery.finalQuery || queryStr;
     queryStr += this.getOrderClause(sorts);
     queryStr += this.getLimitClause({ limit, skip });
 

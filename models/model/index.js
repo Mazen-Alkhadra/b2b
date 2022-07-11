@@ -164,7 +164,7 @@ class Model {
 
       let {selector, summaryType} = summaries[index];
       
-      sqlQuery += this.mapSummaryToSqlClause({
+      sqlQuery += this.mapSummaryToSqlClause ({
         column: selector,
         type: summaryType
       });
@@ -178,7 +178,7 @@ class Model {
   applyFilters(dataQuery, filters, groupOpt) {
 
     if (!filters || !filters.length)
-      return null;
+      return {};
 
     let groupCountsClause = '';
 
@@ -189,11 +189,13 @@ class Model {
     dataQuery = 
       `SELECT * FROM (${dataQuery}) AS temp_data WHERE ${this.getFiltersSqlCluase(filters)}`;
 
-    return `
+    let finalQuery = `
         SELECT COUNT(*) allCount ${groupCountsClause}
         FROM (${dataQuery}) AS temp_count 
         WHERE ${this.getFiltersSqlCluase(filters)};
         ${dataQuery}`
+
+    return {dataQuery, finalQuery};
   }
 
   normalizeFilterVal(filterVal) {
