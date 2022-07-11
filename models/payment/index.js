@@ -23,9 +23,14 @@ class Payment extends Model {
 				type,
 				amount_usd amountUsd,
 				comment,
-				status
+				status,
+        complete_at completeAt,
+        CONCAT(first_name, '', last_name) userFullName,
+        email,
+        mobile
       FROM
-        payments`;
+        payments
+        INNER JOIN users ON user_id = id_user`;
 
     let queryStr = countQuery + dataQuery;
 

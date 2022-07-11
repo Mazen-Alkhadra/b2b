@@ -26,6 +26,7 @@ module.exports = {
   GetAdminUsersCaresFull: '/api/admin/users/cares/full',
   GetAdminTendersFull: '/api/admin/tenders/full',
   GetAdminOffersFull: '/api/admin/offers/full',
+  GetAdminPaymentsFull: '/api/admin/payments/full',
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',
