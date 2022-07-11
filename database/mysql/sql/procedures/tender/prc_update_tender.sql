@@ -1,6 +1,7 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_update_tender` (
 	p_id_tender					BIGINT UNSIGNED,
+	p_creat_by_user_id  BIGINT UNSIGNED,
 	p_name              LONGTEXT,
 	p_product_id				BIGINT UNSIGNED,
 	p_quantity					DOUBLE,
@@ -14,6 +15,7 @@ BEGIN
 	UPDATE 
 		tenders
 	SET
+		creat_by_user_id = IFNULL(p_creat_by_user_id, creat_by_user_id),
 	  name = IFNULL(p_name, name),
 		product_id = IFNULL(p_product_id, product_id),
 		quantity = IFNULL(p_quantity, quantity),

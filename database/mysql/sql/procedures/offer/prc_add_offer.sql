@@ -1,6 +1,7 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_add_offer` (
 	p_tender_id								BIGINT UNSIGNED,
+	p_creat_by_user_id  			BIGINT UNSIGNED,
 	p_price_USD								DOUBLE,
 	p_b_include_delivery			BOOLEAN,
 	p_delivery_cost						DOUBLE,
@@ -15,6 +16,7 @@ BEGIN
 	INSERT INTO 
 		offers (
 			tender_id,
+			creat_by_user_id,
 			price_USD,
 			b_include_delivery,
 			delivery_cost,
@@ -25,6 +27,7 @@ BEGIN
 		)
 	VALUES (
 		p_tender_id,
+		p_creat_by_user_id,
 		p_price_USD,
 		p_b_include_delivery,
 		p_delivery_cost,

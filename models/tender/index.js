@@ -19,6 +19,7 @@ class Tender extends Model {
     let dataQuery =
       `SELECT
         id_tender	idTender,
+        creat_by_user_id  creatByUserId, 
         name,
 				product_id	productId,
 				quantity	quantity,
@@ -46,26 +47,26 @@ class Tender extends Model {
   }
 
   async addNew({
-    name, productId, quantity, from, to, 
-    deliveryAddress, closedAt
+    creatByUserId, name, productId, quantity,
+    from, to, deliveryAddress, closedAt
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_tender(?, @new_record_id);',
-      [name, productId, quantity, from, to, 
-        deliveryAddress, closedAt]
+      [creatByUserId, name, productId, quantity,
+        from, to, deliveryAddress, closedAt]
     );
 
     return { newId: dbRet[0][0].newRecordId };
   }
 
   async update({
-    idTender, name, productId, quantity, from, to,
-    deliveryAddress, closedAt
+    idTender, creatByUserId, name, productId, quantity,
+    from, to, deliveryAddress, closedAt
   }) {
     await this.directQuery (
       'CALL prc_update_tender(?);',
-      [idTender, name, productId, quantity, from, to,
-        deliveryAddress, closedAt]
+      [idTender, creatByUserId, name, productId, quantity,
+        from, to, deliveryAddress, closedAt]
     );
   }
 

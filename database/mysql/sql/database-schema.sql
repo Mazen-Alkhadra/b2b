@@ -355,6 +355,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tenders` (
   `id_tender`   		  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `creat_by_user_id`      BIGINT UNSIGNED NOT NULL, 
   `name`                  LONGTEXT,
   `product_id`  				  BIGINT UNSIGNED NOT NULL,
   `quantity`           	  DOUBLE NOT NULL,
@@ -370,6 +371,11 @@ CREATE TABLE IF NOT EXISTS `tenders` (
     FOREIGN KEY (`product_id`)
     REFERENCES `products` (`id_product`)
     ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_tender_creator`
+    FOREIGN KEY (`creat_by_user_id`)
+    REFERENCES `users` (`id_user`)
+    ON DELETE RESTRICT
     ON UPDATE RESTRICT
   )
 ENGINE = InnoDB
@@ -381,6 +387,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 CREATE TABLE IF NOT EXISTS `offers` (
   `id_offer`    		  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `tender_id`    				  BIGINT UNSIGNED NOT NULL,
+  `creat_by_user_id`      BIGINT UNSIGNED NOT NULL, 
   `price_USD`         	  DOUBLE NOT NULL,
   `b_include_delivery`    BOOLEAN,
   `delivery_cost`         DOUBLE,
@@ -395,6 +402,11 @@ CREATE TABLE IF NOT EXISTS `offers` (
   CONSTRAINT `fk_offer_tender`
     FOREIGN KEY (`tender_id`)
     REFERENCES `tenders` (`id_tender`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_offer_creator`
+    FOREIGN KEY (`creat_by_user_id`)
+    REFERENCES `users` (`id_user`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT
   )

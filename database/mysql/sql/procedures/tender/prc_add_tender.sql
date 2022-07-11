@@ -1,5 +1,6 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_add_tender` (
+	p_creat_by_user_id      BIGINT UNSIGNED,
 	p_name                  LONGTEXT,
 	p_product_id						BIGINT UNSIGNED,
 	p_quantity							DOUBLE,
@@ -13,6 +14,7 @@ BEGIN
 
 	INSERT INTO 
 		tenders (
+			creat_by_user_id,
 			name,
 			product_id,
 			quantity,
@@ -22,6 +24,7 @@ BEGIN
 			closed_at
 		)
 	VALUES (
+		p_creat_by_user_id,
 		p_name,
 		p_product_id,
 		p_quantity,

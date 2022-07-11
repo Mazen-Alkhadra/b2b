@@ -20,16 +20,20 @@ class Offer extends Model {
       `SELECT
         id_offer	idOffer,
 				tender_id	tenderId,
+        o.creat_by_user_id creatByUserId,
 				price_USD	priceUSD,
 				b_include_delivery	bIncludeDelivery,
 				delivery_cost	deliveryCost,
-				delivery_address	deliveryAddress,
+				o.delivery_address	deliveryAddress,
 				status	status,
 				accepted_at	acceptedAt,
 				excuted_at	excutedAt,
-        creat_at creatAt
+        o.creat_at creatAt,
+        t.creat_by_user_id tenderCreatorByUserId,
+        t.product_id productId
       FROM
-        offers`;
+        offers o
+        INNER JOIN tenders t ON tender_id = id_tender`;
 
     let queryStr = countQuery + dataQuery;
 
@@ -48,25 +52,27 @@ class Offer extends Model {
   }
 
   async addNew({
-    tenderId, priceUSD, bIncludeDelivery, deliveryCost, 
-    deliveryAddress, status, acceptedAt, excutedAt
+    tenderId, creatByUserId, priceUSD, bIncludeDelivery,
+    deliveryCost, deliveryAddress, status, acceptedAt,
+    excutedAt
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_offer(?, @new_record_id);',
-      [tenderId, priceUSD, bIncludeDelivery, deliveryCost, deliveryAddress, status, acceptedAt, excutedAt]
+      [tenderId, creatByUserId, priceUSD, bIncludeDelivery, 
+        deliveryCost, deliveryAddress, status, acceptedAt, excutedAt]
     );
 
     return { newId: dbRet[0][0].newRecordId };
   }
 
   async update({
-    idOffer, tenderId, priceUSD, bIncludeDelivery, deliveryCost, 
-    deliveryAddress, status, acceptedAt, excutedAt
+    idOffer, tenderId, creatByUserId, priceUSD, bIncludeDelivery, 
+    deliveryCost, deliveryAddress, status, acceptedAt, excutedAt
   }) {
     await this.directQuery (
       'CALL prc_update_offer(?);',
-      [idOffer, tenderId, priceUSD, bIncludeDelivery, deliveryCost,
-        deliveryAddress, status, acceptedAt, excutedAt]
+      [idOffer, tenderId, creatByUserId, priceUSD, bIncludeDelivery,
+        deliveryCost, deliveryAddress, status, acceptedAt, excutedAt]
     );
   }
 

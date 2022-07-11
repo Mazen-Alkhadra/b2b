@@ -2,6 +2,7 @@ DELIMITER $$
 CREATE PROCEDURE `prc_update_offer` (
 	p_id_offer						BIGINT UNSIGNED,
 	p_tender_id						BIGINT UNSIGNED,
+	p_creat_by_user_id    BIGINT UNSIGNED,
 	p_price_USD						DOUBLE,
 	p_b_include_delivery	BOOLEAN,
 	p_delivery_cost				DOUBLE,
@@ -16,6 +17,7 @@ BEGIN
 		offers
 	SET
 		tender_id = IFNULL(p_tender_id, tender_id),
+		creat_by_user_id = IFNULL(p_creat_by_user_id, creat_by_user_id),
 		price_USD = IFNULL(p_price_USD, price_USD),
 		b_include_delivery = IFNULL(p_b_include_delivery, b_include_delivery),
 		delivery_cost = IFNULL(p_delivery_cost, delivery_cost),

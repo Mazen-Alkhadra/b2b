@@ -10,22 +10,24 @@ class Offer {
   }
 
   async addNew({
-    tenderId, priceUSD, bIncludeDelivery, deliveryCost, 
-    deliveryAddress, status, acceptedAt, excutedAt
+    tenderId, creatByUserId, priceUSD, bIncludeDelivery,
+    deliveryCost, deliveryAddress, status, acceptedAt,
+    excutedAt
   }) {
     await this.offerModel.addNew({
-      tenderId, priceUSD, bIncludeDelivery, deliveryCost, 
-      deliveryAddress, status, acceptedAt, excutedAt
+      tenderId, creatByUserId, priceUSD, bIncludeDelivery,
+      deliveryCost, deliveryAddress, status, acceptedAt,
+      excutedAt
     });
   }
 
   async update({
-    idOffer, tenderId, priceUSD, bIncludeDelivery, deliveryCost, 
-    deliveryAddress, status, acceptedAt, excutedAt
+    idOffer, tenderId, creatByUserId, priceUSD, bIncludeDelivery,
+    deliveryCost, deliveryAddress, status, acceptedAt, excutedAt
   }) {
     await this.offerModel.update({
-      idOffer, tenderId, priceUSD, bIncludeDelivery, deliveryCost, 
-      deliveryAddress, status, acceptedAt, excutedAt
+      idOffer, tenderId, creatByUserId, priceUSD, bIncludeDelivery,
+      deliveryCost, deliveryAddress, status, acceptedAt, excutedAt
     });
   }
 
