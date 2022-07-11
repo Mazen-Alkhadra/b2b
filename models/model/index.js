@@ -118,7 +118,7 @@ class Model {
       case 'avg':
         return `AVG(IFNULL(${column}, 0))`;
       case 'count':
-        return `COUNT(DISTINCT ${column})`;
+        return `COUNT(${column})`;
       default:
         return '';
     }
@@ -151,7 +151,7 @@ class Model {
     return sqlClause ? `(${sqlClause})` : "TRUE";
   }
 
-  getSummarySqlQuery({sqlMainQuery, summaries}) {
+  getSummarySqlQuery({dataQuery, summaries}) {
     if (!Array.isArray(summaries) || !summaries.length)
       return '';
 
@@ -170,14 +170,12 @@ class Model {
       });
     }
     
-    const dataIndx = sqlMainQuery.lastIndexOf('SELECT');
-    let dataQuery = sqlMainQuery.slice(dataIndx);
     sqlQuery += `FROM (${dataQuery}) AS summary;`
 
     return sqlQuery;
   }
 
-  applyFilters(sqlQuery, filters, groupOpt) {
+  applyFilters(dataQuery, filters, groupOpt) {
 
     if (!filters || !filters.length)
       return null;
@@ -187,12 +185,15 @@ class Model {
     if (groupOpt)
       groupCountsClause =
         `,COUNT(DISTINCT ${groupOpt.colAlias}) ${groupOpt.groupCountAlias}`;
-        
+    
+    dataQuery = 
+      `SELECT * FROM (${dataQuery}) AS temp_data WHERE ${this.getFiltersSqlCluase(filters)}`;
+
     return `
         SELECT COUNT(*) allCount ${groupCountsClause}
-        FROM (${sqlQuery}) AS temp_count 
+        FROM (${dataQuery}) AS temp_count 
         WHERE ${this.getFiltersSqlCluase(filters)};
-        SELECT * FROM (${sqlQuery}) AS temp_data WHERE ${this.getFiltersSqlCluase(filters)} `
+        ${dataQuery}`
   }
 
   normalizeFilterVal(filterVal) {

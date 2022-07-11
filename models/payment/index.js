@@ -34,13 +34,12 @@ class Payment extends Model {
         INNER JOIN users ON user_id = id_user`;
 
     let queryStr = countQuery + dataQuery;
-    let filteredQuery = this.applyFilters(dataQuery, filters) || queryStr;
 
-    queryStr = filteredQuery;
+    queryStr = this.applyFilters(dataQuery, filters) || queryStr;
     queryStr += this.getOrderClause(sorts);
     queryStr += this.getLimitClause({ limit, skip });
     queryStr += ';\n' + this.getSummarySqlQuery({ 
-      sqlMainQuery: filteredQuery, summaries 
+      dataQuery, summaries 
     });
 
     let dbRet = await this.directQuery(queryStr);
@@ -48,7 +47,7 @@ class Payment extends Model {
     return {
       allCount: dbRet[0][0].allCount,
       data: dbRet[1],
-      symmary: dbRet[2] && dbRet[2][0] ? Object.values(dbRet[2][0]) : null
+      summary: dbRet[2] && dbRet[2][0] ? Object.values(dbRet[2][0]) : null
     };
 
   }
