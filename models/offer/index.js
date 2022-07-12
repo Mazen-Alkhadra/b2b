@@ -26,7 +26,7 @@ class Offer extends Model {
 				b_include_delivery	bIncludeDelivery,
 				delivery_cost	deliveryCost,
 				o.delivery_address	deliveryAddress,
-				status	status,
+				o.status	status,
 				accepted_at	acceptedAt,
 				excuted_at	excutedAt,
         o.creat_at creatAt,
