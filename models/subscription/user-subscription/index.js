@@ -40,8 +40,8 @@ class UserSubscription extends Model {
         subscriptions`;
 
     let queryStr = countQuery + dataQuery;
-
-    queryStr = this.applyFilters(dataQuery, filters, groupby) || queryStr;
+    let filteredQuery = this.applyFilters(dataQuery, filters);
+    queryStr = filteredQuery.finalQuery || queryStr;
     queryStr += this.getOrderClause(sorts);
     queryStr += this.getLimitClause({ limit, skip });
 
