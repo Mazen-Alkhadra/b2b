@@ -362,6 +362,7 @@ CREATE TABLE IF NOT EXISTS `tenders` (
   `from`                  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `to`                    DATETIME NOT NULL,
   `delivery_address`      LONGTEXT NULL,   
+  `status`                ENUM('OPENED', 'CLOSED') NOT NULL DEFAULT 'OPENED',
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `closed_at`             DATETIME NULL,
 
@@ -388,6 +389,7 @@ CREATE TABLE IF NOT EXISTS `offers` (
   `id_offer`    		  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `tender_id`    				  BIGINT UNSIGNED NOT NULL,
   `creat_by_user_id`      BIGINT UNSIGNED NOT NULL, 
+  `quantity`           	  DOUBLE NOT NULL,
   `price_USD`         	  DOUBLE NOT NULL,
   `b_include_delivery`    BOOLEAN,
   `delivery_cost`         DOUBLE,

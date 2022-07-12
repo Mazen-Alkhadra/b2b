@@ -26,6 +26,7 @@ class Tender extends Model {
 				\`from\`,
 				\`to\`,
 				delivery_address	deliveryAddress,
+        status,
 				closed_at	closedAt
       FROM
         tenders`;
@@ -49,12 +50,12 @@ class Tender extends Model {
 
   async addNew({
     creatByUserId, name, productId, quantity,
-    from, to, deliveryAddress, closedAt
+    from, to, deliveryAddress, status, closedAt
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_tender(?, @new_record_id);',
       [creatByUserId, name, productId, quantity,
-        from, to, deliveryAddress, closedAt]
+        from, to, deliveryAddress, status, closedAt]
     );
 
     return { newId: dbRet[0][0].newRecordId };
@@ -62,12 +63,12 @@ class Tender extends Model {
 
   async update({
     idTender, creatByUserId, name, productId, quantity,
-    from, to, deliveryAddress, closedAt
+    from, to, deliveryAddress, status, closedAt
   }) {
     await this.directQuery (
       'CALL prc_update_tender(?);',
       [idTender, creatByUserId, name, productId, quantity,
-        from, to, deliveryAddress, closedAt]
+        from, to, deliveryAddress, status, closedAt]
     );
   }
 

@@ -21,6 +21,7 @@ class Offer extends Model {
         id_offer	idOffer,
 				tender_id	tenderId,
         o.creat_by_user_id creatByUserId,
+        o.quantity,
 				price_USD	priceUSD,
 				b_include_delivery	bIncludeDelivery,
 				delivery_cost	deliveryCost,
@@ -54,13 +55,13 @@ class Offer extends Model {
   }
 
   async addNew({
-    tenderId, creatByUserId, priceUSD, bIncludeDelivery,
-    deliveryCost, deliveryAddress, status, acceptedAt,
-    excutedAt
+    tenderId, creatByUserId, quantity, priceUSD, 
+    bIncludeDelivery, deliveryCost, deliveryAddress,
+    status, acceptedAt, excutedAt
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_offer(?, @new_record_id);',
-      [tenderId, creatByUserId, priceUSD, bIncludeDelivery, 
+      [tenderId, creatByUserId, quantity, priceUSD, bIncludeDelivery, 
         deliveryCost, deliveryAddress, status, acceptedAt, excutedAt]
     );
 
@@ -68,13 +69,15 @@ class Offer extends Model {
   }
 
   async update({
-    idOffer, tenderId, creatByUserId, priceUSD, bIncludeDelivery, 
-    deliveryCost, deliveryAddress, status, acceptedAt, excutedAt
+    idOffer, tenderId, creatByUserId, quantity, priceUSD, 
+    bIncludeDelivery, deliveryCost, deliveryAddress, 
+    status, acceptedAt, excutedAt
   }) {
     await this.directQuery (
       'CALL prc_update_offer(?);',
-      [idOffer, tenderId, creatByUserId, priceUSD, bIncludeDelivery,
-        deliveryCost, deliveryAddress, status, acceptedAt, excutedAt]
+      [idOffer, tenderId, creatByUserId, quantity, priceUSD, 
+        bIncludeDelivery, deliveryCost, deliveryAddress, 
+        status, acceptedAt, excutedAt]
     );
   }
 

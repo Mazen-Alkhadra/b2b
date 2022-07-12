@@ -7,6 +7,7 @@ CREATE PROCEDURE `prc_add_tender` (
 	p_from									DATETIME,
 	p_to										DATETIME,
 	p_delivery_address			LONGTEXT,
+	p_status                VARCHAR(20),
 	p_closed_at							DATETIME,
 	OUT p_out_new_rec_id		BIGINT UNSIGNED
 )  
@@ -21,6 +22,7 @@ BEGIN
 			`from`,
 			`to`,
 			delivery_address,
+			status,
 			closed_at
 		)
 	VALUES (
@@ -31,6 +33,7 @@ BEGIN
 		p_from,
 		p_to,
 		p_delivery_address,
+		IFNULL(p_status, DEFAULT(status)),
 		p_closed_at
 	)
 	;

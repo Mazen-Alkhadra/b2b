@@ -8,6 +8,7 @@ CREATE PROCEDURE `prc_update_tender` (
 	p_from							DATETIME,
 	p_to								DATETIME,
 	p_delivery_address	LONGTEXT,
+	p_status            VARCHAR(20),
 	p_closed_at					DATETIME
 )  
 BEGIN
@@ -22,6 +23,7 @@ BEGIN
 		`from` = IFNULL(p_from, `from`),
 		`to` = IFNULL(p_to, `to`),
 		delivery_address = IFNULL(p_delivery_address, delivery_address),
+		status = IFNULL(p_status, status),
 		closed_at = IFNULL(p_closed_at, closed_at)
 	WHERE
 		id_tender = p_id_tender

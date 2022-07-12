@@ -11,21 +11,21 @@ class Tender {
 
   async addNew({
     creatByUserId, name, productId, quantity,
-    from, to, deliveryAddress, closedAt
+    from, to, deliveryAddress, status, closedAt
   }) {
     await this.tenderModel.addNew({
       creatByUserId, name, productId, quantity,
-      from, to, deliveryAddress, closedAt
+      from, to, deliveryAddress, status, closedAt
     });
   }
 
   async update({
     idTender, creatByUserId, name, productId, quantity,
-    from, to, deliveryAddress, closedAt
+    from, to, deliveryAddress, status, closedAt
   }) {
     await this.tenderModel.update({
       idTender, creatByUserId, name, productId, quantity,
-      from, to, deliveryAddress, closedAt
+      from, to, deliveryAddress, status, closedAt
     });
   }
 
