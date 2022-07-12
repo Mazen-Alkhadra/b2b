@@ -15,5 +15,6 @@ module.exports = {
   Aboutus: require('./about-us'),
   ContactInfo: require('./contact-info'),
   PrivacyPolicy: require('./privacy-policy'),
-  Terms: require('./terms')
+  Terms: require('./terms'),
+  Stats: require('./stats')
 }

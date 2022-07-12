@@ -20,6 +20,7 @@ module.exports = app => {
   require('./tender')(app);
   require('./offer')(app);
   require('./payment')(app);
+  require('./stats')(app);
 
 
   app.get('/*', (req, res) => {

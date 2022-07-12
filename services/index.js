@@ -23,5 +23,6 @@ module.exports = {
   PrivacyPolicy: require('./privacy-policy'),
   Terms: require('./terms'),
   UploadFiles: require('./upload-files'),
-  Files: require('./files')
+  Files: require('./files'),
+  Stats: require('./stats')
 }
