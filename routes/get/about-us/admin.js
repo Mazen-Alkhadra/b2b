@@ -2,13 +2,10 @@ const {
   GetAdminAboutusFull 
 } = require('../../../services').api.endpoints;
 const AboutSvc = require('../../../services').Aboutus;
-const extractFilters = require('../../../middlewares/filters');
-const extractSorts = require('../../../middlewares/sorts');
 
 module.exports = app => {
 
   app.get(GetAdminAboutusFull,
-    [extractFilters, extractSorts],
     async (req, res) => {
       try {
         let data = await AboutSvc.create().getAllFullInfo({

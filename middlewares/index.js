@@ -15,7 +15,7 @@ let authMiddleware = require('./auth');
 let logMiddleware = require('./log');
 let catchRoutErrMiddleware = require('./catch-rout-error');
 let userLangMiddleWare = require('./user-lang');
-
+let apisMiddlewaresAssign = require('./api');
 
 module.exports = (app) => {
 
@@ -45,7 +45,6 @@ module.exports = (app) => {
   app.use(authMiddleware.init);
   app.use(catchRoutErrMiddleware);
   app.use(userLangMiddleWare);
-  
-  //Access Control
-  app.use('/api/user/*', authMiddleware.requireLogin());
+
+  apisMiddlewaresAssign(app);
 }
