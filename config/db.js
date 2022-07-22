@@ -1,9 +1,9 @@
 module.exports = {
   mysql: {
-    host: "162.241.244.34",
-    user: "scacade1_goAdmin",
-    password: "mM@12345",
-    database: "scacade1_go_learning",
+    host: "162.241.217.243",
+    user: "techstv2_b2b_db",
+    password: "_S=be[+WbXWZ",
+    database: "techstv2_b2b_staging",
     maxUsersConnections: 10
   }
 };
