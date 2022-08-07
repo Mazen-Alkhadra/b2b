@@ -15,11 +15,11 @@ module.exports = {
     userLanguageKey: 'languagePref'
   },
   emailServer: {
-    host: '',
+    host: 'mail.b2back.net',
     port: 465,
     isSecure: true,
-    userName: '',
-    password: ''
+    userName: 'no-reply@b2back.net',
+    password: 'D1y-rZ$YIcsv'
   },
 
   urls: {
@@ -69,5 +69,10 @@ module.exports = {
       fieldName: 'video',
       limitSizeBytes: 500 * 1024 * 1024, // 500 MB
     }
+  },
+  
+  usersCodes: {
+    activationCodeAge: 24 * 60 * 60 * 1000,
+    resetPasswordCodeAge: 24 * 60 * 60 * 1000,
   }
 };

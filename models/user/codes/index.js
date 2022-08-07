@@ -1,6 +1,11 @@
 
 const Model = require('../../model');
 
+const CODES_TYPE = {
+  ACTIVATE: 'ACTIVATE',
+  RESET_PASS: 'RESET_PASS'
+}
+
 class User_code extends Model {
   static TABLE_NAME = 'users_codes';
   static PRIMARY_KEY = 'id_code';
@@ -20,10 +25,10 @@ class User_code extends Model {
       `SELECT
         id_code	idCode,
 				user_id	userId,
-				code	code,
-				type	type,
+				code,
+				type,
 				is_active	isActive,
-				expiry_date_time	expiryDateTime
+				expiry_date_time expiryDateTime
       FROM
         users_codes`;
 
@@ -52,7 +57,7 @@ class User_code extends Model {
       [userId, code, type, isActive, expiryDateTime]
     );
 
-    return { newId: dbRet[0][0].newRecordId };
+    return { newId: dbRet[0][0].newRecId };
   }
 
   async update({
@@ -62,6 +67,15 @@ class User_code extends Model {
       'CALL prc_update_user_code(?);',
       [idCode, userId, code, type, isActive, expiryDateTime]
     );
+  }
+
+  async consume ({ code }) {
+    let dbRet = await this.directQuery (
+      'CALL prc_consume_user_code(?);',
+      code
+    );
+
+    return {idUser: dbRet[0].idUser};
   }
 
   async delete({ idCode }) {
@@ -74,5 +88,6 @@ class User_code extends Model {
 }
 
 module.exports = {
-  create: () => new User_code
+  create: () => new User_code,
+  CODES_TYPE
 };

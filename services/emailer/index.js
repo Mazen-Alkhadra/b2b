@@ -1,23 +1,24 @@
 const nodemailer = require("nodemailer");
 const {name: appName} =  require('../../config/server').app;
-const {host, port, userName, password, isSecure} = 
-  require('../../config/server').emailServer;
+const {defaultEmailServer} = require('../../config/server');
 const {serverBaseUrl, resetPasswordPagePath} = 
   require('../../config/server').urls;
 const logger = require('../logger');
 
-let transporter = nodemailer.createTransport({
-  host: host,
-  port: port,
-  secure: isSecure, // true for 465, false for other ports
-  auth: {
-    user: userName, 
-    pass: password,
-  },
-});
-
 
 class Emailer {
+
+  constructor(host, port, userName, password, isSecure) {
+    this.transporter = nodemailer.createTransport({
+      host: host || defaultEmailServer.host,
+      port: port || defaultEmailServer.port,
+      secure: isSecure || defaultEmailServer.isSecure,
+      auth: {
+        user: userName || defaultEmailServer.userName,
+        pass: password || defaultEmailServer.password
+      },
+    });
+  }
 
   async sendMail(to, subject, text, html, attachmentsUrls) {
     try {
@@ -25,7 +26,7 @@ class Emailer {
       if(attachmentsUrls && attachmentsUrls.length)
         attachmentsUrls.forEach(url => attachments.push({path: url}));
 
-      let info = await transporter.sendMail({
+      let info = await this.transporter.sendMail({
         from: userName,
         to,
         subject,
@@ -97,29 +98,9 @@ class Emailer {
       mailBodyHtml
     );
 
-  }
-
-  async sendAwardsInfoToUser (
-    userFirstName, userLastName, userEMail, 
-    awardName, awardPhoto
-  ) {
-
-    let mailBodyHtml = 
-      `Dear <b>${userFirstName} ${userLastName},</b>
-      <p>We are pleased to inform you that you have won with us the flowing award:</p>
-      <p>${awardName}</p>
-      <p><img src="${awardPhoto}" /></p>
-      <p>Please Contact us to receive the award</p>
-      <p>Best regards.</p>`;
-
-    Emailer.sendMail(
-      userEMail,
-      `${appName} Awards`,
-      null,
-      mailBodyHtml
-    );
-  }
- 
+  } 
 }
 
-module.exports = Emailer;
+module.exports = {
+  create: () => new Emailer
+};
