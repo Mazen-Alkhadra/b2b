@@ -11,21 +11,29 @@ class Company {
 
   async addNew({
     nameEn, type, address, licenseNumber, establishAt,
-    licenseImgUrl
+    licenseImgUrl, cityId, area, street, buildingNumber,
+    addressLongitude, addressLatitude, moreAddressInfo, 
+    licenseExpirAt
   }) {
     await this.companyModel.addNew({
       nameEn, type, address, licenseNumber, establishAt,
-      licenseImgUrl
+      licenseImgUrl, cityId, area, street, buildingNumber,
+      addressLongitude, addressLatitude, moreAddressInfo, 
+      licenseExpirAt
     });
   }
 
   async update({
     idCompany, nameEn, type, address, licenseNumber, establishAt,
-    licenseImgUrl
+    licenseImgUrl, cityId, area, street, buildingNumber,
+    addressLongitude, addressLatitude, moreAddressInfo, 
+    licenseExpirAt
   }) {
     await this.companyModel.update({
       idCompany, nameEn, type, address, licenseNumber, establishAt,
-      licenseImgUrl
+      licenseImgUrl, cityId, area, street, buildingNumber,
+      addressLongitude, addressLatitude, moreAddressInfo, 
+      licenseExpirAt
     });
   }
 

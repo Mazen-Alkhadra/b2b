@@ -9,5 +9,6 @@ module.exports = app => {
   require('./category')(app);
   require('./brand')(app);
   require('./product')(app);
-  
+  require('./city')(app);
+  require('./country')(app); 
 };

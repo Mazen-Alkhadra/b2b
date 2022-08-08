@@ -16,5 +16,7 @@ module.exports = {
   ContactInfo: require('./contact-info'),
   PrivacyPolicy: require('./privacy-policy'),
   Terms: require('./terms'),
-  Stats: require('./stats')
+  Stats: require('./stats'),
+  Country: require('./country'),
+  City: require('./city'),
 }

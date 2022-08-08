@@ -22,8 +22,15 @@ class Company extends Model {
         id_company	idCompany,
 				fun_get_string(NULL, name_str_id)	nameEn,
 				type,
-				address,
+				city_id cityId,
+        area,
+        street,
+        building_number buildingNumber,
+        address_longitude addressLongitude,
+        address_latitude addressLatitude,
+        more_address_info moreAddressInfo,
         license_number licenseNumber,
+        license_expir_at licenseExpirAt,
         DATE(establish_at) establishAt,
         fun_get_img(license_img_id) licenseImgUrl
       FROM
@@ -47,23 +54,28 @@ class Company extends Model {
   }
 
   async addNew({
-    nameEn, type, address, licenseNumber, establishAt,
-    licenseImgUrl
+    nameEn, type, licenseNumber, establishAt,
+    licenseImgUrl, cityId, area, street, buildingNumber,
+    addressLongitude, addressLatitude, moreAddressInfo, 
+    licenseExpirAt
   }) {
     let nameStrId = await StringModel.create().addNewString({enStr: nameEn});
 
     let dbRet = await this.directQuery (
       'CALL prc_add_company(?, @new_record_id);',
-      [nameStrId, type, address, licenseNumber, 
-        establishAt, licenseImgUrl]
+      [nameStrId, type, cityId, area, street, buildingNumber,
+        addressLongitude, addressLatitude, moreAddressInfo,
+        licenseNumber, licenseExpirAt, establishAt, licenseImgUrl]
     );
 
     return { newId: dbRet[0][0].newRecordId };
   }
 
   async update({
-    idCompany, nameEn, type, address, licenseNumber, establishAt,
-    licenseImgUrl
+    idCompany, nameEn, type, licenseNumber, establishAt,
+    licenseImgUrl, cityId, area, street, buildingNumber,
+    addressLongitude, addressLatitude, moreAddressInfo,
+    licenseExpirAt
   }) {
 
     await StringModel.create().updateString({
@@ -76,8 +88,9 @@ class Company extends Model {
 
     await this.directQuery (
       'CALL prc_update_company(?);',
-      [idCompany, type, address, licenseNumber, 
-        establishAt, licenseImgUrl]
+      [idCompany, type, cityId, area, street, buildingNumber,
+        addressLongitude, addressLatitude, moreAddressInfo,
+        licenseNumber, licenseExpirAt, establishAt, licenseImgUrl]
     );
   }
 

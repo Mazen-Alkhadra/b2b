@@ -21,7 +21,8 @@ module.exports = app => {
   require('./offer')(app);
   require('./payment')(app);
   require('./stats')(app);
-
+  require('./city')(app);
+  require('./country')(app);
 
   app.get('/*', (req, res) => {
     res.status(200).sendFile(

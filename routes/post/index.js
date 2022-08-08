@@ -14,4 +14,6 @@ module.exports = app => {
   require('./privacy-policy')(app);
   require('./terms')(app);
   require('./uploads')(app);
+  require('./city')(app);
+  require('./country')(app);
 };

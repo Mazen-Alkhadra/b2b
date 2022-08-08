@@ -124,14 +124,77 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 -- -----------------------------------------------------
+-- Table `countries`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `countries` (
+  `id_country`			  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name_str_id` 				  BIGINT UNSIGNED NOT NULL,
+  `iso_code`              VARCHAR(190) NULL DEFAULT NULL,
+  `phone_code`            VARCHAR(10) NULL DEFAULT NULL,
+  `img_id`                BIGINT UNSIGNED NULL,
+
+  PRIMARY KEY (`id_country`),
+  
+  CONSTRAINT `fk_country_name`
+    FOREIGN KEY (`name_str_id` )
+    REFERENCES `strings` (`id_str`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_country_img`
+    FOREIGN KEY (`img_id` )
+    REFERENCES `imgs` (`id_img`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+  )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+-- -----------------------------------------------------
+-- Table cities
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cities` (
+  `id_city`		          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name_str_id`	        BIGINT UNSIGNED NOT NULL, 
+  `country_id`          BIGINT UNSIGNED NOT NULL,
+  `img_id`              BIGINT UNSIGNED NULL,
+
+  PRIMARY KEY (`id_city`),
+
+  CONSTRAINT `fk_city_name`
+    FOREIGN KEY (`name_str_id`)
+    REFERENCES `strings` (`id_str`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_city_img`
+    FOREIGN KEY (`img_id` )
+    REFERENCES `imgs` (`id_img` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,   
+  CONSTRAINT `fk_city_country`
+    FOREIGN KEY (`country_id`)
+    REFERENCES `countries` (`id_country`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+-- -----------------------------------------------------
 -- Table `companies`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `companies` (
   `id_company`			  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_str_id` 				  BIGINT UNSIGNED NOT NULL,
   `type`                  VARCHAR(100) NULL,    
-  `address`               LONGTEXT NULL,
+  `city_id`               BIGINT UNSIGNED NULL,
+  `area`                  LONGTEXT NULL,
+  `street`                LONGTEXT NULL,
+  `building_number`       LONGTEXT NULL,
+  `address_longitude`     LONGTEXT NULL,
+  `address_latitude`      LONGTEXT NULL,              
+  `more_address_info`     LONGTEXT NULL,
   `license_number`        LONGTEXT NULL,
+  `license_expir_at`      DATETIME NULL, 
   `establish_at`          DATETIME NULL,
   `license_img_id`        BIGINT UNSIGNED NULL,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -146,6 +209,11 @@ CREATE TABLE IF NOT EXISTS `companies` (
   CONSTRAINT `fk_company_license_img`
     FOREIGN KEY (`license_img_id`)
     REFERENCES `imgs` (`id_img`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_company_city`
+    FOREIGN KEY (`city_id` )
+    REFERENCES `cities` (`id_city` )
     ON DELETE RESTRICT
     ON UPDATE RESTRICT
   )

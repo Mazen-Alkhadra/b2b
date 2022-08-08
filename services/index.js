@@ -25,5 +25,7 @@ module.exports = {
   UploadFiles: require('./upload-files'),
   Files: require('./files'),
   Stats: require('./stats'),
-  validators: require('./validators')
+  validators: require('./validators'),
+  Country: require('./country'),
+  City: require('./city')
 }
