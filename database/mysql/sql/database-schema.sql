@@ -180,12 +180,36 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 -- -----------------------------------------------------
+-- Table `company_types`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `company_types` (
+  `id_company_type`	  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name_str_id` 				  BIGINT UNSIGNED NOT NULL,
+  `description_str_id`    BIGINT UNSIGNED NULL,
+
+  PRIMARY KEY (`id_company_type`),
+  
+  CONSTRAINT `fk_company_type_name`
+    FOREIGN KEY (`name_str_id`)
+    REFERENCES `strings` (`id_str` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_company_type_description`
+    FOREIGN KEY (`description_str_id`)
+    REFERENCES `strings` (`id_str`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+  )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+-- -----------------------------------------------------
 -- Table `companies`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `companies` (
   `id_company`			  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_str_id` 				  BIGINT UNSIGNED NOT NULL,
-  `type`                  VARCHAR(100) NULL,    
+  `company_type_id`       BIGINT UNSIGNED NULL,    
   `city_id`               BIGINT UNSIGNED NULL,
   `area`                  LONGTEXT NULL,
   `street`                LONGTEXT NULL,
@@ -214,6 +238,11 @@ CREATE TABLE IF NOT EXISTS `companies` (
   CONSTRAINT `fk_company_city`
     FOREIGN KEY (`city_id` )
     REFERENCES `cities` (`id_city` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_company_type`
+    FOREIGN KEY (`company_type_id`)
+    REFERENCES `company_types` (`id_company_type`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT
   )

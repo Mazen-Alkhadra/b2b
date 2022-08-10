@@ -11,6 +11,7 @@ module.exports = {
   Brand: require('./brand'),
   Category: require('./category'),
   Company: require('./company'),
+  CompanyType: require('./company-type'),
   Faq: require('./faq'),
   IssueReport: require('./issue-report'),
   Offer: require('./offer'),

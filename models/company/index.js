@@ -21,7 +21,9 @@ class Company extends Model {
       `SELECT
         id_company	idCompany,
 				fun_get_string(NULL, name_str_id)	nameEn,
-				type,
+        company_type_id companyTypeId, 
+				fun_get_string(NULL, ct.name_str_id) comanyTypeNameEn,
+        fun_get_string(NULL, ct.description_str_id) comanyTypeDescriptionEn,
 				city_id cityId,
         area,
         street,
@@ -34,7 +36,8 @@ class Company extends Model {
         DATE(establish_at) establishAt,
         fun_get_img(license_img_id) licenseImgUrl
       FROM
-        companies`;
+        companies
+        LEFT JOIN company_types ct ON compay_type_id = id_company_type`;
 
     let queryStr = countQuery + dataQuery;
 
@@ -54,7 +57,7 @@ class Company extends Model {
   }
 
   async addNew({
-    nameEn, type, licenseNumber, establishAt,
+    nameEn, companyTypeId, licenseNumber, establishAt,
     licenseImgUrl, cityId, area, street, buildingNumber,
     addressLongitude, addressLatitude, moreAddressInfo, 
     licenseExpirAt
@@ -63,7 +66,7 @@ class Company extends Model {
 
     let dbRet = await this.directQuery (
       'CALL prc_add_company(?, @new_record_id);',
-      [nameStrId, type, cityId, area, street, buildingNumber,
+      [nameStrId, companyTypeId, cityId, area, street, buildingNumber,
         addressLongitude, addressLatitude, moreAddressInfo,
         licenseNumber, licenseExpirAt, establishAt, licenseImgUrl]
     );
@@ -72,7 +75,7 @@ class Company extends Model {
   }
 
   async update({
-    idCompany, nameEn, type, licenseNumber, establishAt,
+    idCompany, nameEn, companyTypeId, licenseNumber, establishAt,
     licenseImgUrl, cityId, area, street, buildingNumber,
     addressLongitude, addressLatitude, moreAddressInfo,
     licenseExpirAt
@@ -88,7 +91,7 @@ class Company extends Model {
 
     await this.directQuery (
       'CALL prc_update_company(?);',
-      [idCompany, type, cityId, area, street, buildingNumber,
+      [idCompany, companyTypeId, cityId, area, street, buildingNumber,
         addressLongitude, addressLatitude, moreAddressInfo,
         licenseNumber, licenseExpirAt, establishAt, licenseImgUrl]
     );

@@ -1,7 +1,7 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_update_company` (
-	p_id_company			BIGINT UNSIGNED,
-	p_type									VARCHAR(100),
+	p_id_company		      	BIGINT UNSIGNED,
+	p_company_type_id				BIGINT UNSIGNED,
 	p_city_id               BIGINT UNSIGNED,
   p_area                  LONGTEXT,
   p_street                LONGTEXT,
@@ -19,7 +19,7 @@ BEGIN
 	UPDATE 
 		companies
 	SET
-		type = IFNULL(p_type, type),
+		company_type_id = IFNULL(p_company_type_id, company_type_id),
 		city_id = IFNULL(p_city_id, city_id),
 		area = IFNULL(p_area, area),
 		street = IFNULL(p_street, street),

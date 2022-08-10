@@ -9,16 +9,16 @@ module.exports = app => {
 	app.post(PostAdminCompany,
 		async (req, res) => {
 			try {
-				const { nameEn, type, address, licenseNumber,
-					establishAt, licenseImgUrl, cityId, area, street, buildingNumber,
+				const { nameEn, companyTypeId, address, licenseNumber, establishAt,
+					licenseImgUrl, cityId, area, street, buildingNumber,
 					addressLongitude, addressLatitude, moreAddressInfo, 
 					licenseExpirAt } = req.body;
 
 				await CompanySvc.create().addNew({
-					nameEn, type, address, licenseNumber, 
-					establishAt, licenseImgUrl, cityId, area, 
-					street, buildingNumber, addressLongitude, 
-					addressLatitude, moreAddressInfo, licenseExpirAt
+					nameEn, companyTypeId, address, licenseNumber, establishAt,
+    			licenseImgUrl, cityId, area, street, buildingNumber,
+    			addressLongitude, addressLatitude, moreAddressInfo, 
+    			licenseExpirAt
 				});
 
 				res.status(200).end();
@@ -32,18 +32,16 @@ module.exports = app => {
 	app.post(PostAdminUpdateCompany,
 		async (req, res) => {
 			try {
-				const { idCompany, nameEn, type, address, 
-					licenseNumber, establishAt, licenseImgUrl, 
-					cityId, area, street, buildingNumber, 
-					addressLongitude, addressLatitude, 
-					moreAddressInfo, licenseExpirAt } = req.body;
+				const { idCompany, nameEn, companyTypeId, address, licenseNumber,
+					establishAt, licenseImgUrl, cityId, area, street, buildingNumber,
+					addressLongitude, addressLatitude, moreAddressInfo, 
+					licenseExpirAt } = req.body;
 
 				await CompanySvc.create().update({
-					idCompany, nameEn, type, address,
-					licenseNumber, establishAt, licenseImgUrl,
-					cityId, area, street, buildingNumber,
-    			addressLongitude, addressLatitude, 
-					moreAddressInfo, licenseExpirAt
+					idCompany, nameEn, companyTypeId, address, licenseNumber, establishAt,
+    			licenseImgUrl, cityId, area, street, buildingNumber,
+    			addressLongitude, addressLatitude, moreAddressInfo, 
+    			licenseExpirAt
 				});
 
 				res.status(200).end();

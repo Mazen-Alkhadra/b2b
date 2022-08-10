@@ -1,7 +1,7 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_add_company` (
 	p_name_str_id						BIGINT UNSIGNED,
-	p_type									VARCHAR(100),
+	p_company_type_id				BIGINT UNSIGNED,
 	p_city_id               BIGINT UNSIGNED,
   p_area                  LONGTEXT,
   p_street                LONGTEXT,
@@ -20,7 +20,7 @@ BEGIN
 	INSERT INTO 
 		companies (
 			name_str_id,
-			type,
+			company_type_id,
 			city_id,
 			area,
 			street,
@@ -35,7 +35,7 @@ BEGIN
 		)
 	VALUES (
 		p_name_str_id,
-		p_type,
+		p_company_type_id,
 		p_city_id,
 		p_area,
 		p_street,
