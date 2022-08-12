@@ -9,13 +9,13 @@ module.exports = app => {
 	app.post(PostAdminCompany,
 		async (req, res) => {
 			try {
-				const { nameEn, companyTypeId, address, licenseNumber, establishAt,
+				const { nameEn, companyTypeId, licenseNumber, establishAt,
 					licenseImgUrl, cityId, area, street, buildingNumber,
 					addressLongitude, addressLatitude, moreAddressInfo, 
 					licenseExpirAt } = req.body;
 
 				await CompanySvc.create().addNew({
-					nameEn, companyTypeId, address, licenseNumber, establishAt,
+					nameEn, companyTypeId, licenseNumber, establishAt,
     			licenseImgUrl, cityId, area, street, buildingNumber,
     			addressLongitude, addressLatitude, moreAddressInfo, 
     			licenseExpirAt
@@ -32,13 +32,13 @@ module.exports = app => {
 	app.post(PostAdminUpdateCompany,
 		async (req, res) => {
 			try {
-				const { idCompany, nameEn, companyTypeId, address, licenseNumber,
+				const { idCompany, nameEn, companyTypeId, licenseNumber,
 					establishAt, licenseImgUrl, cityId, area, street, buildingNumber,
 					addressLongitude, addressLatitude, moreAddressInfo, 
 					licenseExpirAt } = req.body;
 
 				await CompanySvc.create().update({
-					idCompany, nameEn, companyTypeId, address, licenseNumber, establishAt,
+					idCompany, nameEn, companyTypeId, licenseNumber, establishAt,
     			licenseImgUrl, cityId, area, street, buildingNumber,
     			addressLongitude, addressLatitude, moreAddressInfo, 
     			licenseExpirAt
