@@ -89,5 +89,6 @@ class String extends Model {
 }
 
 module.exports = {
-  create: () => new String
+  create: () => new String,
+  LANGS: String.languages
 };

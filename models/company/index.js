@@ -20,7 +20,7 @@ class Company extends Model {
     let dataQuery =
       `SELECT
         id_company	idCompany,
-				fun_get_string(NULL, name_str_id)	nameEn,
+				fun_get_string(NULL, c.name_str_id)	nameEn,
         company_type_id companyTypeId, 
 				fun_get_string(NULL, ct.name_str_id) comanyTypeNameEn,
         fun_get_string(NULL, ct.description_str_id) comanyTypeDescriptionEn,
@@ -36,7 +36,7 @@ class Company extends Model {
         DATE(establish_at) establishAt,
         fun_get_img(license_img_id) licenseImgUrl
       FROM
-        companies
+        companies c
         LEFT JOIN company_types ct ON compay_type_id = id_company_type`;
 
     let queryStr = countQuery + dataQuery;
