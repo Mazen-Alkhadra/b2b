@@ -37,7 +37,7 @@ class Company extends Model {
         fun_get_img(license_img_id) licenseImgUrl
       FROM
         companies c
-        LEFT JOIN company_types ct ON compay_type_id = id_company_type`;
+        LEFT JOIN company_types ct ON company_type_id = id_company_type`;
 
     let queryStr = countQuery + dataQuery;
 
