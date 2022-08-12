@@ -6,10 +6,10 @@ class City {
   cityModel = CityModel.create();
 
   async getAllFullInfo({
-    limit, skip, filters, sorts
+    countryId, limit, skip, filters, sorts
   }) {
     return await this.cityModel.getAllFullInfo({
-      limit, skip, filters, sorts
+      countryId, limit, skip, filters, sorts
     });
   }
 

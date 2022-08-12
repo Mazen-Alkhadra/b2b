@@ -7,14 +7,19 @@ class City extends Model {
   static PRIMARY_KEY = 'id_city';
 
   async getAllFullInfo({
-    limit, skip, filters, sorts
+    countryId, limit, skip, filters, sorts
   }) {
+
+    let countryCond = !countryId ? 'TRUE' : 
+      `country_id = ${this.escapeSql(countryId)}`;
 
     let countQuery =
       `SELECT
         Count(*) allCount
       FROM
-        cities;`
+        cities
+      WHERE 
+        ${countryCond};`
       
 
     let dataQuery =
@@ -25,7 +30,9 @@ class City extends Model {
 				country_id countryId,
 				fun_get_img(img_id)	imgUrl
       FROM
-        cities`;
+        cities
+      WHERE 
+        ${countryCond}`;
 
     let queryStr = countQuery + dataQuery;
 
