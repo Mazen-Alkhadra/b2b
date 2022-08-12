@@ -1,5 +1,5 @@
 const {PostAuthLogin} = require('../../../services').api.endpoints;
-const { Auth } = require('../../../services');
+const { Auth, User } = require('../../../services');
 
 module.exports = app => {
 
@@ -20,8 +20,13 @@ module.exports = app => {
 						}
 
 						req.login(user, async function (err) {
-							if (err) throw err;
+							if (err) 
+								throw err;
 							res.status(200).json({ ...user, password: null });
+							User.create().update({
+								idUser: user.idUser,
+								lastLoginAt: new Date().toISOString()
+							});
 						});
 
 					} catch (err) {

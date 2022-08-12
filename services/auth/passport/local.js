@@ -4,7 +4,10 @@ const localStrategy = require('passport-local');
 const logger = require('../../logger');
 const UserModel = require('../../../models').User;
 let HashSvc = require('../../hash');
-const {ERR_INACTIVE_ACCOUNT} = require('../../../resources').errors.codes;
+const {
+	ERR_INACTIVE_ACCOUNT,
+	ERR_UN_ACCEPTED_ACCOUNT
+} = require('../../../resources').errors.codes;
 
 passport.use (
 	'local',
@@ -42,6 +45,10 @@ passport.use (
 						code: ERR_INACTIVE_ACCOUNT,
 						message: 'The account is not activated yet, please\
 							active your account by clicking on the activation link sent to your email.'});
+				}
+
+				if (!user.isAccepted) {
+					return done(null, false, { code: ERR_UN_ACCEPTED_ACCOUNT });
 				}
 
 				return done(null, user, { message: 'Success' });

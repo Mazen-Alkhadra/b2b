@@ -24,7 +24,8 @@ class User {
 
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId,
-    birthDate, gender, imgId, roleId, isBlocked, isActive
+    birthDate, gender, imgId, roleId, isBlocked, isActive,
+    isAccepted, lastLoginAt
   }) {
 
     if(password)
@@ -33,7 +34,7 @@ class User {
     await this.userModel.update({
       idUser, firstName, lastName, email, mobile, companyId,
       birthDate, gender, imgId, roleId, isBlocked, isActive,
-      password
+      password, isAccepted, lastLoginAt
     });
   }
 

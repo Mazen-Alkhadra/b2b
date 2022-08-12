@@ -30,11 +30,11 @@ module.exports = app => {
 			try {
 				const { idUser, firstName, lastName, email, mobile, 
 					password, companyId, birthDate, gender, imgUrl, 
-					isBlocked, isActive } = req.body;
+					isBlocked, isActive, isAccepted } = req.body;
 
 				await UserSvc.create().update({
           idUser, firstName, lastName, email, mobile, password, companyId,
-          birthDate, gender, imgUrl, isBlocked, isActive
+          birthDate, gender, imgUrl, isBlocked, isActive, isAccepted
 				});
 
 				res.status(200).end();
