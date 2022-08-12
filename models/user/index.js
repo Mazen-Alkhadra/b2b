@@ -71,6 +71,7 @@ class User extends Model {
 				last_name	lastName,
 				email	email,
 				mobile	mobile,
+        has_mobile_whatsapp hasMobileWhatsapp,
 				company_id	companyId,
 				birth_date	birthDate,
 				gender	gender,
@@ -103,12 +104,14 @@ class User extends Model {
 
   async addNew({
     firstName, lastName, email, mobile, password, companyId, 
-    birthDate, gender, imgUrl, roleId, isBlocked, isActive
+    birthDate, gender, imgUrl, roleId, isBlocked, isActive,
+    hasMobileWhatsapp
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_user(?, @new_record_id);',
-      [firstName, lastName, email, mobile, password, companyId,
-        birthDate, gender, imgUrl, roleId, isBlocked, isActive]
+      [firstName, lastName, email, hasMobileWhatsapp, mobile, 
+        password, companyId, birthDate, gender, imgUrl, 
+        roleId, isBlocked, isActive]
     );
 
     return { newId: dbRet[0][0].newRecordId };
@@ -117,13 +120,13 @@ class User extends Model {
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId, 
       birthDate, gender, imgId, roleId, isBlocked, isActive,
-      isAccepted, lastLoginAt
+      isAccepted, lastLoginAt, hasMobileWhatsapp
   }) {
     await this.directQuery (
       'CALL prc_update_user(?);',
-      [idUser, firstName, lastName, email, mobile, password, companyId, 
-        birthDate, gender, imgId, roleId, isBlocked, isActive, isAccepted,
-        lastLoginAt]
+      [idUser, firstName, lastName, email, mobile, hasMobileWhatsapp, 
+        password, companyId, birthDate, gender, imgId, roleId, 
+        isBlocked, isActive, isAccepted, lastLoginAt]
     );
   }
 

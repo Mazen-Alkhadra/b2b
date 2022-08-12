@@ -13,14 +13,15 @@ class Auth {
 
   async signup({
     firstName, lastName, email, mobile, password,
-    companyId, birthDate, gender
+    companyId, birthDate, gender, hasMobileWhatsapp
   }) {
     const hashedPassword = await this.hashSvc.hash(password);
 
     await this.userSvc.addNew({
       firstName, lastName, email, mobile,
       companyId, birthDate, gender,
-      password: hashedPassword
+      password: hashedPassword,
+      hasMobileWhatsapp
     });
   }
 

@@ -10,11 +10,13 @@ module.exports = app => {
 		async (req, res) => {
 			try {
 				const { firstName, lastName, email, mobile, password, companyId,
-          birthDate, gender, imgUrl, isBlocked, isActive } = req.body;
+          birthDate, gender, imgUrl, isBlocked, isActive,
+					hasMobileWhatsapp } = req.body;
 
 				await UserSvc.create().addNew({
           firstName, lastName, email, mobile, password, companyId,
-          birthDate, gender, imgUrl, isBlocked, isActive
+          birthDate, gender, imgUrl, isBlocked, isActive,
+					hasMobileWhatsapp
 				});
 
 				res.status(200).end();
@@ -30,11 +32,12 @@ module.exports = app => {
 			try {
 				const { idUser, firstName, lastName, email, mobile, 
 					password, companyId, birthDate, gender, imgUrl, 
-					isBlocked, isActive, isAccepted } = req.body;
+					isBlocked, isActive, isAccepted, hasMobileWhatsapp } = req.body;
 
 				await UserSvc.create().update({
           idUser, firstName, lastName, email, mobile, password, companyId,
-          birthDate, gender, imgUrl, isBlocked, isActive, isAccepted
+          birthDate, gender, imgUrl, isBlocked, isActive, isAccepted,
+					hasMobileWhatsapp
 				});
 
 				res.status(200).end();

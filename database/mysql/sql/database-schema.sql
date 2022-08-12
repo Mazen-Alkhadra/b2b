@@ -258,6 +258,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `last_name`						  VARCHAR(50) NULL, 
   `email`                 VARCHAR(100) NULL UNIQUE,    
   `mobile`                VARCHAR(100) NULL UNIQUE,
+  `has_mobile_whatsapp`   BOOLEAN NOT NULL DEFAULT FALSE,
   `password` 						  VARCHAR(100) NULL,              
   `company_id`            BIGINT UNSIGNED NULL,
   `birth_date` 					  BIGINT UNSIGNED NULL DEFAULT NULL,

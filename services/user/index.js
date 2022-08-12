@@ -14,18 +14,20 @@ class User {
 
   async addNew({
     firstName, lastName, email, mobile, password, companyId,
-    birthDate, gender, imgUrl, roleId, isBlocked, isActive
+    birthDate, gender, imgUrl, roleId, isBlocked, isActive,
+    hasMobileWhatsapp
   }) {
     await this.userModel.addNew({
       firstName, lastName, email, mobile, password, companyId,
-      birthDate, gender, imgUrl, roleId, isBlocked, isActive
+      birthDate, gender, imgUrl, roleId, isBlocked, isActive,
+      hasMobileWhatsapp
     });
   }
 
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId,
     birthDate, gender, imgId, roleId, isBlocked, isActive,
-    isAccepted, lastLoginAt
+    isAccepted, lastLoginAt, hasMobileWhatsapp
   }) {
 
     if(password)
@@ -34,7 +36,7 @@ class User {
     await this.userModel.update({
       idUser, firstName, lastName, email, mobile, companyId,
       birthDate, gender, imgId, roleId, isBlocked, isActive,
-      password, isAccepted, lastLoginAt
+      password, isAccepted, lastLoginAt, hasMobileWhatsapp
     });
   }
 
