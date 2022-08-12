@@ -25,6 +25,7 @@ class Company extends Model {
 				fun_get_string(NULL, ct.name_str_id) comanyTypeNameEn,
         fun_get_string(NULL, ct.description_str_id) comanyTypeDescriptionEn,
 				city_id cityId,
+        country_id countryId,
         area,
         street,
         building_number buildingNumber,
@@ -37,7 +38,8 @@ class Company extends Model {
         fun_get_img(license_img_id) licenseImgUrl
       FROM
         companies c
-        LEFT JOIN company_types ct ON company_type_id = id_company_type`;
+        LEFT JOIN company_types ct ON company_type_id = id_company_type
+        LEFT JOIN cities ON city_id = id_city`;
 
     let queryStr = countQuery + dataQuery;
 
