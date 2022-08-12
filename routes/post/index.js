@@ -2,6 +2,7 @@ module.exports = app => {
   require('./auth')(app);
   require('./users')(app);
   require('./company')(app);
+  require('./company-type')(app);
   require('./subscription')(app);
   require('./access-control')(app);
   require('./about-us')(app);
