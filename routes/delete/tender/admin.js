@@ -8,7 +8,7 @@ module.exports = app => {
 			try {
 				const { idTender } = req.body;
 
-				await tenderSvc.create().delete({ idTender });
+				await TenderSvc.create().delete({ idTender });
 
 				res.status(200).end();
 

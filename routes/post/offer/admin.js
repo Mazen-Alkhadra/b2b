@@ -9,14 +9,15 @@ module.exports = app => {
 	app.post(PostAdminOffer,
 		async (req, res) => {
 			try {
-				const { tenderId, creatByUserId, quantity, priceUSD, 
+				const { tenderId, quantity, priceUSD, 
 					bIncludeDelivery, deliveryCost, deliveryAddress,
 					status, acceptedAt, excutedAt } = req.body;
 
 				await OfferSvc.create().addNew({
-					tenderId, creatByUserId, quantity, priceUSD, 
+					tenderId, quantity, priceUSD, 
     			bIncludeDelivery, deliveryCost, deliveryAddress,
-    			status, acceptedAt, excutedAt
+    			status, acceptedAt, excutedAt,
+					creatByUserId: req.user.idUser
 				});
 
 				res.status(200).end();
@@ -30,12 +31,12 @@ module.exports = app => {
 	app.post(PostAdminOfferUpdate,
 		async (req, res) => {
 			try {
-				const { idOffer, tenderId, creatByUserId, quantity, priceUSD, 
+				const { idOffer, tenderId, quantity, priceUSD, 
 					bIncludeDelivery, deliveryCost, deliveryAddress, 
 					status, acceptedAt, excutedAt } = req.body;
 
 				await OfferSvc.create().update({
-					idOffer, tenderId, creatByUserId, quantity, priceUSD, 
+					idOffer, tenderId, quantity, priceUSD, 
     			bIncludeDelivery, deliveryCost, deliveryAddress, 
     			status, acceptedAt, excutedAt
 				});

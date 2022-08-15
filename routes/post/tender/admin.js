@@ -9,18 +9,19 @@ module.exports = app => {
 	app.post(PostAdminTender,
 		async (req, res) => {
 			try {
-				const { creatByUserId, name, productId, quantity,
+				const { name, productId, quantity,
 					from, to, deliverBefore, cityId, area, 
 					street, buildingNumber, addressLongitude, 
 					addressLatitude, moreAddressInfo, status, 
 					closedAt } = req.body;
 
 				await TenderSvc.create().addNew({
-					creatByUserId, name, productId, quantity,
+					name, productId, quantity,
     			from, to, deliverBefore, cityId, area, 
     			street, buildingNumber, addressLongitude, 
     			addressLatitude, moreAddressInfo, status, 
-    			closedAt
+    			closedAt, 
+					creatByUserId: req.user.idUser
 				});
 
 				res.status(200).end();
@@ -34,14 +35,14 @@ module.exports = app => {
 	app.post(PostAdminTenderUpdate,
 		async (req, res) => {
 			try {
-				const { idTender, creatByUserId, name, productId, quantity,
+				const { idTender, name, productId, quantity,
 					from, to, deliverBefore, cityId, area, 
 					street, buildingNumber, addressLongitude, 
 					addressLatitude, moreAddressInfo, status, 
 					closedAt } = req.body;
 
 				await TenderSvc.create().update({
-					idTender, creatByUserId, name, productId, quantity,
+					idTender, name, productId, quantity,
     			from, to, deliverBefore, cityId, area, 
     			street, buildingNumber, addressLongitude, 
     			addressLatitude, moreAddressInfo, status, 
