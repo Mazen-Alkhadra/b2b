@@ -17,8 +17,10 @@ BEGIN
     WHERE 
       (id_promotion = p_promotion_id OR code = p_promotion_code) AND
       is_active = TRUE AND 
-      (type <> 'PERIOD_BASED' OR 
-        current_timestamp() BETWEEN start_at AND end_at)
+      current_timestamp() >= start_at AND
+      current_timestamp() < end_at AND 
+      (use_count_limit IS NULL OR 
+      fun_get_promotion_use_count(id_promotion) <= use_count_limit)
   );
 
   IF v_is_promotion_valid = FALSE AND p_allow_false <> TRUE THEN 

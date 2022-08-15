@@ -10,22 +10,24 @@ class Package {
   }
 
   async addNew({
-    code, descriptionEn, type, startAt, endAt,
-    discountUsd, isActive
+    code, descriptionEn, startAt, endAt, useCountLimit,
+    discountUsd, discountRatio, isActive
   }) {
     await this.promotionModel.addNew({
-      code, descriptionEn, type, startAt, endAt,
-      discountUsd, isActive
+      code, descriptionEn, startAt, endAt, useCountLimit,
+      discountUsd, discountRatio, isActive
     });
   }
 
   async update({
-    idPromotion, code, descriptionEn, type, startAt,
-    endAt, discountUsd, isActive
+    idPromotion, code, descriptionEn, startAt,
+    endAt, useCountLimit, discountUsd, discountRatio,
+    isActive
   }) {
     await this.promotionModel.update({
-      idPromotion, code, descriptionEn, type, startAt,
-      endAt, discountUsd, isActive
+      idPromotion, code, descriptionEn, startAt,
+      endAt, useCountLimit, discountUsd, discountRatio,
+      isActive
     });
   }
 

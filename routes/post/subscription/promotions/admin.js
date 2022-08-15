@@ -9,12 +9,12 @@ module.exports = app => {
 	app.post(PostAdminSubscribePromotion,
 		async (req, res) => {
 			try {
-				const { code, descriptionEn, type, startAt, endAt,
-					discountUsd, isActive } = req.body;
+				const { code, descriptionEn, startAt, endAt, useCountLimit,
+					discountUsd, discountRatio, isActive } = req.body;
 
 				await SubscribeSvc.Promotions.create().addNew({
-					code, descriptionEn, type, startAt, endAt,
-    			discountUsd, isActive
+					code, descriptionEn, startAt, endAt, useCountLimit,
+    			discountUsd, discountRatio, isActive
 				});
 
 				res.status(200).end();
@@ -28,12 +28,14 @@ module.exports = app => {
 	app.post(PostAdminSubscribePromotionUpdate,
 		async (req, res) => {
 			try {
-				const { idPromotion, code, descriptionEn, type, startAt,
-					endAt, discountUsd, isActive } = req.body;
+				const { idPromotion, code, descriptionEn, startAt, 
+					endAt, useCountLimit, discountUsd, discountRatio,
+					isActive } = req.body;
 
 				await SubscribeSvc.Promotions.create().update({
-					idPromotion, code, descriptionEn, type, startAt,
-    			endAt, discountUsd, isActive
+					idPromotion, code, descriptionEn, startAt,
+    			endAt, useCountLimit, discountUsd, discountRatio,
+					isActive
 				});
 
 				res.status(200).end();

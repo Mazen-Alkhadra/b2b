@@ -22,10 +22,11 @@ class Promotion extends Model {
         id_promotion idPromotion,
 				code,
 				fun_get_string(NULL, description_str_id)	descriptionEn,
-				type,
 				start_at	startAt,
 				end_at	endAt,
+        use_count_limit useCountLimit,
 				discount_usd	discountUsd,
+        discount_ratio discountRatio,
 				is_active	isActive,
         creat_at creatAt
       FROM
@@ -49,8 +50,8 @@ class Promotion extends Model {
   }
 
   async addNew({
-    code, descriptionEn, type, startAt, endAt,
-    discountUsd, isActive
+    code, descriptionEn, startAt, endAt, useCountLimit,
+    discountUsd, discountRatio, isActive
   }) {
 
     let descStrId = 
@@ -58,15 +59,17 @@ class Promotion extends Model {
 
     let dbRet = await this.directQuery (
       'CALL prc_add_promotion(?, @new_record_id);',
-      [code, descStrId, type, startAt, endAt, discountUsd, isActive]
+      [code, descStrId, startAt, endAt, useCountLimit, 
+        discountUsd, discountRatio, isActive]
     );
 
     return { newId: dbRet[0][0].newRecordId };
   }
 
   async update({
-    idPromotion, code, descriptionEn, type, startAt,
-    endAt, discountUsd, isActive
+    idPromotion, code, descriptionEn, startAt,
+    endAt, useCountLimit, discountUsd, discountRatio,
+    isActive
   }) {
     await StringModel.create().updateString({
       tableName: Promotion.TABLE_NAME,
@@ -78,7 +81,8 @@ class Promotion extends Model {
 
     await this.directQuery (
       'CALL prc_update_promotion(?);',
-      [idPromotion, code, type, startAt, endAt, discountUsd, isActive]
+      [idPromotion, code, startAt, endAt, useCountLimit,
+        discountUsd, discountRatio, isActive]
     );
   }
 

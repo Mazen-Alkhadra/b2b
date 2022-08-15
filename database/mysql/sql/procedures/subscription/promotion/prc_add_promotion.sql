@@ -2,10 +2,11 @@ DELIMITER $$
 CREATE PROCEDURE `prc_add_promotion` (
 	p_code									VARCHAR(190),
 	p_description_str_id		BIGINT UNSIGNED,
-	p_type									VARCHAR(20),
 	p_start_at						  DATETIME,
 	p_end_at								DATETIME,
+	p_use_count_limit       BIGINT UNSIGNED,
 	p_discount_usd					DOUBLE,
+	p_discount_ratio        DOUBLE,
 	p_is_active							BOOLEAN,
 	OUT p_out_new_rec_id		BIGINT UNSIGNED
 )  
@@ -18,6 +19,7 @@ BEGIN
 			type,
 			start_at,
 			end_at,
+			use_count_limit,
 			discount_usd,
 			is_active
 		)
@@ -27,6 +29,7 @@ BEGIN
 		p_type,
 		p_start_at,
 		p_end_at,
+		p_use_count_limit,
 		p_discount_usd,
 		IFNULL(p_is_active, DEFAULT(is_active))
 	)

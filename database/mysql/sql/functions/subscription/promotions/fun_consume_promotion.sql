@@ -16,17 +16,6 @@ BEGIN
       fun_is_promotion_valid(id_promotion, p_promotion_code, FALSE)
     LIMIT 1
   );
-
-  IF v_promotion_id IS NOT NULL THEN 
-    UPDATE 
-      promotions
-    SET 
-      is_active = FALSE
-    WHERE 
-      id_promotion = v_promotion_id AND 
-      type = 'ONE_TIME'
-    ;
-  END IF;
   
   RETURN v_promotion_id;
 

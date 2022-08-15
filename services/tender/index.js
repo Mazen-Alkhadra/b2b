@@ -11,21 +11,33 @@ class Tender {
 
   async addNew({
     creatByUserId, name, productId, quantity,
-    from, to, deliveryAddress, status, closedAt
+    from, to, deliverBefore, cityId, area, 
+    street, buildingNumber, addressLongitude, 
+    addressLatitude, moreAddressInfo, status, 
+    closedAt
   }) {
     await this.tenderModel.addNew({
       creatByUserId, name, productId, quantity,
-      from, to, deliveryAddress, status, closedAt
+      from, to, deliverBefore, cityId, area, 
+      street, buildingNumber, addressLongitude, 
+      addressLatitude, moreAddressInfo, status,
+      closedAt
     });
   }
 
   async update({
     idTender, creatByUserId, name, productId, quantity,
-    from, to, deliveryAddress, status, closedAt
+    from, to, deliverBefore, cityId, area, 
+    street, buildingNumber, addressLongitude, 
+    addressLatitude, moreAddressInfo, status, 
+    closedAt
   }) {
     await this.tenderModel.update({
       idTender, creatByUserId, name, productId, quantity,
-      from, to, deliveryAddress, status, closedAt
+      from, to, deliverBefore, cityId, area, 
+      street, buildingNumber, addressLongitude, 
+      addressLatitude, moreAddressInfo, status, 
+      closedAt
     });
   }
 

@@ -12,4 +12,6 @@ module.exports = app => {
   require('./product')(app);
   require('./city')(app);
   require('./country')(app); 
+  require('./tender')(app); 
+  require('./offer')(app); 
 };

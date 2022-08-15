@@ -7,7 +7,14 @@ CREATE PROCEDURE `prc_update_tender` (
 	p_quantity					DOUBLE,
 	p_from							DATETIME,
 	p_to								DATETIME,
-	p_delivery_address	LONGTEXT,
+	p_deliver_before    DATETIME,
+	p_city_id           BIGINT UNSIGNED,
+  p_area              LONGTEXT,
+  p_street            LONGTEXT,
+  p_building_number   LONGTEXT,
+  p_address_longitude LONGTEXT,
+  p_address_latitude  LONGTEXT,              
+  p_more_address_info LONGTEXT,
 	p_status            VARCHAR(20),
 	p_closed_at					DATETIME
 )  
@@ -22,7 +29,14 @@ BEGIN
 		quantity = IFNULL(p_quantity, quantity),
 		`from` = IFNULL(p_from, `from`),
 		`to` = IFNULL(p_to, `to`),
-		delivery_address = IFNULL(p_delivery_address, delivery_address),
+		deliver_before = IFNULL(p_deliver_before, deliver_before),
+		p_city_id = IFNULL(p_city_id, city_id),
+	  p_area = IFNULL(p_area, area),
+  	p_street = IFNULL(p_street, street),
+  	p_building_number = IFNULL(p_building_number, building_number),
+  	p_address_longitude = IFNULL(p_address_longitude, address_longitude),
+  	p_address_latitude = IFNULL(p_address_latitude, address_latitude),              
+  	p_more_address_info = IFNULL(p_more_address_info, more_address_info),
 		status = IFNULL(p_status, status),
 		closed_at = IFNULL(p_closed_at, closed_at)
 	WHERE

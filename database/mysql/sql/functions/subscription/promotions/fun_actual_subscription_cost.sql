@@ -6,6 +6,9 @@ CREATE FUNCTION `fun_actual_subscription_cost` (
 RETURNS DOUBLE
 BEGIN
   
+  DECLARE v_promotion_discount_usd DOUBLE DEFAULT NULL; 
+  DECLARE v_promotion_discount_ration DOUBLE DEFAULT NULL;
+  DECLARE v_actual_cost DOUBLE DEFAULT NULL;
   DECLARE v_package_price_usd DOUBLE DEFAULT (
     SELECT 
       price_usd
@@ -15,19 +18,25 @@ BEGIN
       id_subscription_package = p_subscription_package_id
   );
   
-  DECLARE v_promotion_discount_usd DOUBLE DEFAULT (
-    SELECT 
-      discount_usd
-    FROM 
-      promotions
-    WHERE 
-      id_promotion = p_promotion_id
-  );
-  
-  DECLARE v_actual_cost DOUBLE DEFAULT (
-    IFNULL(v_package_price_usd, 0) - 
-      IFNULL(v_promotion_discount_usd, 0)
-  );
+  SELECT 
+    discount_usd,
+    discount_ratio
+  INTO
+    v_promotion_discount_usd,
+    v_promotion_discount_ration
+  FROM 
+    promotions
+  WHERE 
+    id_promotion = p_promotion_id
+  ;
+     
+  SET v_actual_cost = IFNULL(v_package_price_usd, 0) - 
+    COALESCE(
+      v_promotion_discount_usd,
+      v_promotion_discount_ration * v_package_price_usd,
+      0
+    )
+  ;
 
   IF v_actual_cost <= 0 THEN
     RETURN 0;

@@ -25,7 +25,14 @@ class Tender extends Model {
 				quantity	quantity,
 				\`from\`,
 				\`to\`,
-				delivery_address	deliveryAddress,
+        deliver_before deliverBefore,
+        city_id cityId,
+        area,
+        street,
+        building_number buildingNumber,
+        address_longitude addressLongitude,
+        address_latitude addressLatitude,
+        more_address_info moreAddressInfo,
         status,
 				closed_at	closedAt
       FROM
@@ -50,12 +57,17 @@ class Tender extends Model {
 
   async addNew({
     creatByUserId, name, productId, quantity,
-    from, to, deliveryAddress, status, closedAt
+    from, to, deliverBefore, cityId, area, 
+    street, buildingNumber, addressLongitude, 
+    addressLatitude, moreAddressInfo, status, closedAt
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_tender(?, @new_record_id);',
       [creatByUserId, name, productId, quantity,
-        from, to, deliveryAddress, status, closedAt]
+        from, to, deliverBefore, cityId, area, 
+        street, buildingNumber, addressLongitude, 
+        addressLatitude, moreAddressInfo, 
+        status, closedAt]
     );
 
     return { newId: dbRet[0][0].newRecordId };
@@ -63,12 +75,18 @@ class Tender extends Model {
 
   async update({
     idTender, creatByUserId, name, productId, quantity,
-    from, to, deliveryAddress, status, closedAt
+    from, to, deliverBefore, cityId, area, 
+    street, buildingNumber, addressLongitude, 
+    addressLatitude, moreAddressInfo, status, 
+    closedAt
   }) {
     await this.directQuery (
       'CALL prc_update_tender(?);',
       [idTender, creatByUserId, name, productId, quantity,
-        from, to, deliveryAddress, status, closedAt]
+        from, to, deliverBefore, cityId, area, 
+        street, buildingNumber, addressLongitude, 
+        addressLatitude, moreAddressInfo, status, 
+        closedAt]
     );
   }
 

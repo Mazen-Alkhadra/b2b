@@ -75,6 +75,10 @@ module.exports = {
   PostAdminTermsUpdate: '/api/admin/term/update',
   PostAdminUploadDoc: '/api/admin/doc/upload',
   PostAdminUploadImg: '/api/admin/img/upload',
+  PostAdminTender: '/api/admin/tender',
+  PostAdminTenderUpdate: '/api/admin/tender/update',
+  PostAdminOffer: '/api/admin/offer',
+  PostAdminOfferUpdate: '/api/admin/offer/update',
 
   DeleteAdminUser: '/api/admin/user',
   DeleteAdminCity: '/api/admin/city',
@@ -90,5 +94,7 @@ module.exports = {
   DeleteAdminAboutus: '/api/admin/aboutus',
   DeleteAdminCategory: '/api/admin/category',
   DeleteAdminBrand: '/api/admin/brand',
-  DeleteAdminProduct: '/api/admin/product'
+  DeleteAdminProduct: '/api/admin/product',
+  DeleteAdminTender: '/api/admin/tender',
+  DeleteAdminOffer: '/api/admin/offer',
 }
