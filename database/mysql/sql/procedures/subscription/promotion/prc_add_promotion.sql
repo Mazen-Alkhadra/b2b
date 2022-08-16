@@ -20,6 +20,7 @@ BEGIN
 			end_at,
 			use_count_limit,
 			discount_usd,
+			discount_ratio,
 			is_active
 		)
 	VALUES (
@@ -29,6 +30,7 @@ BEGIN
 		p_end_at,
 		p_use_count_limit,
 		p_discount_usd,
+		p_discount_ratio,
 		IFNULL(p_is_active, DEFAULT(is_active))
 	)
 	;

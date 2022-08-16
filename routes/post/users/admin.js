@@ -11,12 +11,12 @@ module.exports = app => {
 			try {
 				const { firstName, lastName, email, mobile, password, companyId,
           birthDate, gender, imgUrl, isBlocked, isActive,
-					hasMobileWhatsapp } = req.body;
+					hasMobileWhatsapp, roleId } = req.body;
 
 				await UserSvc.create().addNew({
           firstName, lastName, email, mobile, password, companyId,
           birthDate, gender, imgUrl, isBlocked, isActive,
-					hasMobileWhatsapp
+					hasMobileWhatsapp, roleId
 				});
 
 				res.status(200).end();
@@ -31,13 +31,13 @@ module.exports = app => {
 		async (req, res) => {
 			try {
 				const { idUser, firstName, lastName, email, mobile, 
-					password, companyId, birthDate, gender, imgUrl, 
+					password, companyId, birthDate, gender, imgUrl, roleId,
 					isBlocked, isActive, isAccepted, hasMobileWhatsapp } = req.body;
 
 				await UserSvc.create().update({
           idUser, firstName, lastName, email, mobile, password, companyId,
           birthDate, gender, imgUrl, isBlocked, isActive, isAccepted,
-					hasMobileWhatsapp
+					hasMobileWhatsapp, roleId
 				});
 
 				res.status(200).end();

@@ -1,6 +1,5 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_add_ad` (
-	p_id_ad               BIGINT UNSIGNED,
 	p_img_url             BIGINT UNSIGNED,
 	p_url               	LONGTEXT,
 	p_duration_ms         BIGINT UNSIGNED,
