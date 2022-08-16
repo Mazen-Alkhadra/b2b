@@ -4,7 +4,7 @@ CREATE PROCEDURE `prc_update_ad` (
 	p_img_url             BIGINT UNSIGNED,
 	p_url               	LONGTEXT,
 	p_duration_ms         BIGINT UNSIGNED,
-	p_is_active           BOOLEAN,
+	p_is_active           BOOLEAN
 )  
 BEGIN
 

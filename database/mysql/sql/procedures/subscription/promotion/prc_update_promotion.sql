@@ -15,7 +15,6 @@ BEGIN
 		promotions
 	SET
 		code = IFNULL(p_code, code),
-		type = IFNULL(p_type, type),
 		start_at = IFNULL(p_start_at, start_at),
 		end_at = IFNULL(p_end_at, end_at),
 		use_count_limit = IF (
