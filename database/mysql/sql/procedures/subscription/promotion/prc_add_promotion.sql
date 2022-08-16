@@ -16,7 +16,6 @@ BEGIN
 		promotions (
 			code,
 			description_str_id,
-			type,
 			start_at,
 			end_at,
 			use_count_limit,
@@ -26,7 +25,6 @@ BEGIN
 	VALUES (
 		p_code,
 		p_description_str_id,
-		p_type,
 		p_start_at,
 		p_end_at,
 		p_use_count_limit,

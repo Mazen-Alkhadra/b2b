@@ -23,7 +23,7 @@ BEGIN
   SELECT 
     id_company idCompany,
     fun_get_string(NULL, name_str_id) name,
-    type,
+    company_type_id companyTypeId,
     license_number,
     V_order_total_quantity totalQuantity
   FROM 
