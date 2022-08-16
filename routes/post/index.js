@@ -19,4 +19,5 @@ module.exports = app => {
   require('./country')(app);
   require('./tender')(app);
   require('./offer')(app);
+  require('./ads')(app);
 };

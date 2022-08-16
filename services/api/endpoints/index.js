@@ -32,6 +32,8 @@ module.exports = {
   GetAdminOffersFull: '/api/admin/offers/full',
   GetAdminPaymentsFull: '/api/admin/payments/full',
   GetAdminStatsFull: '/api/admin/stats/full',
+  GetAdminAdsFull: '/api/admin/ads/full',
+  
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',
@@ -79,6 +81,8 @@ module.exports = {
   PostAdminTenderUpdate: '/api/admin/tender/update',
   PostAdminOffer: '/api/admin/offer',
   PostAdminOfferUpdate: '/api/admin/offer/update',
+  PostAdminAd: '/api/admin/ad',
+  PostAdminUpdateAd: '/api/admin/ad/update',
 
   DeleteAdminUser: '/api/admin/user',
   DeleteAdminCity: '/api/admin/city',
@@ -97,4 +101,5 @@ module.exports = {
   DeleteAdminProduct: '/api/admin/product',
   DeleteAdminTender: '/api/admin/tender',
   DeleteAdminOffer: '/api/admin/offer',
+  DeleteAdminAd: '/api/admin/ad'
 }

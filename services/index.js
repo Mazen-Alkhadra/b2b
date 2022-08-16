@@ -28,5 +28,6 @@ module.exports = {
   Stats: require('./stats'),
   validators: require('./validators'),
   Country: require('./country'),
-  City: require('./city')
+  City: require('./city'),
+  Ads: require('./ads'),
 }

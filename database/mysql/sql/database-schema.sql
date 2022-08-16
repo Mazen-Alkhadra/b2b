@@ -825,3 +825,25 @@ CREATE TABLE IF NOT EXISTS `contact_info` (
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
+
+-- -----------------------------------------------------
+-- Table `ads`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ads` (
+  `id_ad`                  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `img_id`                 BIGINT UNSIGNED NULL,
+  `url`                    LONGTEXT,
+  `duration_ms`            BIGINT UNSIGNED,
+  `is_active`              BOOLEAN NOT NULL DEFAULT FALSE,
+  `create_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+       
+  PRIMARY KEY (`id_ad`),
+
+  CONSTRAINT `FK_ad_img`
+    FOREIGN KEY (`img_id`)
+    REFERENCES `imgs` (`id_img`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
