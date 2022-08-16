@@ -109,7 +109,7 @@ class User extends Model {
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_user(?, @new_record_id);',
-      [firstName, lastName, email, hasMobileWhatsapp, mobile, 
+      [firstName, lastName, email, mobile, hasMobileWhatsapp, 
         password, companyId, birthDate, gender, imgUrl, 
         roleId, isBlocked, isActive]
     );
