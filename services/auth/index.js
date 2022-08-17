@@ -1,7 +1,6 @@
 let passport = require('./passport');
 let UserSvc = require('../user');
 let HashSvc = require('../hash');
-const randomCodeGen = require('../random-codes-generator');
 const { ERR_INVALID_ARGUMENT } = require('../../resources').errors.codes;
 
 const passportInit = passport.initialize();

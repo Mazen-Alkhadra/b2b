@@ -34,6 +34,20 @@ module.exports = {
   GetAdminStatsFull: '/api/admin/stats/full',
   GetAdminAdsFull: '/api/admin/ads/full',
   
+  GetPublicCompanyTypes: '/api/public/company-type',
+  GetPublicCities: '/api/public/cities',
+  GetPublicCountries: '/api/public/countries',
+  
+  GetUserSubscribePackages: '/api/user/subscription/packages',
+  GetUserSubscribePackageFeatures: '/api/user/subscription/package/:idPackage/features',
+  GetUserFaqs: '/api/user/faqs',
+  GetUserAboutus: '/api/user/aboutus',
+  GetUserCategories: '/api/user/categories',
+  GetUserBrands: '/api/user/brands',
+  GetUserProducts: '/api/user/products',
+  GetUserContactInfo: '/api/user/contact-info',
+  GetUserPrivacyPolicy: '/api/user/privacy-policy',
+  GetUserTerms: 'cd ',
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',
@@ -83,6 +97,7 @@ module.exports = {
   PostAdminOfferUpdate: '/api/admin/offer/update',
   PostAdminAd: '/api/admin/ad',
   PostAdminUpdateAd: '/api/admin/ad/update',
+  PostPublicCompany: '/api/public/company',
 
   DeleteAdminUser: '/api/admin/user',
   DeleteAdminCity: '/api/admin/city',
