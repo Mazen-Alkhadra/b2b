@@ -20,8 +20,7 @@ function isAlphaName(str) {
 
 module.exports = {
   signup: function ({
-    firstName, lastName, email, password,
-    userName
+    firstName, lastName, email, password
   }) {
 
     if (!isAlphaName(firstName))
@@ -29,9 +28,6 @@ module.exports = {
 
     if (!isAlphaName(lastName))
       return { error: { code: ERR_INVALID_LASTNAME } };
-
-    if (!userName || !isAlphanumeric(userName))
-      return { error: { code: ERR_INVALID_USER_NAME } };
 
     if (email && !isEmail(email))
       return { error: { code: ERR_INVALID_EMAIL } };
