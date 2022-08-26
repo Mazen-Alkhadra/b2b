@@ -10,10 +10,9 @@ module.exports = app => {
 	app.post(PostAuthGenActivateCode,
 		async (req, res) => {
 			try {
+				let { loginName } = req.body;
 				
-				await UserSvc.Codes.create().genActivationCode ({
-					userId: req.user.idUser
-				});
+				await UserSvc.Codes.create().genActivationCode ({ loginName });
 
 				res.status(200).end();
 
