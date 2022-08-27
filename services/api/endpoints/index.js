@@ -47,7 +47,7 @@ module.exports = {
   GetUserProducts: '/api/user/products',
   GetUserContactInfo: '/api/user/contact-info',
   GetUserPrivacyPolicy: '/api/user/privacy-policy',
-  GetUserTerms: 'cd ',
+  GetUserTerms: '/api/user/terms',
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',
