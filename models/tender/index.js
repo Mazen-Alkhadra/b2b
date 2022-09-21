@@ -55,6 +55,41 @@ class Tender extends Model {
 
   }
 
+  async get ({ userId }) {      
+
+    let userCond = !userId ? 'TRUE' : 
+      `creat_by_user_id = ${this.escapeSql(userId)}`;
+
+    let queryStr =
+      `SELECT
+        id_tender	idTender,
+        creat_by_user_id  creatByUserId, 
+        name,
+				product_id	productId,
+				quantity	quantity,
+				\`from\`,
+				\`to\`,
+        deliver_before deliverBefore,
+        city_id cityId,
+        area,
+        street,
+        building_number buildingNumber,
+        address_longitude addressLongitude,
+        address_latitude addressLatitude,
+        more_address_info moreAddressInfo,
+        status,
+				closed_at	closedAt
+      FROM
+        tenders
+      WHERE 
+        ${userCond}`;
+
+    let dbRet = await this.directQuery(queryStr);
+
+    return { data: dbRet[0] };
+
+  }
+
   async addNew({
     creatByUserId, name, productId, quantity,
     from, to, deliverBefore, cityId, area, 

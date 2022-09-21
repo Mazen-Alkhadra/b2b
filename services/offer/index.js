@@ -9,6 +9,15 @@ class Offer {
     });
   }
 
+  async get ({ 
+    tenderId, creatByUserId, tenderCreatorByUserId 
+  }) {
+    return await this.offerModel.get ({
+      tenderId, creatByUserId,
+      tenderCreatorByUserId
+    });
+  }
+
   async addNew({
     tenderId, creatByUserId, quantity, priceUSD, 
     bIncludeDelivery, deliveryCost, deliveryAddress,

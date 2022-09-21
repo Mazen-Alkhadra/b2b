@@ -54,6 +54,49 @@ class Offer extends Model {
 
   }
 
+  async get ({
+    tenderId, creatByUserId,
+    tenderCreatorByUserId
+  }) {
+
+    let tenderCond = !tenderId ? 'TRUE' :
+      `tender_id = ${this.escapeSql(tenderId)}`;
+    let creatorCond = !creatByUserId ? 'TRUE' : 
+      `o.creat_by_user_id = ${this.escapeSql(creatByUserId)}`;
+    let tenderCreatorCond = !tenderCreatorByUserId ? 'TRUE' : 
+      `t.creat_by_user_id = ${tenderCreatorByUserId}`;
+
+    let queryStr =
+      `SELECT
+        id_offer	idOffer,
+				tender_id	tenderId,
+        o.creat_by_user_id creatByUserId,
+        o.quantity,
+				price_USD	priceUSD,
+				b_include_delivery	bIncludeDelivery,
+				delivery_cost	deliveryCost,
+				o.delivery_address	deliveryAddress,
+				o.status	status,
+				accepted_at	acceptedAt,
+				excuted_at	excutedAt,
+        o.creat_at creatAt,
+        t.creat_by_user_id tenderCreatorByUserId,
+        t.product_id productId,
+        t.quantity tenderQuantity
+      FROM
+        offers o
+        INNER JOIN tenders t ON tender_id = id_tender
+      WHERE 
+        ${tenderCond} AND 
+        ${tenderCreatorCond} AND 
+        ${creatorCond}`;
+
+    let dbRet = await this.directQuery(queryStr);
+
+    return { data: dbRet[0] };
+
+  }
+
   async addNew({
     tenderId, creatByUserId, quantity, priceUSD, 
     bIncludeDelivery, deliveryCost, deliveryAddress,

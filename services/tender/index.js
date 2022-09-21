@@ -9,6 +9,10 @@ class Tender {
     });
   }
 
+  async get ({ userId }) {
+    return await this.tenderModel.get({ userId });
+  }
+
   async addNew({
     creatByUserId, name, productId, quantity,
     from, to, deliverBefore, cityId, area, 

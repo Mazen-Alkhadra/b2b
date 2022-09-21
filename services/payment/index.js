@@ -9,6 +9,10 @@ class Payment {
     });
   }
 
+  async get ({ userId }) {
+    return await this.paymentModel.get ({ userId });
+  }
+
   async addNew({
     userId, type, amountUsd, comment, status
   }) {

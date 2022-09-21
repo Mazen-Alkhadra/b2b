@@ -9,6 +9,10 @@ class Package {
     });
   }
 
+  async get ({ userId }) {
+    return await this.userSubscribeModel.get ({ userId });
+  }
+
   async addNew({
     userId, subscriptionPackageId, paymentId, promotionId,
     promotionCode, expirAt, actualCostUsd, isActive

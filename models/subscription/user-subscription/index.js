@@ -56,6 +56,36 @@ class UserSubscription extends Model {
 
   }
 
+  async get ({ userId }) {
+    let userCond = !userId ? 'TRUE' : 
+      `user_id = ${this.escapeSql(userId)}`;
+
+    let queryStr =
+      `SELECT
+        id_subscription	idSubscription,
+				user_id	userId,
+				subscription_package_id	subscriptionPackageId,
+        fun_get_string(NULL, name_str_id) subscriptionPackageName,
+				payment_id paymentId,
+				promotion_id promotionId,
+        subscrib_at subscribAt,
+				s.expir_at expirAt,
+				actual_cost_usd	actualCostUsd,
+				s.is_active	isActive,
+        fun_is_user_subscription_valid(id_subscription) isValid
+      FROM
+        subscriptions s
+        INNER JOIN subscription_packages ON 
+          subscription_package_id = id_subscription_package
+      WHERE 
+        ${userCond}`;
+
+    let dbRet = await this.directQuery(queryStr);
+
+    return { data: dbRet[0] };
+
+  }
+
   async addNew ({
     userId, subscriptionPackageId, paymentId, promotionId,
     promotionCode, expirAt, actualCostUsd, isActive

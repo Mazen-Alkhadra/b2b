@@ -54,6 +54,33 @@ class Payment extends Model {
 
   }
 
+  async get ({
+    userId 
+  }) {      
+
+    let userCond = !userId ? 'TRUE' : 
+      `user_id = ${this.escapeSql(userId)}`;
+
+    let queryQuery =
+      `SELECT
+        id_payment idPayment,
+				user_id	userId,
+				type,
+				amount_usd amountUsd,
+				comment,
+				status,
+        complete_at completeAt
+      FROM
+        payments
+      WHERE 
+        ${userCond}`;
+
+    let dbRet = await this.directQuery(queryStr);
+
+    return { data: dbRet[0] };
+
+  }
+
   async addNew({
     userId, type, amountUsd, comment, status
   }) {

@@ -12,6 +12,10 @@ class UserCare {
     });
   }
 
+  async get ({ userId }) {
+    return await this.careModel.get({ userId });
+  }
+
   async resetUserCares({
     userId, cares
   }) {

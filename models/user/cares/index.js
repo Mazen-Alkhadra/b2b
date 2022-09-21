@@ -48,6 +48,33 @@ class UserCare extends Model {
 
   }
 
+  async get ({ userId }) {
+
+    let userCond = !userId ? 'TRUE' : `user_id = ${this.escapeSql(idUser)}`;
+
+    let queryStr =
+      `SELECT
+				user_id	userId,
+				category_id	categoryId,
+        fun_get_string(NULL, c.name_str_id) categoryName,
+				brand_id	brandId,
+        fun_get_string(NULL, b.name_str_id) brandName,
+				product_id	productId,
+        fun_get_string(NULL, p.name_str_id) productName
+      FROM
+        users_cares 
+        LEFT JOIN categories c ON category_id = id_category
+        LEFT JOIN brands b ON brand_id = id_brand
+        LEFT JOIN products p ON product_id = id_product
+      WHERE 
+        ${userCond}`;
+
+    let dbRet = await this.directQuery(queryStr);
+
+    return { data: dbRet[0] };
+
+  }
+
   async resetUserCares({
     userId, 
     cares //[{categoryId, brandId, productId}]
