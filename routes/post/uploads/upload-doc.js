@@ -7,11 +7,12 @@ const {
 } = require('../../../config/server').urls;
 const { 
   PostAdminUploadDoc,
+  PostPublicUploadDoc,
   GetDocFromLocalFS
 } = require('../../../services').api.endpoints;
 
 module.exports = app => {
-  app.post(PostAdminUploadDoc,
+  app.post([PostAdminUploadDoc, PostPublicUploadDoc],
     uploadDocSetTimeout,
     uploadDocsSvc.uploadSingleDocMiddleware(),
     async (req, res) => {

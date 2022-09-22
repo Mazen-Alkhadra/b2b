@@ -14,4 +14,19 @@ module.exports = {
   GetUserSubscribes: '/api/user/subscription/user-subscriptions',
   GetUserTenders: '/api/user/tenders',
   GetUserCares: '/api/user/cares',
+  
+  
+
+  
+  PostUserBrand: '/api/user/brand',
+  PostUserCategory: '/api/user/category',
+  PostUserProduct: '/api/user/product',
+  PostUserOffer: '/api/user/offer',
+  PostUserSubscribe: '/api/user/subscription/subscribe',
+  PostUserTender: '/api/user/tender',
+  PostUserTenderUpdate: '/api/user/tender/update',
+
+
+  DeleteUserOffer: '/api/user/offer',
+  DeleteUserTender: '/api/user/tender'
 }

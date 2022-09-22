@@ -16,4 +16,6 @@ module.exports = {
   PostAuthGenResetPasswordCode: '/api/auth/code/reset-password/generate',
   PostAuthResetPassword: '/api/auth/reset-password',
   PostPublicCompany: '/api/public/company',
+  PostPublicUploadDoc: '/api/public/doc/upload',
+  PostPublicUploadImg: '/api/public/img/upload',
 }

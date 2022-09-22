@@ -8,11 +8,12 @@ const {
 } = require('../../../config/server').urls;
 const { 
   PostAdminUploadImg,
+  PostPublicUploadImg,
   GetImgFromLocalFS 
 } = require('../../../services').api.endpoints;
 
 module.exports = app => {
-  app.post(PostAdminUploadImg,
+  app.post([PostAdminUploadImg, PostPublicUploadImg],
     uploadImgSetTimeout,
     uploadImgsSvc.uploadSingleImgMiddleware(),
     async (req, res) => {

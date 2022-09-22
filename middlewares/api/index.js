@@ -8,8 +8,6 @@ const extractSorts = require('../sorts');
 
 module.exports = (app) => {
  let apisMiddlewares = {};
- apisMiddlewares[endpoints.GetDocFromLocalFS]  = [requireLogin()];
- apisMiddlewares[endpoints.GetImgFromLocalFS]  = [requireLogin()];
  apisMiddlewares[endpoints.GetAdminAboutusFull] = [
   extractFilters,
   extractSorts
@@ -25,6 +23,7 @@ module.exports = (app) => {
 
 
  app.use('/api/admin/*', requireAdmin());
+ app.use('/api/user/*', requireLogin());
 
  let apiEndpoint = null;
  for(apiEndpoint in apisMiddlewares)
