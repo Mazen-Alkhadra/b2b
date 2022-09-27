@@ -38,3 +38,20 @@ INSERT INTO `users` VALUES (
 NULL,
 '$2b$04$4xkI/yTbQ1.a4tOqL00sYevDgn1Hf6TdkNJl4au1Nn/mNSYQv1oWK',
 NULL,NULL,NULL, NULL, 'SUPER_ADMIN', FALSE, TRUE, current_timestamp());
+
+
+INSERT INTO subscription_features (
+  id_subscription_feature, 
+  name_str_id,
+  description_str_id
+) VALUES 
+(
+ 'TENDERS_PER_MONTH',
+ fun_add_string('en', 'Tenders Per Month'),
+ fun_add_string('en', 'Tenders Count That Users Can Create Per Month')
+),
+(
+ 'TENDERS_PER_DAY',
+ fun_add_string('en', 'Tenders Per Day'),
+ fun_add_string('en', 'Tenders Count That Users Can Create Per Day')
+);

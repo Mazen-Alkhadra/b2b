@@ -28,7 +28,8 @@ module.exports = {
   GetAdminPaymentsFull: '/api/admin/payments/full',
   GetAdminStatsFull: '/api/admin/stats/full',
   GetAdminAdsFull: '/api/admin/ads/full',
-    
+  GetAdminReportUsersUsage: '/api/admin/report/users-usage',
+
   PostAdminUser: '/api/admin/user',
   PostAdminCity: '/api/admin/city',
   PostAdminCityUpdate: '/api/admin/city/update',

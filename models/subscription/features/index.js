@@ -2,6 +2,11 @@
 const Model = require('../../model');
 const StringModel = require('../../resource').String;
 
+const FEATURES = {
+  TENDERS_PER_MONTH: 'TENDERS_PER_MONTH',
+  TENDERS_PER_DAY: 'TENDERS_PER_DAY' 
+};
+
 class SubscriptionFeature extends Model {
   static TABLE_NAME = 'subscription_features';
   static PRIMARY_KEY = 'id_subscription_feature';

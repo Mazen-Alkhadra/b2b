@@ -20,6 +20,8 @@ CREATE PROCEDURE `prc_add_tender` (
 )  
 BEGIN
 
+	SET @_ = fun_can_user_create_tender(p_creat_by_user_id, FALSE);
+	
 	INSERT INTO 
 		tenders (
 			creat_by_user_id,

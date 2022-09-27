@@ -20,5 +20,6 @@ module.exports = {
   Stats: require('./stats'),
   Country: require('./country'),
   City: require('./city'),
-  Ads: require('./ads')
+  Ads: require('./ads'),
+  Reports: require('./reports')
 }
