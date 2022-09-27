@@ -20,4 +20,5 @@ module.exports = app => {
   require('./tender')(app);
   require('./offer')(app);
   require('./ads')(app);
+  require('./setting')(app);
 };

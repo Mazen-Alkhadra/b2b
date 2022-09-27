@@ -25,6 +25,8 @@ module.exports = app => {
   require('./city')(app);
   require('./country')(app);
   require('./ads')(app);
+  require('./reports')(app);
+  require('./setting')(app);
 
   app.get('/*', (req, res) => {
     res.status(200).sendFile(

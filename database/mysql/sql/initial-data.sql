@@ -55,3 +55,19 @@ INSERT INTO subscription_features (
  fun_add_string('en', 'Tenders Per Day'),
  fun_add_string('en', 'Tenders Count That Users Can Create Per Day')
 );
+-- =====================================================================
+INSERT INTO settings (
+  id_setting, 
+  name_str_id,
+  value
+) VALUES 
+(
+ 'MAX_TENDER_DURATION_SEC',
+ fun_add_string('en', 'Max Tender Duration In Seconds'),
+ 0
+),
+(
+ 'MAX_ACCEPT_OFFER_TIME_SEC',
+ fun_add_string('en', 'Max Time For Accept Offer In Seconds'),
+ 0
+);

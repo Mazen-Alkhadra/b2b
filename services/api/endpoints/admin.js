@@ -29,6 +29,7 @@ module.exports = {
   GetAdminStatsFull: '/api/admin/stats/full',
   GetAdminAdsFull: '/api/admin/ads/full',
   GetAdminReportUsersUsage: '/api/admin/report/users-usage',
+  GetAdminSettings: '/api/admin/settings',
 
   PostAdminUser: '/api/admin/user',
   PostAdminCity: '/api/admin/city',
@@ -73,6 +74,7 @@ module.exports = {
   PostAdminOfferUpdate: '/api/admin/offer/update',
   PostAdminAd: '/api/admin/ad',
   PostAdminUpdateAd: '/api/admin/ad/update',
+  PostAdminSettingUpdate: '/api/admin/setting/update',
 
   DeleteAdminUser: '/api/admin/user',
   DeleteAdminCity: '/api/admin/city',

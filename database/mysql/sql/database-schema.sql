@@ -847,3 +847,22 @@ CREATE TABLE IF NOT EXISTS `ads` (
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
+
+-- -----------------------------------------------------
+-- Table `settings`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `settings` (
+  `id_setting`             VARCHAR(100),
+  `name_str_id`            BIGINT UNSIGNED NOT NULL,
+  `value`                  LONGTEXT,
+
+  PRIMARY KEY (`id_setting`),
+
+  CONSTRAINT `FK_setting_name_str`
+    FOREIGN KEY (`name_str_id`)
+    REFERENCES `strings` (`id_str` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;

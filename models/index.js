@@ -21,5 +21,6 @@ module.exports = {
   Country: require('./country'),
   City: require('./city'),
   Ads: require('./ads'),
-  Reports: require('./reports')
+  Reports: require('./reports'),
+  Setting: require('./setting')
 }
