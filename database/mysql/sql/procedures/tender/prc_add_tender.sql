@@ -21,6 +21,7 @@ CREATE PROCEDURE `prc_add_tender` (
 BEGIN
 
 	SET @_ = fun_can_user_create_tender(p_creat_by_user_id, FALSE);
+	SET @_ = fun_is_tender_info_valid(NULL, p_from, p_to, FALSE);
 	
 	INSERT INTO 
 		tenders (

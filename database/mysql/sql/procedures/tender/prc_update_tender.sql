@@ -20,6 +20,8 @@ CREATE PROCEDURE `prc_update_tender` (
 )  
 BEGIN
 
+	START TRANSACTION;
+
 	UPDATE 
 		tenders
 	SET
@@ -43,4 +45,10 @@ BEGIN
 		id_tender = p_id_tender
 	;
   
+	IF p_from IS NOT NULL OR p_to IS NOT NULL THEN 
+		SET @_ = fun_is_tender_info_valid(p_tender_id, NULL, NULL, FALSE);
+	END IF;
+	
+	COMMIT;
+	
 END$$

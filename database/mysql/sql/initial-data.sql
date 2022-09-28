@@ -64,10 +64,10 @@ INSERT INTO settings (
 (
  'MAX_TENDER_DURATION_SEC',
  fun_add_string('en', 'Max Tender Duration In Seconds'),
- 0
+ 604800
 ),
 (
  'MAX_ACCEPT_OFFER_TIME_SEC',
  fun_add_string('en', 'Max Time For Accept Offer In Seconds'),
- 0
+ 604800
 );
