@@ -27,7 +27,7 @@ class User {
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId,
     birthDate, gender, imgId, roleId, isBlocked, isActive,
-    isAccepted, lastLoginAt, hasMobileWhatsapp
+    isAccepted, lastLoginAt, hasMobileWhatsapp, score
   }) {
 
     if(password)
@@ -36,12 +36,17 @@ class User {
     await this.userModel.update({
       idUser, firstName, lastName, email, mobile, companyId,
       birthDate, gender, imgId, roleId, isBlocked, isActive,
-      password, isAccepted, lastLoginAt, hasMobileWhatsapp
+      password, isAccepted, lastLoginAt, hasMobileWhatsapp, 
+      score
     });
   }
 
   async delete({ idUser }) {
     await this.userModel.delete({ idUser });
+  }
+
+  async accept ({ usersIds, isAccepted }) {
+    await this.userModel.accept({ usersIds, isAccepted });
   }
 
 }

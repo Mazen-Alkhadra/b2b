@@ -15,7 +15,8 @@ CREATE PROCEDURE `prc_update_user` (
 	p_is_blocked					BOOLEAN,
 	p_is_active						BOOLEAN,
 	p_is_accepted   			BOOLEAN,
-	p_last_login_at 			DATETIME
+	p_last_login_at 			DATETIME,
+	p_score               DOUBLE
 )  
 BEGIN
 
@@ -36,7 +37,8 @@ BEGIN
 		is_blocked = IFNULL(p_is_blocked, is_blocked),
 		is_active = IFNULL(p_is_active, is_active),
 		is_accepted = IFNULL(p_is_accepted, is_accepted),
-		last_login_at = IFNULL(p_last_login_at, last_login_at)
+		last_login_at = IFNULL(p_last_login_at, last_login_at),
+		score = IFNULL(p_score, score)
 	WHERE
 		id_user = p_id_user
 	;

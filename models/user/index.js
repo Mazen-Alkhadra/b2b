@@ -81,6 +81,7 @@ class User extends Model {
 				is_active	isActive,
         is_accepted isAccepted,
         last_login_at lastLoginAt, 
+        score,
         fun_is_user_admin(id_user) isAdmin
       FROM
         users`;
@@ -120,14 +121,37 @@ class User extends Model {
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId, 
       birthDate, gender, imgId, roleId, isBlocked, isActive,
-      isAccepted, lastLoginAt, hasMobileWhatsapp
+      isAccepted, lastLoginAt, hasMobileWhatsapp, score
   }) {
     await this.directQuery (
       'CALL prc_update_user(?);',
       [idUser, firstName, lastName, email, mobile, hasMobileWhatsapp, 
         password, companyId, birthDate, gender, imgId, roleId, 
-        isBlocked, isActive, isAccepted, lastLoginAt]
+        isBlocked, isActive, isAccepted, lastLoginAt, score]
     );
+  }
+
+  async accept ({
+    usersIds, isAccepted
+  }) {
+    
+    if(!Array.isArray(usersIds) || !usersIds.length)
+      return;
+
+    let queryStr = '';
+    let queryParams = [];
+
+    usersIds.forEach(userId => {
+      queryStr += 'CALL prc_update_user(?, ?, ?, ?);';
+      queryParams.push (
+        userId, 
+        [null, null, null, null, null, null, null, null, null, null, null, null, null],
+        isAccepted, 
+        [null, null]
+      );
+    });
+    
+    await this.directQuery ( queryStr, ...queryParams );
   }
 
   async delete({ idUser }) {

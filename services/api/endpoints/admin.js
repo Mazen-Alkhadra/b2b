@@ -38,6 +38,7 @@ module.exports = {
   PostAdminCountryUpdate: '/api/admin/country/update',
   PostAdminGenResetPasswordCode: '/api/admin/code/reset-password/generate',
   PostAdminUpdateUser: '/api/admin/user/update',
+  PostAdminAcceptUsers: '/api/admin/users/accept',
   PostAdminCompany: '/api/admin/company',
   PostAdminUpdateCompany: '/api/admin/company/update',
   PostAdminCompanyType: '/api/admin/company-type',
