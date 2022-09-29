@@ -9,6 +9,22 @@ class Report extends Model {
 
     return { data: dbRet[0] }
   }
+
+  async categoriesUsge () {
+    let dbRet = await this.directQuery (
+      'CALL prc_report_categories_usage();',
+    );
+
+    return { data: dbRet[0] }
+  }
+
+  async brandsUsge () {
+    let dbRet = await this.directQuery (
+      'CALL prc_report_brands_usage();',
+    );
+
+    return { data: dbRet[0] }
+  }
 }
 
 module.exports = {

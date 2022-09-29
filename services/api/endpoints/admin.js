@@ -29,6 +29,8 @@ module.exports = {
   GetAdminStatsFull: '/api/admin/stats/full',
   GetAdminAdsFull: '/api/admin/ads/full',
   GetAdminReportUsersUsage: '/api/admin/report/users-usage',
+  GetAdminReportCategoriesUsage: '/api/admin/report/categories-usage',
+  GetAdminReportBrandsUsage: '/api/admin/report/brands-usage',
   GetAdminSettings: '/api/admin/settings',
 
   PostAdminUser: '/api/admin/user',

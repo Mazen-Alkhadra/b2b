@@ -9,6 +9,14 @@ class Report {
     return await this.reportModel.usersUsge();
   }
 
+  async categoriesUsge () {
+    return await this.reportModel.categoriesUsge();
+  }
+
+  async brandsUsge () {
+    return await this.reportModel.brandsUsge();
+  }
+
 }
 
 module.exports = {
