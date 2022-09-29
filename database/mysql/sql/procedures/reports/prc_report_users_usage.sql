@@ -9,18 +9,16 @@ BEGIN
 		email	email,
 		mobile	mobile,
 		company_id	companyId,
-		img_id	imgId,
-		is_blocked	isBlocked,
-		is_active	isActive,
-    is_accepted isAccepted,
-    last_login_at lastLoginAt, 
-    fun_is_user_admin(id_user) isAdmin,
+    is_active isActive,
     fun_get_user_tender_count(id_user, 1) todayTendersCnt,
     fun_get_user_tender_count(id_user, 30) thisMonthTendersCnt,
     fun_get_user_subscribe_feature_val(NULL, id_user, 'TENDERS_PER_MONTH') subscribeMonthlyTendersCnt,
     fun_get_user_subscribe_feature_val(NULL, id_user, 'TENDERS_PER_DAY') subscribeDailyTendersCnt
   FROM
     users
+  WHERE 
+    !fun_is_user_admin(id_user) AND 
+    is_accepted = TRUE
   ;
 
 END$$

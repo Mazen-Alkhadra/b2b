@@ -21,7 +21,8 @@ class IssueReport extends Model {
         id_issue_report	idIssueReport,
 				reporter_user_id	reporterUserId,
 				content	content,
-				status	status
+				status	status,
+        create_at createAt
       FROM
         issues_reports`;
 

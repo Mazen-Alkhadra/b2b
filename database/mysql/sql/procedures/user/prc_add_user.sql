@@ -38,7 +38,7 @@ BEGIN
 		p_last_name,
 		p_email,
 		p_mobile,
-		p_has_mobile_whatsapp,
+		IFNULL(p_has_mobile_whatsapp, DEFAULT(has_mobile_whatsapp)),
 		p_password,
 		p_company_id,
 		p_birth_date,

@@ -2,7 +2,12 @@
 -- Dumping data for table `permissions`
 --
 
-INSERT INTO `permissions` VALUES ('ADD','Add new'),('DELETE','Remove'),('EDIT','Change'),('READ','Read');
+INSERT INTO `permissions` VALUES 
+('ADD','Add new'),
+('DELETE','Remove'),
+('EDIT','Change'),
+('READ','Read'),
+('EXPORT','Export');
 
 --
 -- Dumping data for table `roles`
