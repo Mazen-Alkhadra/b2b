@@ -17,6 +17,9 @@ class Report {
     return await this.reportModel.brandsUsge();
   }
 
+  async companyTypesUsge () {
+    return await this.reportModel.companyTypesUsge();
+  }
 }
 
 module.exports = {

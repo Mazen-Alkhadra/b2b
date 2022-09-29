@@ -1,7 +1,8 @@
 const { 
   GetAdminReportUsersUsage,
   GetAdminReportCategoriesUsage,
-  GetAdminReportBrandsUsage
+  GetAdminReportBrandsUsage,
+  GetAdminReportCompanyTypesUsage
 } = require('../../../services').api.endpoints;
 const ReportSvc = require('../../../services').Reports;
 
@@ -45,4 +46,18 @@ module.exports = app => {
       }
     }
   );
+
+  app.get(GetAdminReportCompanyTypesUsage,
+    async (req, res) => {
+      try {
+        let {data} = await ReportSvc.create().companyTypesUsge();
+        res.status(200).json(data);
+
+      } catch (err) {
+        res.internalError = err;
+        res.status(500).end();
+      }
+    }
+  );
+
 };

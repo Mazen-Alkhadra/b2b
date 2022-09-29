@@ -31,6 +31,7 @@ module.exports = {
   GetAdminReportUsersUsage: '/api/admin/report/users-usage',
   GetAdminReportCategoriesUsage: '/api/admin/report/categories-usage',
   GetAdminReportBrandsUsage: '/api/admin/report/brands-usage',
+  GetAdminReportCompanyTypesUsage: '/api/admin/report/company-types-usage',
   GetAdminSettings: '/api/admin/settings',
 
   PostAdminUser: '/api/admin/user',

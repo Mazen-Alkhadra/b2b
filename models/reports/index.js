@@ -25,6 +25,15 @@ class Report extends Model {
 
     return { data: dbRet[0] }
   }
+
+  async companyTypesUsge () {
+    let dbRet = await this.directQuery (
+      'CALL prc_report_company_types_usage();',
+    );
+
+    return { data: dbRet[0] }
+  }
+  
 }
 
 module.exports = {
