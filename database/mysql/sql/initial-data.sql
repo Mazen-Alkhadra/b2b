@@ -21,6 +21,12 @@ INSERT INTO `roles` VALUES ('NORMAL_USER','Normal User'),('SUPER_ADMIN','Super A
 --
 INSERT INTO `access_resources` VALUES 
 ('ADMIN_CONTROL_PANEL','Admin Control Panel'),
+('REPORTS', 'Reports'),
+('SETTINGS', 'Settings'),
+('SERVICES', 'Services'),
+('SUBSCRIPTIONS', 'subscriptions'),
+('AC', 'Access Control'),
+('HR', 'HR')
 
 --
 -- Dumping data for table `roles_resources_permissions`
