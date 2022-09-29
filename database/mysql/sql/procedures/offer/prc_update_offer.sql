@@ -37,4 +37,8 @@ BEGIN
 		id_offer = p_id_offer
 	;
   
+	IF p_status IS NOT NULL THEN 
+		CALL prc_calc_offers_status(p_offer_id, NULL, TRUE);
+	END IF;
+
 END$$

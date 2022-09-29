@@ -8,41 +8,14 @@ CREATE FUNCTION `fun_can_user_change_offer_status` (
 RETURNS BOOLEAN
 BEGIN
   
-  DECLARE v_err_code VARCHAR(50) DEFAULT NULL;
-  DECLARE v_offer_create_at  DATETIME DEFAULT NULL;
-  DECLARE v_offer_old_status VARCHAR(50) DEFAULT NULL;
-
-  IF p_new_status IS NULL OR p_offer_id IS NULL THEN
+  IF p_new_status IS NULL OR 
+    p_offer_id IS NULL OR 
+    !fun_is_offer_new_status_valid(p_offer_id, p_new_status, p_allow_false) OR 
+    !fun_is_offer_have_time(p_offer_id, p_allow_false)
+  THEN
     RETURN FALSE;
   END IF;
-
-  SELECT 
-    creat_at,
-    status
-  INTO 
-    v_offer_create_at, 
-    v_offer_old_status
-  FROM 
-    offers
-  WHERE 
-    id_offer = p_offer_id
-  ;
   
-  IF fun_is_user_admin(p_user_id) THEN 
-    RETURN TRUE;
-  ELSEIF DATE_ADD(
-		v_offer_create_at, 
-		INTERVAL fun_get_setting_val('MAX_ACCEPT_OFFER_TIME_SEC') SECOND
-	) < CURRENT_TIMESTAMP() THEN 
-    SET v_err_code = 'MaxOfferTimeExceed';
-    CALL prc_update_offer(p_offer_id, NULL, NULL, NULL,
-      NULL, NULL, NULL, NULL, 'REJECTED', NULL, NULL);
-  END IF;
-
-  IF v_err_code IS NOT NULL AND p_allow_false <> TRUE THEN 
-    CALL prc_throw_exception(NULL, v_err_code);
-  END IF;
-
-  RETURN v_err_code IS NULL;
+  RETURN TRUE;
 
 END$$
