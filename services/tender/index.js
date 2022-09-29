@@ -18,14 +18,14 @@ class Tender {
     from, to, deliverBefore, cityId, area, 
     street, buildingNumber, addressLongitude, 
     addressLatitude, moreAddressInfo, status, 
-    closedAt, supplierLocation
+    closedAt, supplierLocation, tax, payMethod
   }) {
     await this.tenderModel.addNew({
       creatByUserId, name, productId, quantity,
       from, to, deliverBefore, cityId, area, 
       street, buildingNumber, addressLongitude, 
       addressLatitude, moreAddressInfo, status,
-      closedAt, supplierLocation
+      closedAt, supplierLocation, tax, payMethod
     });
   }
 
@@ -34,14 +34,14 @@ class Tender {
     from, to, deliverBefore, cityId, area, 
     street, buildingNumber, addressLongitude, 
     addressLatitude, moreAddressInfo, status, 
-    closedAt, supplierLocation
+    closedAt, supplierLocation, tax, payMethod
   }) {
     await this.tenderModel.update({
       idTender, creatByUserId, name, productId, quantity,
       from, to, deliverBefore, cityId, area, 
       street, buildingNumber, addressLongitude, 
       addressLatitude, moreAddressInfo, status, 
-      closedAt, supplierLocation
+      closedAt, supplierLocation, tax, payMethod
     });
   }
 
