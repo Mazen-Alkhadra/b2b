@@ -33,6 +33,7 @@ class Tender extends Model {
         address_longitude addressLongitude,
         address_latitude addressLatitude,
         more_address_info moreAddressInfo,
+        supplier_location supplierLocation,
         status,
 				closed_at	closedAt
       FROM
@@ -77,6 +78,7 @@ class Tender extends Model {
         address_longitude addressLongitude,
         address_latitude addressLatitude,
         more_address_info moreAddressInfo,
+        supplier_location supplierLocation,
         status,
 				closed_at	closedAt
       FROM
@@ -94,7 +96,8 @@ class Tender extends Model {
     creatByUserId, name, productId, quantity,
     from, to, deliverBefore, cityId, area, 
     street, buildingNumber, addressLongitude, 
-    addressLatitude, moreAddressInfo, status, closedAt
+    addressLatitude, moreAddressInfo, 
+    supplierLocation, status, closedAt
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_tender(?, @new_record_id);',
@@ -102,7 +105,7 @@ class Tender extends Model {
         from, to, deliverBefore, cityId, area, 
         street, buildingNumber, addressLongitude, 
         addressLatitude, moreAddressInfo, 
-        status, closedAt]
+        supplierLocation, status, closedAt]
     );
 
     return { newId: dbRet[0][0].newRecordId };
@@ -112,16 +115,16 @@ class Tender extends Model {
     idTender, creatByUserId, name, productId, quantity,
     from, to, deliverBefore, cityId, area, 
     street, buildingNumber, addressLongitude, 
-    addressLatitude, moreAddressInfo, status, 
-    closedAt
+    addressLatitude, moreAddressInfo, 
+    supplierLocation, status, closedAt
   }) {
     await this.directQuery (
       'CALL prc_update_tender(?);',
       [idTender, creatByUserId, name, productId, quantity,
         from, to, deliverBefore, cityId, area, 
         street, buildingNumber, addressLongitude, 
-        addressLatitude, moreAddressInfo, status, 
-        closedAt]
+        addressLatitude, moreAddressInfo, 
+        supplierLocation, status, closedAt]
     );
   }
 

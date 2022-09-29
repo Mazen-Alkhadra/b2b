@@ -9,10 +9,10 @@ module.exports = app => {
 	app.post(PostAdminProduct,
 		async (req, res) => {
 			try {
-				const { nameEn, descriptionEn, brandId } = req.body;
+				const { nameEn, descriptionEn, brandId, imgUrl } = req.body;
 
 				await ProductSvc.create().addNew({
-					nameEn, descriptionEn, brandId,
+					nameEn, descriptionEn, brandId, imgUrl,
 					addedByUserId: req.user.idUser
 				});
 
@@ -27,10 +27,10 @@ module.exports = app => {
 	app.post(PostAdminProductUpdate,
 		async (req, res) => {
 			try {
-				const { idProduct, nameEn, descriptionEn, brandId } = req.body;
+				const { idProduct, nameEn, descriptionEn, brandId, imgUrl } = req.body;
 
 				await ProductSvc.create().update({
-					idProduct, nameEn, descriptionEn, brandId
+					idProduct, nameEn, descriptionEn, brandId, imgUrl
 				});
 
 				res.status(200).end();

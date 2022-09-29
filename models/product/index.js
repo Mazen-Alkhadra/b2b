@@ -27,6 +27,7 @@ class Product extends Model {
         fun_get_string(NULL, b.name_str_id)	brandNameEn,
         fun_get_string(NULL, c.name_str_id)	categoryNameEn,
 				p.added_by_user_id	addedByUserId,
+        fun_get_img(p.img_id) imgUrl,
         p.creat_at creatAt
       FROM
         products p
@@ -51,7 +52,7 @@ class Product extends Model {
   }
 
   async addNew({
-    nameEn, descriptionEn, brandId, addedByUserId
+    nameEn, descriptionEn, brandId, addedByUserId, imgUrl
   }) {
 
     let strModel = StringModel.create();
@@ -60,14 +61,15 @@ class Product extends Model {
 
     let dbRet = await this.directQuery (
       'CALL prc_add_product(?, @new_record_id);',
-      [nameStrId, descStrId, brandId, addedByUserId]
+      [nameStrId, descStrId, brandId, addedByUserId, imgUrl]
     );
 
     return { newId: dbRet[0][0].newRecordId };
   }
 
   async update({
-    idProduct, nameEn, descriptionEn, brandId, addedByUserId
+    idProduct, nameEn, descriptionEn, brandId, addedByUserId, 
+    imgUrl
   }) {
 
     let strModel = StringModel.create();
@@ -89,7 +91,7 @@ class Product extends Model {
 
     await this.directQuery (
       'CALL prc_update_product(?);',
-      [idProduct, brandId, addedByUserId]
+      [idProduct, brandId, addedByUserId, imgUrl]
     );
   }
 

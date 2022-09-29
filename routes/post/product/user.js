@@ -8,10 +8,10 @@ module.exports = app => {
 	app.post(PostUserProduct,
 		async (req, res) => {
 			try {
-				const { nameEn, descriptionEn, brandId } = req.body;
+				const { nameEn, descriptionEn, brandId, imgUrl } = req.body;
 
 				await ProductSvc.create().addNew({
-					nameEn, descriptionEn, brandId,
+					nameEn, descriptionEn, brandId, imgUrl,
 					addedByUserId: req.user.idUser
 				});
 

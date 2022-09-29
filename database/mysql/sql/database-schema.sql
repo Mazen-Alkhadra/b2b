@@ -395,6 +395,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `description_str_id`	  BIGINT UNSIGNED NULL,
   `brand_id`              BIGINT UNSIGNED NOT NULL,
   `added_by_user_id`      BIGINT UNSIGNED NULL,
+  `img_id`                BIGINT UNSIGNED NULL,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
   PRIMARY KEY (`id_product`),
@@ -412,6 +413,11 @@ CREATE TABLE IF NOT EXISTS `products` (
   CONSTRAINT `fk_product_brand`
     FOREIGN KEY (`brand_id`)
     REFERENCES `brands` (`id_brand`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_product_img`
+    FOREIGN KEY (`img_id`)
+    REFERENCES `imgs` (`id_img`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT
   )
@@ -470,6 +476,7 @@ CREATE TABLE IF NOT EXISTS `tenders` (
   `address_longitude`     LONGTEXT NULL,
   `address_latitude`      LONGTEXT NULL,              
   `more_address_info`     LONGTEXT NULL, 
+  `supplier_location`     ENUM('LOCAL', 'UAE', 'GLOBAL') NOT NULL DEFAULT 'GLOBAL',
   `status`                ENUM('OPENED', 'CLOSED') NOT NULL DEFAULT 'OPENED',
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `closed_at`             DATETIME NULL,

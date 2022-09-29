@@ -15,6 +15,7 @@ CREATE PROCEDURE `prc_update_tender` (
   p_address_longitude LONGTEXT,
   p_address_latitude  LONGTEXT,              
   p_more_address_info LONGTEXT,
+	p_supplier_location VARCHAR(20),
 	p_status            VARCHAR(20),
 	p_closed_at					DATETIME
 )  
@@ -40,7 +41,8 @@ BEGIN
   	address_latitude = IFNULL(p_address_latitude, address_latitude),              
   	more_address_info = IFNULL(p_more_address_info, more_address_info),
 		status = IFNULL(p_status, status),
-		closed_at = IFNULL(p_closed_at, closed_at)
+		closed_at = IFNULL(p_closed_at, closed_at),
+		supplier_location = IFNULL(p_supplier_location, supplier_location)
 	WHERE
 		id_tender = p_id_tender
 	;

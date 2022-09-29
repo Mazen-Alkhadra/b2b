@@ -12,13 +12,14 @@ module.exports = app => {
 				const { name, productId, quantity,
 					from, to, deliverBefore, cityId, area, 
 					street, buildingNumber, addressLongitude, 
-					addressLatitude, moreAddressInfo } = req.body;
+					addressLatitude, moreAddressInfo, supplierLocation } = req.body;
 
 				await TenderSvc.create().addNew({
 					name, productId, quantity,
     			from, to, deliverBefore, cityId, area, 
     			street, buildingNumber, addressLongitude, 
     			addressLatitude, moreAddressInfo,
+					supplierLocation,
 					creatByUserId: req.user.idUser
 				});
 
@@ -36,13 +37,15 @@ module.exports = app => {
 				const { idTender, name, productId, quantity,
 					from, to, deliverBefore, cityId, area, 
 					street, buildingNumber, addressLongitude, 
-					addressLatitude, moreAddressInfo } = req.body;
+					addressLatitude, moreAddressInfo, 
+					supplierLocation } = req.body;
 
 				await TenderSvc.create().update({
 					idTender, name, productId, quantity,
     			from, to, deliverBefore, cityId, area, 
     			street, buildingNumber, addressLongitude, 
-    			addressLatitude, moreAddressInfo
+    			addressLatitude, moreAddressInfo,
+					supplierLocation
 				});
 
 				res.status(200).end();

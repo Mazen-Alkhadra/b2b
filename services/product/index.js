@@ -10,18 +10,22 @@ class Product {
   }
 
   async addNew({
-    nameEn, descriptionEn, brandId, addedByUserId
+    nameEn, descriptionEn, brandId, addedByUserId,
+    imgUrl
   }) {
     await this.productModel.addNew({
-      nameEn, descriptionEn, brandId, addedByUserId
+      nameEn, descriptionEn, brandId, addedByUserId,
+      imgUrl
     });
   }
 
   async update({
-    idProduct, nameEn, descriptionEn, brandId, addedByUserId
+    idProduct, nameEn, descriptionEn, brandId, addedByUserId,
+    imgUrl
   }) {
     await this.productModel.update({
-      idProduct, nameEn, descriptionEn, brandId, addedByUserId
+      idProduct, nameEn, descriptionEn, brandId, addedByUserId,
+      imgUrl
     });
   }
 

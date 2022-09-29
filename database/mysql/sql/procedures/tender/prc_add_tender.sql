@@ -14,6 +14,7 @@ CREATE PROCEDURE `prc_add_tender` (
   p_address_longitude     LONGTEXT,
   p_address_latitude      LONGTEXT,              
   p_more_address_info     LONGTEXT,
+	p_supplier_location     VARCHAR(20),
 	p_status                VARCHAR(20),
 	p_closed_at							DATETIME,
 	OUT p_out_new_rec_id		BIGINT UNSIGNED
@@ -38,7 +39,8 @@ BEGIN
   		building_number,       
   		address_longitude,     
   		address_latitude,      
-  		more_address_info,     
+  		more_address_info,    
+			supplier_location, 
 			status,
 			closed_at
 		)
@@ -57,6 +59,7 @@ BEGIN
   	p_address_longitude,     
   	p_address_latitude,      
   	p_more_address_info,   
+		IFNULL(p_supplier_location, DEFAULT(supplier_location)),
 		IFNULL(p_status, DEFAULT(status)),
 		p_closed_at
 	)
