@@ -20,7 +20,7 @@ BEGIN
 		fun_is_offer_new_status_valid(p_offer_id, 'REJECTED', TRUE) AND 
     (
 			!fun_is_offer_have_time(p_offer_id, TRUE) OR 
-			fun_is_tender_complete_qntity(p_tender_id)
+			fun_is_tender_complete_qntity(p_tender_id, FALSE)
 		)
 	;
 

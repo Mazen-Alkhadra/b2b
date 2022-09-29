@@ -31,7 +31,7 @@ class User extends Model {
         company_id	companyId,
         birth_date	birthDate,
         gender	gender,
-        img_id	imgId,
+        fun_get_img(img_id)	imgUrl,
         role_id	roleId,
         is_blocked	isBlocked,
         is_active	isActive,
@@ -75,7 +75,7 @@ class User extends Model {
 				company_id	companyId,
 				birth_date	birthDate,
 				gender	gender,
-				img_id	imgId,
+				fun_get_img(img_id)	imgUrl,
 				role_id	roleId,
 				is_blocked	isBlocked,
 				is_active	isActive,
@@ -120,13 +120,13 @@ class User extends Model {
 
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId, 
-      birthDate, gender, imgId, roleId, isBlocked, isActive,
+      birthDate, gender, imgUrl, roleId, isBlocked, isActive,
       isAccepted, lastLoginAt, hasMobileWhatsapp, score
   }) {
     await this.directQuery (
       'CALL prc_update_user(?);',
       [idUser, firstName, lastName, email, mobile, hasMobileWhatsapp, 
-        password, companyId, birthDate, gender, imgId, roleId, 
+        password, companyId, birthDate, gender, imgUrl, roleId, 
         isBlocked, isActive, isAccepted, lastLoginAt, score]
     );
   }

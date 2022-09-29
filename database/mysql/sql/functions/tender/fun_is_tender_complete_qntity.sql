@@ -1,6 +1,7 @@
 DELIMITER $$
 CREATE FUNCTION `fun_is_tender_complete_qntity` (
-  p_tender_id      BIGINT UNSIGNED
+  p_tender_id               BIGINT UNSIGNED,
+  p_only_executed_offers    BOOLEAN
 )
 RETURNS BOOLEAN
 BEGIN
@@ -16,7 +17,10 @@ BEGIN
       offers 
     WHERE 
       tender_id = p_tender_id AND 
-      status IN ('ACCEPTED', 'EXECUTED')
+      (
+        (p_only_executed_offers AND status = 'EXECUTED') OR
+        (!p_only_executed_offers AND status IN ('ACCEPTED', 'EXECUTED'))
+      )
   );
   
 END$$

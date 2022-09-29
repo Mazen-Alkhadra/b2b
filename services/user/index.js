@@ -26,7 +26,7 @@ class User {
 
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId,
-    birthDate, gender, imgId, roleId, isBlocked, isActive,
+    birthDate, gender, imgUrl, roleId, isBlocked, isActive,
     isAccepted, lastLoginAt, hasMobileWhatsapp, score
   }) {
 
@@ -35,7 +35,7 @@ class User {
 
     await this.userModel.update({
       idUser, firstName, lastName, email, mobile, companyId,
-      birthDate, gender, imgId, roleId, isBlocked, isActive,
+      birthDate, gender, imgUrl, roleId, isBlocked, isActive,
       password, isAccepted, lastLoginAt, hasMobileWhatsapp, 
       score
     });
