@@ -477,7 +477,7 @@ CREATE TABLE IF NOT EXISTS `tenders` (
   `address_latitude`      LONGTEXT NULL,              
   `more_address_info`     LONGTEXT NULL, 
   `supplier_location`     ENUM('LOCAL', 'UAE', 'GLOBAL') NOT NULL DEFAULT 'GLOBAL',
-  `status`                ENUM('OPENED', 'CLOSED') NOT NULL DEFAULT 'OPENED',
+  `status`                ENUM('OPENED', 'CLOSED', 'B2B') NOT NULL DEFAULT 'OPENED',
   `tax`                   DOUBLE NULL,
   `pay_method`            ENUM('CASH', 'E_PAY') NOT NULL DEFAULT 'CASH', 
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
