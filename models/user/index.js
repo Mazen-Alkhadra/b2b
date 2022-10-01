@@ -2,6 +2,7 @@
 const Model = require('../model');
 const Cares = require('./cares');
 const Codes = require('./codes');
+const ACModel = require('../access-control');
 
 class User extends Model {
   static TABLE_NAME = 'users';
@@ -50,6 +51,9 @@ class User extends Model {
       if(dbRet.length == 0 ||  dbRet.length > 1) 
         return null;
 
+      dbRet[0].ac = ACModel.Role.create()
+        .getACPermissions({roleId: dbRet[0].roleId});
+        
       return dbRet[0];      
   }
 
