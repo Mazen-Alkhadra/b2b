@@ -51,9 +51,9 @@ class User extends Model {
       if(dbRet.length == 0 ||  dbRet.length > 1) 
         return null;
 
-      dbRet[0].ac = ACModel.Role.create()
-        .getACPermissions({roleId: dbRet[0].roleId});
-        
+      dbRet[0].ac = (await ACModel.Role.create()
+        .getACPermissions({roleId: dbRet[0].roleId})).data;
+
       return dbRet[0];      
   }
 
