@@ -4,7 +4,7 @@
   "description": "NodeJS web server for B2B web application",
   "main": "index.js",
   "engines": {
-    "node": "12.19.0"
+    "node": "16.17.1"
   },
   "scripts": {
     "start": "node index.js"
