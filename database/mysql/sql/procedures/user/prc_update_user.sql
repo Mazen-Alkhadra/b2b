@@ -20,6 +20,10 @@ CREATE PROCEDURE `prc_update_user` (
 )  
 BEGIN
 
+	IF EXISTS (SELECT * FROM users WHERE email = p_email OR mobile = p_mobile) THEN 
+		CALL prc_throw_exception(NULL, 'DuplicateUser'); 
+	END IF;
+	
 	UPDATE 
 		users
 	SET

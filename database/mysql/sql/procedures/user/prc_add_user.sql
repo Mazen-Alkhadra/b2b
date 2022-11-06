@@ -17,6 +17,10 @@ CREATE PROCEDURE `prc_add_user` (
 )  
 BEGIN
 
+	IF EXISTS (SELECT * FROM users WHERE email = p_email OR mobile = p_mobile) THEN 
+		CALL prc_throw_exception(NULL, 'DuplicateUser'); 
+	END IF;
+
 	INSERT INTO 
 		users (
 			first_name,

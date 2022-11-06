@@ -33,11 +33,11 @@ passport.use (
 				}
 				
 				if (!user) {
-					return done(null, false, { message: 'Invalid Login Name' });
+					return done(null, false, { message: 'Invalid Login Name Or Password' });
 				}
 
 				if (!await hashSvc.isOrigin(password, user.password)) {
-					return done(null, false, { message: 'Invalid password' });
+					return done(null, false, { message: 'Invalid Login Name Or Password' });
 				}
 
 				if (!user.isActive) {
