@@ -1,2 +1,0 @@
-(this.webpackJsonpb2b=this.webpackJsonpb2b||[]).push([[44],{964:function(t,e,c){"use strict";c.r(e);c(0);var n=c(744),a=c(743),b=c(733),s=c(1);e.default=Object(b.a)()((function(t){var e=t.t;return Object(s.jsx)(n.a,{textAlign:"center",children:Object(s.jsx)(a.a,{as:"h3",color:"teal",content:e("WelcomeToOb")})})}))}}]);
-//# sourceMappingURL=44.15b8e2e8.chunk.js.map
