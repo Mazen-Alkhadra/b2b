@@ -23,10 +23,10 @@ module.exports = {
     firstName, lastName, email, password
   }) {
 
-    if (!isAlphanumeric(firstName))
+    if (!firstName)
       return { error: { code: ERR_INVALID_FIRSTNAME } };
 
-    if (!isAlphanumeric(lastName))
+    if (!lastName)
       return { error: { code: ERR_INVALID_LASTNAME } };
   
     if (email && !isEmail(email))
