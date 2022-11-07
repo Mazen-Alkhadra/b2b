@@ -4,6 +4,7 @@ module.exports = {
     ERR_NOT_EXISTS_USER_NAME: 'NotExistsUser',
     ERR_DUPLICATE_USER: 'DuplicateUser',
     ERR_INVALID_USER_NAME: 'InvalidUserName',
+    ERR_INVALID_LOGIN: 'InvalidLogin',
     ERR_INVALID_EMAIL: 'InvalidEmail',
     ERR_INVALID_MOBILE: 'InvalidMobile',
     ERR_INVALID_PASSWORD: 'InvalidPassword',

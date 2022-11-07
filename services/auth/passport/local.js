@@ -6,7 +6,8 @@ const UserModel = require('../../../models').User;
 let HashSvc = require('../../hash');
 const {
 	ERR_INACTIVE_ACCOUNT,
-	ERR_UN_ACCEPTED_ACCOUNT
+	ERR_UN_ACCEPTED_ACCOUNT,
+	ERR_INVALID_LOGIN
 } = require('../../../resources').errors.codes;
 
 passport.use (
@@ -33,11 +34,17 @@ passport.use (
 				}
 				
 				if (!user) {
-					return done(null, false, { message: 'Invalid Login Name Or Password' });
+					return done(null, false, { 
+						code: ERR_INVALID_LOGIN,
+						message: ERR_INVALID_LOGIN 
+					});
 				}
 
 				if (!await hashSvc.isOrigin(password, user.password)) {
-					return done(null, false, { message: 'Invalid Login Name Or Password' });
+					return done(null, false, { 
+						code: ERR_INVALID_LOGIN,
+						message: ERR_INVALID_LOGIN 
+					});
 				}
 
 				if (!user.isActive) {
