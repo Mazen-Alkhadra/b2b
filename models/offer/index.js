@@ -70,6 +70,10 @@ class Offer extends Model {
       `SELECT
         id_offer	idOffer,
 				tender_id	tenderId,
+        fun_get_string(NULL, p.name_str_id) productName,
+        fun_get_img(p.img_id) productImgUrl,
+        fun_get_string(NULL, b.name_str_id) brandName,
+        fun_get_string(NULL, c.name_str_id) categoryName,
         o.creat_by_user_id creatByUserId,
         o.quantity,
 				price_USD	priceUSD,
@@ -86,6 +90,9 @@ class Offer extends Model {
       FROM
         offers o
         INNER JOIN tenders t ON tender_id = id_tender
+        INNER JOIN products p ON id_product = product_id
+        INNER JOIN brands b ON p.brand_id = id_brand
+        INNER JOIN categories c ON c.id_category = b.category_id
       WHERE 
         ${tenderCond} AND 
         ${tenderCreatorCond} AND 
@@ -93,7 +100,7 @@ class Offer extends Model {
 
     let dbRet = await this.directQuery(queryStr);
 
-    return { data: dbRet[0] };
+    return { data: dbRet };
 
   }
 

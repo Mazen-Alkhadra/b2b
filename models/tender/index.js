@@ -61,7 +61,7 @@ class Tender extends Model {
   async get ({ userId }) {      
 
     let userCond = !userId ? 'TRUE' : 
-      `creat_by_user_id = ${this.escapeSql(userId)}`;
+      `t.creat_by_user_id = ${this.escapeSql(userId)}`;
 
     let queryStr =
       `SELECT
@@ -90,7 +90,7 @@ class Tender extends Model {
         pay_method payMethod,
 				closed_at	closedAt
       FROM
-        tenders 
+        tenders t
         INNER JOIN products p ON id_product = product_id
         INNER JOIN brands b ON p.brand_id = id_brand
         INNER JOIN categories c ON c.id_category = b.category_id
