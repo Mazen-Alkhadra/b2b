@@ -69,6 +69,10 @@ class Tender extends Model {
         creat_by_user_id  creatByUserId, 
         name,
 				product_id	productId,
+        fun_get_string(NULL, p.name_str_id) productName,
+        fun_get_img(p.img_id) productImgUrl,
+        fun_get_string(NULL, b.name_str_id) brandName,
+        fun_get_string(NULL, c.name_str_id) categoryName,
 				quantity	quantity,
 				\`from\`,
 				\`to\`,
@@ -86,13 +90,16 @@ class Tender extends Model {
         pay_method payMethod,
 				closed_at	closedAt
       FROM
-        tenders
+        tenders 
+        INNER JOIN products p ON id_product = product_id
+        INNER JOIN brands b ON p.brand_id = id_brand
+        INNER JOIN categories c ON c.id_category = b.category_id
       WHERE 
         ${userCond}`;
 
     let dbRet = await this.directQuery(queryStr);
 
-    return { data: dbRet[0] };
+    return { data: dbRet };
 
   }
 

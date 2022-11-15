@@ -15,7 +15,7 @@ class Company {
     addressLongitude, addressLatitude, moreAddressInfo, 
     licenseExpirAt
   }) {
-    await this.companyModel.addNew({
+    return await this.companyModel.addNew({
       nameEn, companyTypeId, licenseNumber, establishAt,
       licenseImgUrl, cityId, area, street, buildingNumber,
       addressLongitude, addressLatitude, moreAddressInfo, 

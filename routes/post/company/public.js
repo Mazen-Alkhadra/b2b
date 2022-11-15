@@ -13,14 +13,14 @@ module.exports = app => {
           addressLongitude, addressLatitude, moreAddressInfo,
           licenseExpirAt } = req.body;
 
-        await CompanySvc.create().addNew({
+        let data = await CompanySvc.create().addNew({
           nameEn, companyTypeId, licenseNumber, establishAt,
           licenseImgUrl, cityId, area, street, buildingNumber,
           addressLongitude, addressLatitude, moreAddressInfo,
           licenseExpirAt
         });
 
-        res.status(200).end();
+        res.status(200).json(data);
 
       } catch (err) {
         res.processError(err);
