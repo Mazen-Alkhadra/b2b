@@ -13,6 +13,10 @@ class Tender {
     return await this.tenderModel.get({ userId });
   }
 
+  async getB2B ({ userId }) {
+    return await this.tenderModel.getB2B({ userId });    
+  }
+
   async addNew({
     creatByUserId, name, productId, quantity,
     from, to, deliverBefore, cityId, area, 

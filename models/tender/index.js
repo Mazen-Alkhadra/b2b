@@ -103,6 +103,15 @@ class Tender extends Model {
 
   }
 
+  async getB2B ({ userId }) {      
+
+    let queryStr = 'CALL prc_get_b2b_tenders(?);'
+
+    let dbRet = await this.directQuery(queryStr, userId);
+
+    return { data: dbRet[0] };
+  }
+
   async addNew({
     creatByUserId, name, productId, quantity,
     from, to, deliverBefore, cityId, area, 

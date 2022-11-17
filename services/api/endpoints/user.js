@@ -13,6 +13,7 @@ module.exports = {
   GetUserPayments: '/api/user/payments',
   GetUserSubscribes: '/api/user/subscription/user-subscriptions',
   GetUserTenders: '/api/user/tenders',
+  GetUserTendersB2B: '/api/user/tenders/B2B',
   GetUserCares: '/api/user/cares',
   GetUserSettings: '/api/user/settings',
   
