@@ -14,6 +14,7 @@ module.exports = {
   GetUserSubscribes: '/api/user/subscription/user-subscriptions',
   GetUserTenders: '/api/user/tenders',
   GetUserCares: '/api/user/cares',
+  GetUserSettings: '/api/user/settings',
   
   
 
@@ -25,6 +26,7 @@ module.exports = {
   PostUserSubscribe: '/api/user/subscription/subscribe',
   PostUserTender: '/api/user/tender',
   PostUserTenderUpdate: '/api/user/tender/update',
+  PostUserUpdateProfile: '/api/user/profile/update',
 
 
   DeleteUserOffer: '/api/user/offer',
