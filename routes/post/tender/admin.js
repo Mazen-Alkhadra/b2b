@@ -13,14 +13,14 @@ module.exports = app => {
 					from, to, deliverBefore, cityId, area, 
 					street, buildingNumber, addressLongitude, 
 					addressLatitude, moreAddressInfo, status, 
-					closedAt, supplierLocation, tax, payMethod } = req.body;
+					closedAt, supplierLocation, payMethod } = req.body;
 
 				await TenderSvc.create().addNew({
 					name, productId, quantity,
     			from, to, deliverBefore, cityId, area, 
     			street, buildingNumber, addressLongitude, 
     			addressLatitude, moreAddressInfo, status, 
-    			closedAt, supplierLocation, tax, payMethod,
+    			closedAt, supplierLocation, payMethod,
 					creatByUserId: req.user.idUser
 				});
 
@@ -39,14 +39,14 @@ module.exports = app => {
 					from, to, deliverBefore, cityId, area, 
 					street, buildingNumber, addressLongitude, 
 					addressLatitude, moreAddressInfo, status, 
-					tax, payMethod, closedAt, supplierLocation } = req.body;
+					payMethod, closedAt, supplierLocation } = req.body;
 
 				await TenderSvc.create().update({
-					idTender, name, productId, quantity,
+				idTender, name, productId, quantity,
     			from, to, deliverBefore, cityId, area, 
     			street, buildingNumber, addressLongitude, 
     			addressLatitude, moreAddressInfo, status, 
-    			tax, payMethod, closedAt, supplierLocation
+    			payMethod, closedAt, supplierLocation
 				});
 
 				res.status(200).end();

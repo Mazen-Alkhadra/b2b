@@ -35,7 +35,6 @@ class Tender extends Model {
         more_address_info moreAddressInfo,
         supplier_location supplierLocation,
         status,
-        tax,
         pay_method payMethod,
 				closed_at	closedAt
       FROM
@@ -86,7 +85,6 @@ class Tender extends Model {
         more_address_info moreAddressInfo,
         supplier_location supplierLocation,
         status,
-        tax,
         pay_method payMethod,
 				closed_at	closedAt
       FROM
@@ -118,7 +116,7 @@ class Tender extends Model {
     street, buildingNumber, addressLongitude, 
     addressLatitude, moreAddressInfo, 
     supplierLocation, status, closedAt,
-    tax, payMethod
+    payMethod
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_tender(?, @new_record_id);',
@@ -126,7 +124,7 @@ class Tender extends Model {
         from, to, deliverBefore, cityId, area, 
         street, buildingNumber, addressLongitude, 
         addressLatitude, moreAddressInfo, 
-        supplierLocation, status, tax, payMethod, closedAt]
+        supplierLocation, status, payMethod, closedAt]
     );
 
     return { newId: dbRet[0][0].newRecordId };
@@ -138,7 +136,7 @@ class Tender extends Model {
     street, buildingNumber, addressLongitude, 
     addressLatitude, moreAddressInfo, 
     supplierLocation, status, closedAt,
-    tax, payMethod,
+    payMethod,
   }) {
     await this.directQuery (
       'CALL prc_update_tender(?);',
@@ -146,7 +144,7 @@ class Tender extends Model {
         from, to, deliverBefore, cityId, area, 
         street, buildingNumber, addressLongitude, 
         addressLatitude, moreAddressInfo, 
-        supplierLocation, status, tax, payMethod, closedAt]
+        supplierLocation, status, payMethod, closedAt]
     );
   }
 

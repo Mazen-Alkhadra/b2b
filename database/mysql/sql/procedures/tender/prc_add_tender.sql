@@ -16,7 +16,6 @@ CREATE PROCEDURE `prc_add_tender` (
   p_more_address_info     LONGTEXT,
 	p_supplier_location     VARCHAR(20),
 	p_status                VARCHAR(20),
-	p_tax                   DOUBLE,
 	p_pay_method            VARCHAR(20),
 	p_closed_at							DATETIME,
 	OUT p_out_new_rec_id		BIGINT UNSIGNED
@@ -44,7 +43,6 @@ BEGIN
   		more_address_info,    
 			supplier_location, 
 			status,
-			tax,
 			pay_method,
 			closed_at
 		)
@@ -65,7 +63,6 @@ BEGIN
   	p_more_address_info,   
 		IFNULL(p_supplier_location, DEFAULT(supplier_location)),
 		IFNULL(p_status, DEFAULT(status)),
-		p_tax,
 		IFNULL(p_pay_method, DEFAULT(pay_method)),
 		p_closed_at
 	)

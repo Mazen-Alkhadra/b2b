@@ -1,8 +1,8 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_calc_offers_status` (
-	p_offer_id							BIGINT UNSIGNED,
+  p_offer_id			  BIGINT UNSIGNED,
   p_tender_id             BIGINT UNSIGNED,
-	p_chk_offer_tender      BOOLEAN
+  p_chk_offer_tender      BOOLEAN
 )  
 BEGIN
 
