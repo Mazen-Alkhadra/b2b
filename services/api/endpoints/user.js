@@ -28,8 +28,10 @@ module.exports = {
   PostUserTender: '/api/user/tender',
   PostUserTenderUpdate: '/api/user/tender/update',
   PostUserUpdateProfile: '/api/user/profile/update',
-
+  PostUserCare: '/api/user/care',
+  PostUserCaresReset: '/api/user/cares/reset',
 
   DeleteUserOffer: '/api/user/offer',
-  DeleteUserTender: '/api/user/tender'
+  DeleteUserTender: '/api/user/tender',
+  DeleteUserCare: '/api/user/care',
 }

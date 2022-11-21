@@ -22,7 +22,8 @@ class UserCare extends Model {
 
     let dataQuery =
       `SELECT
-				user_id	userId,
+        id_user_care idUserCare,
+        user_id	userId,
 				category_id	categoryId,
 				brand_id	brandId,
 				product_id	productId
@@ -54,6 +55,7 @@ class UserCare extends Model {
 
     let queryStr =
       `SELECT
+        id_user_care idUserCare,
 				user_id	userId,
 				category_id	categoryId,
         fun_get_string(NULL, c.name_str_id) categoryName,
@@ -79,7 +81,7 @@ class UserCare extends Model {
     userId, 
     cares //[{categoryId, brandId, productId}]
   }) {
-    let queryStr = 'CALL prc_delete_all_user_cares(?);';
+    let queryStr = 'CALL prc_delete_all_user_cares(?, NULL);';
     let queryParams = [userId];
     
     cares.forEach(({
@@ -91,6 +93,20 @@ class UserCare extends Model {
 
     await this.directQuery(queryStr, ...queryParams);
   }
+
+  async add ({ userId, categoryId, brandId, productId }) {
+    let queryStr = 'CALL prc_add_user_care(?);';
+    await this.directQuery(
+      queryStr,
+      [userId, categoryId, brandId, productId]
+    );
+  }
+
+  async delete ({ idUserCare }) {
+    let queryStr = 'CALL prc_delete_all_user_cares(NULL, ?);';
+    await this.directQuery(queryStr, idUserCare);
+  }
+  
 }
 
 module.exports = {

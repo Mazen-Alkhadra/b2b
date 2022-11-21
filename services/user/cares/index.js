@@ -23,6 +23,15 @@ class UserCare {
       userId, cares
     });
   }
+
+  async add ({ userId, categoryId, brandId, productId }) {
+    await this.careModel.add ({ userId, categoryId, brandId, productId });
+  }
+
+  async delete ({ idUserCare }) {
+    await this.careModel.delete ({ idUserCare });
+  }
+
 }
 
 

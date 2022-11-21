@@ -428,11 +428,14 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- Table `users_cares`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `users_cares` (
+  `id_user_care`          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id`               BIGINT UNSIGNED NOT NULL,
   `category_id`           BIGINT UNSIGNED NULL,
   `brand_id`              BIGINT UNSIGNED NULL,
   `product_id`            BIGINT UNSIGNED NULL,
   
+  PRIMARY KEY (`id_user_care`),
+
   CONSTRAINT `fk_user_of_care`
     FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id_user` )
