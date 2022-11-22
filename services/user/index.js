@@ -12,6 +12,10 @@ class User {
     });
   }
 
+  async getProfileInfo ({ userId }) {
+    return await this.userModel.getProfileInfo({ userId });
+  }
+
   async addNew({
     firstName, lastName, email, mobile, password, companyId,
     birthDate, gender, imgUrl, roleId, isBlocked, isActive,

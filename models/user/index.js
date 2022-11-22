@@ -57,6 +57,54 @@ class User extends Model {
       return dbRet[0];      
   }
 
+  async getProfileInfo ({ userId }) {
+
+    let queryStr =
+      `SELECT
+        id_user	idUser,
+				first_name	firstName,
+				last_name	lastName,
+				email,
+				mobile,
+        has_mobile_whatsapp hasMobileWhatsapp,
+				company_id companyId,
+        fun_get_string(NULL, c.name_str_id) companyName,
+        fun_get_string(NULL, ct.name_str_id) companyCityName,
+        fun_get_string(NULL, co.name_str_id) companyCountryName,
+        area,
+        street
+        building_number,
+        address_longitude,
+        address_latitude,
+        more_address_info,
+        license_number,
+        license_expir_at,
+        establish_at,
+        license_img_id,
+				birth_date	birthDate,
+				gender,
+				fun_get_img(u.img_id)	imgUrl,
+				role_id	roleId,
+				is_blocked	isBlocked,
+				is_active	isActive,
+        is_accepted isAccepted,
+        last_login_at lastLoginAt, 
+        score,
+        fun_is_user_admin(id_user) isAdmin
+      FROM
+        users u
+        LEFT JOIN companies c ON id_company = company_id
+        LEFT JOIN cities ct ON city_id = id_city
+        LEFT JOIN countries co ON id_country = country_id
+      WHERE 
+        id_user = ${this.escapeSql(userId)}`;
+
+    let dbRet = await this.directQuery(queryStr);
+
+    return  { data: dbRet[0] };
+
+  }
+
   async getAllFullInfo({
     limit, skip, filters, sorts
   }) {

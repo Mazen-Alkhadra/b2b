@@ -16,7 +16,7 @@ module.exports = {
   GetUserTendersB2B: '/api/user/tenders/B2B',
   GetUserCares: '/api/user/cares',
   GetUserSettings: '/api/user/settings',
-  
+  GetUserProfileInfo: '/api/user/profile/info',
   
 
   
