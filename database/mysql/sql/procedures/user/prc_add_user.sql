@@ -13,6 +13,7 @@ CREATE PROCEDURE `prc_add_user` (
 	p_role_id								VARCHAR(50),
 	p_is_blocked						BOOLEAN,
 	p_is_active							BOOLEAN,
+	p_notes                 LONGTEXT,
 	OUT p_out_new_rec_id		BIGINT UNSIGNED
 )  
 BEGIN
@@ -35,7 +36,8 @@ BEGIN
 			img_id,
 			role_id,
 			is_blocked,
-			is_active
+			is_active,
+			notes
 		)
 	VALUES (
 		p_first_name,
@@ -50,7 +52,8 @@ BEGIN
 		fun_insert_img(p_img_url),
 		IFNULL(p_role_id, 'NORMAL_USER'),
 		IFNULL(p_is_blocked, DEFAULT(is_blocked)),
-		IFNULL(p_is_active, DEFAULT(is_active))
+		IFNULL(p_is_active, DEFAULT(is_active)),
+		p_notes
 	)
 	;
   

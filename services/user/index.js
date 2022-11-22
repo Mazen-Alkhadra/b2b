@@ -19,19 +19,19 @@ class User {
   async addNew({
     firstName, lastName, email, mobile, password, companyId,
     birthDate, gender, imgUrl, roleId, isBlocked, isActive,
-    hasMobileWhatsapp
+    hasMobileWhatsapp, notes
   }) {
     await this.userModel.addNew({
       firstName, lastName, email, mobile, password, companyId,
       birthDate, gender, imgUrl, roleId, isBlocked, isActive,
-      hasMobileWhatsapp
+      hasMobileWhatsapp, notes
     });
   }
 
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId,
     birthDate, gender, imgUrl, roleId, isBlocked, isActive,
-    isAccepted, lastLoginAt, hasMobileWhatsapp, score
+    isAccepted, lastLoginAt, hasMobileWhatsapp, score, notes
   }) {
 
     if(password)
@@ -41,7 +41,7 @@ class User {
       idUser, firstName, lastName, email, mobile, companyId,
       birthDate, gender, imgUrl, roleId, isBlocked, isActive,
       password, isAccepted, lastLoginAt, hasMobileWhatsapp, 
-      score
+      score, notes
     });
   }
 
@@ -49,8 +49,8 @@ class User {
     await this.userModel.delete({ idUser });
   }
 
-  async accept ({ usersIds, isAccepted }) {
-    await this.userModel.accept({ usersIds, isAccepted });
+  async accept ({ usersIds, isAccepted, notes }) {
+    await this.userModel.accept({ usersIds, isAccepted, notes });
   }
 
 }

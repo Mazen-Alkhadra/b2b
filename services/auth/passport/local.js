@@ -55,7 +55,10 @@ passport.use (
 				}
 
 				if (!user.isAccepted) {
-					return done(null, false, { code: ERR_UN_ACCEPTED_ACCOUNT });
+					return done(null, false, { 
+						code: ERR_UN_ACCEPTED_ACCOUNT,
+						notes: user.notes
+				 });
 				}
 
 				return done(null, user, { message: 'Success' });

@@ -270,6 +270,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `is_accepted`           BOOLEAN NOT NULL DEFAULT FALSE,
   `last_login_at`         DATETIME NULL DEFAULT NULL,
   `score`                 DOUBLE NOT NULL DEFAULT 0,
+  `notes`                 LONGTEXT NULL,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
   PRIMARY KEY (`id_user`),

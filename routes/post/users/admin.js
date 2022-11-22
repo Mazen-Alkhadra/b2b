@@ -12,12 +12,12 @@ module.exports = app => {
 			try {
 				const { firstName, lastName, email, mobile, password, companyId,
           birthDate, gender, imgUrl, isBlocked, isActive,
-					hasMobileWhatsapp, roleId } = req.body;
+					hasMobileWhatsapp, roleId, notes } = req.body;
 
 				await UserSvc.create().addNew({
           firstName, lastName, email, mobile, password, companyId,
           birthDate, gender, imgUrl, isBlocked, isActive,
-					hasMobileWhatsapp, roleId
+					hasMobileWhatsapp, roleId, notes
 				});
 
 				res.status(200).end();
@@ -33,12 +33,13 @@ module.exports = app => {
 			try {
 				const { idUser, firstName, lastName, email, mobile, 
 					password, companyId, birthDate, gender, imgUrl, roleId,
-					isBlocked, isActive, isAccepted, hasMobileWhatsapp } = req.body;
+					isBlocked, isActive, isAccepted, hasMobileWhatsapp, notes 
+				} = req.body;
 
 				await UserSvc.create().update({
           idUser, firstName, lastName, email, mobile, password, companyId,
           birthDate, gender, imgUrl, isBlocked, isActive, isAccepted,
-					hasMobileWhatsapp, roleId
+					hasMobileWhatsapp, roleId, notes
 				});
 
 				res.status(200).end();
@@ -52,10 +53,10 @@ module.exports = app => {
 	app.post(PostAdminAcceptUsers,
 		async (req, res) => {
 			try {
-				const { usersIds, isAccepted } = req.body;
+				const { usersIds, isAccepted, notes } = req.body;
 
 				await UserSvc.create().accept ({
-          usersIds, isAccepted
+          usersIds, isAccepted, notes
 				});
 
 				res.status(200).end();

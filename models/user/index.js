@@ -37,6 +37,7 @@ class User extends Model {
         is_blocked	isBlocked,
         is_active	isActive,
         is_accepted isAccepted, 
+        notes,
         fun_is_user_admin(id_user) isAdmin
       FROM
         users
@@ -90,6 +91,7 @@ class User extends Model {
         is_accepted isAccepted,
         last_login_at lastLoginAt, 
         score,
+        notes,
         fun_is_user_admin(id_user) isAdmin
       FROM
         users u
@@ -134,6 +136,7 @@ class User extends Model {
         is_accepted isAccepted,
         last_login_at lastLoginAt, 
         score,
+        notes,
         fun_is_user_admin(id_user) isAdmin
       FROM
         users`;
@@ -158,13 +161,13 @@ class User extends Model {
   async addNew({
     firstName, lastName, email, mobile, password, companyId, 
     birthDate, gender, imgUrl, roleId, isBlocked, isActive,
-    hasMobileWhatsapp
+    hasMobileWhatsapp, notes
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_user(?, @new_record_id);',
       [firstName, lastName, email, mobile, hasMobileWhatsapp, 
         password, companyId, birthDate, gender, imgUrl, 
-        roleId, isBlocked, isActive]
+        roleId, isBlocked, isActive, notes]
     );
 
     return { newId: dbRet[0][0].newRecordId };
@@ -173,18 +176,18 @@ class User extends Model {
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId, 
       birthDate, gender, imgUrl, roleId, isBlocked, isActive,
-      isAccepted, lastLoginAt, hasMobileWhatsapp, score
+      isAccepted, lastLoginAt, hasMobileWhatsapp, score, notes
   }) {
     await this.directQuery (
       'CALL prc_update_user(?);',
       [idUser, firstName, lastName, email, mobile, hasMobileWhatsapp, 
         password, companyId, birthDate, gender, imgUrl, roleId, 
-        isBlocked, isActive, isAccepted, lastLoginAt, score]
+        isBlocked, isActive, isAccepted, lastLoginAt, score, notes]
     );
   }
 
   async accept ({
-    usersIds, isAccepted
+    usersIds, isAccepted, notes
   }) {
     
     if(!Array.isArray(usersIds) || !usersIds.length)
@@ -199,7 +202,7 @@ class User extends Model {
         userId, 
         [null, null, null, null, null, null, null, null, null, null, null, null, null],
         isAccepted, 
-        [null, null]
+        [null, null, notes]
       );
     });
     

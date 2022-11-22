@@ -16,7 +16,8 @@ CREATE PROCEDURE `prc_update_user` (
 	p_is_active						BOOLEAN,
 	p_is_accepted   			BOOLEAN,
 	p_last_login_at 			DATETIME,
-	p_score               DOUBLE
+	p_score               DOUBLE,
+	p_notes               LONGTEXT
 )  
 BEGIN
 
@@ -42,7 +43,8 @@ BEGIN
 		is_active = IFNULL(p_is_active, is_active),
 		is_accepted = IFNULL(p_is_accepted, is_accepted),
 		last_login_at = IFNULL(p_last_login_at, last_login_at),
-		score = IFNULL(p_score, score)
+		score = IFNULL(p_score, score),
+		notes = IFNULL(p_notes, notes)
 	WHERE
 		id_user = p_id_user
 	;
