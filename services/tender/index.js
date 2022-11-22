@@ -9,8 +9,10 @@ class Tender {
     });
   }
 
-  async get ({ userId }) {
-    return await this.tenderModel.get({ userId });
+  async get ({ onlyCreatByUserId, onlyCareByUserId }) {
+    return await this.tenderModel.get({ 
+      onlyCreatByUserId, onlyCareByUserId 
+    });
   }
 
   async getB2B ({ userId }) {

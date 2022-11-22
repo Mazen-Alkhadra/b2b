@@ -9,8 +9,13 @@ module.exports = app => {
   app.get(GetUserTenders,
     async (req, res) => {
       try {
+        
+        const { onlyCreated } = req.query;
+        const { idUser } = req.user;
+
         let data = await TenderSvc.create().get({
-          userId: req.user.idUser
+          onlyCreatByUserId: onlyCreated ? idUser : null,
+          onlyCareByUserId: onlyCreated ? null : idUser
         });
 
         res.status(200).json(data);

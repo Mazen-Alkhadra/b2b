@@ -57,10 +57,13 @@ class Tender extends Model {
 
   }
 
-  async get ({ userId }) {      
+  async get ({ onlyCreatByUserId, onlyCareByUserId }) {      
 
-    let userCond = !userId ? 'TRUE' : 
-      `t.creat_by_user_id = ${this.escapeSql(userId)}`;
+    let onlyCreatByUserCond = !onlyCreatByUserId ? 'TRUE' : 
+      `t.creat_by_user_id = ${this.escapeSql(onlyCreatByUserId)}`;
+    let onlyCareByUserCond = !onlyCareByUserId ? 'TRUE' : 
+      `fun_is_user_care_tender(${this.escapeSql(onlyCareByUserId)}, id_tender)
+       OR t.creat_by_user_id = ${this.escapeSql(onlyCareByUserId)}`;
 
     let queryStr =
       `SELECT
@@ -93,7 +96,8 @@ class Tender extends Model {
         INNER JOIN brands b ON p.brand_id = id_brand
         INNER JOIN categories c ON c.id_category = b.category_id
       WHERE 
-        ${userCond}`;
+        ${onlyCreatByUserCond} AND 
+        ${onlyCareByUserCond}`;
 
     let dbRet = await this.directQuery(queryStr);
 
