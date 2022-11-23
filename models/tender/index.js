@@ -89,9 +89,11 @@ class Tender extends Model {
         supplier_location supplierLocation,
         status,
         pay_method payMethod,
-				closed_at	closedAt
+				closed_at	closedAt,
+        u.score creatorScore
       FROM
         tenders t
+        INNER JOIN users u ON id_user = creat_by_user_id
         INNER JOIN products p ON id_product = product_id
         INNER JOIN brands b ON p.brand_id = id_brand
         INNER JOIN categories c ON c.id_category = b.category_id
