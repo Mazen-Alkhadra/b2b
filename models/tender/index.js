@@ -62,8 +62,7 @@ class Tender extends Model {
     let onlyCreatByUserCond = !onlyCreatByUserId ? 'TRUE' : 
       `t.creat_by_user_id = ${this.escapeSql(onlyCreatByUserId)}`;
     let onlyCareByUserCond = !onlyCareByUserId ? 'TRUE' : 
-      `fun_is_user_care_tender(${this.escapeSql(onlyCareByUserId)}, id_tender)
-       OR t.creat_by_user_id = ${this.escapeSql(onlyCareByUserId)}`;
+      `fun_is_user_care_tender(${this.escapeSql(onlyCareByUserId)}, id_tender)`;
 
     let queryStr =
       `SELECT

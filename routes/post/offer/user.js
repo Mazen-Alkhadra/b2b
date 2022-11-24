@@ -10,12 +10,12 @@ module.exports = app => {
 			try {
 				const { tenderId, quantity, priceUSD, 
 					bIncludeDelivery, deliveryCost, 
-          			deliveryAddress } = req.body;
+          deliveryAddress, tax } = req.body;
 
 				await OfferSvc.create().addNew({
 					tenderId, quantity, priceUSD, 
 					bIncludeDelivery, deliveryCost, 
-          deliveryAddress,
+          deliveryAddress, tax,
 					creatByUserId: req.user.idUser
 				});
 

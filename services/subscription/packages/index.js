@@ -9,6 +9,10 @@ class Package {
     });
   }
 
+  async get ({ filters, sorts }) {
+    return await this.packageModel.get ({ filters, sorts });
+  }
+
   async addNew({
     nameEn, descriptionEn, priceUsd, imgUrl, 
     expirAt, validitySeconds, isActive

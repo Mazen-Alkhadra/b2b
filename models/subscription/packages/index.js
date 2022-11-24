@@ -47,6 +47,58 @@ class SubscriptionPackage extends Model {
 
   }
 
+  async get ({ filters, sorts }) {    
+
+    let queryStr =
+      `SELECT
+        id_subscription_package	idSubscriptionPackage,
+				fun_get_string(NULL, sp.name_str_id)	nameEn,
+				fun_get_string(NULL, sp.description_str_id)	descriptionEn,
+				price_usd priceUsd,
+				fun_get_img(img_id) imgUrl,
+				expir_at	expirAt,
+				validity_seconds	validitySeconds,
+				is_active	isActive,
+        subscription_feature_id	subscriptionFeatureId,
+        fun_get_string(NULL, sf.name_str_id)	featureNameEn,
+				fun_get_string(NULL, sf.description_str_id) featureDescriptionEn,
+				feature_value	featureValue
+      FROM
+        subscription_packages sp
+        INNER JOIN subscription_packages_features ON 
+          subscription_package_id = id_subscription_package
+        INNER JOIN subscription_features sf ON 
+          id_subscription_feature = subscription_feature_id`;
+
+    let filteredQuery = this.applyFilters(queryStr, filters);
+    queryStr = filteredQuery.finalQuery || queryStr;
+    queryStr += this.getOrderClause(sorts);
+
+    let dbRet = await this.directQuery(queryStr);
+    let ret = {};
+
+    dbRet.forEach(pkg => {
+      ret[pkg.idSubscriptionPackage] = ret[pkg.idSubscriptionPackage] ||
+      {
+        ...pkg,
+        features: [],
+        subscriptionFeatureId: null,
+        featureNameEn: null,
+        featureDescriptionEn: null,
+        featureValue: null
+      };
+
+      ret[pkg.idSubscriptionPackage].features.push({
+        subscriptionFeatureId: pkg.subscriptionFeatureId, 
+        featureNameEn: pkg.featureNameEn, 
+        featureDescriptionEn: pkg.featureDescriptionEn, 
+        featureValue: pkg.featureValue
+      })
+    });
+
+    return { data: Object.values(ret) };
+  }
+
   async addNew({
     nameEn, descriptionEn, priceUsd, imgUrl, 
     expirAt, validitySeconds, isActive

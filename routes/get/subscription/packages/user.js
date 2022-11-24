@@ -9,9 +9,7 @@ module.exports = app => {
     [extractFilters, extractSorts],
     async (req, res) => {
       try {
-        let data = await SubscribeSvc.Packages.create().getAllFullInfo({
-          limit: req.paginate.limit,
-          skip: req.paginate.skip,
+        let data = await SubscribeSvc.Packages.create().get ({
           filters: req.filters,
           sorts: req.sorts
         });
