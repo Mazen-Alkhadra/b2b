@@ -85,6 +85,21 @@ class User_code extends Model {
     );
   }
 
+  fixMobile({number}) {
+    if(!number || !number.length)
+      return null;
+    
+    if(number.search(/[^+\d]/g) > -1) 
+      return null;
+    
+    if(number.length < 12) 
+      number = '+971' + number;
+
+    number = number.replace(/^0{2}/g, '+');
+
+    return number;
+  }
+
 }
 
 module.exports = {

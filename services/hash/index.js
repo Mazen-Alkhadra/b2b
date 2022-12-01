@@ -4,6 +4,9 @@ class Hash {
   static HASH_SALT_ROUND = 2;
 
   async hash(plainValue) {
+    if(!plainValue)
+      return null;
+      
     return await bcrypt.hash(plainValue , Hash.HASH_SALT_ROUND);
   }
 

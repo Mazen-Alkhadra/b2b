@@ -21,6 +21,7 @@ class User {
     birthDate, gender, imgUrl, roleId, isBlocked, isActive,
     hasMobileWhatsapp, notes
   }) {
+    mobile = this.fixMobile({number: mobile});
     await this.userModel.addNew({
       firstName, lastName, email, mobile, password, companyId,
       birthDate, gender, imgUrl, roleId, isBlocked, isActive,
@@ -33,10 +34,9 @@ class User {
     birthDate, gender, imgUrl, roleId, isBlocked, isActive,
     isAccepted, lastLoginAt, hasMobileWhatsapp, score, notes
   }) {
-
-    if(password)
-      password = await HashSvc.create().hash(password);
-
+    password = await HashSvc.create().hash(password);
+    mobile = this.fixMobile({number: mobile});
+    
     await this.userModel.update({
       idUser, firstName, lastName, email, mobile, companyId,
       birthDate, gender, imgUrl, roleId, isBlocked, isActive,
@@ -51,6 +51,10 @@ class User {
 
   async accept ({ usersIds, isAccepted, notes }) {
     await this.userModel.accept({ usersIds, isAccepted, notes });
+  }
+
+  fixMobile({number}) {
+    return this.userModel.fixMobile({number});
   }
 
 }

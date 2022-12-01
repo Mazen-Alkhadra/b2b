@@ -30,6 +30,7 @@
     "nodemailer": "^6.4.14",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
+    "twilio": "^3.83.4",
     "validator": "^13.1.17"
   }
 }

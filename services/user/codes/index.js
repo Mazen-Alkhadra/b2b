@@ -2,6 +2,7 @@ const UserModel = require('../../../models').User;
 const codeGenSvc = require('../../random-codes-generator');
 const userCodesConfig = require('../../../config/server').usersCodes;
 const EmailSvc = require('../../emailer');
+const SMSSvc = require('../../sms');
 const {ERR_NOT_EXISTS_USER_NAME} = require('../../../resources').errors.codes;
 
 class UserCode {
@@ -34,7 +35,7 @@ class UserCode {
   }
 
   async genActivationCode({loginName}) {
-    let {idUser, firstName, lastName, email} = 
+    let {idUser, firstName, lastName, email, mobile} = 
       await UserModel.create().findUser({loginName});
 
     if(!idUser) 
@@ -51,10 +52,11 @@ class UserCode {
     });
     
     EmailSvc.create().sendActivationCode(firstName, lastName, email, code);
+    SMSSvc.create().sendConfirmCode({mobileNumber: mobile, code});
   }
 
   async genResetPasswordCode({loginName}) {
-    let {idUser, firstName, lastName, email} = 
+    let {idUser, firstName, lastName, email, mobile} = 
       await UserModel.create().findUser({loginName});
 
     if(!idUser) 
@@ -72,6 +74,7 @@ class UserCode {
     });
     
     EmailSvc.create().sendResetPasswordLink(firstName, lastName, email, code);
+    SMSSvc.create().sendConfirmCode({mobileNumber: mobile, code});
   }
 
   async delete({ idCode }) {

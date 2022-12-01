@@ -14,7 +14,7 @@ module.exports = {
   cookie: {
     userLanguageKey: 'languagePref'
   },
-  emailServer: {
+  defaultEmailServer: {
     host: 'mail.b2back.net',
     port: 465,
     isSecure: true,
