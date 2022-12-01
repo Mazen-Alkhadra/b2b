@@ -9,6 +9,7 @@ CREATE PROCEDURE `prc_add_offer` (
 	p_delivery_address			LONGTEXT,
 	p_status					VARCHAR(20),
 	p_tax                       DOUBLE,
+	p_city_id           BIGINT UNSIGNED,
 	p_accepted_at				DATETIME,
 	p_excuted_at				DATETIME,
 	OUT p_out_new_rec_id		BIGINT UNSIGNED
@@ -26,6 +27,7 @@ BEGIN
 			delivery_address,
 			status,
 			tax,
+			city_id,
 			accepted_at,
 			excuted_at
 		)
@@ -39,6 +41,7 @@ BEGIN
 		p_delivery_address,
 		IFNULL(p_status, DEFAULT(status)),
 		p_tax,
+		p_city_id,
 		p_accepted_at,
 		p_excuted_at
 	)

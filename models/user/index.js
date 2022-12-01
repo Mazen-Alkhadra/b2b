@@ -69,9 +69,11 @@ class User extends Model {
 				mobile,
         has_mobile_whatsapp hasMobileWhatsapp,
 				company_id companyId,
+        company_type_id companyTypeId,
         fun_get_string(NULL, c.name_str_id) companyName,
         fun_get_string(NULL, ct.name_str_id) companyCityName,
         fun_get_string(NULL, co.name_str_id) companyCountryName,
+        fun_get_string(NULL, ctp.name_str_id) companyTypeName,
         area,
         street
         building_number,
@@ -96,6 +98,7 @@ class User extends Model {
       FROM
         users u
         LEFT JOIN companies c ON id_company = company_id
+        LEFT JOIN company_types ctp ON id_company_type = company_type_id
         LEFT JOIN cities ct ON city_id = id_city
         LEFT JOIN countries co ON id_country = country_id
       WHERE 

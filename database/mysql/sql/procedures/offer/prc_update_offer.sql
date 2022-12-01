@@ -10,6 +10,7 @@ CREATE PROCEDURE `prc_update_offer` (
 	p_delivery_address		LONGTEXT,
 	p_status				VARCHAR(20),
 	p_tax                   DOUBLE,
+	p_city_id         BIGINT UNSIGNED,
 	p_accepted_at			DATETIME,
 	p_excuted_at			DATETIME
 )  
@@ -33,6 +34,7 @@ BEGIN
 		delivery_address = IFNULL(p_delivery_address, delivery_address),
 		status = IFNULL(p_status, status),
 		tax = IFNULL(p_tax, tax),
+		city_id = IFNULL(p_city_id, city_id),
 		accepted_at = IFNULL(p_accepted_at, accepted_at),
 		excuted_at = IFNULL(p_excuted_at, excuted_at)
 	WHERE

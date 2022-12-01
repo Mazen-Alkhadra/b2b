@@ -516,6 +516,7 @@ CREATE TABLE IF NOT EXISTS `offers` (
   `delivery_address`      LONGTEXT NULL,
   `status`                ENUM('PENDING', 'REJECTED', 'ACCEPTED', 'EXECUTED') NOT NULL DEFAULT 'PENDING',
   `tax`                   DOUBLE NULL,
+  `city_id`               BIGINT UNSIGNED NULL,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `accepted_at`           DATETIME NULL,
   `excuted_at`            DATETIME NULL,
@@ -530,6 +531,11 @@ CREATE TABLE IF NOT EXISTS `offers` (
   CONSTRAINT `fk_offer_creator`
     FOREIGN KEY (`creat_by_user_id`)
     REFERENCES `users` (`id_user`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_offer_city`
+    FOREIGN KEY (`city_id`)
+    REFERENCES `cities` (`id_city`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT
   )

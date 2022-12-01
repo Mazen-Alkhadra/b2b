@@ -11,13 +11,13 @@ module.exports = app => {
 			try {
 				const { tenderId, quantity, priceUSD, 
 					bIncludeDelivery, deliveryCost, deliveryAddress,
-					status, tax, acceptedAt, excutedAt } = req.body;
+					status, tax, cityId, acceptedAt, excutedAt } = req.body;
 
 				await OfferSvc.create().addNew({
 				tenderId, quantity, priceUSD, 
     			bIncludeDelivery, deliveryCost, deliveryAddress,
-    			status, tax, acceptedAt, excutedAt, 
-				creatByUserId: req.user.idUser
+    			status, tax, cityId, acceptedAt, excutedAt, 
+					creatByUserId: req.user.idUser
 				});
 
 				res.status(200).end();
@@ -33,12 +33,12 @@ module.exports = app => {
 			try {
 				const { idOffer, tenderId, quantity, priceUSD, 
 					bIncludeDelivery, deliveryCost, deliveryAddress, 
-					status, tax, acceptedAt, excutedAt } = req.body;
+					status, tax, cityId, acceptedAt, excutedAt } = req.body;
 
 				await OfferSvc.create().update({
 					idOffer, tenderId, quantity, priceUSD, 
     				bIncludeDelivery, deliveryCost, deliveryAddress, 
-    				status, tax, acceptedAt, excutedAt
+    				status, tax, cityId, acceptedAt, excutedAt
 				});
 
 				res.status(200).end();

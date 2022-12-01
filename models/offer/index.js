@@ -28,6 +28,7 @@ class Offer extends Model {
 				o.delivery_address	deliveryAddress,
 				o.status	status,
         o.tax,
+        o.city_id cityId,
 				accepted_at	acceptedAt,
 				excuted_at	excutedAt,
         o.creat_at creatAt,
@@ -83,18 +84,21 @@ class Offer extends Model {
 				o.delivery_address	deliveryAddress,
 				o.status	status,
         o.tax,
+        o.city_id offerCityId,
 				accepted_at	acceptedAt,
 				excuted_at	excutedAt,
         o.creat_at creatAt,
         t.creat_by_user_id tenderCreatorByUserId,
         t.product_id productId,
-        t.quantity tenderQuantity
+        t.quantity tenderQuantity,
+        u.score offerCreatorScore
       FROM
         offers o
         INNER JOIN tenders t ON tender_id = id_tender
         INNER JOIN products p ON id_product = product_id
         INNER JOIN brands b ON p.brand_id = id_brand
         INNER JOIN categories c ON c.id_category = b.category_id
+        INNER JOIN users u ON u.id_user = o.creat_by_user_id
       WHERE 
         ${tenderCond} AND 
         ${tenderCreatorCond} AND 
@@ -109,12 +113,13 @@ class Offer extends Model {
   async addNew({
     tenderId, creatByUserId, quantity, priceUSD, 
     bIncludeDelivery, deliveryCost, deliveryAddress,
-    status, tax, acceptedAt, excutedAt
+    status, tax, cityId, acceptedAt, excutedAt
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_offer(?, @new_record_id);',
       [tenderId, creatByUserId, quantity, priceUSD, bIncludeDelivery, 
-        deliveryCost, deliveryAddress, status, tax, acceptedAt, excutedAt]
+        deliveryCost, deliveryAddress, status, tax, cityId, acceptedAt,
+        excutedAt]
     );
 
     return { newId: dbRet[0][0].newRecordId };
@@ -123,13 +128,13 @@ class Offer extends Model {
   async update({
     idOffer, tenderId, creatByUserId, quantity, priceUSD, 
     bIncludeDelivery, deliveryCost, deliveryAddress, 
-    status, tax, acceptedAt, excutedAt
+    status, tax, cityId, acceptedAt, excutedAt
   }) {
     await this.directQuery (
       'CALL prc_update_offer(?);',
       [idOffer, tenderId, creatByUserId, quantity, priceUSD, 
         bIncludeDelivery, deliveryCost, deliveryAddress, 
-        status, tax, acceptedAt, excutedAt]
+        status, tax, cityId, acceptedAt, excutedAt]
     );
   }
 
