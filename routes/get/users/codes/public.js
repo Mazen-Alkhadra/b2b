@@ -12,7 +12,7 @@ module.exports = app => {
           code: req.params.code
         });
         
-        res.status(200).json(data);
+        res.status(200).end();
 
       } catch (err) {
         res.processError(err);

@@ -21,16 +21,16 @@ BEGIN
   WHERE 
     code = p_code AND 
     is_active = TRUE AND 
-    (expiry_date_time IS NULL OR expiry_date_time <= CURRENT_TIMESTAMP())
+    (expiry_date_time IS NULL OR expiry_date_time > CURRENT_TIMESTAMP())
   ;
 
   IF v_id_code IS NULL THEN 
     CALL prc_throw_exception(NULL, 'InvalidUserCode');
   END IF;
 
-  IF v_code_type = 'ACTIVATE' THEN 
+  IF v_code_type = 'ACTIVATE' AND v_id_user IS NOT NULL THEN 
     CALL prc_update_user(v_id_user, NULL, NULL, NULL, NULL, NULL, NULL,
-      NULL, NULL, NULL, NULL, NULL, NULL, NULL, TRUE);
+      NULL, NULL, NULL, NULL, NULL, NULL, TRUE, NULL,  NULL, NULL, NULL);
   END IF;
 
   CALL prc_update_user_code(v_id_code, NULL, NULL, NULL, FALSE, NULL);

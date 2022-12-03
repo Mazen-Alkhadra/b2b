@@ -9,12 +9,14 @@ const logger = require('../logger');
 class Emailer {
 
   constructor(host, port, userName, password, isSecure) {
+    this.userName = userName || defaultEmailServer.userName;
+
     this.transporter = nodemailer.createTransport({
       host: host || defaultEmailServer.host,
       port: port || defaultEmailServer.port,
       secure: isSecure || defaultEmailServer.isSecure,
       auth: {
-        user: userName || defaultEmailServer.userName,
+        user: this.userName,
         pass: password || defaultEmailServer.password
       },
     });
@@ -27,7 +29,7 @@ class Emailer {
         attachmentsUrls.forEach(url => attachments.push({path: url}));
 
       let info = await this.transporter.sendMail({
-        from: userName,
+        from: this.userName,
         to,
         subject,
         text,
@@ -58,13 +60,13 @@ class Emailer {
     }
   }
 
-  sendActivationCode (
+  sendActivationCode ({
     userFirstName, userLastName, userEMail, activationCode
-  ) {
+  }) {
 
     let mailBodyHtml = 
-      `Dear <b>${userFirstName} ${userLastName},</b>
-      <p>Thank you for your registeration in our platform,</p>
+      userFirstName ? `Dear <b>${userFirstName} ${userLastName},</b>` : '' + 
+      `<p>Thank you for your registeration in our platform,</p>
       <p>To activate your new account, please enter the follwing code in the activation form:</p>
       <p><b>${activationCode}</b></p>
       <p>Best regards.</p>`;

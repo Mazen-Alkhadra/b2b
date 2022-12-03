@@ -22,7 +22,8 @@ class Auth {
       firstName, lastName, email, mobile,
       companyId, birthDate, gender,
       password: hashedPassword,
-      hasMobileWhatsapp
+      hasMobileWhatsapp,
+      isActive: true
     });
 
     NotifySvc.Event.create().handl({

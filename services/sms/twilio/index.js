@@ -14,7 +14,6 @@ class Twilio {
       numbers = this.fixMobilesNumbers({ numbers });
       
       for(let number of numbers) {
-        console.log(number);
         await client.messages.create({
           body: message,
           from: appName,

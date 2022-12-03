@@ -38,4 +38,13 @@ module.exports = {
 
     return { valid: true };
   },
+
+  isMobile(str) {
+    return /^\+?\d{8,13}$/g.test(str); 
+  },
+
+  isEmail(str) {
+    return isEmail(str);
+  }
+
 }

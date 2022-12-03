@@ -299,12 +299,12 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `users_codes` (
   `id_code`     		  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` 				  	  BIGINT UNSIGNED NOT NULL,
+  `user_id` 				  	  BIGINT UNSIGNED NULL,
   `code`          				VARCHAR(190) NOT NULL UNIQUE,
   `type`                  ENUM('ACTIVATE', 'RESET_PASS') NOT NULL,
   `is_active`             BOOLEAN NOT NULL DEFAULT TRUE,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `expiry_date_time`      BIGINT UNSIGNED NULL DEFAULT NULL,
+  `expiry_date_time`      DATETIME NULL,
 
 
   PRIMARY KEY (`id_code`) ,
