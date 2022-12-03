@@ -4,7 +4,7 @@ module.exports = {
   GetDocFromLocalFS: '/api/fs/doc',
   GetImgFromLocalFS: '/api/fs/img',
 
-  GetPublicActivateAcount: '/api/auth/activate/:code',
+  GetPublicActivateAcount: '/api/auth/activate/:loginName/:code',
   GetPublicCompanyTypes: '/api/public/company-type',
   GetPublicCities: '/api/public/cities',
   GetPublicCountries: '/api/public/countries',

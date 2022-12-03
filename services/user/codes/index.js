@@ -16,29 +16,32 @@ class UserCode {
   }
 
   async addNew({
-    userId, code, type, isActive, expiryDateTime
+    userId, loginName, code, type, isActive, expiryDateTime
   }) {
     await this.codeModel.addNew({
-      userId, code, type, isActive, expiryDateTime
+      userId, loginName, code, type, isActive, expiryDateTime
     });
   }
 
   async update({
-    idCode, userId, code, type, isActive, expiryDateTime
+    idCode, userId, loginName, code, type, isActive,
+    expiryDateTime
   }) {
     await this.codeModel.update({
-      idCode, userId, code, type, isActive, expiryDateTime
+      idCode, userId, loginName, code, type, isActive, 
+      expiryDateTime
     });
   }
 
-  async consume ({ code }) {
-    await this.codeModel.consume({ code });
+  async consume ({ loginName, code }) {
+    await this.codeModel.consume({ loginName, code });
   }
 
   async genActivationCode({loginName}) {
     let code = codeGenSvc.create().generate(5, codeGenSvc.CODES_TYPES.NUMERIC);
 
     await this.addNew({
+      loginName,
       code, 
       isActive: true,
       type: UserModel.Codes.CODES_TYPE.ACTIVATE,

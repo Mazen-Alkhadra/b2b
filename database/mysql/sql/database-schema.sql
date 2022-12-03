@@ -300,6 +300,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 CREATE TABLE IF NOT EXISTS `users_codes` (
   `id_code`     		  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` 				  	  BIGINT UNSIGNED NULL,
+  `login_name`            VARCHAR(200) NULL,
   `code`          				VARCHAR(190) NOT NULL UNIQUE,
   `type`                  ENUM('ACTIVATE', 'RESET_PASS') NOT NULL,
   `is_active`             BOOLEAN NOT NULL DEFAULT TRUE,

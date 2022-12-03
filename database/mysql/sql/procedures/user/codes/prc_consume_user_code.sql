@@ -1,6 +1,7 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_consume_user_code` (
-	p_code		VARCHAR(190)
+	p_code		    VARCHAR(190), 
+  p_login_name  VARCHAR(200)
 )  
 BEGIN
 
@@ -21,6 +22,7 @@ BEGIN
   WHERE 
     code = p_code AND 
     is_active = TRUE AND 
+    (p_login_name IS NULL OR login_name = p_login_name) AND
     (expiry_date_time IS NULL OR expiry_date_time > CURRENT_TIMESTAMP())
   ;
 
@@ -33,7 +35,7 @@ BEGIN
       NULL, NULL, NULL, NULL, NULL, NULL, TRUE, NULL,  NULL, NULL, NULL);
   END IF;
 
-  CALL prc_update_user_code(v_id_code, NULL, NULL, NULL, FALSE, NULL);
+  CALL prc_update_user_code(v_id_code, NULL, NULL, NULL, NULL, FALSE, NULL);
 
   SELECT v_id_user AS idUser;
   

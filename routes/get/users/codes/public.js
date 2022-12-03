@@ -9,6 +9,7 @@ module.exports = app => {
       try {
         
         await UserSvc.Codes.create().consume ({
+          loginName: req.params.loginName,
           code: req.params.code
         });
         

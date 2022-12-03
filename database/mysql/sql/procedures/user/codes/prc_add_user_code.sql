@@ -1,6 +1,7 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_add_user_code` (
 	p_user_id							BIGINT UNSIGNED,
+	p_login_name          VARCHAR(200),
 	p_code								VARCHAR(190),
 	p_type								VARCHAR(20),
 	p_is_active						BOOLEAN,
@@ -12,6 +13,7 @@ BEGIN
 	INSERT INTO 
 		users_codes (
 			user_id,
+			login_name,
 			code,
 			type,
 			is_active,
@@ -19,6 +21,7 @@ BEGIN
 		)
 	VALUES (
 		p_user_id,
+		p_login_name,
 		p_code,
 		p_type,
 		IFNULL(p_is_active, DEFAULT(is_active)),

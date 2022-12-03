@@ -25,6 +25,7 @@ class User_code extends Model {
       `SELECT
         id_code	idCode,
 				user_id	userId,
+        login_name loginName,
 				code,
 				type,
 				is_active	isActive,
@@ -50,29 +51,33 @@ class User_code extends Model {
   }
 
   async addNew({
-    userId, code, type, isActive, expiryDateTime
+    userId, loginName, code, type, isActive, 
+    expiryDateTime
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_user_code(?, @new_record_id);',
-      [userId, code, type, isActive, expiryDateTime]
+      [userId, loginName, code, type, isActive, 
+        expiryDateTime]
     );
 
     return { newId: dbRet[0][0].newRecId };
   }
 
   async update({
-    idCode, userId, code, type, isActive, expiryDateTime
+    idCode, userId, loginName, code, type,
+    isActive, expiryDateTime
   }) {
     await this.directQuery (
       'CALL prc_update_user_code(?);',
-      [idCode, userId, code, type, isActive, expiryDateTime]
+      [idCode, userId, loginName, code, type,
+        isActive, expiryDateTime]
     );
   }
 
-  async consume ({ code }) {
+  async consume ({ loginName, code }) {
     let dbRet = await this.directQuery (
       'CALL prc_consume_user_code(?);',
-      code
+      [code, loginName]
     );
 
     return {idUser: dbRet[0].idUser};
