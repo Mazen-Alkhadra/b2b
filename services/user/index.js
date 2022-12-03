@@ -6,9 +6,13 @@ const Codes = require('./codes');
 class User {
   userModel = UserModel.create();
 
-  async getAllFullInfo({ limit, skip, filters, sorts }) {
+  async getAllFullInfo({ 
+    limit, skip, filters, sorts,
+    onlyAdmins, careTenderId
+  }) {
     return await this.userModel.getAllFullInfo({ 
-      limit, skip, filters, sorts
+      limit, skip, filters, sorts, onlyAdmins,
+      careTenderId
     });
   }
 
@@ -22,7 +26,7 @@ class User {
     hasMobileWhatsapp, notes
   }) {
     mobile = this.fixMobile({number: mobile});
-    await this.userModel.addNew({
+    return await this.userModel.addNew({
       firstName, lastName, email, mobile, password, companyId,
       birthDate, gender, imgUrl, roleId, isBlocked, isActive,
       hasMobileWhatsapp, notes

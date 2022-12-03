@@ -886,3 +886,64 @@ CREATE TABLE IF NOT EXISTS `settings` (
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
+
+-- =============================================================================
+-- -----------------------------------------------------
+-- Table `notifications`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id_notification`        BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id`                BIGINT UNSIGNED NOT NULL,
+  `type`                   ENUM('NORMAL', 'IMPORTANT') NOT NULL DEFAULT 'NORMAL',
+  `title_str_id`           BIGINT UNSIGNED NULL,
+  `content_str_id`         BIGINT UNSIGNED NOT NULL,
+  `img_id`                 BIGINT UNSIGNED NULL,
+  `creat_at`               DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `read_at`                DATETIME NULL DEFAULT NULL,
+
+  PRIMARY KEY (`id_notification`),
+
+  CONSTRAINT `fk_notified_user`
+    FOREIGN KEY (`user_id` )
+    REFERENCES `users` (`id_user`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_notifiy_str`
+    FOREIGN KEY (`content_str_id` )
+    REFERENCES `strings` (`id_str`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_notifiy_title_str`
+    FOREIGN KEY (`title_str_id` )
+    REFERENCES `strings` (`id_str`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_notifiy_img`
+    FOREIGN KEY (`img_id` )
+    REFERENCES `imgs` (`id_img`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+  )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+-- -----------------------------------------------------
+-- Table `notify_devices`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `notify_devices` (
+  `id_device`              BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id`                BIGINT UNSIGNED NOT NULL,
+  `token`                  LONGTEXT NOT NULL,
+     
+  PRIMARY KEY (`id_device`),
+
+  CONSTRAINT `fk_notify_device_user`
+    FOREIGN KEY (`user_id` )
+    REFERENCES `users` (`id_user`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+-- ===================================================================================

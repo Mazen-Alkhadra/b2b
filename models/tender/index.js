@@ -57,12 +57,16 @@ class Tender extends Model {
 
   }
 
-  async get ({ onlyCreatByUserId, onlyCareByUserId }) {      
+  async get ({ 
+    onlyCreatByUserId, onlyCareByUserId, tenderId 
+  }) {      
 
     let onlyCreatByUserCond = !onlyCreatByUserId ? 'TRUE' : 
       `t.creat_by_user_id = ${this.escapeSql(onlyCreatByUserId)}`;
     let onlyCareByUserCond = !onlyCareByUserId ? 'TRUE' : 
       `fun_is_user_care_tender(${this.escapeSql(onlyCareByUserId)}, id_tender)`;
+    let tenderIdCond = !tenderId ? 'TRUE' :
+      `id_tender = ${this.escapeSql(tenderId)}`;
 
     let queryStr =
       `SELECT
@@ -98,7 +102,8 @@ class Tender extends Model {
         INNER JOIN categories c ON c.id_category = b.category_id
       WHERE 
         ${onlyCreatByUserCond} AND 
-        ${onlyCareByUserCond}`;
+        ${onlyCareByUserCond} AND 
+        ${tenderIdCond}`;
 
     let dbRet = await this.directQuery(queryStr);
 
@@ -132,7 +137,7 @@ class Tender extends Model {
         supplierLocation, status, payMethod, closedAt]
     );
 
-    return { newId: dbRet[0][0].newRecordId };
+    return { newId: dbRet[0][0].newRecId };
   }
 
   async update({

@@ -1,4 +1,5 @@
 const OfferModel = require('../../models').Offer;
+const NotifySvc = require('../notification');
 
 class Offer {
   offerModel = OfferModel.create();
@@ -27,6 +28,11 @@ class Offer {
       tenderId, creatByUserId, quantity, priceUSD, 
       bIncludeDelivery, deliveryCost, deliveryAddress,
       status, tax, cityId, acceptedAt, excutedAt
+    });
+
+    NotifySvc.Event.create().handl({
+      event: NotifySvc.Event.EVENTS_TYPES.NEW_OFFER_CREATED,
+      data: {tenderId}
     });
   }
 

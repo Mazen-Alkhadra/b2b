@@ -2,6 +2,7 @@ const {
     PostUserUpdateProfile
 } = require('../../../services').api.endpoints;
 const UserSvc = require('../../../services').User;
+const NotifySvc = require('../../../services/notification');
 
 module.exports = app => {
 
@@ -31,6 +32,11 @@ module.exports = app => {
                     establishAt, licenseImgUrl, cityId, area, street, buildingNumber,
                     addressLongitude, addressLatitude, moreAddressInfo,
                     licenseExpirAt
+                });
+
+                NotifySvc.Event.create().handl({
+                    event: NotifySvc.Event.EVENTS_TYPES.USER_UPDATE_PROFILE,
+                    data: {userId: idUser}
                 });
 
                 res.status(200).end();

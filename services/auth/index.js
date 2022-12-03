@@ -1,6 +1,8 @@
 let passport = require('./passport');
 let UserSvc = require('../user');
 let HashSvc = require('../hash');
+const NotifySvc = require('../notification');
+
 const { ERR_INVALID_ARGUMENT } = require('../../resources').errors.codes;
 
 const passportInit = passport.initialize();
@@ -16,11 +18,16 @@ class Auth {
   }) {
     const hashedPassword = await this.hashSvc.hash(password);
 
-    await this.userSvc.addNew({
+    let {newId} = await this.userSvc.addNew ({
       firstName, lastName, email, mobile,
       companyId, birthDate, gender,
       password: hashedPassword,
       hasMobileWhatsapp
+    });
+
+    NotifySvc.Event.create().handl({
+      event: NotifySvc.Event.EVENTS_TYPES.NEW_USER_SIGNUP,
+      data: {userId: newId}
     });
   }
 

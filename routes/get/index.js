@@ -27,6 +27,7 @@ module.exports = app => {
   require('./ads')(app);
   require('./reports')(app);
   require('./setting')(app);
+  require('./notifications')(app);
 
   app.get('/', (req, res) => {
     res.status(200).sendFile(

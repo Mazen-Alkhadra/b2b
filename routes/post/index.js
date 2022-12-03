@@ -21,4 +21,6 @@ module.exports = app => {
   require('./offer')(app);
   require('./ads')(app);
   require('./setting')(app);
+  require('./notification')(app);
+
 };
