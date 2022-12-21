@@ -1,5 +1,6 @@
 const {PostAuthLogin} = require('../../../services').api.endpoints;
 const { Auth, User } = require('../../../services');
+const NotificationSvc = require('../../../services/notification');
 
 module.exports = app => {
 
@@ -27,6 +28,12 @@ module.exports = app => {
 								idUser: user.idUser,
 								lastLoginAt: new Date().toISOString()
 							});
+	
+							if(req.body.notificationToken)
+								NotificationSvc.NotifyDevice.create().reset({
+									userId: user.idUser, 
+									tokens: [req.body.notificationToken]
+								});
 						});
 
 					} catch (err) {
