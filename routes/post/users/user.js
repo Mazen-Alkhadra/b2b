@@ -37,7 +37,7 @@ module.exports = app => {
 
                 NotifySvc.Event.create().handl({
                     event: NotifySvc.Event.EVENTS_TYPES.USER_UPDATE_PROFILE,
-                    data: {userId: idUser}
+                    data: {userId: req.user.idUser}
                 });
 
                 res.status(200).end();
