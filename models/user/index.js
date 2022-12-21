@@ -83,7 +83,7 @@ class User extends Model {
         license_number,
         license_expir_at,
         establish_at,
-        license_img_id,
+        fun_get_img(license_img_id) licenseImgUrl,
 				birth_date	birthDate,
 				gender,
 				fun_get_img(u.img_id)	imgUrl,
