@@ -2,6 +2,7 @@ const {
     PostUserUpdateProfile
 } = require('../../../services').api.endpoints;
 const UserSvc = require('../../../services').User;
+const CompanySvc = require('../../../services').Company;
 const NotifySvc = require('../../../services/notification');
 
 module.exports = app => {
