@@ -1,7 +1,7 @@
 module.exports = {
   app: {
     name: 'B2B',
-    defaultPort: 9092,
+    defaultPort: 80,
     headersTimeout: 2 * 60 * 60 * 1000 /* 2h */
   },
   cluster: {
