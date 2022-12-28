@@ -30,6 +30,7 @@ module.exports = {
   PostUserUpdateProfile: '/api/user/profile/update',
   PostUserCare: '/api/user/care',
   PostUserCaresReset: '/api/user/cares/reset',
+  PostUserIssueReport: '/api/user/issue-report',
 
   DeleteUserOffer: '/api/user/offer',
   DeleteUserTender: '/api/user/tender',
