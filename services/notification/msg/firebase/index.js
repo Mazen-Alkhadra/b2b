@@ -16,9 +16,6 @@ class Firebase {
     if(!data || !data.length)
       return;
     
-    if(!data.notification.imageUrl)
-      delete data.notification.imageUrl;
-      
     let res = await getMessaging(APP).sendAll(data);
     
     logSvc.log (

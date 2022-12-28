@@ -17,7 +17,7 @@ class NotificationMsg {
             notification: { 
               title: titleEn || titleAr,
               body: contentEn || contentAr, 
-              imageUrl: imgUrl ? encodeURI(imgUrl) : null 
+              imageUrl: imgUrl ? encodeURI(imgUrl) : '' 
             },
             token: device.token,
             data: {"type": type}
