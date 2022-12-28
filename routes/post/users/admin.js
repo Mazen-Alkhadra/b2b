@@ -11,7 +11,7 @@ module.exports = app => {
 	app.post(PostAdminUser,
 		async (req, res) => {
 			try {
-				const { firstName, lastName, email, mobile, password, companyId,
+				let { firstName, lastName, email, mobile, password, companyId,
           birthDate, gender, imgUrl, isBlocked, isActive,
 					hasMobileWhatsapp, roleId, notes } = req.body;
 

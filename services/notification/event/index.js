@@ -3,7 +3,7 @@ const {StrRes, LANGS} = require('../../../resources/strings');
 const EVENTS_TYPES = {
   NEW_USER_SIGNUP: 'NEW_USER_SIGNUP', // data: {userId}
   USER_UPDATE_PROFILE: 'USER_UPDATE_PROFILE', // data: {userId}
-  NEW_TENDER_CREATED: 'NEW_TENDER_CREATED', // data: {tenderId}
+  NEW_TENDER_CREATED: 'NEW_TENDER_CREATED', // data: {tenderId, tenderName}
   NEW_OFFER_CREATED: 'NEW_OFFER_CREATED' // data: {tenderId}
 } 
 

@@ -4,7 +4,7 @@ module.exports = {
   USER_UPDATE_PROFILE_NOTIFY_TITLE: 'User Profile Updated',
   USER_UPDATE_PROFILE_NOTIFY_CONTENT: '${userFullName} has updates his profile, please review users list to check and accept him',  
   NEW_TENDER_CREATED_NOTIFY_TITLE: 'New Tender',
-  NEW_TENDER_CREATED_NOTIFY_CONTENT: 'New tender is issued which you may interested in, please review tenders list',
+  NEW_TENDER_CREATED_NOTIFY_CONTENT: 'New tender ${tenderName} is issued which you may interested in, please review tenders list',
   NEW_OFFER_CREATED_NOTIFY_TITLE: 'New Offer',
   NEW_OFFER_CREATED_NOTIFY_CONTENT: 'New offer is created on your tender please review offers'
 }
