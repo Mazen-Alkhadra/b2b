@@ -4,6 +4,7 @@ const {
 	PostAdminAcceptUsers
 } = require('../../../services').api.endpoints;
 const UserSvc = require('../../../services').User;
+const codeGenSvc = require('../../../services').randomCodesGenerator;
 
 module.exports = app => {
 
@@ -14,10 +15,16 @@ module.exports = app => {
           birthDate, gender, imgUrl, isBlocked, isActive,
 					hasMobileWhatsapp, roleId, notes } = req.body;
 
+				password = password || codeGenSvc.create().generate();
+
 				await UserSvc.create().addNew({
           firstName, lastName, email, mobile, password, companyId,
           birthDate, gender, imgUrl, isBlocked, isActive,
 					hasMobileWhatsapp, roleId, notes
+				});
+
+				UserSvc.Codes.create().genResetPasswordCode({
+					loginName: email || mobile
 				});
 
 				res.status(200).end();
