@@ -76,6 +76,6 @@ module.exports = {
     resetPasswordCodeAge: 24 * 60 * 60 * 1000,
   },
   notify: {
-    defualtImgUrl: 'http://b2back.net/assets/imgs/logo.svg'
+    defualtImgUrl: 'http://b2back.net/assets/images/logo.svg'
   }
 };
