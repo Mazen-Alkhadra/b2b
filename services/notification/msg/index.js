@@ -1,4 +1,5 @@
 const FirebaseSvc = require('./firebase');
+const {defualtImgUrl} = require('../../../config/server').notify;
 
 class NotificationMsg {
   async sendNotificationsToUsers({
@@ -13,11 +14,12 @@ class NotificationMsg {
     devices.forEach( device => {
       notifications.forEach ( 
         ({titleEn, contentEn, titleAr, contentAr, imgUrl, type}) => {
+          imgUrl = imgUrl || defualtImgUrl;
           sendData.push({
             notification: { 
               title: titleEn || titleAr,
               body: contentEn || contentAr, 
-              imageUrl: imgUrl ? encodeURI(imgUrl) : '' 
+              imageUrl: encodeURI(imgUrl) 
             },
             token: device.token,
             data: {"type": type}

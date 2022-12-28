@@ -23,7 +23,7 @@ module.exports = {
   },
 
   urls: {
-    serverBaseUrl: 'https://b2b-node-server.herokuapp.com',
+    serverBaseUrl: 'http://b2back.net',
     activationAcountApiPath: '/api/auth/account/activate',
     resetPasswordApiPath: '/api/auth/account/resetpassword',
     resetPasswordPagePath: '/resetpassword'
@@ -74,5 +74,8 @@ module.exports = {
   usersCodes: {
     activationCodeAge: 24 * 60 * 60 * 1000,
     resetPasswordCodeAge: 24 * 60 * 60 * 1000,
+  },
+  notify: {
+    defualtImgUrl: 'http://b2back.net/assets/imgs/logo.svg'
   }
 };
