@@ -5,27 +5,27 @@ CREATE PROCEDURE `prc_get_b2b_tenders` (
 BEGIN
 
 	SELECT
-        id_tender	idTender,
-        t.creat_by_user_id  tenderCreatorUserId, 
-        name,
-		product_id	productId,
-        fun_get_string(NULL, p.name_str_id) productName,
-        fun_get_img(p.img_id) productImgUrl,
-        fun_get_string(NULL, b.name_str_id) brandName,
-        fun_get_string(NULL, c.name_str_id) categoryName,
-		t.quantity tenderQuantity,
-		`from`,
-		`to`,
-        city_id cityId,
-        area,
-        street,
-        building_number buildingNumber,
-        address_longitude addressLongitude,
-        address_latitude addressLatitude,
-        more_address_info moreAddressInfo,
-        supplier_location supplierLocation,
-        t.status,
-		closed_at closedAt
+      id_tender	idTender,
+      t.creat_by_user_id  tenderCreatorUserId, 
+      name,
+		  product_id	productId,
+      fun_get_string(NULL, p.name_str_id) productName,
+      fun_get_img(p.img_id) productImgUrl,
+      fun_get_string(NULL, b.name_str_id) brandName,
+      fun_get_string(NULL, c.name_str_id) categoryName,
+		  t.quantity tenderQuantity,
+		  `from`,
+		  `to`,
+      t.city_id cityId,
+      t.area,
+      t.street,
+      t.building_number buildingNumber,
+      t.address_longitude addressLongitude,
+      t.address_latitude addressLatitude,
+      t.more_address_info moreAddressInfo,
+      t.supplier_location supplierLocation,
+      t.status,
+		  closed_at closedAt
     FROM
         tenders t
         INNER JOIN offers o ON tender_id = id_tender

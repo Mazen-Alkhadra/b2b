@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `has_mobile_whatsapp`   BOOLEAN NOT NULL DEFAULT FALSE,
   `password` 						  VARCHAR(100) NOT NULL,              
   `company_id`            BIGINT UNSIGNED NULL,
-  `birth_date` 					  BIGINT UNSIGNED NULL DEFAULT NULL,
+  `birth_date` 					  DATETIME NULL DEFAULT NULL,
   `gender` 							  ENUM('Male', 'Female') NULL DEFAULT NULL,
   `img_id`                BIGINT UNSIGNED NULL DEFAULT NULL,
   `role_id`               VARCHAR(50) NOT NULL DEFAULT 'NORMAL_USER',

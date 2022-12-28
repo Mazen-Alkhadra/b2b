@@ -1,4 +1,4 @@
-//const FirebaseSvc = require('./firebase');
+const FirebaseSvc = require('./firebase');
 
 class NotificationMsg {
   async sendNotificationsToUsers({
@@ -27,7 +27,7 @@ class NotificationMsg {
     
     
     NotificationSvc.create().addBatch({usersIds, notifications});
-    //await FirebaseSvc.create().notify({data: sendData});
+    await FirebaseSvc.create().notify({data: sendData});
     
   }
 }

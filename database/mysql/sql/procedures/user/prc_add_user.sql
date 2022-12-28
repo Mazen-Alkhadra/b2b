@@ -7,7 +7,7 @@ CREATE PROCEDURE `prc_add_user` (
 	p_has_mobile_whatsapp   BOOLEAN,
 	p_password							VARCHAR(100),
 	p_company_id						BIGINT UNSIGNED,
-	p_birth_date						BIGINT UNSIGNED,
+	p_birth_date						DATETIME,
 	p_gender								VARCHAR(20),
 	p_img_url								VARCHAR(500),
 	p_role_id								VARCHAR(50),

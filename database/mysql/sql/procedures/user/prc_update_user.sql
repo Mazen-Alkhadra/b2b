@@ -8,7 +8,7 @@ CREATE PROCEDURE `prc_update_user` (
 	p_has_mobile_whatsapp BOOLEAN,
 	p_password						VARCHAR(100),
 	p_company_id					BIGINT UNSIGNED,
-	p_birth_date					BIGINT UNSIGNED,
+	p_birth_date					DATETIME,
 	p_gender							VARCHAR(20),
 	p_img_url							VARCHAR(500),
 	p_role_id							VARCHAR(50),
@@ -21,7 +21,15 @@ CREATE PROCEDURE `prc_update_user` (
 )  
 BEGIN
 
-	IF EXISTS (SELECT * FROM users WHERE email = p_email OR mobile = p_mobile) THEN 
+	IF EXISTS (
+		SELECT 
+			* 
+		FROM 
+			users 
+		WHERE 
+			id_user <> p_id_user AND 
+			(email = p_email OR mobile = p_mobile)
+	) THEN 
 		CALL prc_throw_exception(NULL, 'DuplicateUser'); 
 	END IF;
 	
