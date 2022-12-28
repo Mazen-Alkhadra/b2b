@@ -15,7 +15,7 @@ class Firebase {
 
     if(!data || !data.length)
       return;
-      
+    console.log(data);
     let res = await getMessaging(APP).sendAll(data);
     
     logSvc.log(
