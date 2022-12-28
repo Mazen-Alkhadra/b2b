@@ -15,10 +15,13 @@ class Firebase {
 
     if(!data || !data.length)
       return;
-    console.log(data);
+    
+    if(!data.notification.imageUrl)
+      delete data.notification.imageUrl;
+      
     let res = await getMessaging(APP).sendAll(data);
     
-    logSvc.log(
+    logSvc.log (
       logSvc.levels.SERVER_INFO,
       `Firebase Notify Result`,
       __filename,
