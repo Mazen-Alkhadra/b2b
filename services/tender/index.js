@@ -41,7 +41,7 @@ class Tender {
 
     NotifySvc.Event.create().handl({
       event: NotifySvc.Event.EVENTS_TYPES.NEW_TENDER_CREATED,
-      data: {tenderId: newId}
+      data: {tenderId: newId, tenderName: name}
     });
   }
 

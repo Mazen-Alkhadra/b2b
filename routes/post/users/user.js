@@ -10,7 +10,7 @@ module.exports = app => {
     app.post(PostUserUpdateProfile,
         async (req, res) => {
             try {
-                const {
+                let {
                     // User Info
                     firstName, lastName, email, mobile, password,
                     birthDate, gender, imgUrl, hasMobileWhatsapp,
@@ -20,12 +20,17 @@ module.exports = app => {
                     addressLongitude, addressLatitude, moreAddressInfo,
                     licenseExpirAt
                 } = req.body;
+                
+                let isAccepted = nameEn || companyTypeId || licenseNumber || 
+                    establishAt || icenseImgUrl || cityId || area || street || 
+                    buildingNumber || addressLongitude || addressLatitude || 
+                    moreAddressInfo || licenseExpirAt ? false : null;
 
                 await UserSvc.create().update({
                     idUser: req.user.idUser,
                     firstName, lastName, email, mobile, password,
                     birthDate, gender, imgUrl, hasMobileWhatsapp,
-                    isAccepted: false
+                    isAccepted
                 });
 
                 await CompanySvc.create().update({
