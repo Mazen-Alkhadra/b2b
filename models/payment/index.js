@@ -4,17 +4,31 @@ const Model = require('../model');
 class Payment extends Model {
   static TABLE_NAME = 'payments';
   static PRIMARY_KEY = 'id_payment';
-
+  static STATUS = {
+    INIT: 'INIT',
+    PENDING: 'PENDING',
+    COMPLETED: 'COMPLETED',
+    FAILED: 'FAILED'
+  };
+  
   async getAllFullInfo({
     limit, skip, filters, sorts,
-    summaries
+    summaries, paymentId, payInfo
   }) {
+    
+    let paymnetIdCond = !paymentId ? 'TRUE' :
+      `id_payment = ${this.escapeSql(paymentId)}`;
+    let payInfoCond = !payInfo ? 'TRUE' :
+      `pay_info = ${this.escapeSql(payInfo)}`;
 
     let countQuery =
       `SELECT
         Count(*) allCount
       FROM
-        payments;`
+        payments
+      WHERE 
+        ${paymnetIdCond} AND 
+        ${payInfoCond};`
       
 
     let dataQuery =
@@ -31,7 +45,10 @@ class Payment extends Model {
         mobile
       FROM
         payments
-        INNER JOIN users ON user_id = id_user`;
+        INNER JOIN users ON user_id = id_user
+      WHERE 
+        ${paymnetIdCond} AND 
+        ${payInfoCond}`;
 
     let queryStr = countQuery + dataQuery;
     let filteredQuery = this.applyFilters(dataQuery, filters);
@@ -93,11 +110,13 @@ class Payment extends Model {
   }
 
   async update({
-    idPayment, userId, type, amountUsd, comment, status
+    idPayment, userId, type, amountUsd, comment, status,
+    payInfo, completeAt
   }) {
     await this.directQuery (
       'CALL prc_update_payment(?);',
-      [idPayment, userId, type, amountUsd, comment, status]
+      [idPayment, userId, type, amountUsd, comment, status,
+        payInfo, completeAt]
     );
   }
 
@@ -111,5 +130,6 @@ class Payment extends Model {
 }
 
 module.exports = {
-  create: () => new Payment
+  create: () => new Payment,
+  STATUS: Payment.STATUS
 };

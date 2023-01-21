@@ -22,5 +22,5 @@ module.exports = app => {
   require('./ads')(app);
   require('./setting')(app);
   require('./notification')(app);
-
+  require('./e-pay')(app);
 };

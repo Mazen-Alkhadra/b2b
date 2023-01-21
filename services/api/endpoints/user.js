@@ -32,6 +32,7 @@ module.exports = {
   PostUserCare: '/api/user/care',
   PostUserCaresReset: '/api/user/cares/reset',
   PostUserIssueReport: '/api/user/issue-report',
+  PostUserReqEPay: '/api/user/e-pay',
 
   DeleteUserOffer: '/api/user/offer',
   DeleteUserTender: '/api/user/tender',

@@ -646,7 +646,8 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `status`                 ENUM('INIT', 'PENDING', 'COMPLETED', 'FAILED') NOT NULL DEFAULT 'INIT',
   `creat_at`               DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `complete_at`            DATETIME NULL DEFAULT NULL,
-                   
+  `pay_info`               LONGTEXT NULL,
+               
   PRIMARY KEY (`id_payment`),
 
   CONSTRAINT `fk_user_of_payment`

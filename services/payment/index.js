@@ -3,9 +3,13 @@ const PaymentModel = require('../../models').Payment;
 class Payment {
   paymentModel = PaymentModel.create();
 
-  async getAllFullInfo({ limit, skip, filters, sorts, summaries }) {
+  async getAllFullInfo({ 
+    limit, skip, filters, sorts, summaries,
+    paymentId, payInfo
+   }) {
     return await this.paymentModel.getAllFullInfo({
-      limit, skip, filters, sorts, summaries
+      limit, skip, filters, sorts, summaries,
+      paymentId, payInfo
     });
   }
 
@@ -22,10 +26,12 @@ class Payment {
   }
 
   async update({
-    idPayment, userId, type, amountUsd, comment, status
+    idPayment, userId, type, amountUsd, comment, status,
+    payInfo, completeAt
   }) {
     await this.paymentModel.update({
-      idPayment, userId, type, amountUsd, comment, status
+      idPayment, userId, type, amountUsd, comment, status,
+      payInfo, completeAt
     });
   }
 
@@ -37,5 +43,6 @@ class Payment {
 
 
 module.exports = {
-  create: () => new Payment
+  create: () => new Payment,
+  STATUS: PaymentModel.STATUS
 };
