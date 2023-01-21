@@ -7,8 +7,11 @@ class UserSubscription extends Model {
 
   async getAllFullInfo({
     limit, skip, filters, sorts,
-    groupby
+    groupby, subscriptionId
   }) {
+
+    let subscriptionIdCond = !subscriptionId ? 'TRUE' :
+      `id_subscription = ${this.escapeSql(subscriptionId)}`;
 
     if (groupby)
       groupby = {
@@ -21,7 +24,9 @@ class UserSubscription extends Model {
       `SELECT
         Count(*) allCount
       FROM
-        subscriptions;`
+        subscriptions
+      WHERE 
+        ${subscriptionIdCond};`
       
 
     let dataQuery =
@@ -37,7 +42,9 @@ class UserSubscription extends Model {
 				is_active	isActive,
         fun_is_user_subscription_valid(id_subscription) isValid
       FROM
-        subscriptions`;
+        subscriptions
+      WHERE 
+        ${subscriptionIdCond}`;
 
     let queryStr = countQuery + dataQuery;
     let filteredQuery = this.applyFilters(dataQuery, filters);

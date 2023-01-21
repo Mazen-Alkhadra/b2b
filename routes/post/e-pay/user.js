@@ -2,15 +2,20 @@ const {
 	PostUserReqEPay
 } = require('../../../services').api.endpoints;
 const EPaySvc = require('../../../services').EPay;
+const SubscribeSvc = require('../../../services').Subscription;
 
 module.exports = app => {
 
 	app.post(	PostUserReqEPay,
 		async (req, res) => {
 			try {
-				const { paymentId } = req.body;
+				let { paymentId, subscriptionId } = req.body;
 
-				 let token = await EPaySvc.create().reqPay({ paymentId });
+				if(!paymentId)
+					paymentId = (await SubscribeSvc.UserSubscription.create()
+						.getAllFullInfo({subscriptionId})).data[0].paymentId;
+				
+				let token = await EPaySvc.create().reqPay({ paymentId });
 
 				res.status(200).json({token});
 
