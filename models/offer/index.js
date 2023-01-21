@@ -4,6 +4,12 @@ const Model = require('../model');
 class Offer extends Model {
   static TABLE_NAME = 'offers';
   static PRIMARY_KEY = 'id_offer';
+  static STATUS = {
+    PENDING: 'PENDING', 
+    REJECTED: 'REJECTED', 
+    ACCEPTED: 'ACCEPTED', 
+    EXECUTED: 'EXECUTED'
+  };
 
   async getAllFullInfo({
     limit, skip, filters, sorts
@@ -148,5 +154,6 @@ class Offer extends Model {
 }
 
 module.exports = {
-  create: () => new Offer
+  create: () => new Offer,
+  STATUS: Offer.STATUS
 };

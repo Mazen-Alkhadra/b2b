@@ -3,7 +3,7 @@ const NotifySvc = require('../notification');
 
 class Offer {
   offerModel = OfferModel.create();
-
+  
   async getAllFullInfo({ limit, skip, filters, sorts }) {
     return await this.offerModel.getAllFullInfo({
       limit, skip, filters, sorts
@@ -50,6 +50,14 @@ class Offer {
 
   async delete({ idOffer }) {
     await this.offerModel.delete({ idOffer });
+  }
+
+  async acceptOffer({idOffer}) {
+    await this.update({
+      idOffer, 
+      status: OfferModel.STATUS.ACCEPTED,
+      acceptedAt: new Date()
+    });
   }
 
 }

@@ -41,9 +41,12 @@ module.exports = app => {
 		async (req, res) => {
 			try {
 				
-				let {code, newPassword} = req.body;
+				let {code, loginName, newPassword} = req.body;
 
-				let {idUser} = await UserSvc.Codes.create().consume ({ code });
+				let {idUser} = await UserSvc.Codes.create().consume({ 
+					loginName, code 
+				});
+				
 				await UserSvc.create().update ({ 
 					idUser, password: newPassword
 				});

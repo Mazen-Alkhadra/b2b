@@ -24,6 +24,7 @@ module.exports = {
   PostUserCategory: '/api/user/category',
   PostUserProduct: '/api/user/product',
   PostUserOffer: '/api/user/offer',
+  PostUserAcceptOffer: '/api/user/offer/accept',
   PostUserSubscribe: '/api/user/subscription/subscribe',
   PostUserTender: '/api/user/tender',
   PostUserTenderUpdate: '/api/user/tender/update',

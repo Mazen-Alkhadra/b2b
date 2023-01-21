@@ -2,8 +2,9 @@ const twilio = require('twilio');
 const logger = require('../../logger');
 const {name: appName} =  require('../../../config/server').app;
 
-const accountSid = 'AC633da6ec3f06128d9c9e40478e40eb0c'; 
-const authToken = 'ca112e454a1e1e4f75394bba6813b2a8'; 
+const accountSid = 'AC1f2fdb762f979e4ab8ea6bf7dd86a6c5'; 
+const authToken = '250b8ddd8d87a72c9c4e2c01e2a8eabb'; 
+const VERIFY_SVC_ID = 'VA49b66b1d9dbcab86895d24686aa28620'; 
 const client = new twilio(accountSid, authToken);
 
 class Twilio {
@@ -39,6 +40,43 @@ class Twilio {
       throw err;
     }
 
+  }
+
+  async sendVerify({ numbers }) {
+    try {
+      
+      numbers = this.fixMobilesNumbers({ numbers });
+      
+      for(let number of numbers) {
+        await client.verify.v2.services(VERIFY_SVC_ID) 
+        .verifications
+        .create({to: number, channel: 'sms'});
+      }
+
+      logger.log (
+        logger.levels.SERVER_API_INFO,
+        `Twilio SMS Send Verify Success`,
+        __filename,
+        'Twilio::sendVerify'
+      );
+
+    } catch (err) {
+      logger.log(
+        logger.levels.SERVER_API_ERR,
+        `Twilio SMS Send Verify Failed`,
+        __filename,
+        'Twilio::sendVerify',
+        JSON.stringify(err)
+      );
+      throw err;
+    }
+
+  }
+
+  async validateVerify({toNumber, code}) {
+    return (await client.verify.v2.services(VERIFY_SVC_ID)
+      .verificationChecks
+      .create({to: toNumber, code})).valid;
   }
 
   fixMobilesNumbers({ numbers }) {

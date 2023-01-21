@@ -3,11 +3,15 @@ const codeGenSvc = require('../../random-codes-generator');
 const userCodesConfig = require('../../../config/server').usersCodes;
 const EmailSvc = require('../../emailer');
 const SMSSvc = require('../../sms');
-const {ERR_NOT_EXISTS_USER_NAME} = require('../../../resources').errors.codes;
+const {
+  ERR_NOT_EXISTS_USER_NAME,
+  ERR_INVALID_USER_CODE
+} = require('../../../resources').errors.codes;
 const validators = require('../../validators');
 
 class UserCode {
   codeModel = UserModel.Codes.create();
+  userModel = UserModel.create();
 
   async getAllFullInfo({ limit, skip, filters, sorts }) {
     return await this.codeModel.getAllFullInfo({ 
@@ -34,10 +38,22 @@ class UserCode {
   }
 
   async consume ({ loginName, code }) {
-    await this.codeModel.consume({ loginName, code });
+   
+    if(validators.isMobile(loginName))
+      return await this.verifyMobile({
+        mobileNumber: loginName,
+        code, 
+        isConsume: true
+      });
+
+    await this.codeModel.consume({ loginName, code });  
   }
 
   async genActivationCode({loginName}) {
+    
+    if(validators.isMobile(loginName))
+     return this.verifyMobile({mobileNumber: loginName});
+    
     let code = codeGenSvc.create().generate(5, codeGenSvc.CODES_TYPES.NUMERIC);
 
     await this.addNew({
@@ -51,16 +67,11 @@ class UserCode {
     
     if(validators.isEmail(loginName))
       EmailSvc.create().sendActivationCode({userEMail: loginName, code});
-    else if(validators.isMobile(loginName))
-      SMSSvc.create().sendConfirmCode({
-        mobileNumber: UserModel.create().fixMobile({number: loginName}),
-        code
-      });
   }
 
   async genResetPasswordCode({loginName}) {
     let {idUser, firstName, lastName, email, mobile} = 
-      await UserModel.create().findUser({loginName});
+      await this.userModel.findUser({loginName});
 
     if(!idUser) 
       throw {message: ERR_NOT_EXISTS_USER_NAME};
@@ -77,11 +88,30 @@ class UserCode {
     });
     
     EmailSvc.create().sendResetPasswordLink(firstName, lastName, email, code);
-    SMSSvc.create().sendConfirmCode({mobileNumber: mobile, code});
+    this.verifyMobile({mobileNumber: mobile});
   }
 
   async delete({ idCode }) {
     await this.codeModel.delete({ idCode });
+  }
+
+  async verifyMobile({mobileNumber, code, isConsume}) {
+    mobileNumber = this.userModel.fixMobile({number: mobileNumber});
+
+    if(!isConsume) 
+      return SMSSvc.create().sendVerify({ mobileNumber });
+
+    
+    let isValid = await SMSSvc.create().validateVerify({
+      toNumber: mobileNumber, code
+    });
+
+    if(!isValid)
+      throw {message: ERR_INVALID_USER_CODE};
+
+    let {idUser} = await this.userModel.findUser({loginName: mobileNumber});
+    await this.userModel.update({idUser, isActive: true});
+    return {idUser};
   }
 
 }

@@ -1,6 +1,6 @@
 module.exports = {
     ERR_INVALID_ARGUMENT: 'InvalidArgument',
-    ERR_INVALID_ACTIVATION_CODE: 'InvalidUserCode',
+    ERR_INVALID_USER_CODE: 'InvalidUserCode',
     ERR_NOT_EXISTS_USER_NAME: 'NotExistsUser',
     ERR_DUPLICATE_USER: 'DuplicateUser',
     ERR_INVALID_USER_NAME: 'InvalidUserName',

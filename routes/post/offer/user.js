@@ -1,5 +1,6 @@
 const {
-	PostUserOffer
+	PostUserOffer,
+	PostUserAcceptOffer
 } = require('../../../services').api.endpoints;
 const OfferSvc = require('../../../services').Offer;
 
@@ -18,6 +19,21 @@ module.exports = app => {
           deliveryAddress, tax, cityId,
 					creatByUserId: req.user.idUser
 				});
+
+				res.status(200).end();
+
+			} catch (err) {
+				res.processError(err);
+			}
+		}
+	);
+
+	app.post(PostUserAcceptOffer,
+		async (req, res) => {
+			try {
+				const { idOffer } = req.body;
+
+				await OfferSvc.create().acceptOffer({ idOffer });
 
 				res.status(200).end();
 
