@@ -18,5 +18,5 @@ module.exports = {
   PostPublicCompany: '/api/public/company',
   PostPublicUploadDoc: '/api/public/doc/upload',
   PostPublicUploadImg: '/api/public/img/upload',
-  PostPublicInfomCompletePay: '/api/public/e-pay'
+  PostPublicInfomCompletePay: '/api/public/e-pay/complete'
 }

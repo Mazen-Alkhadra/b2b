@@ -25,7 +25,7 @@ class Stripe {
   async completePay({signature, details}) {
     let completeEvent = null;
     try {
-      completeEvent = stripe.webhooks.constructEvent(
+      completeEvent = this.stripe.webhooks.constructEvent(
         details, 
         signature, 
         process.env["STRIPE_COMPLETE_API_KEY"]);
