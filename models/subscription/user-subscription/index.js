@@ -107,7 +107,7 @@ class UserSubscription extends Model {
         promotionCode, expirAt, actualCostUsd, isActive]
     );
 
-    return { newId: dbRet[0][0].newRecordId };
+    return { newId: dbRet[0][0].newRecId };
   }
 
   async update({
