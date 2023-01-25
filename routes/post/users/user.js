@@ -22,7 +22,7 @@ module.exports = app => {
                 } = req.body;
                 
                 let isAccepted = nameEn || companyTypeId || licenseNumber || 
-                    establishAt || icenseImgUrl || cityId || area || street || 
+                    establishAt || licenseImgUrl || cityId || area || street || 
                     buildingNumber || addressLongitude || addressLatitude || 
                     moreAddressInfo || licenseExpirAt ? false : null;
 
