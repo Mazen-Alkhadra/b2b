@@ -107,17 +107,17 @@ CREATE TABLE IF NOT EXISTS `roles_resources_permissions` (
   CONSTRAINT `fk_roles`
     FOREIGN KEY (`role_id`)
     REFERENCES `roles` (`id_role`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_resources`
     FOREIGN KEY (`resource_id`)
     REFERENCES `access_resources` (`id_resource`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_permissions`
     FOREIGN KEY (`permission_id`)
     REFERENCES `permissions` (`id_permission`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT
 )
 ENGINE = InnoDB
@@ -313,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `users_codes` (
   CONSTRAINT `fk_user_of_code`
     FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id_user` )
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT
   )
 ENGINE = InnoDB
@@ -340,7 +340,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   CONSTRAINT `fk_category_user`
     FOREIGN KEY (`added_by_user_id`)
     REFERENCES `users` (`id_user`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_category_description`
     FOREIGN KEY (`description_str_id`)
@@ -377,7 +377,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
   CONSTRAINT `fk_brand_category`
     FOREIGN KEY (`category_id`)
     REFERENCES `categories` (`id_category`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_brand_description`
     FOREIGN KEY (`description_str_id`)
@@ -415,7 +415,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   CONSTRAINT `fk_product_brand`
     FOREIGN KEY (`brand_id`)
     REFERENCES `brands` (`id_brand`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_product_img`
     FOREIGN KEY (`img_id`)
@@ -441,22 +441,22 @@ CREATE TABLE IF NOT EXISTS `users_cares` (
   CONSTRAINT `fk_user_of_care`
     FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id_user` )
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_category_of_care`
     FOREIGN KEY (`category_id` )
     REFERENCES `categories` (`id_category` )
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_brand_of_care`
     FOREIGN KEY (`brand_id` )
     REFERENCES `brands` (`id_brand` )
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_product_of_care`
     FOREIGN KEY (`product_id` )
     REFERENCES `products` (`id_product`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT
   )
 ENGINE = InnoDB
@@ -527,12 +527,12 @@ CREATE TABLE IF NOT EXISTS `offers` (
   CONSTRAINT `fk_offer_tender`
     FOREIGN KEY (`tender_id`)
     REFERENCES `tenders` (`id_tender`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_offer_creator`
     FOREIGN KEY (`creat_by_user_id`)
     REFERENCES `users` (`id_user`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_offer_city`
     FOREIGN KEY (`city_id`)
@@ -653,7 +653,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
   CONSTRAINT `fk_user_of_payment`
     FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id_user` )
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT
   )
 ENGINE = InnoDB
@@ -678,7 +678,7 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
   CONSTRAINT `fk_subscribe_user`
     FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id_user` )
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_subscribe_package`
     FOREIGN KEY (`subscription_package_id` )
@@ -714,7 +714,7 @@ CREATE TABLE IF NOT EXISTS `issues_reports` (
   CONSTRAINT `FK_issue_reporter`
     FOREIGN KEY (`reporter_user_id`)
     REFERENCES `users` (`id_user` )
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT
 )
 ENGINE = InnoDB
@@ -908,7 +908,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   CONSTRAINT `fk_notified_user`
     FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id_user`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_notifiy_str`
     FOREIGN KEY (`content_str_id` )
@@ -942,7 +942,7 @@ CREATE TABLE IF NOT EXISTS `notify_devices` (
   CONSTRAINT `fk_notify_device_user`
     FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id_user`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE RESTRICT
 )
 ENGINE = InnoDB
