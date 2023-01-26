@@ -3,7 +3,7 @@ const logger = require('../../logger');
 const {name: appName} =  require('../../../config/server').app;
 
 const accountSid = 'AC1f2fdb762f979e4ab8ea6bf7dd86a6c5'; 
-const authToken = 'b9aec260010077839a29acd8e4b3e6e5'; 
+const authToken = '47261d9927cf246e0a3260481adcbc84'; 
 const VERIFY_SVC_ID = 'VA49b66b1d9dbcab86895d24686aa28620'; 
 const client = new twilio(accountSid, authToken);
 
@@ -66,7 +66,7 @@ class Twilio {
         `Twilio SMS Send Verify Failed`,
         __filename,
         'Twilio::sendVerify',
-        JSON.stringify(err)
+        err
       );
       throw err;
     }
