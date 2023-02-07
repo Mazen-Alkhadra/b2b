@@ -13,6 +13,7 @@ class Emailer {
 
     this.transporter = nodemailer.createTransport({
       host: host || defaultEmailServer.host,
+      name: host || defaultEmailServer.host,
       port: port || defaultEmailServer.port,
       secure: isSecure || defaultEmailServer.isSecure,
       auth: {
