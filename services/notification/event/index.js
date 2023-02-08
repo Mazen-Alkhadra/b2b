@@ -23,7 +23,7 @@ class Event {
       titleEn: StrRes(`${event}_NOTIFY_TITLE`, LANGS.EN),
       contentEn: StrRes(`${event}_NOTIFY_CONTENT`, LANGS.EN, data),
       imgUrl: data ? data.imgUrl : null,
-      type: "GOOOO"
+      type: event
     } 
     
     switch(event) {

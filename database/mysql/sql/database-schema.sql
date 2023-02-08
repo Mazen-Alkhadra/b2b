@@ -896,7 +896,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id_notification`        BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id`                BIGINT UNSIGNED NOT NULL,
-  `type`                   ENUM('NORMAL', 'IMPORTANT') NOT NULL DEFAULT 'NORMAL',
+  `type`                   VARCHAR(50),
   `title_str_id`           BIGINT UNSIGNED NULL,
   `content_str_id`         BIGINT UNSIGNED NOT NULL,
   `img_id`                 BIGINT UNSIGNED NULL,
