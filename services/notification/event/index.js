@@ -15,7 +15,6 @@ class Event {
       return;
     
     let NotifySvc = require('../index');
-    let notifySvc = NotifySvc.create();
     const UserSvc = require('../../user');
     const TenderSvc = require('../../tender'); 
 
@@ -24,7 +23,7 @@ class Event {
       titleEn: StrRes(`${event}_NOTIFY_TITLE`, LANGS.EN),
       contentEn: StrRes(`${event}_NOTIFY_CONTENT`, LANGS.EN, data),
       imgUrl: data ? data.imgUrl : null,
-      type: event
+      type: "GOOOO"
     } 
     
     switch(event) {
