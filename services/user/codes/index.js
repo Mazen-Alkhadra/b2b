@@ -54,7 +54,7 @@ class UserCode {
     if(validators.isMobile(loginName))
      return this.verifyMobile({mobileNumber: loginName});
     
-    let code = codeGenSvc.create().generate(5, codeGenSvc.CODES_TYPES.NUMERIC);
+    let code = codeGenSvc.create().generate(4, codeGenSvc.CODES_TYPES.NUMERIC);
 
     await this.addNew({
       loginName,
