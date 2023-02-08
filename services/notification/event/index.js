@@ -23,15 +23,14 @@ class Event {
     let notification = {
       titleEn: StrRes(`${event}_NOTIFY_TITLE`, LANGS.EN),
       contentEn: StrRes(`${event}_NOTIFY_CONTENT`, LANGS.EN, data),
-      imgUrl: data ? data.imgUrl : null
+      imgUrl: data ? data.imgUrl : null,
+      type: event
     } 
     
     switch(event) {
-      
       case EVENTS_TYPES.NEW_USER_SIGNUP:
       case EVENTS_TYPES.USER_UPDATE_PROFILE: 
         const userSvc = UserSvc.create();
-        notification.type = notifySvc.TYPES.NORMAL;
         toUsersIds = (await userSvc.getAllFullInfo({onlyAdmins: true}))
           .data.map(user => user.idUser);
         let {firstName, lastName} = await userSvc.userModel.findUser({userId: data.userId});
@@ -43,13 +42,11 @@ class Event {
         break; 
 
       case EVENTS_TYPES.NEW_TENDER_CREATED: 
-        notification.type = notifySvc.TYPES.NORMAL;
         toUsersIds = (await UserSvc.create().getAllFullInfo({careTenderId: data.tenderId}))
           .data.map(user => user.idUser);
         break;
 
       case EVENTS_TYPES.NEW_OFFER_CREATED: 
-        notification.type = notifySvc.TYPES.NORMAL;
         toUsersIds = (await TenderSvc.create().get({tenderId: data.tenderId}))
           .data.map(tender => tender.creatByUserId);
         break;  
