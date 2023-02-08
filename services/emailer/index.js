@@ -20,6 +20,9 @@ class Emailer {
         user: this.userName,
         pass: password || defaultEmailServer.password
       },
+      tls: {
+        rejectUnauthorized: false
+      }
     });
   }
 
