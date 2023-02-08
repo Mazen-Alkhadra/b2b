@@ -66,7 +66,10 @@ class UserCode {
     });
     
     if(validators.isEmail(loginName))
-      EmailSvc.create().sendActivationCode({userEMail: loginName, code});
+      EmailSvc.create().sendActivationCode({
+        userEMail: loginName, 
+        activationCode: code
+      });
   }
 
   async genResetPasswordCode({loginName}) {
