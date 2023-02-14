@@ -111,9 +111,10 @@ class Tender extends Model {
 
   }
 
-  async getB2B ({ userId }) {      
+  async getB2B ({ userId, isPending }) {      
 
-    let queryStr = 'CALL prc_get_b2b_tenders(?);'
+    let queryStr = isPending ? 'CALL prc_get_pending_b2b_tenders(?);' : 
+      'CALL prc_get_b2b_tenders(?);';
 
     let dbRet = await this.directQuery(queryStr, userId);
 

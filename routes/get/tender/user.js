@@ -31,7 +31,8 @@ module.exports = app => {
     async (req, res) => {
       try {
         let data = await TenderSvc.create().getB2B({
-          userId: req.user.idUser
+          userId: req.user.idUser,
+          isPending: req.query.isPending
         });
 
         res.status(200).json(data);

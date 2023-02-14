@@ -20,8 +20,8 @@ class Tender {
     });
   }
 
-  async getB2B ({ userId }) {
-    return await this.tenderModel.getB2B({ userId });    
+  async getB2B ({ userId, isPending }) {
+    return await this.tenderModel.getB2B({ userId, isPending });    
   }
 
   async addNew({
