@@ -17,7 +17,7 @@ module.exports = {
   GetUserCares: '/api/user/cares',
   GetUserSettings: '/api/user/settings',
   GetUserProfileInfo: '/api/user/profile/info',
-  
+  GetUserTenderContacts: '/api/user/tender/contacts',
 
   
   PostUserBrand: '/api/user/brand',

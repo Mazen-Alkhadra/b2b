@@ -121,6 +121,15 @@ class Tender extends Model {
     return { data: dbRet[0] };
   }
 
+  async getContactInfo ({ userId, offerId, tenderId }) {      
+
+    let queryStr = 'CALL prc_get_contact_info(?);';
+
+    let dbRet = await this.directQuery(queryStr, [userId, offerId, tenderId]);
+
+    return { data: dbRet[0][0] };
+  }
+
   async addNew({
     creatByUserId, name, productId, quantity,
     from, to, deliverBefore, cityId, area, 

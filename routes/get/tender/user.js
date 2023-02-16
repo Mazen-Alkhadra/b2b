@@ -1,6 +1,7 @@
 const { 
   GetUserTenders, 
-  GetUserTendersB2B 
+  GetUserTendersB2B ,
+  GetUserTenderContacts
 } = require('../../../services').api.endpoints;
 const TenderSvc = require('../../../services').Tender;
 
@@ -40,6 +41,23 @@ module.exports = app => {
       } catch (err) {
         res.internalError = err;
         res.status(500).end();
+      }
+    }
+  );
+
+  app.get(GetUserTenderContacts,
+    async (req, res) => {
+      try {
+        let data = await TenderSvc.create().getContactInfo({
+          userId: req.user.idUser,
+          offerId: req.query.offerId,
+          tenderId: req.query.tenderId
+        });
+
+        res.status(200).json(data);
+
+      } catch (err) {
+        res.processError(err);
       }
     }
   );

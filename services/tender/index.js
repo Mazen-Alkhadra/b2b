@@ -24,6 +24,10 @@ class Tender {
     return await this.tenderModel.getB2B({ userId, isPending });    
   }
 
+  async getContactInfo ({ userId, offerId, tenderId }) {   
+    return await this.tenderModel.getContactInfo({userId, offerId, tenderId});
+  }
+  
   async addNew({
     creatByUserId, name, productId, quantity,
     from, to, deliverBefore, cityId, area, 
