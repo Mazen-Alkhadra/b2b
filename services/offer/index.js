@@ -60,9 +60,18 @@ class Offer {
     });
   }
 
+  async setOfferExecuted({idOffer}) {
+    await this.update({
+      idOffer, 
+      status: OfferModel.STATUS.EXECUTED,
+      excutedAt: new Date()
+    });
+  }
+
 }
 
 
 module.exports = {
-  create: () => new Offer
+  create: () => new Offer,
+  STATUS: OfferModel.STATUS
 };

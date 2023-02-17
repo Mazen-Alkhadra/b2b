@@ -3,6 +3,7 @@ const Model = require('../model');
 const Role = require('./role');
 const Resource = require('./resource');
 const Permission = require('./permission');
+const OfferAC = require("./offer");
 
 class AC extends Model {
 
@@ -21,5 +22,6 @@ module.exports = {
   create: () => new AC,
   Role,
   Resource,
-  Permission
+  Permission,
+  OfferAC
 };
