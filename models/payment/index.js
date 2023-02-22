@@ -78,7 +78,7 @@ class Payment extends Model {
     let userCond = !userId ? 'TRUE' : 
       `user_id = ${this.escapeSql(userId)}`;
 
-    let queryQuery =
+    let queryStr =
       `SELECT
         id_payment idPayment,
 				user_id	userId,

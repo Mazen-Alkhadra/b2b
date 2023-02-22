@@ -11,10 +11,15 @@ module.exports = app => {
 			try {
 				let { paymentId, subscriptionId } = req.body;
 
-				if(!paymentId)
+				if(!paymentId) {
 					paymentId = (await SubscribeSvc.UserSubscription.create()
-						.getAllFullInfo({subscriptionId})).data[0].paymentId;
+						.getAllFullInfo({subscriptionId})).data;
+					paymentId = paymentId ? paymentId[0].paymentId : null;
+				}
 				
+				if(!paymentId)
+					return res.status(400);
+					
 				let token = await EPaySvc.create().reqPay({ paymentId });
 
 				res.status(200).json({token});
