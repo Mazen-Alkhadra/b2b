@@ -2,8 +2,8 @@
 const os = require('../services/os');
 const cluster = require('cluster');
 const logger = require('../services/logger');
-const {app: appConfig} = require('../config/server');
-require('dotenv').config();
+const {app: appConfig, env: envConfig} = require('../config/server');
+require('dotenv').config({ path:  envConfig.envFilePath});
 
 if (cluster.isMaster) {
 	var numWorkers = os.getWorkerForkCount();

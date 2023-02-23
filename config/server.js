@@ -77,5 +77,8 @@ module.exports = {
   },
   notify: {
     defualtImgUrl: 'http://b2back.net/assets/images/logo.svg'
+  },
+  env: {
+    envFilePath: `${__dirname}/../.env`
   }
 };
