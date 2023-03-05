@@ -8,7 +8,8 @@ module.exports = app => {
       try {
         let data = await OfferSvc.create().get({
           tenderId: req.query.tenderId,
-          creatByUserId: req.query.creatByUserId
+          creatByUserId: req.query.creatByUserId,
+          statusArr: req.query.status ? req.query.status.split(',') : null
         });
 
         res.status(200).json(data);

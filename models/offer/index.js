@@ -64,7 +64,8 @@ class Offer extends Model {
 
   async get ({
     tenderId, creatByUserId,
-    tenderCreatorByUserId
+    tenderCreatorByUserId,
+    statusArr
   }) {
 
     let tenderCond = !tenderId ? 'TRUE' :
@@ -73,6 +74,8 @@ class Offer extends Model {
       `o.creat_by_user_id = ${this.escapeSql(creatByUserId)}`;
     let tenderCreatorCond = !tenderCreatorByUserId ? 'TRUE' : 
       `t.creat_by_user_id = ${tenderCreatorByUserId}`;
+    let statusArrCond = !Array.isArray(statusArr) || !statusArr.length ? 'TRUE' : 
+      `o.status IN (${this.escapeSql(statusArr)})`;
 
     let queryStr =
       `SELECT
@@ -108,7 +111,8 @@ class Offer extends Model {
       WHERE 
         ${tenderCond} AND 
         ${tenderCreatorCond} AND 
-        ${creatorCond}`;
+        ${creatorCond} AND 
+        ${statusArrCond}`;
 
     let dbRet = await this.directQuery(queryStr);
 
