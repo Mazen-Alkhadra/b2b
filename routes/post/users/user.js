@@ -40,10 +40,11 @@ module.exports = app => {
                     licenseExpirAt
                 });
 
-                NotifySvc.Event.create().handl({
+                if(isAccepted === false)
+                  NotifySvc.Event.create().handl({
                     event: NotifySvc.Event.EVENTS_TYPES.USER_UPDATE_PROFILE,
                     data: {userId: req.user.idUser}
-                });
+                  });
 
                 res.status(200).end();
 
