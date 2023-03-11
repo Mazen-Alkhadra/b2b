@@ -27,6 +27,5 @@ BEGIN
 	;
   
 	SET p_out_new_rec_id = LAST_INSERT_ID();
-	SELECT p_out_new_rec_id AS newRecId;
-
+	
 END$$

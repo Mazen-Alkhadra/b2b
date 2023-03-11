@@ -54,12 +54,12 @@ passport.use (
 							active your account by clicking on the activation link sent to your email.'});
 				}
 
-				if (!user.isAccepted) {
+				/*if (!user.isAccepted) {
 					return done(null, false, { 
 						code: ERR_UN_ACCEPTED_ACCOUNT,
 						notes: user.notes
 				 });
-				}
+				}*/
 
 				return done(null, user, { message: 'Success' });
 
