@@ -83,6 +83,7 @@ class UserCode {
 
     await this.addNew({
       code, 
+      loginName,
       userId: idUser, 
       isActive: true,
       type: UserModel.Codes.CODES_TYPE.RESET_PASS,
