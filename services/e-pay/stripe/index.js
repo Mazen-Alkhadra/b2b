@@ -9,7 +9,7 @@ class Stripe {
 
   async reqPay({paymentId, amountUsd, receiptEmail}) {
     const paymentIntent = await this.stripe.paymentIntents.create({
-      amount: amountUsd,
+      amount: amountUsd * 100,
       currency: "usd",
       receipt_email: receiptEmail,
       automatic_payment_methods: {
@@ -25,7 +25,10 @@ class Stripe {
   async completePay({signature, details}) {
     let completeEvent = null;
     try {
-      completeEvent = this.stripe.webhooks.constructEvent(
+      details = typeof details === 'object' ? 
+        JSON.stringify(details) : details;
+
+      completeEvent = this.stripe.webhooks.constructEvent (
         details, 
         signature, 
         process.env["STRIPE_COMPLETE_API_KEY"]);
