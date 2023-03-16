@@ -26,12 +26,12 @@ class EPay {
     paymentId, details, signature
   }) {
     
-    details = await StripeSvc.create().completePay({signature, details});
-    console.log(details);
-    console.log(details.toString());
+    await StripeSvc.create().completePay({signature, details});
+    details = JSON.parse(details);
+    
     if(!paymentId)
       paymentId = details.metadata.paymentId;
-    console.log(paymentId);
+    
     await this.paymentSvc.update({
       idPayment: paymentId, 
       status: PaymentSvc.STATUS.COMPLETED, 
