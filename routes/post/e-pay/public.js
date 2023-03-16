@@ -14,7 +14,7 @@ module.exports = app => {
 				'Inform Complete Pay',
 				__filename,
 				PostPublicInfomCompletePay,
-				JSON.stringify(req.body)
+				JSON.stringify(req.body.toString())
 			);
 
 			try {

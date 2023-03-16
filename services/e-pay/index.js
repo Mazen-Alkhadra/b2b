@@ -27,10 +27,11 @@ class EPay {
   }) {
     
     details = await StripeSvc.create().completePay({signature, details});
-    
+    console.log(details);
+    console.log(details.toString());
     if(!paymentId)
       paymentId = details.metadata.paymentId;
-      
+    console.log(paymentId);
     await this.paymentSvc.update({
       idPayment: paymentId, 
       status: PaymentSvc.STATUS.COMPLETED, 
