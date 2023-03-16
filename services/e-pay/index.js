@@ -26,9 +26,8 @@ class EPay {
     paymentId, details, signature
   }) {
     
-    await StripeSvc.create().completePay({signature, details});
-    details = JSON.parse(details);
-    
+    details = await StripeSvc.create().completePay({signature, details});
+        
     if(!paymentId)
       paymentId = details.metadata.paymentId;
     
