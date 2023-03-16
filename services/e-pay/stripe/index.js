@@ -33,7 +33,7 @@ class Stripe {
       throw err;
     } 
 
-    if(!completeEvent.type !== 'payment_intent.succeeded')
+    if(completeEvent.type !== 'payment_intent.succeeded')
       throw {message: ERR_INVALID_ARGUMENT};
 
     return completeEvent.data.object;
