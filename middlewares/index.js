@@ -1,4 +1,7 @@
 const sessionConfig = require('../config/server').session;
+const {
+	PostPublicInfomCompletePay
+} = require('../services').api.endpoints;
 
 //Third party middlewares
 let express = require('express');
@@ -22,6 +25,7 @@ module.exports = (app) => {
   app.use(compression());
 
   app.use(cookieParser());
+  app.use(PostPublicInfomCompletePay, bodyParser.raw({type: "*/*"}));
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
 

@@ -25,9 +25,6 @@ class Stripe {
   async completePay({signature, details}) {
     let completeEvent = null;
     try {
-      details = typeof details === 'object' ? 
-        JSON.stringify(details) : details;
-
       completeEvent = this.stripe.webhooks.constructEvent (
         details, 
         signature, 
