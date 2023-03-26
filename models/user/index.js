@@ -37,6 +37,7 @@ class User extends Model {
         is_blocked	isBlocked,
         is_active	isActive,
         is_accepted isAccepted, 
+        is_authorized isAuthorized,
         notes,
         fun_is_user_admin(id_user) isAdmin
       FROM
@@ -91,6 +92,7 @@ class User extends Model {
 				is_blocked	isBlocked,
 				is_active	isActive,
         is_accepted isAccepted,
+        is_authorized isAuthorized,
         last_login_at lastLoginAt, 
         score,
         notes,
@@ -146,6 +148,7 @@ class User extends Model {
 				is_blocked	isBlocked,
 				is_active	isActive,
         is_accepted isAccepted,
+        is_authorized isAuthorized,
         last_login_at lastLoginAt, 
         score,
         notes,
@@ -191,13 +194,15 @@ class User extends Model {
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId, 
       birthDate, gender, imgUrl, roleId, isBlocked, isActive,
-      isAccepted, lastLoginAt, hasMobileWhatsapp, score, notes
+      isAccepted, isAuthorized, lastLoginAt, hasMobileWhatsapp,
+      score, notes
   }) {
     await this.directQuery (
       'CALL prc_update_user(?);',
       [idUser, firstName, lastName, email, mobile, hasMobileWhatsapp, 
         password, companyId, birthDate, gender, imgUrl, roleId, 
-        isBlocked, isActive, isAccepted, lastLoginAt, score, notes]
+        isBlocked, isActive, isAccepted, isAuthorized, lastLoginAt, score,
+        notes]
     );
   }
 

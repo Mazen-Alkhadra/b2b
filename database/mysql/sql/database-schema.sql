@@ -268,6 +268,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `is_blocked`            BOOLEAN NOT NULL DEFAULT FALSE,
   `is_active`             BOOLEAN NOT NULL DEFAULT FALSE,
   `is_accepted`           BOOLEAN NOT NULL DEFAULT FALSE,
+  `is_authorized`         BOOLEAN NOT NULL DEFAULT FALSE,
   `last_login_at`         DATETIME NULL DEFAULT NULL,
   `score`                 DOUBLE NOT NULL DEFAULT 0,
   `notes`                 LONGTEXT NULL,
@@ -670,7 +671,7 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
   `promotion_id`            BIGINT UNSIGNED NULL DEFAULT NULL,
   `expir_at`                DATETIME NULL DEFAULT NULL,
   `actual_cost_usd`         DOUBLE NOT NULL,
-  `is_active`               BOOLEAN NOT NULL DEFAULT FALSE,
+  `is_active`               BOOLEAN NOT NULL DEFAULT TRUE,
   `subscrib_at`             DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
    
   PRIMARY KEY (`id_subscription`),

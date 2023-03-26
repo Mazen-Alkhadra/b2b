@@ -9,8 +9,8 @@ class Stripe {
 
   async reqPay({paymentId, amountUsd, receiptEmail}) {
     const paymentIntent = await this.stripe.paymentIntents.create({
-      amount: amountUsd * 100,
-      currency: "usd",
+      amount: amountUsd,
+      currency: "aed",
       receipt_email: receiptEmail,
       automatic_payment_methods: {
         enabled: true,

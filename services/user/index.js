@@ -36,7 +36,8 @@ class User {
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId,
     birthDate, gender, imgUrl, roleId, isBlocked, isActive,
-    isAccepted, lastLoginAt, hasMobileWhatsapp, score, notes
+    isAccepted, isAuthorized, lastLoginAt, hasMobileWhatsapp, 
+    score, notes
   }) {
     password = await HashSvc.create().hash(password);
     mobile = this.fixMobile({number: mobile});
@@ -45,7 +46,7 @@ class User {
       idUser, firstName, lastName, email, mobile, companyId,
       birthDate, gender, imgUrl, roleId, isBlocked, isActive,
       password, isAccepted, lastLoginAt, hasMobileWhatsapp, 
-      score, notes
+      isAuthorized, score, notes
     });
   }
 
