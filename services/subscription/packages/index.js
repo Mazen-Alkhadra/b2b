@@ -15,26 +15,32 @@ class Package {
 
   async addNew({
     nameEn, descriptionEn, priceUsd, imgUrl, 
-    expirAt, validitySeconds, isActive
+    expirAt, validitySeconds, isDefault, 
+    isActive
   }) {
     await this.packageModel.addNew({
       nameEn, descriptionEn, priceUsd, imgUrl, 
-      expirAt, validitySeconds, isActive
+      expirAt, validitySeconds, isDefault, 
+      isActive
     });
   }
 
   async update({
     idSubscriptionPackage, nameEn, descriptionEn, priceUsd, 
-    imgUrl, expirAt, validitySeconds, isActive
+    imgUrl, expirAt, validitySeconds, isDefault, isActive
   }) {
     await this.packageModel.update({
       idSubscriptionPackage, nameEn, descriptionEn, priceUsd, 
-      imgUrl, expirAt, validitySeconds, isActive
+      imgUrl, expirAt, validitySeconds, isDefault, isActive
     });
   }
 
   async delete({ idSubscriptionPackage }) {
     await this.packageModel.delete({ idSubscriptionPackage });
+  }
+
+  async getDefaultPackageId() {
+    return await this.packageModel.getDefaultPackageId();
   }
 
 }

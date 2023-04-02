@@ -2,6 +2,7 @@ const UserModel = require('../../models').User;
 let HashSvc = require('../hash');
 const Cares = require('./cares');
 const Codes = require('./codes');
+const SubscribeSvc = require('../subscription');
 
 class User {
   userModel = UserModel.create();
@@ -26,11 +27,22 @@ class User {
     hasMobileWhatsapp, notes
   }) {
     mobile = this.fixMobile({number: mobile});
-    return await this.userModel.addNew({
+    let userData = await this.userModel.addNew({
       firstName, lastName, email, mobile, password, companyId,
       birthDate, gender, imgUrl, roleId, isBlocked, isActive,
       hasMobileWhatsapp, notes
     });
+
+    if(companyId) {
+      let defPackageId = SubscribeSvc.Packages.create().getDefaultPackageId();
+      if(defPackageId)
+        SubscribeSvc.UserSubscription.create().addNew({
+          userId: userData.newId,
+          subscriptionPackageId: defPackageId
+        });
+    }
+      
+    return userData;
   }
 
   async update({

@@ -10,11 +10,11 @@ module.exports = app => {
 		async (req, res) => {
 			try {
 				const { nameEn, descriptionEn, priceUsd, imgUrl, 
-					expirAt, validitySeconds, isActive } = req.body;
+					expirAt, validitySeconds, isDefault, isActive } = req.body;
 
 				await SubscribeSvc.Packages.create().addNew({
 					nameEn, descriptionEn, priceUsd, imgUrl, 
-					expirAt, validitySeconds, isActive
+					expirAt, validitySeconds, isDefault, isActive
 				});
 
 				res.status(200).end();
@@ -29,11 +29,11 @@ module.exports = app => {
 		async (req, res) => {
 			try {
 				const { idSubscriptionPackage, nameEn, descriptionEn, priceUsd,
-					imgUrl, expirAt, validitySeconds, isActive } = req.body;
+					imgUrl, expirAt, validitySeconds, isDefault, isActive } = req.body;
 
 				await SubscribeSvc.Packages.create().update({
 					idSubscriptionPackage, nameEn, descriptionEn, priceUsd, 
-					imgUrl, expirAt, validitySeconds, isActive
+					imgUrl, expirAt, validitySeconds, isDefault, isActive
 				});
 
 				res.status(200).end();

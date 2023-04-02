@@ -6,6 +6,7 @@ CREATE PROCEDURE `prc_add_subscription_package` (
 	p_img_url								VARCHAR(500),
 	p_expir_at							DATETIME,
 	p_validity_seconds			BIGINT UNSIGNED,
+	p_is_default            BOOLEAN,
 	p_is_active							BOOLEAN,
 	OUT p_out_new_rec_id		BIGINT UNSIGNED
 )  
@@ -19,6 +20,7 @@ BEGIN
 			img_id,
 			expir_at,
 			validity_seconds,
+			is_default,
 			is_active
 		)
 	VALUES (
@@ -28,6 +30,7 @@ BEGIN
 		fun_insert_img(p_img_url),
 		p_expir_at,
 		p_validity_seconds,
+		IFNULL(p_is_default, DEFAULT(is_default)),
 		IFNULL(p_is_active, DEFAULT(is_active))
 	)
 	;
