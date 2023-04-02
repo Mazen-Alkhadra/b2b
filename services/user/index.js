@@ -34,12 +34,14 @@ class User {
     });
 
     if(companyId) {
-      let defPackageId = SubscribeSvc.Packages.create().getDefaultPackageId();
-      if(defPackageId)
-        SubscribeSvc.UserSubscription.create().addNew({
-          userId: userData.newId,
-          subscriptionPackageId: defPackageId
-        });
+      SubscribeSvc.Packages.create().getDefaultPackageId()
+      .then(defPackageId => {
+        if(defPackageId)
+          SubscribeSvc.UserSubscription.create().addNew({
+            userId: userData.newId,
+            subscriptionPackageId: defPackageId
+          });
+      });
     }
       
     return userData;
