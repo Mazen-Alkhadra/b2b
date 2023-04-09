@@ -12,6 +12,10 @@ CREATE PROCEDURE `prc_add_subscription_package` (
 )  
 BEGIN
 
+	IF p_is_default = TRUE THEN
+		UPDATE subscription_packages SET is_default = FALSE;
+	END IF;
+	
 	INSERT INTO 
 		subscription_packages (
 			name_str_id,

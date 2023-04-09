@@ -10,6 +10,10 @@ CREATE PROCEDURE `prc_update_subscription_package` (
 )  
 BEGIN
 
+	IF p_is_default = TRUE THEN
+		UPDATE subscription_packages SET is_default = FALSE;
+	END IF;
+
 	UPDATE 
 		subscription_packages
 	SET
