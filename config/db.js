@@ -1,9 +1,9 @@
 module.exports = {
   mysql: {
-    host: "162.241.217.243",
-    user: "techstv2_b2b_db",
-    password: "_S=be[+WbXWZ",
-    database: "techstv2_b2b_staging",
+    host: "80.249.106.206",
+    user: "b2b_dba",
+    password: "Mm@1234567",
+    database: "b2b_db",
     maxUsersConnections: 10
   }
 };
