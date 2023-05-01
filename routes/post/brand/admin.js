@@ -11,12 +11,12 @@ module.exports = app => {
 			try {
 				const { nameEn, descriptionEn, categoryId } = req.body;
 
-				await BrandSvc.create().addNew({
+				let data = await BrandSvc.create().addNew({
 					nameEn, descriptionEn, categoryId,
 					addedByUserId: req.user.idUser
 				});
 
-				res.status(200).end();
+				res.status(200).json(data);
 
 			} catch (err) {
 				res.processError(err);

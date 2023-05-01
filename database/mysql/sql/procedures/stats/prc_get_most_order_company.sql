@@ -18,6 +18,7 @@ BEGIN
     company_id 
   ORDER BY 
     SUM(quantity) DESC
+  LIMIT 1
   ;
 
   SELECT 

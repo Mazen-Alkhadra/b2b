@@ -17,7 +17,8 @@ class Auth {
     companyId, birthDate, gender, hasMobileWhatsapp
   }) {
     const hashedPassword = await this.hashSvc.hash(password);
-
+    birthDate = birthDate || null;
+    
     let {newId} = await this.userSvc.addNew ({
       firstName, lastName, email, mobile,
       companyId, birthDate, gender,

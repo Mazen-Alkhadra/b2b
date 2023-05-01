@@ -21,6 +21,7 @@ class Package {
     userId, subscriptionPackageId, paymentId, promotionId,
     promotionCode, expirAt, actualCostUsd, isActive
   }) {
+    promotionCode = promotionCode || null;
     return await this.userSubscribeModel.addNew({
       userId, subscriptionPackageId, paymentId, promotionId,
       promotionCode, expirAt, actualCostUsd, isActive
@@ -31,6 +32,7 @@ class Package {
     idSubscription, userId, subscriptionPackageId, paymentId,
     promotionId, promotionCode, expirAt, actualCostUsd, isActive
   }) {
+    promotionCode = promotionCode || null;
     await this.userSubscribeModel.update({
       idSubscription, userId, subscriptionPackageId, paymentId,
       promotionId, promotionCode, expirAt, actualCostUsd, isActive

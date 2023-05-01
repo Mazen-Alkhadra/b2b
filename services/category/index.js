@@ -12,7 +12,7 @@ class Category {
   async addNew({
     nameEn, descriptionEn, type, addedByUserId
   }) {
-    await this.categoryModel.addNew({
+    return await this.categoryModel.addNew({
       nameEn, descriptionEn, type, addedByUserId
     });
   }

@@ -12,7 +12,7 @@ class Brand {
   async addNew({
     nameEn, descriptionEn, categoryId, addedByUserId
   }) {
-    await this.brandModel.addNew({
+    return await this.brandModel.addNew({
       nameEn, descriptionEn, categoryId, addedByUserId
     });
   }

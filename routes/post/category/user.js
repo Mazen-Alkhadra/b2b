@@ -10,12 +10,12 @@ module.exports = app => {
 			try {
 				const { nameEn, descriptionEn } = req.body;
 
-				await CategorySvc.create().addNew({
+				let data = await CategorySvc.create().addNew({
 					nameEn, descriptionEn,
 					addedByUserId: req.user.idUser
 				});
 
-				res.status(200).end();
+				res.status(200).json(data);
 
 			} catch (err) {
 				res.processError(err);

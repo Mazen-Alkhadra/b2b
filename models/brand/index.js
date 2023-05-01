@@ -59,7 +59,7 @@ class Brand extends Model {
       [nameStrId, descStrId, categoryId, addedByUserId]
     );
 
-    return { newId: dbRet[0][0].newRecordId };
+    return { newId: dbRet[0][0].newRecId };
   }
 
   async update({
