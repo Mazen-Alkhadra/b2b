@@ -3,7 +3,7 @@ const logger = require('../../logger');
 const {name: appName} =  require('../../../config/server').app;
 
 const accountSid = 'AC1f2fdb762f979e4ab8ea6bf7dd86a6c5'; 
-const authToken = '47261d9927cf246e0a3260481adcbc84'; 
+const authToken = '2105476ad54eb956f0a89c45aa2028cf'; 
 const VERIFY_SVC_ID = 'VA49b66b1d9dbcab86895d24686aa28620'; 
 const client = new twilio(accountSid, authToken);
 
@@ -51,7 +51,7 @@ class Twilio {
         await client.verify.v2.services(VERIFY_SVC_ID).verifications.create({
           to: number,
           channel: 'sms',
-          //customFriendlyName: "B2B",
+          customFriendlyName: "B2B",
           locale: 'en'
         });
       }
