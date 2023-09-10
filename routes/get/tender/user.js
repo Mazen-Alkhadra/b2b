@@ -11,12 +11,13 @@ module.exports = app => {
     async (req, res) => {
       try {
         
-        const { onlyCreated } = req.query;
+        const { onlyCreated, onlyUnCompleted } = req.query;
         const { idUser } = req.user;
 
         let data = await TenderSvc.create().get({
           onlyCreatByUserId: onlyCreated ? idUser : null,
-          onlyCareByUserId: onlyCreated ? null : idUser
+          onlyCareByUserId: onlyCreated ? null : idUser,
+          onlyUnCompleted: onlyUnCompleted != null ? onlyUnCompleted : true
         });
 
         res.status(200).json(data);

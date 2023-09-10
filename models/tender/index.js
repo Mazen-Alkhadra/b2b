@@ -58,7 +58,8 @@ class Tender extends Model {
   }
 
   async get ({ 
-    onlyCreatByUserId, onlyCareByUserId, tenderId 
+    onlyCreatByUserId, onlyCareByUserId, tenderId,
+    onlyUnCompleted
   }) {      
 
     let onlyCreatByUserCond = !onlyCreatByUserId ? 'TRUE' : 
@@ -67,6 +68,8 @@ class Tender extends Model {
       `fun_is_user_care_tender(${this.escapeSql(onlyCareByUserId)}, id_tender)`;
     let tenderIdCond = !tenderId ? 'TRUE' :
       `id_tender = ${this.escapeSql(tenderId)}`;
+    let unCompletedCond = !onlyUnCompleted ? 'TRUE' :
+      'fun_is_tender_complete_qntity(id_tender, FALSE)';
 
     let queryStr =
       `SELECT
@@ -103,7 +106,8 @@ class Tender extends Model {
       WHERE 
         ${onlyCreatByUserCond} AND 
         ${onlyCareByUserCond} AND 
-        ${tenderIdCond}`;
+        ${tenderIdCond} AND 
+        ${unCompletedCond}`;
 
     let dbRet = await this.directQuery(queryStr);
 
