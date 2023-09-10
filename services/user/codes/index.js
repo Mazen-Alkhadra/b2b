@@ -73,12 +73,12 @@ class UserCode {
   }
 
   async genResetPasswordCode({loginName}) {
-    let {idUser, firstName, lastName, email, mobile} = 
-      await this.userModel.findUser({loginName});
+    let user = await this.userModel.findUser({loginName});
 
-    if(!idUser) 
+    if(!user || !user.idUser) 
       throw {message: ERR_NOT_EXISTS_USER_NAME};
-      
+    
+    let {idUser, firstName, lastName, email, mobile} = user;
     let code = codeGenSvc.create().generate();
 
     await this.addNew({
