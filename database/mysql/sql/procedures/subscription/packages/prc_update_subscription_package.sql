@@ -5,6 +5,7 @@ CREATE PROCEDURE `prc_update_subscription_package` (
 	p_img_url										VARCHAR(500),
 	p_expir_at									DATETIME,
 	p_validity_seconds					BIGINT UNSIGNED,
+	p_color                     VARCHAR(20),
 	p_is_default                BOOLEAN,
 	p_is_active									BOOLEAN
 )  
@@ -21,6 +22,7 @@ BEGIN
 		img_id = IF(p_img_url IS NULL, img_id, fun_insert_img(p_img_url)),
 		expir_at = IFNULL(p_expir_at, expir_at),
 		validity_seconds = IFNULL(p_validity_seconds, validity_seconds),
+		color = IFNULL(p_color, color),
 		is_default = IFNULL(p_is_default, is_default),
 		is_active = IFNULL(p_is_active, is_active)
 	WHERE

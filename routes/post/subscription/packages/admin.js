@@ -10,11 +10,13 @@ module.exports = app => {
 		async (req, res) => {
 			try {
 				const { nameEn, descriptionEn, priceUsd, imgUrl, 
-					expirAt, validitySeconds, isDefault, isActive } = req.body;
+					expirAt, validitySeconds, color, isDefault,
+					isActive } = req.body;
 
 				await SubscribeSvc.Packages.create().addNew({
 					nameEn, descriptionEn, priceUsd, imgUrl, 
-					expirAt, validitySeconds, isDefault, isActive
+					expirAt, validitySeconds, color, isDefault,
+					isActive
 				});
 
 				res.status(200).end();
@@ -28,12 +30,14 @@ module.exports = app => {
 	app.post(PostAdminSubscribePackageUpdate,
 		async (req, res) => {
 			try {
-				const { idSubscriptionPackage, nameEn, descriptionEn, priceUsd,
-					imgUrl, expirAt, validitySeconds, isDefault, isActive } = req.body;
+				const { idSubscriptionPackage, nameEn, descriptionEn,
+					priceUsd, imgUrl, expirAt, validitySeconds, 
+					color, isDefault, isActive } = req.body;
 
 				await SubscribeSvc.Packages.create().update({
 					idSubscriptionPackage, nameEn, descriptionEn, priceUsd, 
-					imgUrl, expirAt, validitySeconds, isDefault, isActive
+					imgUrl, expirAt, validitySeconds, color, isDefault, 
+					isActive
 				});
 
 				res.status(200).end();

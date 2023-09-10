@@ -583,6 +583,7 @@ CREATE TABLE IF NOT EXISTS `subscription_packages` (
   `img_id`                    BIGINT UNSIGNED NULL,
   `expir_at`                  DATETIME NULL DEFAULT NULL,
   `validity_seconds`          BIGINT UNSIGNED NULL DEFAULT NULL,
+  `color`                     VARCHAR(20) NULL DEFAULT NULL,
   `is_default`                BOOLEAN NOT NULL DEFAULT FALSE,  
   `is_active`                 BOOLEAN NOT NULL DEFAULT FALSE,
   `creat_at`                  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -26,6 +26,7 @@ class SubscriptionPackage extends Model {
 				fun_get_img(img_id) imgUrl,
 				expir_at	expirAt,
 				validity_seconds	validitySeconds,
+        color,
         is_default isDefault, 
 				is_active	isActive
       FROM
@@ -59,6 +60,7 @@ class SubscriptionPackage extends Model {
 				fun_get_img(img_id) imgUrl,
 				expir_at	expirAt,
 				validity_seconds	validitySeconds,
+        color,
         is_default isDefault,
 				is_active	isActive,
         subscription_feature_id	subscriptionFeatureId,
@@ -103,7 +105,7 @@ class SubscriptionPackage extends Model {
 
   async addNew({
     nameEn, descriptionEn, priceUsd, imgUrl, 
-    expirAt, validitySeconds, isDefault, 
+    expirAt, validitySeconds, color, isDefault, 
     isActive
   }) {
     let strModel = StringModel.create();
@@ -113,7 +115,7 @@ class SubscriptionPackage extends Model {
     let dbRet = await this.directQuery (
       'CALL prc_add_subscription_package(?, @new_record_id);',
       [nameStrId, descStrId, priceUsd, imgUrl, 
-        expirAt, validitySeconds, isDefault, 
+        expirAt, validitySeconds, color, isDefault, 
         isActive]
     );
 
@@ -122,7 +124,7 @@ class SubscriptionPackage extends Model {
 
   async update({
     idSubscriptionPackage, nameEn, descriptionEn, priceUsd, imgUrl,
-    expirAt, validitySeconds, isDefault, isActive
+    expirAt, validitySeconds, color, isDefault, isActive
   }) {
     let strModel = StringModel.create();
     await strModel.updateString({
@@ -144,7 +146,7 @@ class SubscriptionPackage extends Model {
     await this.directQuery (
       'CALL prc_update_subscription_package(?);',
       [idSubscriptionPackage, priceUsd, imgUrl, 
-        expirAt, validitySeconds, isDefault, isActive]
+        expirAt, validitySeconds, color, isDefault, isActive]
     );
   }
 
