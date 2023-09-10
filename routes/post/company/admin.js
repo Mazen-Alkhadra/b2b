@@ -12,13 +12,13 @@ module.exports = app => {
 				const { nameEn, companyTypeId, licenseNumber, establishAt,
 					licenseImgUrl, cityId, area, street, buildingNumber,
 					addressLongitude, addressLatitude, moreAddressInfo, 
-					licenseExpirAt } = req.body;
+					licenseExpirAt, isTrusted } = req.body;
 
 				await CompanySvc.create().addNew({
 					nameEn, companyTypeId, licenseNumber, establishAt,
     			licenseImgUrl, cityId, area, street, buildingNumber,
     			addressLongitude, addressLatitude, moreAddressInfo, 
-    			licenseExpirAt
+    			licenseExpirAt, isTrusted
 				});
 
 				res.status(200).end();
@@ -35,13 +35,13 @@ module.exports = app => {
 				const { idCompany, nameEn, companyTypeId, licenseNumber,
 					establishAt, licenseImgUrl, cityId, area, street, buildingNumber,
 					addressLongitude, addressLatitude, moreAddressInfo, 
-					licenseExpirAt } = req.body;
+					licenseExpirAt, isTrusted } = req.body;
 
 				await CompanySvc.create().update({
 					idCompany, nameEn, companyTypeId, licenseNumber, establishAt,
     			licenseImgUrl, cityId, area, street, buildingNumber,
     			addressLongitude, addressLatitude, moreAddressInfo, 
-    			licenseExpirAt
+    			licenseExpirAt, isTrusted
 				});
 
 				res.status(200).end();

@@ -7,14 +7,18 @@ class Product extends Model {
   static PRIMARY_KEY = 'id_product';
 
   async getAllFullInfo({
-    limit, skip, filters, sorts
+    limit, skip, filters, sorts, onlyApproved
   }) {
+
+    let approvedCond = !onlyApproved ? 'TRUE' : 'is_approved = TRUE';
 
     let countQuery =
       `SELECT
         Count(*) allCount
       FROM
-        products;`
+        products
+      WHERE 
+        ${approvedCond};`
       
 
     let dataQuery =
@@ -28,11 +32,14 @@ class Product extends Model {
         fun_get_string(NULL, c.name_str_id)	categoryNameEn,
 				p.added_by_user_id	addedByUserId,
         fun_get_img(p.img_id) imgUrl,
+        is_approved isApproved,
         p.creat_at creatAt
       FROM
         products p
         LEFT JOIN brands b ON brand_id = id_brand
-        LEFT JOIN categories c ON category_id = id_category`;
+        LEFT JOIN categories c ON category_id = id_category
+      WHERE 
+        ${approvedCond}`;
 
     let queryStr = countQuery + dataQuery;
 
@@ -52,7 +59,8 @@ class Product extends Model {
   }
 
   async addNew({
-    nameEn, descriptionEn, brandId, addedByUserId, imgUrl
+    nameEn, descriptionEn, brandId, addedByUserId, 
+    imgUrl, isApproved
   }) {
 
     let strModel = StringModel.create();
@@ -61,7 +69,8 @@ class Product extends Model {
 
     let dbRet = await this.directQuery (
       'CALL prc_add_product(?, @new_record_id);',
-      [nameStrId, descStrId, brandId, addedByUserId, imgUrl]
+      [nameStrId, descStrId, brandId, addedByUserId, 
+        imgUrl, isApproved]
     );
 
     return { newId: dbRet[0][0].newRecordId };
@@ -69,7 +78,7 @@ class Product extends Model {
 
   async update({
     idProduct, nameEn, descriptionEn, brandId, addedByUserId, 
-    imgUrl
+    imgUrl, isApproved
   }) {
 
     let strModel = StringModel.create();
@@ -91,7 +100,7 @@ class Product extends Model {
 
     await this.directQuery (
       'CALL prc_update_product(?);',
-      [idProduct, brandId, addedByUserId, imgUrl]
+      [idProduct, brandId, addedByUserId, imgUrl, isApproved]
     );
   }
 

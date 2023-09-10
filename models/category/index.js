@@ -7,14 +7,19 @@ class Category extends Model {
   static PRIMARY_KEY = 'id_category';
 
   async getAllFullInfo({
-    limit, skip, filters, sorts
+    limit, skip, filters, sorts, 
+    onlyApproved
   }) {
 
+    let approvedCond = !onlyApproved ? 'TRUE' : 'is_approved = TRUE';
+    
     let countQuery =
       `SELECT
         Count(*) allCount
       FROM
-        categories;`
+        categories
+      WHERE 
+        ${approvedCond};`
       
 
     let dataQuery =
@@ -22,10 +27,13 @@ class Category extends Model {
         id_category	idCategory,
 				fun_get_string(NULL, name_str_id)	nameEn,
 				fun_get_string(NULL, description_str_id)	descriptionEn,
-				type	type,
-				added_by_user_id	addedByUserId
+				type type,
+				added_by_user_id	addedByUserId,
+        is_approved isApproved
       FROM
-        categories`;
+        categories
+      WHERE 
+        ${approvedCond}`;
 
     let queryStr = countQuery + dataQuery;
 
@@ -45,7 +53,7 @@ class Category extends Model {
   }
 
   async addNew({
-    nameEn, descriptionEn, type, addedByUserId
+    nameEn, descriptionEn, type, addedByUserId, isApproved
   }) {
     let strModel = StringModel.create();
     let nameStrId = await strModel.addNewString({enStr: nameEn});
@@ -53,14 +61,15 @@ class Category extends Model {
 
     let dbRet = await this.directQuery (
       'CALL prc_add_category(?, @new_record_id);',
-      [nameStrId, descStrId, type, addedByUserId]
+      [nameStrId, descStrId, type, addedByUserId, isApproved]
     );
 
     return { newId: dbRet[0][0].newRecId };
   }
 
   async update({
-    idCategory, nameEn, descriptionEn, type, addedByUserId
+    idCategory, nameEn, descriptionEn, type, addedByUserId,
+    isApproved
   }) {
     let strModel = StringModel.create();
     await strModel.updateString({
@@ -81,7 +90,7 @@ class Category extends Model {
 
     await this.directQuery (
       'CALL prc_update_category(?);',
-      [idCategory, type, addedByUserId]
+      [idCategory, type, addedByUserId, isApproved]
     );
   }
 

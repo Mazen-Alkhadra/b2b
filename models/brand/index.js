@@ -7,14 +7,18 @@ class Brand extends Model {
   static PRIMARY_KEY = 'id_brand';
 
   async getAllFullInfo({
-    limit, skip, filters, sorts
+    limit, skip, filters, sorts, onlyApproved
   }) {
+    
+    let approvedCond = !onlyApproved ? 'TRUE' : 'is_approved = TRUE';
 
     let countQuery =
       `SELECT
         Count(*) allCount
       FROM
-        brands;`
+        brands
+      WHERE 
+        ${approvedCond};`
       
 
     let dataQuery =
@@ -24,10 +28,13 @@ class Brand extends Model {
 				fun_get_string(NULL, b.description_str_id) descriptionEn,
 				category_id	categoryId,
 				fun_get_string(NULL, c.name_str_id)	categoryNameEn,
-				b.added_by_user_id	addedByUserId
+				b.added_by_user_id	addedByUserId,
+        is_approved isApproved
       FROM
         brands b
-        LEFT JOIN categories c ON category_id = id_category`;
+        LEFT JOIN categories c ON category_id = id_category
+      WHERE 
+        ${approvedCond}`;
 
     let queryStr = countQuery + dataQuery;
 
@@ -47,7 +54,8 @@ class Brand extends Model {
   }
 
   async addNew({
-    nameEn, descriptionEn, categoryId, addedByUserId
+    nameEn, descriptionEn, categoryId, addedByUserId,
+    isApproved
   }) {
 
     let strModel = StringModel.create();
@@ -56,14 +64,15 @@ class Brand extends Model {
 
     let dbRet = await this.directQuery (
       'CALL prc_add_brand(?, @new_record_id);',
-      [nameStrId, descStrId, categoryId, addedByUserId]
+      [nameStrId, descStrId, categoryId, addedByUserId, isApproved]
     );
 
     return { newId: dbRet[0][0].newRecId };
   }
 
   async update({
-    idBrand, nameEn, descriptionEn, categoryId, addedByUserId
+    idBrand, nameEn, descriptionEn, categoryId, addedByUserId,
+    isApproved
   }) {
     let strModel = StringModel.create();
     await strModel.updateString({
@@ -84,7 +93,7 @@ class Brand extends Model {
 
     await this.directQuery (
       'CALL prc_update_brand(?);',
-      [idBrand, categoryId, addedByUserId]
+      [idBrand, categoryId, addedByUserId, isApproved]
     );
   }
 

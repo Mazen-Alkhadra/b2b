@@ -10,18 +10,20 @@ class IssueReport {
   }
 
   async addNew({
-    reporterUserId, content, status
+    reporterUserId, publicEmail, content, status
   }) {
     await this.issueReportModel.addNew({
-      reporterUserId, content, status
+      reporterUserId, publicEmail, content, status
     });
   }
 
   async update({
-    idIssueReport, reporterUserId, content, status
+    idIssueReport, reporterUserId, publicEmail, 
+    content, status
   }) {
     await this.issueReportModel.update({
-      idIssueReport, reporterUserId, content, status
+      idIssueReport, reporterUserId, publicEmail, 
+      content, status
     });
   }
 

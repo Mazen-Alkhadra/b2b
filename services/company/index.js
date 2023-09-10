@@ -13,13 +13,13 @@ class Company {
     nameEn, companyTypeId, licenseNumber, establishAt,
     licenseImgUrl, cityId, area, street, buildingNumber,
     addressLongitude, addressLatitude, moreAddressInfo, 
-    licenseExpirAt
+    licenseExpirAt, isTrusted
   }) {
     return await this.companyModel.addNew({
       nameEn, companyTypeId, licenseNumber, establishAt,
       licenseImgUrl, cityId, area, street, buildingNumber,
       addressLongitude, addressLatitude, moreAddressInfo, 
-      licenseExpirAt
+      licenseExpirAt, isTrusted
     });
   }
 
@@ -27,13 +27,13 @@ class Company {
     idCompany, nameEn, companyTypeId, licenseNumber, establishAt,
     licenseImgUrl, cityId, area, street, buildingNumber,
     addressLongitude, addressLatitude, moreAddressInfo, 
-    licenseExpirAt
+    licenseExpirAt, isTrusted
   }) {
     await this.companyModel.update({
       idCompany, nameEn, companyTypeId, licenseNumber, establishAt,
       licenseImgUrl, cityId, area, street, buildingNumber,
       addressLongitude, addressLatitude, moreAddressInfo, 
-      licenseExpirAt
+      licenseExpirAt, isTrusted
     });
   }
 

@@ -12,7 +12,8 @@ CREATE PROCEDURE `prc_update_company` (
 	p_license_number        LONGTEXT,
 	p_license_expir_at      DATETIME, 
   p_establish_at          DATETIME,
-	p_license_img_url       VARCHAR(500)
+	p_license_img_url       VARCHAR(500),
+	p_is_trusted            BOOLEAN
 )  
 BEGIN
 
@@ -34,7 +35,8 @@ BEGIN
 			p_license_img_url IS NULL, 
 			license_img_id, 
 			fun_insert_img(p_license_img_url)
-		)
+		),
+		is_trusted = IFNULL(p_is_trusted, is_trusted)
 	WHERE
 		id_company = p_id_company
 	;

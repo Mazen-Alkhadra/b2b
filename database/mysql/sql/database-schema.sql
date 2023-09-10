@@ -221,6 +221,7 @@ CREATE TABLE IF NOT EXISTS `companies` (
   `license_expir_at`      DATETIME NULL, 
   `establish_at`          DATETIME NULL,
   `license_img_id`        BIGINT UNSIGNED NULL,
+  `is_trusted`            BOOLEAN NOT NULL DEFAULT FALSE,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
   PRIMARY KEY (`id_company`),
@@ -329,6 +330,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `description_str_id`	  BIGINT UNSIGNED NULL,
   `type`                  ENUM('PRODUCTS') NOT NULL DEFAULT 'PRODUCTS',    
   `added_by_user_id`      BIGINT UNSIGNED NULL,
+  `is_approved`           BOOLEAN NOT NULL DEFAULT TRUE,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
   PRIMARY KEY (`id_category`),
@@ -361,6 +363,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
   `description_str_id`	  BIGINT UNSIGNED NULL,
   `category_id`           BIGINT UNSIGNED NOT NULL,    
   `added_by_user_id`      BIGINT UNSIGNED NULL,
+  `is_approved`           BOOLEAN NOT NULL DEFAULT TRUE,  
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
   PRIMARY KEY (`id_brand`),
@@ -399,6 +402,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `brand_id`              BIGINT UNSIGNED NOT NULL,
   `added_by_user_id`      BIGINT UNSIGNED NULL,
   `img_id`                BIGINT UNSIGNED NULL,
+  `is_approved`           BOOLEAN NOT NULL DEFAULT TRUE,
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
   PRIMARY KEY (`id_product`),
@@ -706,7 +710,8 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `issues_reports` (
   `id_issue_report`        BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `reporter_user_id`       BIGINT UNSIGNED NOT NULL,
+  `reporter_user_id`       BIGINT UNSIGNED NULL DEFAULT NULL,
+  `public_email`           VARCHAR(500) NULL DEFAULT NULL,
   `content`                LONGTEXT NULL,
   `status`                 ENUM('NEW', 'REJECTED', 'RESOLVED') NOT NULL DEFAULT 'NEW',
   `create_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -15,19 +15,23 @@ module.exports = app => {
                     firstName, lastName, email, mobile, password,
                     birthDate, gender, imgUrl, hasMobileWhatsapp,
                     // Company Info
-                    idCompany, nameEn, companyTypeId, licenseNumber,
+                    nameEn, companyTypeId, licenseNumber,
                     establishAt, licenseImgUrl, cityId, area, street, buildingNumber,
                     addressLongitude, addressLatitude, moreAddressInfo,
                     licenseExpirAt
                 } = req.body;
                 
+                birthDate = birthDate || null;
+                let userId = req.user.idUser;
+                let userSvc = UserSvc.create();
+                let idCompany = (await userSvc.getProfileInfo({userId})).data.companyId;
                 let isAccepted = nameEn || companyTypeId || licenseNumber || 
                     establishAt || licenseImgUrl || cityId || area || street || 
                     buildingNumber || addressLongitude || addressLatitude || 
                     moreAddressInfo || licenseExpirAt ? false : null;
 
-                await UserSvc.create().update({
-                    idUser: req.user.idUser,
+                await userSvc.update({
+                    idUser: userId,
                     firstName, lastName, email, mobile, password,
                     birthDate, gender, imgUrl, hasMobileWhatsapp,
                     isAccepted
@@ -43,7 +47,7 @@ module.exports = app => {
                 if(isAccepted === false)
                   NotifySvc.Event.create().handl({
                     event: NotifySvc.Event.EVENTS_TYPES.USER_UPDATE_PROFILE,
-                    data: {userId: req.user.idUser}
+                    data: { userId: userId }
                   });
 
                 res.status(200).end();

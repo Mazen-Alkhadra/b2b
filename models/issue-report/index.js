@@ -20,11 +20,14 @@ class IssueReport extends Model {
       `SELECT
         id_issue_report	idIssueReport,
 				reporter_user_id	reporterUserId,
+        public_email publicEmail,
+        email reporterUserEmail,
 				content	content,
 				status	status,
         create_at createAt
       FROM
-        issues_reports`;
+        issues_reports
+        LEFT JOIN users ON id_user = reporter_user_id`;
 
     let queryStr = countQuery + dataQuery;
 
@@ -44,22 +47,24 @@ class IssueReport extends Model {
   }
 
   async addNew({
-    reporterUserId, content, status
+    reporterUserId, publicEmail, content, status
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_issue_report(?, @new_record_id);',
-      [reporterUserId, content, status]
+      [reporterUserId, publicEmail, content, status]
     );
 
     return { newId: dbRet[0][0].newRecordId };
   }
 
   async update({
-    idIssueReport, reporterUserId, content, status
+    idIssueReport, reporterUserId, publicEmail, 
+    content, status
   }) {
     await this.directQuery (
       'CALL prc_update_issue_report(?);',
-      [idIssueReport, reporterUserId, content, status]
+      [idIssueReport, reporterUserId, publicEmail, 
+        content, status]
     );
   }
 

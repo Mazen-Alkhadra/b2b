@@ -13,6 +13,7 @@ CREATE PROCEDURE `prc_add_company` (
 	p_license_expir_at      DATETIME, 
   p_establish_at          DATETIME,
 	p_license_img_url       VARCHAR(500),
+	p_is_trusted            BOOLEAN,
 	OUT p_out_new_rec_id		BIGINT UNSIGNED
 )  
 BEGIN
@@ -31,7 +32,8 @@ BEGIN
 			license_number,
 			license_expir_at,
 			establish_at,
-			license_img_id
+			license_img_id,
+			is_trusted
 		)
 	VALUES (
 		p_name_str_id,
@@ -46,7 +48,8 @@ BEGIN
 		p_license_number,
 		p_license_expir_at,
 		p_establish_at,
-		fun_insert_img(p_license_img_url)
+		fun_insert_img(p_license_img_url),
+		IFNULL(p_is_trusted, DEFAULT(is_trusted))
 	)
 	;
   

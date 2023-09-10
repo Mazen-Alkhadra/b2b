@@ -35,7 +35,8 @@ class Company extends Model {
         license_number licenseNumber,
         license_expir_at licenseExpirAt,
         DATE(establish_at) establishAt,
-        fun_get_img(license_img_id) licenseImgUrl
+        fun_get_img(license_img_id) licenseImgUrl,
+        is_trusted isTrusted
       FROM
         companies c
         LEFT JOIN company_types ct ON company_type_id = id_company_type
@@ -62,7 +63,7 @@ class Company extends Model {
     nameEn, companyTypeId, licenseNumber, establishAt,
     licenseImgUrl, cityId, area, street, buildingNumber,
     addressLongitude, addressLatitude, moreAddressInfo, 
-    licenseExpirAt
+    licenseExpirAt, isTrusted
   }) {
     let nameStrId = await StringModel.create().addNewString({enStr: nameEn});
 
@@ -70,7 +71,8 @@ class Company extends Model {
       'CALL prc_add_company(?, @new_record_id);',
       [nameStrId, companyTypeId, cityId, area, street, buildingNumber,
         addressLongitude, addressLatitude, moreAddressInfo,
-        licenseNumber, licenseExpirAt, establishAt, licenseImgUrl]
+        licenseNumber, licenseExpirAt, establishAt, licenseImgUrl, 
+        isTrusted]
     );
 
     return { newId: dbRet[0][0].newRecId };
@@ -80,7 +82,7 @@ class Company extends Model {
     idCompany, nameEn, companyTypeId, licenseNumber, establishAt,
     licenseImgUrl, cityId, area, street, buildingNumber,
     addressLongitude, addressLatitude, moreAddressInfo,
-    licenseExpirAt
+    licenseExpirAt, isTrusted
   }) {
 
     await StringModel.create().updateString({
@@ -95,7 +97,8 @@ class Company extends Model {
       'CALL prc_update_company(?);',
       [idCompany, companyTypeId, cityId, area, street, buildingNumber,
         addressLongitude, addressLatitude, moreAddressInfo,
-        licenseNumber, licenseExpirAt, establishAt, licenseImgUrl]
+        licenseNumber, licenseExpirAt, establishAt, licenseImgUrl,
+        isTrusted]
     );
   }
 
