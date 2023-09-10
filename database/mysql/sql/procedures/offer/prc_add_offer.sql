@@ -16,6 +16,8 @@ CREATE PROCEDURE `prc_add_offer` (
 )  
 BEGIN
 
+	SET @_ = fun_can_add_offer(p_creat_by_user_id, p_tender_id, FALSE);
+
 	INSERT INTO 
 		offers (
 			tender_id,

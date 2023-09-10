@@ -25,6 +25,6 @@ module.exports = {
     ERR_FINAL_STATUS: 'FinalStatus',
     ERR_INVALID_STATUS: 'InvalidStatus',
     ERR_EXCEED_MAX_TENDER_TIME_SETTING: 'ExceedMaxTenderTimeSetting',
-    
+    ERR_OFFER_OWN_TENDER: 'OfferOwnTender'
 
 };
