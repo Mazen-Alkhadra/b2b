@@ -50,8 +50,7 @@ class Twilio {
       for(let number of numbers) {
         await client.verify.v2.services(VERIFY_SVC_ID).verifications.create({
           to: number,
-          channel: 'sms',
-          customFriendlyName: "B2B-OTP-V"
+          channel: 'sms'
         });
       }
 
