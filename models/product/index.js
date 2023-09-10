@@ -10,13 +10,13 @@ class Product extends Model {
     limit, skip, filters, sorts, onlyApproved
   }) {
 
-    let approvedCond = !onlyApproved ? 'TRUE' : 'is_approved = TRUE';
+    let approvedCond = !onlyApproved ? 'TRUE' : 'p.is_approved = TRUE';
 
     let countQuery =
       `SELECT
         Count(*) allCount
       FROM
-        products
+        products p
       WHERE 
         ${approvedCond};`
       
@@ -32,7 +32,7 @@ class Product extends Model {
         fun_get_string(NULL, c.name_str_id)	categoryNameEn,
 				p.added_by_user_id	addedByUserId,
         fun_get_img(p.img_id) imgUrl,
-        is_approved isApproved,
+        p.is_approved isApproved,
         p.creat_at creatAt
       FROM
         products p

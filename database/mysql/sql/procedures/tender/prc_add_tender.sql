@@ -25,6 +25,10 @@ BEGIN
 	SET @_ = fun_can_user_create_tender(p_creat_by_user_id, FALSE);
 	SET @_ = fun_is_tender_info_valid(NULL, p_from, p_to, FALSE);
 	
+	IF p_from > CURRENT_TIMESTAMP() THEN 
+		SET p_status = 'COMING_SOON';
+	END IF;
+
 	INSERT INTO 
 		tenders (
 			creat_by_user_id,

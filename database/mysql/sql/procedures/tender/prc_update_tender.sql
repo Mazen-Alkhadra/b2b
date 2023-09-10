@@ -24,6 +24,10 @@ BEGIN
 
 	START TRANSACTION;
 
+	IF p_from IS NOT NULL AND p_from > CURRENT_TIMESTAMP() THEN 
+		SET p_status = 'COMING_SOON';
+	END IF;
+
 	UPDATE 
 		tenders
 	SET

@@ -10,13 +10,13 @@ class Brand extends Model {
     limit, skip, filters, sorts, onlyApproved
   }) {
     
-    let approvedCond = !onlyApproved ? 'TRUE' : 'is_approved = TRUE';
+    let approvedCond = !onlyApproved ? 'TRUE' : 'b.is_approved = TRUE';
 
     let countQuery =
       `SELECT
         Count(*) allCount
       FROM
-        brands
+        brands b
       WHERE 
         ${approvedCond};`
       
@@ -29,7 +29,7 @@ class Brand extends Model {
 				category_id	categoryId,
 				fun_get_string(NULL, c.name_str_id)	categoryNameEn,
 				b.added_by_user_id	addedByUserId,
-        is_approved isApproved
+        b.is_approved isApproved
       FROM
         brands b
         LEFT JOIN categories c ON category_id = id_category
