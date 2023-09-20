@@ -46,7 +46,7 @@ class UserCode {
         isConsume: true
       });
 
-    await this.codeModel.consume({ loginName, code });  
+    return await this.codeModel.consume({ loginName, code });  
   }
 
   async genActivationCode({loginName}) {
