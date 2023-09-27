@@ -91,7 +91,7 @@ class UserCode {
         new Date(Date.now() + userCodesConfig.resetPasswordCodeAge).toISOString()
     });
     
-    EmailSvc.create().sendResetPasswordLink(firstName, lastName, email, code);
+    EmailSvc.create().sendResetPasswordCode(firstName, lastName, email, code);
     this.verifyMobile({mobileNumber: mobile});
   }
 

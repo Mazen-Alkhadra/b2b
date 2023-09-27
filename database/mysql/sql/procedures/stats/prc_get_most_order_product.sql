@@ -15,7 +15,7 @@ BEGIN
     tenders 
     LEFT JOIN users ON creat_by_user_id = id_user
   GROUP BY 
-    company_id 
+    company_id, product_id
   ORDER BY 
     SUM(quantity) DESC
   LIMIT 1

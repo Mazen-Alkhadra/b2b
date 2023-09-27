@@ -84,17 +84,14 @@ class Emailer {
 
   }
 
-  sendResetPasswordLink (
+  sendResetPasswordCode (
     userFirstName, userLastName, userEMail, resetCode
   ) {
 
-    const resetUrl = 
-      `${serverBaseUrl}${resetPasswordPagePath}/${resetCode}`;
-
     let mailBodyHtml = 
       `Dear <b>${userFirstName} ${userLastName},</b>
-      <p>Please follow the link below in order to reset your new account's password:</p>
-      <p><a href="${resetUrl}">${resetUrl}</a></p>
+      <p>Please use the following code to reset your password:</p>
+      <b>${resetCode}</b>
       <p>Best regards.</p>`;
 
     this.sendMail(
@@ -103,7 +100,6 @@ class Emailer {
       null,
       mailBodyHtml
     );
-
   } 
 }
 
