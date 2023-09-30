@@ -957,3 +957,44 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 -- ===================================================================================
+
+-- -----------------------------------------------------
+-- Table `trash`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `trash` (
+  `id`                       BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `record_id`                BIGINT UNSIGNED NOT NULL,
+  `user_id`                  BIGINT UNSIGNED NOT NULL,
+  `type`                     ENUM('OFFER', 'TENDER') NOT NULL,
+  `creat_at`                 DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (`id`),
+
+  CONSTRAINT `fk_trash_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`id_user`)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+-- -----------------------------------------------------
+-- Table `seen`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `seen` (
+  `id`                       BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `record_id`                BIGINT UNSIGNED NOT NULL,
+  `user_id`                  BIGINT UNSIGNED NOT NULL,
+  `type`                     ENUM('OFFER', 'TENDER') NOT NULL,
+
+  PRIMARY KEY (`id`),
+
+  CONSTRAINT `fk_seen_user`
+    FOREIGN KEY (`user_id` )
+    REFERENCES `users` (`id_user`)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;

@@ -17,6 +17,7 @@ module.exports = app => {
   require('./contact-info')(app);
   require('./privacy-policy')(app);
   require('./terms')(app);
+  require('./trash')(app);
   require('./files')(app);
   require('./tender')(app);
   require('./offer')(app);

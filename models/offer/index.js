@@ -65,7 +65,7 @@ class Offer extends Model {
   async get ({
     tenderId, creatByUserId,
     tenderCreatorByUserId,
-    statusArr
+    statusArr, exceptUserTrash
   }) {
 
     let tenderCond = !tenderId ? 'TRUE' :
@@ -76,6 +76,8 @@ class Offer extends Model {
       `t.creat_by_user_id = ${tenderCreatorByUserId}`;
     let statusArrCond = !Array.isArray(statusArr) || !statusArr.length ? 'TRUE' : 
       `o.status IN (${this.escapeSql(statusArr)})`;
+    let exceptUserTrashCond = !exceptUserTrash ? 'TRUE' : 
+      `!fun_is_record_in_trash(id_offer, ${this.escapeSql(exceptUserTrash)}, 'OFFER')`;
 
     let queryStr =
       `SELECT
@@ -112,7 +114,8 @@ class Offer extends Model {
         ${tenderCond} AND 
         ${tenderCreatorCond} AND 
         ${creatorCond} AND 
-        ${statusArrCond}`;
+        ${statusArrCond} AND
+        ${exceptUserTrashCond}`;
 
     let dbRet = await this.directQuery(queryStr);
 

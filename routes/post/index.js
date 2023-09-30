@@ -18,6 +18,7 @@ module.exports = app => {
   require('./city')(app);
   require('./country')(app);
   require('./tender')(app);
+  require('./trash')(app);
   require('./offer')(app);
   require('./ads')(app);
   require('./setting')(app);

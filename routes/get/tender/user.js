@@ -17,7 +17,8 @@ module.exports = app => {
         let data = await TenderSvc.create().get({
           onlyCreatByUserId: onlyCreated ? idUser : null,
           onlyCareByUserId: onlyCreated ? null : idUser,
-          onlyUnCompleted: onlyUnCompleted != null ? onlyUnCompleted : true
+          onlyUnCompleted: onlyUnCompleted != null ? onlyUnCompleted : true,
+          exceptUserTrash: req.user.idUser
         });
 
         res.status(200).json(data);

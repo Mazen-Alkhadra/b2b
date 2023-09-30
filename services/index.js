@@ -19,6 +19,7 @@ module.exports = {
   Product: require('./product'),
   Subscription: require('./subscription'),
   Tender: require('./tender'),
+  Trash: require('./trash'),
   api: require('./api'),
   ContactInfo: require('./contact-info'),
   PrivacyPolicy: require('./privacy-policy'),

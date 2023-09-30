@@ -15,7 +15,7 @@ BEGIN
 	SET @_ = fun_is_subscription_package_valid(p_subscription_package_id, FALSE);
 
 	IF p_promotion_id IS NOT NULL OR p_promotion_code IS NOT NULL THEN 
-		SET @_ = fun_is_promotion_valid(id_promotion, p_promotion_code, FALSE);
+		SET @_ = fun_is_promotion_valid(p_promotion_id, p_promotion_code, FALSE);
 		SET p_promotion_id = fun_consume_promotion(p_promotion_id, p_promotion_code);	
 	END IF;
 
