@@ -18,6 +18,7 @@ module.exports = app => {
   require('./privacy-policy')(app);
   require('./terms')(app);
   require('./trash')(app);
+  require('./seen')(app);
   require('./files')(app);
   require('./tender')(app);
   require('./offer')(app);

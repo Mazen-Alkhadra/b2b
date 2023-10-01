@@ -19,6 +19,7 @@ module.exports = app => {
   require('./country')(app);
   require('./tender')(app);
   require('./trash')(app);
+  require('./seen')(app);
   require('./offer')(app);
   require('./ads')(app);
   require('./setting')(app);

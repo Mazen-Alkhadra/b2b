@@ -19,6 +19,7 @@ module.exports = {
   GetUserProfileInfo: '/api/user/profile/info',
   GetUserTenderContacts: '/api/user/tender/contacts',
   GetUserTrash: '/api/user/trash',
+  GetUserSeen: '/api/user/seen',
 
   
   PostUserBrand: '/api/user/brand',
@@ -36,6 +37,7 @@ module.exports = {
   PostUserIssueReport: '/api/user/issue-report',
   PostUserReqEPay: '/api/user/e-pay',
   PostUserTrash: '/api/user/trash',
+  PostUserSeen: '/api/user/seen',
   
   DeleteUserOffer: '/api/user/offer',
   DeleteUserTender: '/api/user/tender',

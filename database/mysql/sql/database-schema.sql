@@ -987,14 +987,17 @@ CREATE TABLE IF NOT EXISTS `seen` (
   `record_id`                BIGINT UNSIGNED NOT NULL,
   `user_id`                  BIGINT UNSIGNED NOT NULL,
   `type`                     ENUM('OFFER', 'TENDER') NOT NULL,
-
+  `creat_at`                 DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  
   PRIMARY KEY (`id`),
 
   CONSTRAINT `fk_seen_user`
     FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id_user`)
     ON DELETE CASCADE
-    ON UPDATE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `unique_seen_record`
+    UNIQUE(`record_id`, `type`, `user_id`)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;

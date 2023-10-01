@@ -20,6 +20,7 @@ module.exports = {
   Subscription: require('./subscription'),
   Tender: require('./tender'),
   Trash: require('./trash'),
+  Seen: require('./seen'),
   api: require('./api'),
   ContactInfo: require('./contact-info'),
   PrivacyPolicy: require('./privacy-policy'),

@@ -59,7 +59,7 @@ class Tender extends Model {
 
   async get ({ 
     onlyCreatByUserId, onlyCareByUserId, tenderId,
-    onlyUnCompleted, exceptUserTrash
+    onlyUnCompleted, exceptUserTrash, reqUserId
   }) {      
 
     let onlyCreatByUserCond = !onlyCreatByUserId ? 'TRUE' : 
@@ -98,7 +98,8 @@ class Tender extends Model {
         status,
         pay_method payMethod,
 				closed_at	closedAt,
-        u.score creatorScore
+        u.score creatorScore,
+        fun_is_record_seen_by_user(id_tender, ${this.escapeSql(reqUserId)}, 'TENDER') isTenderSeen
       FROM
         tenders t
         INNER JOIN users u ON id_user = creat_by_user_id

@@ -65,7 +65,8 @@ class Offer extends Model {
   async get ({
     tenderId, creatByUserId,
     tenderCreatorByUserId,
-    statusArr, exceptUserTrash
+    statusArr, exceptUserTrash,
+    reqUserId
   }) {
 
     let tenderCond = !tenderId ? 'TRUE' :
@@ -102,7 +103,8 @@ class Offer extends Model {
         t.creat_by_user_id tenderCreatorByUserId,
         t.product_id productId,
         t.quantity tenderQuantity,
-        u.score offerCreatorScore
+        u.score offerCreatorScore,
+        fun_is_record_seen_by_user(id_offer, ${this.escapeSql(reqUserId)}, 'OFFER') isOfferSeen
       FROM
         offers o
         INNER JOIN tenders t ON tender_id = id_tender

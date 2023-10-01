@@ -12,11 +12,11 @@ class Offer {
 
   async get ({ 
     tenderId, creatByUserId, tenderCreatorByUserId,
-    statusArr, exceptUserTrash
+    statusArr, exceptUserTrash, reqUserId
   }) {
     return await this.offerModel.get ({
-      tenderId, creatByUserId,
-      tenderCreatorByUserId,
+      tenderId, creatByUserId, 
+      tenderCreatorByUserId, reqUserId,
       statusArr, exceptUserTrash
     });
   }

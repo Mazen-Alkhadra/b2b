@@ -10,7 +10,8 @@ module.exports = app => {
           tenderId: req.query.tenderId,
           creatByUserId: req.query.creatByUserId,
           statusArr: req.query.status ? req.query.status.split(',') : null,
-          exceptUserTrash: req.user.idUser
+          exceptUserTrash: req.user.idUser,
+          reqUserId: req.user.idUser
         });
 
         res.status(200).json(data);

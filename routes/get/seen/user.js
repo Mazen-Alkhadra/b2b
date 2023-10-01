@@ -1,17 +1,17 @@
 const { 
-   GetUserTrash
+   GetUserSeen
 } = require('../../../services').api.endpoints;
-const TrashSvc = require('../../../services').Trash;
+const SeenSvc = require('../../../services').Seen;
 const extractFilters = require('../../../middlewares/filters');
 const extractSorts = require('../../../middlewares/sorts');
 
 module.exports = app => {
 
-  app.get(GetUserTrash,
+  app.get(GetUserSeen,
     [extractFilters, extractSorts],
     async (req, res) => {
       try {
-        let data = await TrashSvc.create().get({
+        let data = await SeenSvc.create().get({
           limit: req.paginate.limit,
           skip: req.paginate.skip,
           filters: req.filters,
