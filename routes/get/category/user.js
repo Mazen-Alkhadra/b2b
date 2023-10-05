@@ -1,12 +1,9 @@
 const { GetUserCategories } = require('../../../services').api.endpoints;
 const CategorySvc = require('../../../services').Category;
-const extractFilters = require('../../../middlewares/filters');
-const extractSorts = require('../../../middlewares/sorts');
 
 module.exports = app => {
 
   app.get(GetUserCategories,
-    [extractFilters, extractSorts],
     async (req, res) => {
       try {
         let data = await CategorySvc.create().getAllFullInfo({

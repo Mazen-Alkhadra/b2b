@@ -8,22 +8,15 @@ const extractSorts = require('../sorts');
 
 module.exports = (app) => {
  let apisMiddlewares = {};
- apisMiddlewares[endpoints.GetAdminAboutusFull] = [
-  extractFilters,
-  extractSorts
- ]
-
-
+ 
  apisMiddlewares[endpoints.PostAuthSignup] = [
   validatorMiddleware(validators.signup)
  ]
  
 
 
-
-
- app.use('/api/admin/*', requireAdmin());
- app.use('/api/user/*', requireLogin());
+ app.use('/api/admin/*', requireAdmin(), extractFilters, extractSorts);
+ app.use('/api/user/*', requireLogin(), extractFilters, extractSorts);
 
  let apiEndpoint = null;
  for(apiEndpoint in apisMiddlewares)

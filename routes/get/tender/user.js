@@ -19,7 +19,9 @@ module.exports = app => {
           onlyCareByUserId: onlyCreated ? null : idUser,
           onlyUnCompleted: onlyUnCompleted != null ? onlyUnCompleted : true,
           exceptUserTrash: req.user.idUser,
-          reqUserId: req.user.idUser
+          reqUserId: req.user.idUser,
+          limit: req.paginate.limit,
+          skip: req.paginate.skip
         });
 
         res.status(200).json(data);

@@ -59,7 +59,8 @@ class Tender extends Model {
 
   async get ({ 
     onlyCreatByUserId, onlyCareByUserId, tenderId,
-    onlyUnCompleted, exceptUserTrash, reqUserId
+    onlyUnCompleted, exceptUserTrash, reqUserId,
+    limit, skip
   }) {      
 
     let onlyCreatByUserCond = !onlyCreatByUserId ? 'TRUE' : 
@@ -113,6 +114,7 @@ class Tender extends Model {
         ${unCompletedCond} AND 
         ${exceptUserTrashCond}`;
 
+    queryStr += this.getLimitClause({ limit, skip });
     let dbRet = await this.directQuery(queryStr);
 
     return { data: dbRet };

@@ -1,12 +1,9 @@
 const { GetUserProducts } = require('../../../services').api.endpoints;
 const ProductSvc = require('../../../services').Product;
-const extractFilters = require('../../../middlewares/filters');
-const extractSorts = require('../../../middlewares/sorts');
 
 module.exports = app => {
 
   app.get(GetUserProducts,
-    [extractFilters, extractSorts],
     async (req, res) => {
       try {
         let data = await ProductSvc.create().getAllFullInfo({

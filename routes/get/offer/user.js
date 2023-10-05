@@ -11,7 +11,9 @@ module.exports = app => {
           creatByUserId: req.query.creatByUserId,
           statusArr: req.query.status ? req.query.status.split(',') : null,
           exceptUserTrash: req.user.idUser,
-          reqUserId: req.user.idUser
+          reqUserId: req.user.idUser,
+          limit: req.paginate.limit,
+          skip: req.paginate.skip
         });
 
         res.status(200).json(data);

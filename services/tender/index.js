@@ -13,12 +13,12 @@ class Tender {
   async get ({ 
     onlyCreatByUserId, onlyCareByUserId,
     tenderId, onlyUnCompleted, exceptUserTrash,
-    reqUserId
+    reqUserId, limit, skip
   }) {
     return await this.tenderModel.get({ 
       onlyCreatByUserId, onlyCareByUserId,
       tenderId, onlyUnCompleted, exceptUserTrash,
-      reqUserId
+      reqUserId, limit, skip
     });
   }
 
