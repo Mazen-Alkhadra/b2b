@@ -80,7 +80,20 @@ class Offer extends Model {
     let exceptUserTrashCond = !exceptUserTrash ? 'TRUE' : 
       `!fun_is_record_in_trash(id_offer, ${this.escapeSql(exceptUserTrash)}, 'OFFER')`;
 
-    let queryStr =
+    let countQuery =
+    `SELECT
+      Count(*) allCount
+    FROM
+      offers o
+      INNER JOIN tenders t ON tender_id = id_tender
+    WHERE 
+      ${tenderCond} AND 
+      ${tenderCreatorCond} AND 
+      ${creatorCond} AND 
+      ${statusArrCond} AND
+      ${exceptUserTrashCond};`
+
+    let dataQuery =
       `SELECT
         id_offer	idOffer,
 				tender_id	tenderId,
@@ -119,10 +132,14 @@ class Offer extends Model {
         ${statusArrCond} AND
         ${exceptUserTrashCond}`;
 
+    let queryStr = countQuery + dataQuery;
     queryStr += this.getLimitClause({ limit, skip });
     let dbRet = await this.directQuery(queryStr);
 
-    return { data: dbRet };
+    return { 
+      allCount: dbRet[0][0].allCount,
+      data: dbRet[1]
+     };
 
   }
 

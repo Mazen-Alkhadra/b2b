@@ -74,7 +74,19 @@ class Tender extends Model {
     let exceptUserTrashCond = !exceptUserTrash ? 'TRUE' : 
       `!fun_is_record_in_trash(id_tender, ${this.escapeSql(exceptUserTrash)}, 'TENDER')`;
 
-    let queryStr =
+    let countQuery =
+      `SELECT
+        Count(*) allCount
+      FROM
+        tenders t 
+      WHERE
+        ${onlyCreatByUserCond} AND 
+        ${onlyCareByUserCond} AND 
+        ${tenderIdCond} AND 
+        ${unCompletedCond} AND 
+        ${exceptUserTrashCond};`;
+
+    let dataQuery =
       `SELECT
         id_tender	idTender,
         creat_by_user_id  creatByUserId, 
@@ -114,11 +126,14 @@ class Tender extends Model {
         ${unCompletedCond} AND 
         ${exceptUserTrashCond}`;
 
+    let queryStr = countQuery + dataQuery;
     queryStr += this.getLimitClause({ limit, skip });
     let dbRet = await this.directQuery(queryStr);
 
-    return { data: dbRet };
-
+    return { 
+      allCount: dbRet[0][0].allCount,
+      data: dbRet[1] 
+    };
   }
 
   async getB2B ({ userId, isPending }) {      
