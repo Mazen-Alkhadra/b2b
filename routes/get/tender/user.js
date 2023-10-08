@@ -15,9 +15,9 @@ module.exports = app => {
         const { idUser } = req.user;
 
         let data = await TenderSvc.create().get({
-          onlyCreatByUserId: onlyCreated ? idUser : null,
-          onlyCareByUserId: onlyCreated ? null : idUser,
-          onlyUnCompleted: onlyUnCompleted != null ? onlyUnCompleted : true,
+          onlyCreatByUserId: parseInt(onlyCreated) ? idUser : null,
+          onlyCareByUserId: parseInt(onlyCreated) ? null : idUser,
+          onlyUnCompleted: onlyUnCompleted != null ? parseInt(onlyUnCompleted) : true,
           exceptUserTrash: req.user.idUser,
           reqUserId: req.user.idUser,
           limit: req.paginate.limit,

@@ -110,6 +110,8 @@ class Offer extends Model {
 				o.status	status,
         o.tax,
         o.city_id offerCityId,
+        fun_get_string(NULL, ct.name_str_id) offerCityName,
+        fun_get_string(NULL, co.name_str_id) offerCountryName,
 				accepted_at	acceptedAt,
 				excuted_at	excutedAt,
         o.creat_at creatAt,
@@ -125,6 +127,8 @@ class Offer extends Model {
         INNER JOIN brands b ON p.brand_id = id_brand
         INNER JOIN categories c ON c.id_category = b.category_id
         INNER JOIN users u ON u.id_user = o.creat_by_user_id
+        LEFT JOIN cities ct ON o.city_id = id_city
+        LEFT JOIN countries co ON country_id = id_country
       WHERE 
         ${tenderCond} AND 
         ${tenderCreatorCond} AND 

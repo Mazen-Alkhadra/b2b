@@ -62,7 +62,7 @@ class Tender extends Model {
     onlyUnCompleted, exceptUserTrash, reqUserId,
     limit, skip
   }) {      
-
+    
     let onlyCreatByUserCond = !onlyCreatByUserId ? 'TRUE' : 
       `t.creat_by_user_id = ${this.escapeSql(onlyCreatByUserId)}`;
     let onlyCareByUserCond = !onlyCareByUserId ? 'TRUE' : 
@@ -70,7 +70,7 @@ class Tender extends Model {
     let tenderIdCond = !tenderId ? 'TRUE' :
       `id_tender = ${this.escapeSql(tenderId)}`;
     let unCompletedCond = !onlyUnCompleted ? 'TRUE' :
-      'fun_is_tender_complete_qntity(id_tender, FALSE)';
+      '!fun_is_tender_complete_qntity(id_tender, FALSE)';
     let exceptUserTrashCond = !exceptUserTrash ? 'TRUE' : 
       `!fun_is_record_in_trash(id_tender, ${this.escapeSql(exceptUserTrash)}, 'TENDER')`;
 
@@ -101,6 +101,8 @@ class Tender extends Model {
 				\`to\`,
         deliver_before deliverBefore,
         city_id cityId,
+        fun_get_string(NULL, ct.name_str_id) cityName,
+        fun_get_string(NULL, co.name_str_id) countryName,
         area,
         street,
         building_number buildingNumber,
@@ -119,6 +121,8 @@ class Tender extends Model {
         INNER JOIN products p ON id_product = product_id
         INNER JOIN brands b ON p.brand_id = id_brand
         INNER JOIN categories c ON c.id_category = b.category_id
+        LEFT JOIN cities ct ON city_id = id_city
+        LEFT JOIN countries co ON country_id = id_country
       WHERE 
         ${onlyCreatByUserCond} AND 
         ${onlyCareByUserCond} AND 
@@ -129,7 +133,7 @@ class Tender extends Model {
     let queryStr = countQuery + dataQuery;
     queryStr += this.getLimitClause({ limit, skip });
     let dbRet = await this.directQuery(queryStr);
-
+    
     return { 
       allCount: dbRet[0][0].allCount,
       data: dbRet[1] 
