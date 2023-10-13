@@ -73,7 +73,6 @@ class UserSubscription extends Model {
 				user_id	userId,
 				subscription_package_id	subscriptionPackageId,
         fun_get_string(NULL, name_str_id) subscriptionPackageName,
-        color subscriptionPackageColor,
 				payment_id paymentId,
 				promotion_id promotionId,
         subscrib_at subscribAt,
