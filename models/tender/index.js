@@ -115,7 +115,8 @@ class Tender extends Model {
 				closed_at	closedAt,
         u.score creatorScore,
         fun_is_record_seen_by_user(id_tender, ${this.escapeSql(reqUserId)}, 'TENDER') isTenderSeen,
-        fun_get_offers_cnt_on_tender(id_tender) offersCnt
+        fun_get_offers_cnt_on_tender(id_tender) offersCnt,
+        fun_is_user_trusted(t.creat_by_user_id) isCreatorTrusted
       FROM
         tenders t
         INNER JOIN users u ON id_user = creat_by_user_id

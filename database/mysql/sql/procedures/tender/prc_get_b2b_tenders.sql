@@ -14,6 +14,7 @@ BEGIN
       fun_get_string(NULL, b.name_str_id) brandName,
       fun_get_string(NULL, c.name_str_id) categoryName,
       fun_get_offers_cnt_on_tender(id_tender) offersCnt,
+      fun_is_user_trusted(t.creat_by_user_id) isTenderCreatorTrusted,
 		  t.quantity tenderQuantity,
 		  `from`,
 		  `to`,
