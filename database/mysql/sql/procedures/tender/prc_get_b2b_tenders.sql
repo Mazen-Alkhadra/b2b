@@ -13,6 +13,7 @@ BEGIN
       fun_get_img(p.img_id) productImgUrl,
       fun_get_string(NULL, b.name_str_id) brandName,
       fun_get_string(NULL, c.name_str_id) categoryName,
+      fun_get_offers_cnt_on_tender(id_tender) offersCnt,
 		  t.quantity tenderQuantity,
 		  `from`,
 		  `to`,
