@@ -13,8 +13,8 @@ class Package {
     });
   }
 
-  async get ({ userId }) {
-    return await this.userSubscribeModel.get ({ userId });
+  async get ({ userId, sorts }) {
+    return await this.userSubscribeModel.get ({ userId, sorts });
   }
 
   async addNew({

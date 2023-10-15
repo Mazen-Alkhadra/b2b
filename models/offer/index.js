@@ -66,7 +66,7 @@ class Offer extends Model {
     tenderId, creatByUserId,
     tenderCreatorByUserId,
     statusArr, exceptUserTrash,
-    reqUserId, limit, skip
+    reqUserId, limit, skip, sorts
   }) {
 
     let tenderCond = !tenderId ? 'TRUE' :
@@ -137,6 +137,7 @@ class Offer extends Model {
         ${exceptUserTrashCond}`;
 
     let queryStr = countQuery + dataQuery;
+    queryStr += this.getOrderClause(sorts);
     queryStr += this.getLimitClause({ limit, skip });
     let dbRet = await this.directQuery(queryStr);
 

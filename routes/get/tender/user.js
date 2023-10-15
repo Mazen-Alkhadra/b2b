@@ -21,7 +21,9 @@ module.exports = app => {
           exceptUserTrash: req.user.idUser,
           reqUserId: req.user.idUser,
           limit: req.paginate.limit,
-          skip: req.paginate.skip
+          skip: req.paginate.skip,
+          filters: req.filters,
+          sorts: req.sorts
         });
 
         res.status(200).json(data);

@@ -9,7 +9,8 @@ module.exports = app => {
     async (req, res) => {
       try {
         let data = await SubscribeSvc.UserSubscription.create().get ({
-          userId: req.user.idUser
+          userId: req.user.idUser,
+          sorts: req.sorts
         });
 
         res.status(200).json(data);

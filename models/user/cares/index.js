@@ -49,7 +49,7 @@ class UserCare extends Model {
 
   }
 
-  async get ({ userId }) {
+  async get ({ userId, sorts }) {
 
     let userCond = !userId ? 'TRUE' : `user_id = ${this.escapeSql(userId)}`;
 
@@ -71,6 +71,7 @@ class UserCare extends Model {
       WHERE 
         ${userCond}`;
 
+    queryStr += this.getOrderClause(sorts);
     let dbRet = await this.directQuery(queryStr);
 
     return { data: dbRet };

@@ -60,7 +60,7 @@ class Tender extends Model {
   async get ({ 
     onlyCreatByUserId, onlyCareByUserId, tenderId,
     onlyUnCompleted, exceptUserTrash, reqUserId,
-    limit, skip
+    limit, skip, filters, sorts
   }) {      
     
     let onlyCreatByUserCond = !onlyCreatByUserId ? 'TRUE' : 
@@ -132,6 +132,9 @@ class Tender extends Model {
         ${exceptUserTrashCond}`;
 
     let queryStr = countQuery + dataQuery;
+    let filteredQuery = this.applyFilters(dataQuery, filters);
+    queryStr = filteredQuery.finalQuery || queryStr;
+    queryStr += this.getOrderClause(sorts);
     queryStr += this.getLimitClause({ limit, skip });
     let dbRet = await this.directQuery(queryStr);
     

@@ -12,8 +12,8 @@ class UserCare {
     });
   }
 
-  async get ({ userId }) {
-    return await this.careModel.get({ userId });
+  async get ({ userId, sorts }) {
+    return await this.careModel.get({ userId, sorts });
   }
 
   async resetUserCares({

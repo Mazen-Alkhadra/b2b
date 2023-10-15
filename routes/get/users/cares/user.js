@@ -7,7 +7,8 @@ module.exports = app => {
     async (req, res) => {
       try {
         let data = await UserSvc.Cares.create().get({
-          userId: req.query.idUser
+          userId: req.query.idUser,
+          sorts: req.sorts
         });
 
         res.status(200).json(data);
