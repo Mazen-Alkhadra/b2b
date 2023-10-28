@@ -216,7 +216,7 @@ class Model {
 
     for (index in sorts) {
 
-      orderClause += sorts[index].selector;
+      orderClause += '`' + sorts[index].selector + '`';
       orderClause += sorts[index].desc ? ' DESC' : '';
 
       if (index < sorts.length - 1)
