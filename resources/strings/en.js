@@ -6,5 +6,9 @@ module.exports = {
   NEW_TENDER_CREATED_NOTIFY_TITLE: 'New Tender',
   NEW_TENDER_CREATED_NOTIFY_CONTENT: 'New tender ${tenderName} is issued which you may interested in, please review tenders list',
   NEW_OFFER_CREATED_NOTIFY_TITLE: 'New Offer',
-  NEW_OFFER_CREATED_NOTIFY_CONTENT: 'New offer is created on your tender please review offers'
+  NEW_OFFER_CREATED_NOTIFY_CONTENT: 'New offer is created on your tender please review offers',
+  OFFER_ACCEPTED_NOTIFY_TITLE: 'Offer Excepted',
+  OFFER_ACCEPTED_NOTIFY_CONTENT: 'Offer on tender ${tenderName} has been accepted',
+  OFFER_EXECUTED_NOTIFY_TITLE: 'Offer Executed',
+  OFFER_EXECUTED_NOTIFY_CONTENT: 'Offer on tender ${tenderName} has been executed',
 }

@@ -12,14 +12,19 @@ class Offer extends Model {
   };
 
   async getAllFullInfo({
-    limit, skip, filters, sorts
+    limit, skip, filters, sorts,
+    offerId
   }) {
+
+    let offerIdCond = !offerId ? 'TRUE' : `id_offer = ${this.escapeSql(offerId)}`;
 
     let countQuery =
       `SELECT
         Count(*) allCount
       FROM
-        offers;`
+        offers
+      WHERE 
+        ${offerIdCond};`
       
 
     let dataQuery =
@@ -40,10 +45,13 @@ class Offer extends Model {
         o.creat_at creatAt,
         t.creat_by_user_id tenderCreatorByUserId,
         t.product_id productId,
-        t.quantity tenderQuantity
+        t.quantity tenderQuantity,
+        t.name tenderName
       FROM
         offers o
-        INNER JOIN tenders t ON tender_id = id_tender`;
+        INNER JOIN tenders t ON tender_id = id_tender
+      WHERE 
+        ${offerIdCond}`;
 
     let queryStr = countQuery + dataQuery;
 

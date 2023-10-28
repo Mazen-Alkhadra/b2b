@@ -4,7 +4,9 @@ const EVENTS_TYPES = {
   NEW_USER_SIGNUP: 'NEW_USER_SIGNUP', // data: {userId}
   USER_UPDATE_PROFILE: 'USER_UPDATE_PROFILE', // data: {userId}
   NEW_TENDER_CREATED: 'NEW_TENDER_CREATED', // data: {tenderId, tenderName}
-  NEW_OFFER_CREATED: 'NEW_OFFER_CREATED' // data: {tenderId}
+  NEW_OFFER_CREATED: 'NEW_OFFER_CREATED', // data: {tenderId},
+  OFFER_ACCEPTED: 'OFFER_ACCEPTED', // data: {offerId},
+  OFFER_EXECUTED: 'OFFER_EXECUTED' // data: {offerId},
 } 
 
 class Event {
@@ -17,6 +19,7 @@ class Event {
     let NotifySvc = require('../index');
     const UserSvc = require('../../user');
     const TenderSvc = require('../../tender'); 
+    const OfferSvc = require('../../offer'); 
 
     let toUsersIds = [];
     let notification = {
@@ -49,6 +52,17 @@ class Event {
         toUsersIds = (await TenderSvc.create().get({tenderId: data.tenderId}))
           .data.map(tender => tender.creatByUserId);
         break;  
+      
+      case EVENTS_TYPES.OFFER_ACCEPTED:
+      case EVENTS_TYPES.OFFER_EXECUTED:
+        let offerDet = (await OfferSvc.create().getAllFullInfo({offerId: data.offerId}));
+        toUsersIds = [offerDet.data[0]?.creatByUserId];
+        notification.contentEn = StrRes (
+            `${event}_NOTIFY_CONTENT`, 
+            LANGS.EN,
+            {tenderName: offerDet.data[0]?.tenderName }
+        );
+        break;
     }
 
 

@@ -4,9 +4,9 @@ const NotifySvc = require('../notification');
 class Offer {
   offerModel = OfferModel.create();
   
-  async getAllFullInfo({ limit, skip, filters, sorts }) {
+  async getAllFullInfo({ limit, skip, filters, sorts, offerId }) {
     return await this.offerModel.getAllFullInfo({
-      limit, skip, filters, sorts
+      limit, skip, filters, sorts, offerId
     });
   }
 
@@ -62,6 +62,11 @@ class Offer {
       status: OfferModel.STATUS.ACCEPTED,
       acceptedAt: new Date()
     });
+
+    NotifySvc.Event.create().handl({
+      event: NotifySvc.Event.EVENTS_TYPES.OFFER_ACCEPTED,
+      data: {offerId: idOffer}
+    });
   }
 
   async setOfferExecuted({idOffer}) {
@@ -69,6 +74,11 @@ class Offer {
       idOffer, 
       status: OfferModel.STATUS.EXECUTED,
       excutedAt: new Date()
+    });
+
+    NotifySvc.Event.create().handl({
+      event: NotifySvc.Event.EVENTS_TYPES.OFFER_EXECUTED,
+      data: {offerId: idOffer}
     });
   }
 
