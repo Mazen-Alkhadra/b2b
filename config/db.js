@@ -1,6 +1,6 @@
 module.exports = {
   mysql: {
-    host: "b2back.net",
+    host: "80.249.106.206",
     user: "b2b_dba",
     password: "Mm@1234567",
     database: "b2b_db",
