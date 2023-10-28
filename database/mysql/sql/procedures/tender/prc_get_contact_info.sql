@@ -46,7 +46,8 @@ BEGIN
       c.building_number companyBuildingNumber,
       c.address_longitude companyAddressLong,
       c.address_latitude companyAddressLat,
-      c.more_address_info companyMoreAddressInfo
+      c.more_address_info companyMoreAddressInfo,
+      c.is_trusted isCompanyTrusted
     FROM 
       offers o 
       INNER JOIN users u ON o.creat_by_user_id = u.id_user
@@ -105,7 +106,8 @@ BEGIN
       c.building_number companyBuildingNumber,
       c.address_longitude companyAddressLong,
       c.address_latitude companyAddressLat,
-      c.more_address_info companyMoreAddressInfo
+      c.more_address_info companyMoreAddressInfo,
+      c.is_trusted isCompanyTrusted
     FROM 
       tenders t 
       INNER JOIN users u ON t.creat_by_user_id = u.id_user

@@ -145,14 +145,77 @@ class Tender extends Model {
     };
   }
 
-  async getB2B ({ userId, isPending }) {      
+  async getB2B ({ userId, isPending, limit, skip, sorts }) {      
 
-    let queryStr = isPending ? 'CALL prc_get_pending_b2b_tenders(?);' : 
-      'CALL prc_get_b2b_tenders(?);';
+    userId = this.escapeSql(userId);
+    let isPendingCond = !isPending ? `
+      (
+        (
+          o.status = 'EXECUTED' AND
+          o.creat_by_user_id = ${userId}
+        ) OR
+        t.creat_by_user_id = ${userId}
+      ) AND 
+      fun_is_tender_b2b(tender_id)` : 
+      `o.status IN ('ACCEPTED', 'EXECUTED') AND  
+      (
+        o.creat_by_user_id = ${userId} OR
+        t.creat_by_user_id = ${userId}
+      ) AND 
+      NOT fun_is_tender_b2b(id_tender)`;
+      
+    let countQuery = `
+      SELECT 
+        COUNT(*) allCount
+      FROM
+        tenders t
+        INNER JOIN offers o ON tender_id = id_tender
+      WHERE 
+        ${isPendingCond};`;
 
-    let dbRet = await this.directQuery(queryStr, userId);
+    let dataQuery = `
+      SELECT
+        id_tender	idTender,
+        t.creat_by_user_id  tenderCreatorUserId, 
+        name,
+        product_id	productId,
+        fun_get_string(NULL, p.name_str_id) productName,
+        fun_get_img(p.img_id) productImgUrl,
+        fun_get_string(NULL, b.name_str_id) brandName,
+        fun_get_string(NULL, c.name_str_id) categoryName,
+        fun_get_offers_cnt_on_tender(id_tender) offersCnt,
+        fun_is_user_trusted(t.creat_by_user_id) isTenderCreatorTrusted,
+        t.quantity tenderQuantity,
+        \`from\`,
+        \`to\`,
+        t.city_id cityId,
+        t.area,
+        t.street,
+        t.building_number buildingNumber,
+        t.address_longitude addressLongitude,
+        t.address_latitude addressLatitude,
+        t.more_address_info moreAddressInfo,
+        t.supplier_location supplierLocation,
+        t.status,
+        closed_at closedAt
+      FROM
+        tenders t
+        INNER JOIN offers o ON tender_id = id_tender
+        INNER JOIN products p ON id_product = product_id
+        INNER JOIN brands b ON p.brand_id = id_brand
+        INNER JOIN categories c ON c.id_category = b.category_id
+      WHERE 
+        ${isPendingCond}`;
 
-    return { data: dbRet[0] };
+    let queryStr = countQuery + dataQuery;
+    queryStr += this.getOrderClause(sorts);
+    queryStr += this.getLimitClause({ limit, skip });
+    let dbRet = await this.directQuery(queryStr);
+    
+    return { 
+      allCount: dbRet[0][0].allCount,
+      data: dbRet[1] 
+    };
   }
 
   async getContactInfo ({ userId, offerId, tenderId }) {      

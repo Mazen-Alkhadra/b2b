@@ -40,7 +40,10 @@ module.exports = app => {
       try {
         let data = await TenderSvc.create().getB2B({
           userId: req.user.idUser,
-          isPending: req.query.isPending
+          isPending: req.query.isPending,
+          limit: req.paginate.limit,
+          skip: req.paginate.skip,
+          sorts: req.sorts
         });
 
         res.status(200).json(data);
