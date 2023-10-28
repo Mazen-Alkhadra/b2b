@@ -265,6 +265,10 @@ class Tender extends Model {
     );
   }
 
+  async checkComingTenders() {
+    await this.directQuery ('CALL prc_check_coming_tenders();');
+  }
+
   async delete({ idTender }) {
     await this.directQuery (
       'CALL prc_delete_tender(?);',

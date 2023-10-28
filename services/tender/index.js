@@ -69,6 +69,10 @@ class Tender {
     });
   }
 
+  async checkComingTenders() {
+    await this.tenderModel.checkComingTenders();
+  }
+
   async delete({ idTender }) {
     await this.tenderModel.delete({ idTender });
   }
