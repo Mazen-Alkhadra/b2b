@@ -10,5 +10,5 @@ module.exports = {
   OFFER_ACCEPTED_NOTIFY_TITLE: 'Offer Excepted',
   OFFER_ACCEPTED_NOTIFY_CONTENT: 'Offer on tender ${tenderName} has been accepted',
   OFFER_EXECUTED_NOTIFY_TITLE: 'Offer Executed',
-  OFFER_EXECUTED_NOTIFY_CONTENT: 'Offer on tender ${tenderName} has been executed',
+  OFFER_EXECUTED_NOTIFY_CONTENT: 'Offer on tender ${tenderName} has been delivered',
 }
