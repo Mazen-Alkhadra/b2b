@@ -46,7 +46,7 @@ module.exports = app => {
 
 				await UserSvc.create().update({
           idUser, firstName, lastName, email, mobile, password, companyId,
-          birthDate, gender, imgUrl, isBlocked, isActive, isAccepted,
+          birthDate, gender, imgUrl, isBlocked, isAccepted,
 					hasMobileWhatsapp, roleId, notes, score, isAuthorized,
 					isEmailVerified, isMobileVerified
 				});
