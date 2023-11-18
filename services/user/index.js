@@ -23,14 +23,14 @@ class User {
 
   async addNew({
     firstName, lastName, email, mobile, password, companyId,
-    birthDate, gender, imgUrl, roleId, isBlocked,
-    hasMobileWhatsapp, notes
+    birthDate, gender, imgUrl, roleId, isBlocked, notes,
+    hasMobileWhatsapp, isMobileVerified, isEmailVerified
   }) {
     mobile = this.fixMobile({number: mobile});
     let userData = await this.userModel.addNew({
       firstName, lastName, email, mobile, password, companyId,
       birthDate, gender, imgUrl, roleId, isBlocked, notes,
-      hasMobileWhatsapp
+      hasMobileWhatsapp, isEmailVerified, isMobileVerified
     });
 
     if(companyId) {

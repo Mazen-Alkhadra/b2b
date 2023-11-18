@@ -181,14 +181,14 @@ class User extends Model {
 
   async addNew({
     firstName, lastName, email, mobile, password, companyId, 
-    birthDate, gender, imgUrl, roleId, isBlocked,
-    hasMobileWhatsapp, notes
+    birthDate, gender, imgUrl, roleId, isBlocked, notes,
+    hasMobileWhatsapp, isEmailVerified, isMobileVerified
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_user(?, @new_record_id);',
       [firstName, lastName, email, mobile, hasMobileWhatsapp, 
-        password, companyId, birthDate, gender, imgUrl, 
-        roleId, isBlocked, notes]
+        password, companyId, birthDate, gender, imgUrl, roleId, 
+        isBlocked, isMobileVerified, isEmailVerified, notes]
     );
 
     return { newId: dbRet[0][0].newRecId };

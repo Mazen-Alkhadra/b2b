@@ -63,6 +63,26 @@ class User_code extends Model {
     return { newId: dbRet[0][0].newRecId };
   }
 
+  async addVerified({ loginName }) {
+    await this.directQuery (
+      'CALL prc_add_verified(?);',
+      loginName 
+    );
+  }
+
+  async isVerified({ loginName }) {
+    
+    if(!loginName) 
+      return false;
+    
+    let dbRet = await this.directQuery (
+      'SELECT fun_is_verified(?) AS result;',
+      loginName 
+    );
+
+    return dbRet[0].result;
+  }
+
   async update({
     idCode, userId, loginName, code, type,
     isActive, expiryDateTime

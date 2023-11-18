@@ -42,15 +42,27 @@ class UserCode {
     const isLoginNameMobile = validators.isMobile(loginName);
 
     if(isLoginNameMobile)
-      return await this.verifyMobile({
+      await this.verifyMobile({
         mobileNumber: loginName,
         code, 
         isConsume: true
       });
+    else 
+      await this.codeModel.consume ({ 
+        loginName, code, isLoginNameEmail: !isLoginNameMobile
+      });  
 
-    return await this.codeModel.consume ({ 
-      loginName, code, isLoginNameEmail: !isLoginNameMobile
-    });  
+    this.addVerified({ loginName });
+    
+    this.userModel.findUser({loginName}).then(user => {
+        if(!user) 
+          return;
+        this.userModel.update ({
+          idUser: user.idUser, 
+          isEmailVerified: !isLoginNameMobile || null,
+          isMobileVerified: isLoginNameMobile || null
+        });
+    });
   }
 
   async genActivationCode({loginName}) {
@@ -116,12 +128,15 @@ class UserCode {
 
     if(!isValid)
       throw {message: ERR_INVALID_USER_CODE};
-
-    let {idUser} = await this.userModel.findUser({loginName: mobileNumber});
-    await this.userModel.update({idUser, isActive: true});
-    return {idUser};
   }
 
+  async addVerified({ loginName }) {
+    return await this.codeModel.addVerified({ loginName });
+  }
+
+  async isVerified({ loginName }) {
+    return await this.codeModel.isVerified({ loginName });
+  }
 }
 
 

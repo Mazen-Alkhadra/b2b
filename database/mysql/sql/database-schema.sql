@@ -322,7 +322,15 @@ CREATE TABLE IF NOT EXISTS `users_codes` (
   )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
-
+-- -----------------------------------------------------
+-- Table verified -- Verified Emails & Mobiles
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `verified` (
+  `login_name`            VARCHAR(200) NULL UNIQUE,
+  `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `categories`
 -- -----------------------------------------------------

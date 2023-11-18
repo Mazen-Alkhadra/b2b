@@ -10,6 +10,7 @@ const passportSession = passport.session();
 
 class Auth {
   userSvc = UserSvc.create();
+  userCodeSvc = UserSvc.Codes.create();
   hashSvc = HashSvc.create();
 
   async signup({
@@ -17,13 +18,17 @@ class Auth {
     companyId, birthDate, gender, hasMobileWhatsapp
   }) {
     const hashedPassword = await this.hashSvc.hash(password);
+    const isMobileVerified = await this.userCodeSvc.isVerified({loginName: mobile});
+    const isEmailVerified = await this.userCodeSvc.isVerified({loginName: email});
+
     birthDate = birthDate || null;
     
     let {newId} = await this.userSvc.addNew ({
       firstName, lastName, email, mobile,
       companyId, birthDate, gender,
       password: hashedPassword,
-      hasMobileWhatsapp
+      hasMobileWhatsapp, isMobileVerified,
+      isEmailVerified 
     });
 
     NotifySvc.Event.create().handl({
