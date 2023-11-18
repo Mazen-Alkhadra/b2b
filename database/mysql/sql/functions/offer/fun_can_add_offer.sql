@@ -13,6 +13,10 @@ BEGIN
     RETURN FALSE;
   END IF;
 
+  IF !fun_is_verified(NULL, p_user_id, p_allow_false) THEN
+    RETURN FALSE;
+  END IF;
+
   IF EXISTS (
     SELECT 
       TRUE 

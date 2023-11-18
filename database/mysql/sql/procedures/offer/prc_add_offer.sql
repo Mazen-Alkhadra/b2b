@@ -1,17 +1,18 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_add_offer` (
-	p_tender_id					BIGINT UNSIGNED,
+	p_tender_id							BIGINT UNSIGNED,
 	p_creat_by_user_id  		BIGINT UNSIGNED,
-	p_quantity             	    DOUBLE,
-	p_price_USD					DOUBLE,
+	p_quantity          		DOUBLE,
+	p_price_USD							DOUBLE,
 	p_b_include_delivery		BOOLEAN,
-	p_delivery_cost				DOUBLE,
+	p_delivery_cost				  DOUBLE,
 	p_delivery_address			LONGTEXT,
-	p_status					VARCHAR(20),
-	p_tax                       DOUBLE,
-	p_city_id           BIGINT UNSIGNED,
-	p_accepted_at				DATETIME,
-	p_excuted_at				DATETIME,
+	p_delivery_at           DATETIME,
+	p_status					      VARCHAR(20),
+	p_tax                   DOUBLE,
+	p_city_id               BIGINT UNSIGNED,
+	p_accepted_at				    DATETIME,
+	p_excuted_at				    DATETIME,
 	OUT p_out_new_rec_id		BIGINT UNSIGNED
 )  
 BEGIN
@@ -27,6 +28,7 @@ BEGIN
 			b_include_delivery,
 			delivery_cost,
 			delivery_address,
+			delivery_at,
 			status,
 			tax,
 			city_id,
@@ -41,6 +43,7 @@ BEGIN
 		p_b_include_delivery,
 		p_delivery_cost,
 		p_delivery_address,
+		p_delivery_at,
 		IFNULL(p_status, DEFAULT(status)),
 		p_tax,
 		p_city_id,

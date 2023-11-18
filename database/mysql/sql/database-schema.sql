@@ -530,6 +530,7 @@ CREATE TABLE IF NOT EXISTS `offers` (
   `b_include_delivery`    BOOLEAN,
   `delivery_cost`         DOUBLE,
   `delivery_address`      LONGTEXT NULL,
+  `delivery_at`           DATETIME NULL,
   `status`                ENUM('PENDING', 'REJECTED', 'ACCEPTED', 'EXECUTED') NOT NULL DEFAULT 'PENDING',
   `tax`                   DOUBLE NULL,
   `city_id`               BIGINT UNSIGNED NULL,

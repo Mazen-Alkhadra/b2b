@@ -26,12 +26,14 @@ class Offer {
   async addNew({
     tenderId, creatByUserId, quantity, priceUSD, 
     bIncludeDelivery, deliveryCost, deliveryAddress,
-    status, tax, cityId, acceptedAt, excutedAt
+    status, tax, cityId, acceptedAt, excutedAt,
+    deliveryAt
   }) {
     await this.offerModel.addNew({
       tenderId, creatByUserId, quantity, priceUSD, 
       bIncludeDelivery, deliveryCost, deliveryAddress,
-      status, tax, cityId, acceptedAt, excutedAt
+      status, tax, cityId, acceptedAt, excutedAt,
+      deliveryAt
     });
 
     NotifySvc.Event.create().handl({
@@ -42,13 +44,13 @@ class Offer {
 
   async update({
     idOffer, tenderId, creatByUserId, quantity, priceUSD, 
-    bIncludeDelivery, deliveryCost, deliveryAddress, 
-    status, tax, cityId, acceptedAt, excutedAt
+    bIncludeDelivery, deliveryCost, deliveryAddress, status,
+    tax, cityId, acceptedAt, excutedAt, deliveryAt
   }) {
     await this.offerModel.update({
       idOffer, tenderId, creatByUserId, quantity, priceUSD, 
-      bIncludeDelivery, deliveryCost, deliveryAddress, 
-      status, tax, cityId, acceptedAt, excutedAt
+      bIncludeDelivery, deliveryCost, deliveryAddress, status,
+      tax, cityId, acceptedAt, excutedAt, deliveryAt
     });
   }
 

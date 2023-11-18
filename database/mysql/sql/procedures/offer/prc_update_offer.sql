@@ -1,18 +1,19 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_update_offer` (
-	p_id_offer				BIGINT UNSIGNED,
-	p_tender_id				BIGINT UNSIGNED,
+	p_id_offer							BIGINT UNSIGNED,
+	p_tender_id					  	BIGINT UNSIGNED,
 	p_creat_by_user_id      BIGINT UNSIGNED,
 	p_quantity              DOUBLE,
-	p_price_USD				DOUBLE,
-	p_b_include_delivery	BOOLEAN,
-	p_delivery_cost		    DOUBLE,
-	p_delivery_address		LONGTEXT,
-	p_status				VARCHAR(20),
+	p_price_USD							DOUBLE,
+	p_b_include_delivery		BOOLEAN,
+	p_delivery_cost		    	DOUBLE,
+	p_delivery_address			LONGTEXT,
+	p_delivery_at           DATETIME,
+	p_status								VARCHAR(20),
 	p_tax                   DOUBLE,
-	p_city_id         BIGINT UNSIGNED,
-	p_accepted_at			DATETIME,
-	p_excuted_at			DATETIME
+	p_city_id         			BIGINT UNSIGNED,
+	p_accepted_at						DATETIME,
+	p_excuted_at						DATETIME
 )  
 BEGIN
 
@@ -32,6 +33,7 @@ BEGIN
 		b_include_delivery = IFNULL(p_b_include_delivery, b_include_delivery),
 		delivery_cost = IFNULL(p_delivery_cost, delivery_cost),
 		delivery_address = IFNULL(p_delivery_address, delivery_address),
+		delivery_at = IFNULL(p_delivery_at, delivery_at),
 		status = IFNULL(p_status, status),
 		tax = IFNULL(p_tax, tax),
 		city_id = IFNULL(p_city_id, city_id),
