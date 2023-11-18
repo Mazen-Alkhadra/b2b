@@ -41,12 +41,14 @@ class UserCode {
     
     const isLoginNameMobile = validators.isMobile(loginName);
 
-    if(isLoginNameMobile)
+    if(isLoginNameMobile) {
+      loginName = this.userModel.fixMobile({number: loginName});
       await this.verifyMobile({
         mobileNumber: loginName,
         code, 
         isConsume: true
       });
+    }
     else 
       await this.codeModel.consume ({ 
         loginName, code, isLoginNameEmail: !isLoginNameMobile
@@ -140,7 +142,7 @@ class UserCode {
   async isVerified({ loginName }) {
     if(validators.isMobile(loginName))
       loginName = this.userModel.fixMobile({number: loginName});
-    
+
     return await this.codeModel.isVerified({ loginName });
   }
 }
