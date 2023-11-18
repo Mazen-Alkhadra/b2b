@@ -37,16 +37,20 @@ class UserCode {
     });
   }
 
-  async consume ({ loginName, code }) {
-   
-    if(validators.isMobile(loginName))
+  async consume ({ loginName, code }) { 
+    
+    const isLoginNameMobile = validators.isMobile(loginName);
+
+    if(isLoginNameMobile)
       return await this.verifyMobile({
         mobileNumber: loginName,
         code, 
         isConsume: true
       });
 
-    return await this.codeModel.consume({ loginName, code });  
+    return await this.codeModel.consume ({ 
+      loginName, code, isLoginNameEmail: !isLoginNameMobile
+    });  
   }
 
   async genActivationCode({loginName}) {

@@ -23,14 +23,14 @@ class User {
 
   async addNew({
     firstName, lastName, email, mobile, password, companyId,
-    birthDate, gender, imgUrl, roleId, isBlocked, isActive,
+    birthDate, gender, imgUrl, roleId, isBlocked,
     hasMobileWhatsapp, notes
   }) {
     mobile = this.fixMobile({number: mobile});
     let userData = await this.userModel.addNew({
       firstName, lastName, email, mobile, password, companyId,
-      birthDate, gender, imgUrl, roleId, isBlocked, isActive,
-      hasMobileWhatsapp, notes
+      birthDate, gender, imgUrl, roleId, isBlocked, notes,
+      hasMobileWhatsapp
     });
 
     if(companyId) {
@@ -49,18 +49,18 @@ class User {
 
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId,
-    birthDate, gender, imgUrl, roleId, isBlocked, isActive,
-    isAccepted, isAuthorized, lastLoginAt, hasMobileWhatsapp, 
-    score, notes
+    birthDate, gender, imgUrl, roleId, isBlocked, isMobileVerified,
+    isEmailVerified, isAccepted, isAuthorized, lastLoginAt, 
+    hasMobileWhatsapp, score, notes
   }) {
     password = await HashSvc.create().hash(password);
     mobile = this.fixMobile({number: mobile});
     
     await this.userModel.update({
       idUser, firstName, lastName, email, mobile, companyId,
-      birthDate, gender, imgUrl, roleId, isBlocked, isActive,
-      password, isAccepted, lastLoginAt, hasMobileWhatsapp, 
-      isAuthorized, score, notes
+      birthDate, gender, imgUrl, roleId, isBlocked, password, 
+      isMobileVerified, isEmailVerified,  lastLoginAt, isAccepted,
+      hasMobileWhatsapp, isAuthorized, score, notes
     });
   }
 

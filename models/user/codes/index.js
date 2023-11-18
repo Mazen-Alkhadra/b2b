@@ -74,10 +74,10 @@ class User_code extends Model {
     );
   }
 
-  async consume ({ loginName, code }) {
+  async consume ({ loginName, isLoginNameEmail, code }) {
     let dbRet = await this.directQuery (
       'CALL prc_consume_user_code(?);',
-      [code, loginName]
+      [code, loginName, isLoginNameEmail]
     );
 
     return {idUser: dbRet[0].idUser};

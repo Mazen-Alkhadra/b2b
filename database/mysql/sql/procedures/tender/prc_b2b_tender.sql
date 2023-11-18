@@ -16,7 +16,7 @@ BEGIN
 
   CALL prc_update_user (
     v_tender_user_id, NULL, NULL, NULL, NULL, NULL,
-    NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
     NULL, NULL, NULL, NULL, fun_get_user_b2b_count(v_tender_user_id),
     NULL
   );	

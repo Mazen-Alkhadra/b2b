@@ -268,6 +268,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role_id`               VARCHAR(50) NOT NULL DEFAULT 'NORMAL_USER',
   `is_blocked`            BOOLEAN NOT NULL DEFAULT FALSE,
   `is_active`             BOOLEAN NOT NULL DEFAULT FALSE,
+  `is_mobile_verified`    BOOLEAN NOT NULL DEFAULT FALSE,
+  `is_email_verified`     BOOLEAN NOT NULL DEFAULT FALSE,
   `is_accepted`           BOOLEAN NOT NULL DEFAULT FALSE,
   `is_authorized`         BOOLEAN NOT NULL DEFAULT FALSE,
   `last_login_at`         DATETIME NULL DEFAULT NULL,

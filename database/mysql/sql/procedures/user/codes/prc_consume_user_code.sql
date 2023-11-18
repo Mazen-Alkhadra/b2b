@@ -1,7 +1,8 @@
 DELIMITER $$
 CREATE PROCEDURE `prc_consume_user_code` (
-	p_code		    VARCHAR(190), 
-  p_login_name  VARCHAR(200)
+	p_code		            VARCHAR(190), 
+  p_login_name          VARCHAR(200),
+  p_is_login_name_email BOOLEAN
 )  
 BEGIN
 
@@ -31,8 +32,14 @@ BEGIN
   END IF;
 
   IF v_code_type = 'ACTIVATE' AND v_id_user IS NOT NULL THEN 
-    CALL prc_update_user(v_id_user, NULL, NULL, NULL, NULL, NULL, NULL,
-      NULL, NULL, NULL, NULL, NULL, NULL, TRUE, NULL,  NULL, NULL, NULL);
+    SET p_is_login_name_email = IFNULL(p_is_login_name_email, FALSE);
+    CALL prc_update_user (
+      v_id_user, NULL, NULL, NULL, NULL, NULL, NULL,
+      NULL, NULL, NULL, NULL, NULL, NULL, 
+      IF(!p_is_login_name_email, TRUE, NULL),
+      IF(p_is_login_name_email, TRUE, NULL),
+      NULL, NULL, NULL, NULL, NULL
+    );
   END IF;
 
   CALL prc_update_user_code(v_id_code, NULL, NULL, NULL, NULL, FALSE, NULL);

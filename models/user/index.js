@@ -23,19 +23,20 @@ class User extends Model {
 
     let queryStr = 
       `SELECT
-        id_user	idUser,
-        first_name	firstName,
+        id_user idUser,
+        first_name firstName,
         last_name	lastName,
-        email	email,
-        mobile	mobile,
-        password	password,
-        company_id	companyId,
-        birth_date	birthDate,
-        gender	gender,
+        email email,
+        mobile mobile,
+        password password,
+        company_id companyId,
+        birth_date birthDate,
+        gender gender,
         fun_get_img(img_id)	imgUrl,
         role_id	roleId,
-        is_blocked	isBlocked,
-        is_active	isActive,
+        is_blocked isBlocked,
+        is_mobile_verified isMobileVerified,
+        is_email_verified isEmailVerified,
         is_accepted isAccepted, 
         is_authorized isAuthorized,
         notes,
@@ -90,7 +91,8 @@ class User extends Model {
 				fun_get_img(u.img_id)	imgUrl,
 				role_id	roleId,
 				is_blocked	isBlocked,
-				is_active	isActive,
+				is_mobile_verified isMobileVerified,
+        is_email_verified isEmailVerified,
         is_accepted isAccepted,
         is_authorized isAuthorized,
         last_login_at lastLoginAt, 
@@ -135,18 +137,19 @@ class User extends Model {
     let dataQuery =
       `SELECT
         id_user	idUser,
-				first_name	firstName,
-				last_name	lastName,
+				first_name firstName,
+				last_name lastName,
 				email	email,
-				mobile	mobile,
+				mobile mobile,
         has_mobile_whatsapp hasMobileWhatsapp,
-				company_id	companyId,
-				birth_date	birthDate,
-				gender	gender,
+				company_id companyId,
+				birth_date birthDate,
+				gender gender,
 				fun_get_img(img_id)	imgUrl,
 				role_id	roleId,
-				is_blocked	isBlocked,
-				is_active	isActive,
+				is_blocked isBlocked,
+				is_mobile_verified isMobileVerified,
+        is_email_verified isEmailVerified,
         is_accepted isAccepted,
         is_authorized isAuthorized,
         last_login_at lastLoginAt, 
@@ -178,14 +181,14 @@ class User extends Model {
 
   async addNew({
     firstName, lastName, email, mobile, password, companyId, 
-    birthDate, gender, imgUrl, roleId, isBlocked, isActive,
+    birthDate, gender, imgUrl, roleId, isBlocked,
     hasMobileWhatsapp, notes
   }) {
     let dbRet = await this.directQuery (
       'CALL prc_add_user(?, @new_record_id);',
       [firstName, lastName, email, mobile, hasMobileWhatsapp, 
         password, companyId, birthDate, gender, imgUrl, 
-        roleId, isBlocked, isActive, notes]
+        roleId, isBlocked, notes]
     );
 
     return { newId: dbRet[0][0].newRecId };
@@ -193,16 +196,16 @@ class User extends Model {
 
   async update({
     idUser, firstName, lastName, email, mobile, password, companyId, 
-      birthDate, gender, imgUrl, roleId, isBlocked, isActive,
-      isAccepted, isAuthorized, lastLoginAt, hasMobileWhatsapp,
-      score, notes
+      birthDate, gender, imgUrl, roleId, isBlocked, isEmailVerified,
+      isMobileVerified, isAccepted, isAuthorized, lastLoginAt, 
+      hasMobileWhatsapp, score, notes
   }) {
     await this.directQuery (
       'CALL prc_update_user(?);',
       [idUser, firstName, lastName, email, mobile, hasMobileWhatsapp, 
         password, companyId, birthDate, gender, imgUrl, roleId, 
-        isBlocked, isActive, isAccepted, isAuthorized, lastLoginAt, score,
-        notes]
+        isBlocked, isMobileVerified, isEmailVerified, isAccepted, 
+        isAuthorized, lastLoginAt, score, notes]
     );
   }
 

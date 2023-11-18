@@ -47,19 +47,12 @@ passport.use (
 					});
 				}
 
-				if (!user.isActive) {
-					return done(null, false, {
-						code: ERR_INACTIVE_ACCOUNT,
-						message: 'The account is not activated yet, please\
-							active your account by clicking on the activation link sent to your email.'});
-				}
-
-				/*if (!user.isAccepted) {
-					return done(null, false, { 
-						code: ERR_UN_ACCEPTED_ACCOUNT,
-						notes: user.notes
-				 });
-				}*/
+				// if (!user.isActive) {
+				// 	return done(null, false, {
+				// 		code: ERR_INACTIVE_ACCOUNT,
+				// 		message: 'The account is not activated yet, please\
+				// 			active your account by clicking on the activation link sent to your email.'});
+				// }
 
 				return done(null, user, { message: 'Success' });
 

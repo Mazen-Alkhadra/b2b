@@ -12,15 +12,15 @@ module.exports = app => {
 		async (req, res) => {
 			try {
 				let { firstName, lastName, email, mobile, password, companyId,
-          birthDate, gender, imgUrl, isBlocked, isActive,
-					hasMobileWhatsapp, roleId, notes } = req.body;
+          birthDate, gender, imgUrl, isBlocked, hasMobileWhatsapp, roleId,
+					notes } = req.body;
 
 				password = password || codeGenSvc.create().generate();
 
 				await UserSvc.create().addNew({
           firstName, lastName, email, mobile, password, companyId,
-          birthDate, gender, imgUrl, isBlocked, isActive,
-					hasMobileWhatsapp, roleId, notes
+          birthDate, gender, imgUrl, isBlocked, hasMobileWhatsapp, 
+					roleId, notes
 				});
 
 				UserSvc.Codes.create().genResetPasswordCode({
@@ -40,14 +40,15 @@ module.exports = app => {
 			try {
 				const { idUser, firstName, lastName, email, mobile, 
 					password, companyId, birthDate, gender, imgUrl, roleId,
-					isBlocked, isActive, isAccepted, hasMobileWhatsapp, notes,
-					score, isAuthorized
+					isBlocked, isAccepted, hasMobileWhatsapp, notes,
+					score, isAuthorized, isEmailVerified, isMobileVerified
 				} = req.body;
 
 				await UserSvc.create().update({
           idUser, firstName, lastName, email, mobile, password, companyId,
           birthDate, gender, imgUrl, isBlocked, isActive, isAccepted,
-					hasMobileWhatsapp, roleId, notes, score, isAuthorized
+					hasMobileWhatsapp, roleId, notes, score, isAuthorized,
+					isEmailVerified, isMobileVerified
 				});
 
 				res.status(200).end();
