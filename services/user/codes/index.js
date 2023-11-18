@@ -131,10 +131,16 @@ class UserCode {
   }
 
   async addVerified({ loginName }) {
+    if(validators.isMobile(loginName))
+      loginName = this.userModel.fixMobile({number: loginName});
+
     return await this.codeModel.addVerified({ loginName });
   }
 
   async isVerified({ loginName }) {
+    if(validators.isMobile(loginName))
+      loginName = this.userModel.fixMobile({number: loginName});
+    
     return await this.codeModel.isVerified({ loginName });
   }
 }

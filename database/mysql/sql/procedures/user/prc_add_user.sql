@@ -54,8 +54,8 @@ BEGIN
 		fun_insert_img(p_img_url),
 		IFNULL(p_role_id, 'NORMAL_USER'),
 		IFNULL(p_is_blocked, DEFAULT(is_blocked)),
-		p_is_mobile_verified,
-		p_is_email_verified,
+		IFNULL(p_is_mobile_verified, DEFAULT(is_mobile_verified)),
+		IFNULL(p_is_email_verified, DEFAULT(is_email_verified)),
 		p_notes
 	)
 	;
