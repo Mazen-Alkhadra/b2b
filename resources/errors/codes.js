@@ -15,6 +15,9 @@ module.exports = {
     ERR_UNKNOWN: 'UnknownError',
     ERR_INACTIVE_ACCOUNT: 'InactiveAccount',
     ERR_UN_ACCEPTED_ACCOUNT: 'UnAcceptedAccount',
+    ERR_UN_VERIFIED_MAIL: 'UnVerifiedMail',
+    ERR_UN_VERIFIED_MOBILE: 'UnVerifiedMobile',
+    ERR_UN_VERIFIED_LOGIN_NAME: 'UnVerifiedLoginName',
     ERR_CAN_NOT_DELETE_USED_ENTITY: 'CanNotDeleteUsedEntity',
 
     ERR_INVLID_PROMOTION: 'InvalidPromotion',

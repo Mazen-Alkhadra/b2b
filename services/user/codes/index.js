@@ -139,11 +139,11 @@ class UserCode {
     return await this.codeModel.addVerified({ loginName });
   }
 
-  async isVerified({ loginName }) {
+  async isVerified({ loginName, userId, allowFalse }) {
     if(validators.isMobile(loginName))
       loginName = this.userModel.fixMobile({number: loginName});
 
-    return await this.codeModel.isVerified({ loginName });
+    return await this.codeModel.isVerified({ loginName, userId, allowFalse });
   }
 }
 

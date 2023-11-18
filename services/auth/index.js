@@ -18,8 +18,12 @@ class Auth {
     companyId, birthDate, gender, hasMobileWhatsapp
   }) {
     const hashedPassword = await this.hashSvc.hash(password);
-    const isMobileVerified = await this.userCodeSvc.isVerified({loginName: mobile});
-    const isEmailVerified = await this.userCodeSvc.isVerified({loginName: email});
+    const isMobileVerified = await this.userCodeSvc.isVerified({
+      loginName: mobile, allowFalse: true
+    });
+    const isEmailVerified = await this.userCodeSvc.isVerified({
+      loginName: email, allowFalse: true
+    });
 
     birthDate = birthDate || null;
     

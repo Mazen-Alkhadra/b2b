@@ -70,14 +70,14 @@ class User_code extends Model {
     );
   }
 
-  async isVerified({ loginName }) {
+  async isVerified({ loginName, userId, allowFalse }) {
     
     if(!loginName) 
       return false;
     
     let dbRet = await this.directQuery (
       'SELECT fun_is_verified(?) AS result;',
-      loginName 
+      [loginName, userId, allowFalse] 
     );
 
     return dbRet[0].result;
