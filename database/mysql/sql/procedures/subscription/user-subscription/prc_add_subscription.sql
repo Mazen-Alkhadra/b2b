@@ -19,8 +19,10 @@ BEGIN
 		SET p_promotion_id = fun_consume_promotion(p_promotion_id, p_promotion_code);	
 	END IF;
 
-	SET p_actual_cost_usd = 
-		fun_actual_subscription_cost(p_subscription_package_id, p_promotion_id);
+	IF p_actual_cost_usd IS NULL THEN 
+		SET p_actual_cost_usd = 
+			fun_actual_subscription_cost(p_subscription_package_id, p_promotion_id);
+	END IF;
 
 	IF p_payment_id IS NULL THEN 
 		CALL prc_add_payment (

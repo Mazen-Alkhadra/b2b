@@ -39,7 +39,8 @@ class User {
         if(defPackageId)
           SubscribeSvc.UserSubscription.create().addNew({
             userId: userData.newId,
-            subscriptionPackageId: defPackageId
+            subscriptionPackageId: defPackageId,
+            actualCostUsd: 0
           });
       });
     }
