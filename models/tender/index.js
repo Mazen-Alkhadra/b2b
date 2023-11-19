@@ -60,7 +60,7 @@ class Tender extends Model {
   async get ({ 
     onlyCreatByUserId, onlyCareByUserId, tenderId,
     onlyUnCompleted, exceptUserTrash, reqUserId,
-    limit, skip, filters, sorts
+    limit, skip, filters, sorts, status
   }) {      
     
     let onlyCreatByUserCond = !onlyCreatByUserId ? 'TRUE' : 
@@ -73,6 +73,7 @@ class Tender extends Model {
       '!fun_is_tender_complete_qntity(id_tender, FALSE)';
     let exceptUserTrashCond = !exceptUserTrash ? 'TRUE' : 
       `!fun_is_record_in_trash(id_tender, ${this.escapeSql(exceptUserTrash)}, 'TENDER')`;
+    let statusCond = !status ? 'TRUE' :  `t.status IN (${this.escapeSql(status)})`;
 
     let countQuery =
       `SELECT
@@ -84,7 +85,8 @@ class Tender extends Model {
         ${onlyCareByUserCond} AND 
         ${tenderIdCond} AND 
         ${unCompletedCond} AND 
-        ${exceptUserTrashCond};`;
+        ${exceptUserTrashCond} AND 
+        ${statusCond};`;
 
     let dataQuery =
       `SELECT
@@ -130,7 +132,8 @@ class Tender extends Model {
         ${onlyCareByUserCond} AND 
         ${tenderIdCond} AND 
         ${unCompletedCond} AND 
-        ${exceptUserTrashCond}`;
+        ${exceptUserTrashCond} AND 
+        ${statusCond}`;
 
     let queryStr = countQuery + dataQuery;
     let filteredQuery = this.applyFilters(dataQuery, filters);
