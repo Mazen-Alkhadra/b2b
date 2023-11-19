@@ -74,7 +74,7 @@ class Tender extends Model {
     let exceptUserTrashCond = !exceptUserTrash ? 'TRUE' : 
       `!fun_is_record_in_trash(id_tender, ${this.escapeSql(exceptUserTrash)}, 'TENDER')`;
     let statusCond = !status ? 'TRUE' :  
-      `t.status IN (${this.escapeSql(status.splite(','))})`;
+      `t.status IN (${this.escapeSql(status.split(','))})`;
 
     let countQuery =
       `SELECT
