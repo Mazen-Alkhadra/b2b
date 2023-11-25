@@ -7,26 +7,28 @@ CREATE FUNCTION `fun_is_verified` (
 RETURNS BOOLEAN
 BEGIN
 
-  DECLARE v_user_mobile VARCHAR(200) DEFAULT NULL;
-  DECLARE v_user_email  VARCHAR(200) DEFAULT NULL;
+  DECLARE v_is_user_mobile_verified BOOLEAN DEFAULT FALSE;
+  DECLARE v_is_user_email_verified  BOOLEAN DEFAULT FALSE;
   DECLARE v_err_code    VARCHAR(200) DEFAULT NULL;
 
   IF p_user_id IS NOT NULL THEN 
     SELECT 
-      email,
-      mobile
+      is_email_verified,
+      is_mobile_verified
     INTO 
-      v_user_email,
-      v_user_mobile
+      v_is_user_mobile_verified,
+      v_is_user_email_verified
     FROM 
       users 
     WHERE 
       id_user = p_user_id
     ;
 
-    IF !EXISTS(SELECT TRUE FROM verified WHERE login_name = v_user_email) THEN
+    IF !v_is_user_email_verified && !v_is_user_mobile_verified THEN
+      SET v_err_code = 'UnVerifiedMailMobile';
+    ELSEIF !v_is_user_email_verified THEN
       SET v_err_code = 'UnVerifiedMail';
-    ELSEIF !EXISTS(SELECT TRUE FROM verified WHERE login_name = v_user_mobile) THEN
+    ELSEIF !v_is_user_mobile_verified THEN
       SET v_err_code = 'UnVerifiedMobile';
     END IF;
 

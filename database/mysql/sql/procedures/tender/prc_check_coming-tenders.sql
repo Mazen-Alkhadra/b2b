@@ -11,4 +11,13 @@ BEGIN
 		`from` < CURRENT_TIMESTAMP() 
   ;
 
+	UPDATE 
+		tenders
+	SET 
+		status = 'CLOSED'
+	WHERE 
+		status = 'OPENED' AND 
+		`to` < CURRENT_TIMESTAMP() 
+  ;
+
 END$$
