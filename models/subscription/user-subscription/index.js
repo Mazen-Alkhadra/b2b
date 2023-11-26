@@ -81,9 +81,9 @@ class UserSubscription extends Model {
 				actual_cost_usd	actualCostUsd,
 				s.is_active	isActive,
         fun_is_user_subscription_valid(id_subscription) isValid,
-        fun_get_user_subscribe_feature_val(NULL, ${userId}, 'TENDERS_PER_MONTH') monthAllowTenderCnt,
+        fun_get_user_subscribe_feature_val(NULL, ${userId}, 'TENDERS_PER_MONTH', NULL) monthAllowTenderCnt,
         fun_get_user_tender_count(${userId}, 30) monthCreatTenderCnt,
-        fun_get_user_subscribe_feature_val(NULL, ${userId}, 'TENDERS_PER_DAY') dayAllowTenderCnt,
+        fun_get_user_subscribe_feature_val(NULL, ${userId}, 'TENDERS_PER_DAY', NULL) dayAllowTenderCnt,
         fun_get_user_tender_count(${userId}, 1) dayCreatTenderCnt
       FROM
         subscriptions s

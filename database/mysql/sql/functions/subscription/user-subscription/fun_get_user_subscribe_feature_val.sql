@@ -2,13 +2,14 @@ DELIMITER $$
 CREATE FUNCTION `fun_get_user_subscribe_feature_val` (
     p_subscription_id             BIGINT UNSIGNED,
     p_user_id                     BIGINT UNSIGNED,
-    p_subscription_feature_id     VARCHAR(50)
+    p_subscription_feature_id     VARCHAR(50),
+    p_aggr_opt                    ENUM('MAX', 'SUM')
 )
 RETURNS DOUBLE
 BEGIN
   RETURN ( IFNULL (
     (SELECT 
-     MAX(feature_value) 
+     IF(p_aggr_opt = 'SUM' , SUM(feature_value), MAX(feature_value))
     FROM 
       subscriptions s
       INNER JOIN subscription_packages_features spf ON  

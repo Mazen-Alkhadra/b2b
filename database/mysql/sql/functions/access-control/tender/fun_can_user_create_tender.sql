@@ -12,10 +12,10 @@ BEGIN
     RETURN TRUE;
   ELSEIF !fun_is_verified(NULL, p_user_id, p_allow_false) THEN
     RETURN FALSE; 
-  ELSEIF fun_get_user_subscribe_feature_val(NULL, p_user_id, 'TENDERS_PER_MONTH') <=
+  ELSEIF fun_get_user_subscribe_feature_val(NULL, p_user_id, 'TENDERS_PER_MONTH', NULL) <=
     fun_get_user_tender_count(p_user_id, 30) THEN 
       SET v_err_code = 'TENDERS_CNT_MONTHLY_EXCEED';
-  ELSEIF fun_get_user_subscribe_feature_val(NULL, p_user_id, 'TENDERS_PER_DAY') <=
+  ELSEIF fun_get_user_subscribe_feature_val(NULL, p_user_id, 'TENDERS_PER_DAY', NULL) <=
      fun_get_user_tender_count(p_user_id, 1) THEN
       SET v_err_code = 'TENDERS_CNT_DAYLY_EXCEED';
   END IF;

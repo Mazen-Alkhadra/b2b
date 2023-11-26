@@ -65,6 +65,11 @@ INSERT INTO subscription_features (
  'TENDERS_PER_DAY',
  fun_add_string('en', 'Tenders Per Day'),
  fun_add_string('en', 'Tenders Count That Users Can Create Per Day')
+),
+(
+ 'ACCEPT_OFFERS_COUNT',
+ fun_add_string('en', 'Accepted Offers Count'),
+ fun_add_string('en', 'Offers Count That Users Can Accept')
 );
 -- =====================================================================
 INSERT INTO settings (
