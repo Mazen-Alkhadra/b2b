@@ -8,6 +8,9 @@ CREATE FUNCTION `fun_can_user_change_offer_status` (
 RETURNS BOOLEAN
 BEGIN
   
+  DECLARE v_err_code VARCHAR(50) DEFAULT NULL;
+  SET p_allow_false = IFNULL(p_allow_false, FALSE);
+
   IF p_user_id IS NOT NULL AND NOT EXISTS (
     SELECT 
       id_offer 
@@ -18,21 +21,27 @@ BEGIN
       id_offer = p_offer_id AND
       t.creat_by_user_id = p_user_id
   ) THEN
-    IF p_allow_false THEN 
-      RETURN FALSE;
-    ELSE 
-      CALL prc_throw_exception(NULL, 'AccessDenied');
-    END IF;
-  END IF;
+    SET v_err_code = 'AccessDenied';
 
-  IF p_new_status IS NULL OR 
+  ELSEIF p_new_status IS NULL OR 
     p_offer_id IS NULL OR 
     !fun_is_offer_new_status_valid(p_offer_id, p_new_status, p_allow_false) OR 
     !fun_is_offer_have_time(p_offer_id, p_allow_false)
   THEN
-    RETURN FALSE;
+    SET v_err_code = 'InvalidStatus';
+
+  ELSEIF p_new_status = 'ACCEPTED' AND 
+    fun_get_user_subscribe_feature_val(NULL, p_user_id, 'ACCEPT_OFFERS_COUNT', 'SUM') <=
+    fun_get_offers_cnt_user_accept(p_user_id, NULL) 
+  THEN 
+    SET v_err_code = 'ACCEPT_OFFERS_CNT_EXCEED';
+
   END IF;
-  
-  RETURN TRUE;
+
+  IF v_err_code IS NOT NULL AND p_allow_false <> TRUE THEN 
+      CALL prc_throw_exception(NULL, v_err_code);
+  END IF;
+
+  RETURN v_err_code IS NULL;
 
 END$$
