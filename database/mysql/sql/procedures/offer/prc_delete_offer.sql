@@ -4,6 +4,8 @@ CREATE PROCEDURE `prc_delete_offer` (
 )  
 BEGIN
 
+	SET @_ = fun_can_update_offer(NULL, p_id_offer, NULL, FALSE);
+
 	DELETE FROM 
 		offers
 	WHERE

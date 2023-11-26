@@ -17,11 +17,7 @@ CREATE PROCEDURE `prc_update_offer` (
 )  
 BEGIN
 
-	IF p_status IS NOT NULL THEN 
-		SET @_ = fun_can_user_change_offer_status (
-			NULL, p_id_offer, p_status, FALSE
-		);
-	END IF; 
+	SET @_ = fun_can_update_offer(NULL, p_id_offer, p_status, FALSE);
 	
 	UPDATE 
 		offers

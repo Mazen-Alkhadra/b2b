@@ -11,13 +11,11 @@ BEGIN
   
   IF p_tender_id IS NULL THEN
     RETURN FALSE;
-  END IF;
-
-  IF !fun_is_verified(NULL, p_user_id, p_allow_false) THEN
+  
+  ELSEIF !fun_is_verified(NULL, p_user_id, p_allow_false) THEN
     RETURN FALSE;
-  END IF;
-
-  IF EXISTS (
+  
+  ELSEIF EXISTS (
     SELECT 
       TRUE 
     FROM 
@@ -27,6 +25,17 @@ BEGIN
       creat_by_user_id = p_user_id
   ) THEN 
     SET v_err_code = 'OfferOwnTender';
+
+  ELSEIF EXISTS (
+    SELECT 
+      TRUE 
+    FROM 
+      offers 
+    WHERE 
+      tender_id = p_tender_id AND
+      creat_by_user_id = p_user_id
+  ) THEN 
+    SET v_err_code = 'MULTI_OFFER_SAME_TENDER';
   END IF;
   
   IF v_err_code IS NOT NULL AND p_allow_false <> TRUE THEN 

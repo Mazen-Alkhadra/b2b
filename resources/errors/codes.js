@@ -30,5 +30,7 @@ module.exports = {
     ERR_FINAL_STATUS: 'FinalStatus',
     ERR_INVALID_STATUS: 'InvalidStatus',
     ERR_EXCEED_MAX_TENDER_TIME_SETTING: 'ExceedMaxTenderTimeSetting',
-    ERR_OFFER_OWN_TENDER: 'OfferOwnTender'
+    ERR_OFFER_OWN_TENDER: 'OfferOwnTender',
+    ERR_MULTI_OFFER_SAME_TENDER: 'MULTI_OFFER_SAME_TENDER',
+    ERR_UPDATE_DECIDED_OFFER: 'UPDATE_DECIDED_OFFER'
 };
