@@ -70,6 +70,13 @@ class User_code extends Model {
     );
   }
 
+  async deleteVerified({ loginName }) {
+    await this.directQuery (
+      'CALL prc_delete_verified(?);',
+      loginName 
+    );
+  }
+
   async isVerified({ loginName, userId, allowFalse }) {
     
     if(!loginName) 
