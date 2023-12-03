@@ -9,31 +9,29 @@ RETURNS BOOLEAN
 BEGIN
   
   DECLARE v_err_code VARCHAR(50) DEFAULT NULL;
-  DECLARE v_offer_status VARCHAR(50) DEFAULT NULL;
-
+  
   IF p_offer_id IS NULL THEN
     RETURN FALSE;
   END IF;
 
+  IF p_user_id IS NULL THEN 
+    SELECT 
+      t.creat_by_user_id
+    INTO 
+      p_user_id
+    FROM 
+      offers o
+      INNER JOIN tenders t ON tender_id = id_tender
+    WHERE 
+      id_offer = p_offer_id
+    ;
+  END IF;
+
   IF p_status IS NOT NULL AND 
-    !fun_can_user_change_offer_status(NULL, p_offer_id, p_status, p_allow_false)
+    !fun_can_user_change_offer_status(p_user_id, p_offer_id, p_status, p_allow_false)
   THEN
     RETURN FALSE;
 	END IF; 
-
-  SELECT 
-    `status`
-  INTO 
-    v_offer_status
-  FROM 
-    offers
-  WHERE 
-    id_offer = p_offer_id
-  ;  
-
-  IF v_offer_status <> 'PENDING' THEN 
-    SET v_err_code = 'UPDATE_DECIDED_OFFER';
-  END IF;
 
   IF v_err_code IS NOT NULL AND p_allow_false <> TRUE THEN 
     CALL prc_throw_exception(NULL, v_err_code);

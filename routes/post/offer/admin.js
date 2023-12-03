@@ -12,13 +12,13 @@ module.exports = app => {
 				const { tenderId, quantity, priceUSD, 
 					bIncludeDelivery, deliveryCost, deliveryAddress,
 					status, tax, cityId, acceptedAt, excutedAt, 
-					deliveryAt } = req.body;
+					deliveryAt, creatByUserId } = req.body;
 
 				await OfferSvc.create().addNew({
 					tenderId, quantity, priceUSD, deliveryAt,
     			bIncludeDelivery, deliveryCost, deliveryAddress,
     			status, tax, cityId, acceptedAt, excutedAt, 
-					creatByUserId: req.user.idUser
+					creatByUserId: creatByUserId || req.user.idUser
 				});
 
 				res.status(200).end();
@@ -35,13 +35,13 @@ module.exports = app => {
 				const { idOffer, tenderId, quantity, priceUSD, 
 					bIncludeDelivery, deliveryCost, deliveryAddress, 
 					status, tax, cityId, acceptedAt, excutedAt, 
-					deliveryAt } = req.body;
+					deliveryAt, creatByUserId } = req.body;
 
 				await OfferSvc.create().update({
 					idOffer, tenderId, quantity, priceUSD, 
     				bIncludeDelivery, deliveryCost, deliveryAddress, 
     				status, tax, cityId, acceptedAt, excutedAt,
-						deliveryAt
+						deliveryAt, creatByUserId
 				});
 
 				res.status(200).end();
