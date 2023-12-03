@@ -29,12 +29,8 @@ BEGIN
       INNER JOIN tenders t ON tender_id = id_tender
     WHERE 
       t.creat_by_user_id = p_user_id AND 
-      o.status = 'ACCEPTED' AND (
+      o.status IN ('ACCEPTED', 'EXECUTED') AND (
         p_duration_days IS NULL OR 
-        (  
-          p_duration_days = 1 AND 
-          DATE(CURRENT_TIMESTAMP()) = DATE(accepted_at) 
-        ) OR 
         (
           p_duration_days = 30 AND 
           MONTH(CURRENT_TIMESTAMP()) = MONTH(accepted_at) AND 
@@ -42,7 +38,7 @@ BEGIN
         ) OR 
         (
           p_duration_days IS NOT NULL AND
-          accepted_at > DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL p_duration_days DAY)
+          accepted_at > DATE_SUB(CURRENT_DATE(), INTERVAL p_duration_days DAY)
         )  
       )
   );

@@ -39,9 +39,6 @@ class Auth {
       event: NotifySvc.Event.EVENTS_TYPES.NEW_USER_SIGNUP,
       data: {userId: newId}
     });
-
-    this.userCodeSvc.deleteVerified({loginName: mobile});
-    this.userCodeSvc.deleteVerified({loginName: email});
   }
 
   static getAuthenticateMiddleware(callback) {

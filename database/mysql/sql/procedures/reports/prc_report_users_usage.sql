@@ -13,7 +13,9 @@ BEGIN
     fun_get_user_tender_count(id_user, 1) todayTendersCnt,
     fun_get_user_tender_count(id_user, 30) thisMonthTendersCnt,
     fun_get_user_subscribe_feature_val(NULL, id_user, 'TENDERS_PER_MONTH', NULL) subscribeMonthlyTendersCnt,
-    fun_get_user_subscribe_feature_val(NULL, id_user, 'TENDERS_PER_DAY', NULL) subscribeDailyTendersCnt
+    fun_get_user_subscribe_feature_val(NULL, id_user, 'TENDERS_PER_DAY', NULL) subscribeDailyTendersCnt,
+    fun_get_user_subscribe_feature_val(NULL, id_user, 'ACCEPT_OFFERS_COUNT', 'SUM') subscribeAccOfferCnt,
+    fun_get_offers_cnt_user_accept(id_user, NULL, TRUE) subscribeAccOfferConsum
   FROM
     users
   WHERE 
