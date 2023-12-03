@@ -84,7 +84,9 @@ class UserSubscription extends Model {
         fun_get_user_subscribe_feature_val(NULL, ${userId}, 'TENDERS_PER_MONTH', NULL) monthAllowTenderCnt,
         fun_get_user_tender_count(${userId}, 30) monthCreatTenderCnt,
         fun_get_user_subscribe_feature_val(NULL, ${userId}, 'TENDERS_PER_DAY', NULL) dayAllowTenderCnt,
-        fun_get_user_tender_count(${userId}, 1) dayCreatTenderCnt
+        fun_get_user_tender_count(${userId}, 1) dayCreatTenderCnt,
+        fun_get_user_subscribe_feature_val(NULL, ${userId}, 'ACCEPT_OFFERS_COUNT', 'SUM') -
+          fun_get_offers_cnt_user_accept(${userId}, NULL, TRUE)  offersCntCanAccept
       FROM
         subscriptions s
         INNER JOIN subscription_packages ON 

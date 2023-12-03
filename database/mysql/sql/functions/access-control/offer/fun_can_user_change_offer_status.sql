@@ -32,7 +32,7 @@ BEGIN
 
   ELSEIF p_new_status = 'ACCEPTED' AND 
     fun_get_user_subscribe_feature_val(NULL, p_user_id, 'ACCEPT_OFFERS_COUNT', 'SUM') <=
-    fun_get_offers_cnt_user_accept(p_user_id, NULL) 
+    fun_get_offers_cnt_user_accept(p_user_id, NULL, TRUE) 
   THEN 
     SET v_err_code = 'ACCEPT_OFFERS_CNT_EXCEED';
 

@@ -16,8 +16,8 @@ BEGIN
       is_email_verified,
       is_mobile_verified
     INTO 
-      v_is_user_mobile_verified,
-      v_is_user_email_verified
+      v_is_user_email_verified,
+      v_is_user_mobile_verified
     FROM 
       users 
     WHERE 
