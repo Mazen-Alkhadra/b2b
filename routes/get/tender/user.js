@@ -11,7 +11,7 @@ module.exports = app => {
     async (req, res) => {
       try {
         
-        const { onlyCreated, onlyUnCompleted, status } = req.query;
+        const { onlyCreated, onlyUnCompleted, status, trnderId } = req.query;
         const { idUser } = req.user;
 
         let data = await TenderSvc.create().get({
@@ -24,7 +24,8 @@ module.exports = app => {
           skip: req.paginate.skip,
           filters: req.filters,
           sorts: req.sorts,
-          status
+          status,
+          trnderId
         });
 
         res.status(200).json(data);
