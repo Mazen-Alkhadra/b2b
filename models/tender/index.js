@@ -163,11 +163,7 @@ class Tender extends Model {
       ) AND 
       fun_is_tender_b2b(tender_id)` : 
       `o.status IN ('ACCEPTED', 'EXECUTED') AND  
-      (
-        o.creat_by_user_id = ${userId} OR
-        t.creat_by_user_id = ${userId}
-      ) AND 
-      NOT fun_is_tender_b2b(id_tender)`;
+       t.creat_by_user_id = ${userId}`;
       
     let countQuery = `
       SELECT 
