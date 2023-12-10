@@ -11,7 +11,7 @@ module.exports = app => {
     async (req, res) => {
       try {
         
-        const { onlyCreated, onlyUnCompleted, status, trnderId } = req.query;
+        const { onlyCreated, onlyUnCompleted, status, tenderId } = req.query;
         const { idUser } = req.user;
 
         let data = await TenderSvc.create().get({
@@ -25,7 +25,7 @@ module.exports = app => {
           filters: req.filters,
           sorts: req.sorts,
           status,
-          trnderId
+          tenderId
         });
 
         res.status(200).json(data);
