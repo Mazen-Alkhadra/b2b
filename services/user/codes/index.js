@@ -97,7 +97,7 @@ class UserCode {
       throw {message: ERR_NOT_EXISTS_USER_NAME};
     
     let {idUser, firstName, lastName, email, mobile} = user;
-    let code = codeGenSvc.create().generate();
+    let code = codeGenSvc.create().generate(4, codeGenSvc.CODES_TYPES.NUMERIC);
 
     await this.addNew({
       code, 

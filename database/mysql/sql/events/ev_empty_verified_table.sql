@@ -1,5 +1,9 @@
+DELIMITER $$
 CREATE EVENT `ev_empty_verified_table` 
 ON SCHEDULE EVERY 1 DAY
     STARTS (TIMESTAMP(CURRENT_DATE) + INTERVAL 1 DAY)
 DO 
-  TRUNCATE TABLE verified;
+  BEGIN 
+    TRUNCATE TABLE verified;
+    TRUNCATE TABLE users_codes;
+  END$$

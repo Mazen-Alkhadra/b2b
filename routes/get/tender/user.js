@@ -16,7 +16,7 @@ module.exports = app => {
 
         let data = await TenderSvc.create().get({
           onlyCreatByUserId: parseInt(onlyCreated) ? idUser : null,
-          onlyCareByUserId: parseInt(onlyCreated) ? null : idUser,
+          onlyCareByUserId: parseInt(onlyCreated) || tenderId ? null : idUser,
           onlyUnCompleted: onlyUnCompleted != null ? parseInt(onlyUnCompleted) : true,
           exceptUserTrash: req.user.idUser,
           reqUserId: req.user.idUser,
