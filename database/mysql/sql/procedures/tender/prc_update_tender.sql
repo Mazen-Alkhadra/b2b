@@ -54,7 +54,7 @@ BEGIN
 	;
   
 	IF p_from IS NOT NULL OR p_to IS NOT NULL THEN 
-		SET @_ = fun_is_tender_info_valid(p_tender_id, NULL, NULL, FALSE);
+		SET @_ = fun_is_tender_info_valid(p_id_tender, NULL, NULL, FALSE);
 	END IF;
 	
 	COMMIT;

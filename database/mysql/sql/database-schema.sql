@@ -482,6 +482,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tenders` (
   `id_tender`   		  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `serial_num`            BIGINT UNSIGNED NOT NULL,
   `creat_by_user_id`      BIGINT UNSIGNED NOT NULL, 
   `name`                  LONGTEXT,
   `product_id`  				  BIGINT UNSIGNED NOT NULL,

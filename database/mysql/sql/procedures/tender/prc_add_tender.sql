@@ -22,6 +22,8 @@ CREATE PROCEDURE `prc_add_tender` (
 )  
 BEGIN
 
+	DECLARE v_serial_num BIGINT UNSIGNED DEFAULT NULL;
+
 	SET @_ = fun_can_user_create_tender(p_creat_by_user_id, FALSE);
 	SET @_ = fun_is_tender_info_valid(NULL, p_from, p_to, FALSE);
 	
@@ -29,8 +31,12 @@ BEGIN
 		SET p_status = 'COMING_SOON';
 	END IF;
 
+	SET v_serial_num = (SELECT IFNULL(MAX(serial_num), 1) FROM tenders) + 
+		FLOOR(3 + RAND() * 50);
+
 	INSERT INTO 
 		tenders (
+			serial_num,
 			creat_by_user_id,
 			name,
 			product_id,
@@ -51,6 +57,7 @@ BEGIN
 			closed_at
 		)
 	VALUES (
+		v_serial_num,
 		p_creat_by_user_id,
 		p_name,
 		p_product_id,

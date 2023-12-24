@@ -19,6 +19,7 @@ class Tender extends Model {
     let dataQuery =
       `SELECT
         id_tender	idTender,
+        serial_num serialNum,
         creat_by_user_id  creatByUserId, 
         name,
 				product_id	productId,
@@ -93,6 +94,7 @@ class Tender extends Model {
     let dataQuery =
       `SELECT
         id_tender	idTender,
+        t.serial_num serialNum,
         creat_by_user_id  creatByUserId, 
         name,
 				product_id	productId,
@@ -177,6 +179,7 @@ class Tender extends Model {
     let dataQuery = `
       SELECT
         id_tender	idTender,
+        t.serial_num serialNum,
         t.creat_by_user_id  tenderCreatorUserId, 
         name,
         product_id	productId,

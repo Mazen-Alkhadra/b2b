@@ -23,6 +23,9 @@ CREATE PROCEDURE `prc_update_user` (
 )  
 BEGIN
 
+	DECLARE v_user_email VARCHAR(100) DEFAULT NULL;
+	DECLARE v_user_mobile VARCHAR(100) DEFAULT NULL;
+
 	IF EXISTS (
 		SELECT 
 			* 
@@ -34,7 +37,27 @@ BEGIN
 	) THEN 
 		CALL prc_throw_exception(NULL, 'DuplicateUser'); 
 	END IF;
-	
+
+	SELECT 
+		email,
+		mobile
+	INTO 
+		v_user_email,
+		v_user_mobile
+	FROM 
+		users 
+	WHERE 
+		id_user = p_id_user
+	;
+
+	IF v_user_email <> p_email THEN 
+		SET p_is_email_verified = IFNULL(p_is_email_verified, FALSE);
+	END IF;
+
+	IF v_user_mobile <> p_mobile THEN 
+		SET p_is_mobile_verified = IFNULL(p_is_mobile_verified, FALSE);
+	END IF;
+
 	UPDATE 
 		users
 	SET
