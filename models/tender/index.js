@@ -248,7 +248,10 @@ class Tender extends Model {
         supplierLocation, status, payMethod, closedAt]
     );
 
-    return { newId: dbRet[0][0].newRecId };
+    return { 
+      newId: dbRet[0][0].newRecId, 
+      newSerialNum: dbRet[0][0].newSerialNum 
+    };
   }
 
   async update({
