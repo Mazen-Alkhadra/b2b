@@ -482,7 +482,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tenders` (
   `id_tender`   		  	  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `serial_num`            BIGINT UNSIGNED NOT NULL,
+  `serial_num`            TEXT NOT NULL,
   `creat_by_user_id`      BIGINT UNSIGNED NOT NULL, 
   `name`                  LONGTEXT,
   `product_id`  				  BIGINT UNSIGNED NOT NULL,
@@ -499,7 +499,7 @@ CREATE TABLE IF NOT EXISTS `tenders` (
   `more_address_info`     LONGTEXT NULL, 
   `supplier_location`     ENUM('LOCAL', 'UAE', 'GLOBAL') NOT NULL DEFAULT 'GLOBAL',
   `status`                ENUM('OPENED', 'CLOSED', 'B2B', 'COMING_SOON') NOT NULL DEFAULT 'OPENED',
-  `pay_method`            ENUM('CASH', 'E_PAY') NOT NULL DEFAULT 'CASH', 
+  `pay_method`            ENUM('CASH', 'E_PAY', 'CHEQUE') NOT NULL DEFAULT 'CASH', 
   `creat_at`              DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `closed_at`             DATETIME NULL,
 
@@ -659,7 +659,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 CREATE TABLE IF NOT EXISTS `payments` (
   `id_payment`             BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id`                BIGINT UNSIGNED NOT NULL,
-  `type`                   ENUM('CASH') NOT NULL DEFAULT 'CASH',
+  `type`                   ENUM('CASH', 'CHEQUE') NOT NULL DEFAULT 'CASH',
   `amount_usd`             DOUBLE NOT NULL,
   `comment`   	           VARCHAR(500) NULL,
   `status`                 ENUM('INIT', 'PENDING', 'COMPLETED', 'FAILED') NOT NULL DEFAULT 'INIT',

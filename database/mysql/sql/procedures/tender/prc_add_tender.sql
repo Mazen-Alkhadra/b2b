@@ -22,7 +22,7 @@ CREATE PROCEDURE `prc_add_tender` (
 )  
 BEGIN
 
-	DECLARE v_serial_num BIGINT UNSIGNED DEFAULT NULL;
+	DECLARE v_serial_num TEXT DEFAULT NULL;
 
 	SET @_ = fun_can_user_create_tender(p_creat_by_user_id, FALSE);
 	SET @_ = fun_is_tender_info_valid(NULL, p_from, p_to, FALSE);
@@ -31,8 +31,11 @@ BEGIN
 		SET p_status = 'COMING_SOON';
 	END IF;
 
-	SET v_serial_num = (SELECT IFNULL(MAX(serial_num), 1) FROM tenders) + 
-		FLOOR(3 + RAND() * 50);
+	SET v_serial_num = CONCAT (
+		SUBSTRING(UNIX_TIMESTAMP (), 1, 3),
+		'-', 
+		SUBSTRING(UNIX_TIMESTAMP (), 4)
+	);
 
 	INSERT INTO 
 		tenders (
@@ -80,6 +83,6 @@ BEGIN
 	;
   
 	SET p_out_new_rec_id = LAST_INSERT_ID();
-	SELECT p_out_new_rec_id AS newRecId;
+	SELECT p_out_new_rec_id AS newRecId, v_serial_num AS newSerialNum;
 
 END$$

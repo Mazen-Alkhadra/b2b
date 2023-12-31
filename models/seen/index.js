@@ -30,6 +30,7 @@ class Seen extends Model {
         seen.creat_at seenAt,
         id_tender tenderId,
         t.name tenderName,
+        t.serial_num tenderSerialNum,
         t.quantity tenderQuantity,
         o.quantity offerQuantity,
         id_product	productId,

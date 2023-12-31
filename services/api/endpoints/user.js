@@ -7,8 +7,6 @@ module.exports = {
   GetUserBrands: '/api/user/brands',
   GetUserProducts: '/api/user/products',
   GetUserContactInfo: '/api/user/contact-info',
-  GetUserPrivacyPolicy: '/api/user/privacy-policy',
-  GetUserTerms: '/api/user/terms',
   GetUserOffers: '/api/user/offers',
   GetUserPayments: '/api/user/payments',
   GetUserSubscribes: '/api/user/subscription/user-subscriptions',

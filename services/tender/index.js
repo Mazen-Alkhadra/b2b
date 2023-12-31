@@ -41,7 +41,7 @@ class Tender {
     addressLatitude, moreAddressInfo, status, 
     closedAt, supplierLocation, payMethod
   }) {
-    let {newId} = await this.tenderModel.addNew({
+    let {newId, newSerialNum} = await this.tenderModel.addNew({
       creatByUserId, name, productId, quantity,
       from, to, deliverBefore, cityId, area, 
       street, buildingNumber, addressLongitude, 
@@ -51,7 +51,7 @@ class Tender {
 
     NotifySvc.Event.create().handl({
       event: NotifySvc.Event.EVENTS_TYPES.NEW_TENDER_CREATED,
-      data: {tenderId: newId, tenderName: name}
+      data: { tenderId: newId, tenderName: newSerialNum }
     });
   }
 

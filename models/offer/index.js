@@ -47,7 +47,8 @@ class Offer extends Model {
         t.creat_by_user_id tenderCreatorByUserId,
         t.product_id productId,
         t.quantity tenderQuantity,
-        t.name tenderName
+        t.name tenderName,
+        t.serial_num tenderSerialNum 
       FROM
         offers o
         INNER JOIN tenders t ON tender_id = id_tender

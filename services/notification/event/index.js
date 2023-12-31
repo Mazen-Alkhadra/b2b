@@ -60,7 +60,7 @@ class Event {
         notification.contentEn = StrRes (
             `${event}_NOTIFY_CONTENT`, 
             LANGS.EN,
-            {tenderName: offerDet.data[0]?.tenderName }
+            {tenderName: offerDet.data[0]?.tenderSerialNum }
         );
         break;
     }

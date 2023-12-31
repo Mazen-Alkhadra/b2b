@@ -1,5 +1,5 @@
 const { 
-  GetUserTerms 
+  GetPublicTerms 
 } = require('../../../services').api.endpoints;
 const TermSvc = require('../../../services').Terms;
 const extractFilters = require('../../../middlewares/filters');
@@ -7,7 +7,7 @@ const extractSorts = require('../../../middlewares/sorts');
 
 module.exports = app => {
 
-  app.get(GetUserTerms,
+  app.get(GetPublicTerms,
     [extractFilters, extractSorts],
     async (req, res) => {
       try {

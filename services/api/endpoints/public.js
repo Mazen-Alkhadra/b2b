@@ -9,6 +9,8 @@ module.exports = {
   GetPublicCities: '/api/public/cities',
   GetPublicCountries: '/api/public/countries',
   GetPublicAds: '/api/public/ads',
+  GetPublicPrivacyPolicy: '/api/public/privacy-policy',
+  GetPublicTerms: '/api/public/terms',
 
   PostAuthLogin: '/api/auth/login',
   PostAuthSignup: '/api/auth/signup',
@@ -19,5 +21,5 @@ module.exports = {
   PostPublicUploadDoc: '/api/public/doc/upload',
   PostPublicUploadImg: '/api/public/img/upload',
   PostPublicInfomCompletePay: '/api/public/e-pay/complete',
-  PostPublicIssueReport: '/api/public/issue-report',
+  PostPublicIssueReport: '/api/public/issue-report'
 }

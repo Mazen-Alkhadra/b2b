@@ -1,5 +1,5 @@
 const { 
-  GetUserPrivacyPolicy 
+  GetPublicPrivacyPolicy 
 } = require('../../../services').api.endpoints;
 const PrivacyPolicySvc = require('../../../services').PrivacyPolicy;
 const extractFilters = require('../../../middlewares/filters');
@@ -7,7 +7,7 @@ const extractSorts = require('../../../middlewares/sorts');
 
 module.exports = app => {
 
-  app.get(GetUserPrivacyPolicy,
+  app.get(GetPublicPrivacyPolicy,
     [extractFilters, extractSorts],
     async (req, res) => {
       try {

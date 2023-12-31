@@ -30,6 +30,7 @@ class Trash extends Model {
         trash.creat_at trashedAt,
         id_tender tenderId,
         t.name tenderName,
+        t.serial_num tenderSerialNum,
         t.quantity tenderQuantity,
         o.quantity offerQuantity,
         id_product	productId,
