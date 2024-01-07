@@ -42,8 +42,8 @@ module.exports = {
       useFTP: true,
       destination: `${__dirname}/../uploads/imgs`,
       fieldName: 'img',
-      limitSizeBytes: 15 * 1024 * 1024, // 15 MB
-      profileImgLimitSizeBytes: 5 * 1024 * 1024 // 5 MB      
+      limitSizeBytes: 20 * 1024 * 1024, // 20 MB
+      profileImgLimitSizeBytes: 20 * 1024 * 1024 // 20 MB      
     },
     docs: {
       reqTimeoutMS: 30 * 60 * 1000 /* 30m */,
