@@ -50,21 +50,22 @@ class UserCode {
       });
     }
     else 
-      await this.codeModel.consume ({ 
+      await this.codeModel.consume({ 
         loginName, code, isLoginNameEmail: !isLoginNameMobile
       });  
 
     this.addVerified({ loginName });
     
-    this.userModel.findUser({loginName}).then(user => {
-        if(!user) 
-          return;
-        this.userModel.update ({
-          idUser: user.idUser, 
-          isEmailVerified: !isLoginNameMobile || null,
-          isMobileVerified: isLoginNameMobile || null
-        });
-    });
+    const user = await this.userModel.findUser({loginName});
+    
+    if(user)   
+      this.userModel.update({
+        idUser: user.idUser, 
+        isEmailVerified: !isLoginNameMobile || null,
+        isMobileVerified: isLoginNameMobile || null
+      });
+
+    return user;
   }
 
   async genActivationCode({loginName}) {
@@ -96,9 +97,14 @@ class UserCode {
     if(!user || !user.idUser) 
       throw {message: ERR_NOT_EXISTS_USER_NAME};
     
+    
+    if(validators.isMobile(loginName))
+      return this.verifyMobile({mobileNumber: loginName});
+
     let {idUser, firstName, lastName, email, mobile} = user;
     let code = codeGenSvc.create().generate(4, codeGenSvc.CODES_TYPES.NUMERIC);
 
+    if(validators)
     await this.addNew({
       code, 
       loginName,
@@ -110,7 +116,6 @@ class UserCode {
     });
     
     EmailSvc.create().sendResetPasswordCode(firstName, lastName, email, code);
-    this.verifyMobile({mobileNumber: mobile});
   }
 
   async delete({ idCode }) {
