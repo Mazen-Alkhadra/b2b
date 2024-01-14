@@ -7,8 +7,8 @@ BEGIN
 	UPDATE 
 		users
   SET 
-    email = CONCAT(email, '#'),
-    mobile = CONCAT(mobile, '#'),
+    email = CONCAT(email, '#', UNIX_TIMESTAMP ()),
+    mobile = CONCAT(mobile, '#', UNIX_TIMESTAMP ()),
     is_deleted = TRUE
 	WHERE
 		id_user = p_id_user
