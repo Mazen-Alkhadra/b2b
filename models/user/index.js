@@ -40,7 +40,8 @@ class User extends Model {
         is_accepted isAccepted, 
         is_authorized isAuthorized,
         notes,
-        fun_is_user_admin(id_user) isAdmin
+        fun_is_user_admin(id_user) isAdmin,
+        fun_get_setting_val('MOBILE_APP_MIN_VER') mobileAppMinVer
       FROM
         users
       WHERE
