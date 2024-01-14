@@ -158,13 +158,14 @@ class User extends Model {
         last_login_at lastLoginAt, 
         score,
         notes,
+        creat_at creatAt,
         fun_is_user_admin(id_user) isAdmin
       FROM
         users
       WHERE 
         ${isAdminCond} AND 
         ${careTenderCond}`;
-
+ 
     let queryStr = countQuery + dataQuery;
 
     let filteredQuery = this.applyFilters(dataQuery, filters);
