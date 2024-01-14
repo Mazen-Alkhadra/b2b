@@ -44,6 +44,7 @@ class User extends Model {
       FROM
         users
       WHERE
+       is_deleted = FALSE AND
        ${emailCond} AND 
        ${mobileCond} AND 
        ${userIdCond} AND 
@@ -148,6 +149,7 @@ class User extends Model {
 				fun_get_img(img_id)	imgUrl,
 				role_id	roleId,
 				is_blocked isBlocked,
+        is_deleted isDeleted,
 				is_mobile_verified isMobileVerified,
         is_email_verified isEmailVerified,
         is_accepted isAccepted,
@@ -235,6 +237,13 @@ class User extends Model {
   async delete({ idUser }) {
     await this.directQuery (
       'CALL prc_delete_user(?);',
+      idUser
+    );
+  }
+
+  async softDelete({ idUser }) {
+    await this.directQuery (
+      'CALL prc_soft_delete_user(?);',
       idUser
     );
   }

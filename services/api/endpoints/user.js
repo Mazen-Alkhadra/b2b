@@ -41,4 +41,5 @@ module.exports = {
   DeleteUserTender: '/api/user/tender',
   DeleteUserCare: '/api/user/care',
   DeleteUserTrash: '/api/user/trash',
+  DeleteUserProfile: '/api/user/profile',
 }

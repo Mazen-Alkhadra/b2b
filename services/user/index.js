@@ -69,6 +69,10 @@ class User {
     await this.userModel.delete({ idUser });
   }
 
+  async softDelete({ idUser }) {
+    await this.userModel.softDelete({ idUser });
+  }
+
   async accept ({ usersIds, isAccepted, notes }) {
     await this.userModel.accept({ usersIds, isAccepted, notes });
   }
